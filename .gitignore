@@ -30,3 +30,6 @@ temp/
 # Agent specific exclusions
 services/*/node_modules/
 Agents/*/node_modules/
+
+# Ignore Wan2.2 directory
+Wan2.2/
