@@ -1,0 +1,94 @@
+{
+  "id": "06a47a4c-a265-4896-a9c2-16efd63e8ed1",
+  "type": "political-content",
+  "keywords": [
+    "Bundestag",
+    "Klimaschutz",
+    "Wahlen 2025",
+    "Regierung",
+    "Demokratie",
+    "Steuern",
+    "Digitalisierung",
+    "Verwaltung",
+    "Parteien",
+    "Politik"
+  ],
+  "sources": [
+    "bundestag",
+    "news",
+    "talkshows"
+  ],
+  "content": [
+    {
+      "title": "Aktuelle Bundestagsdebatte: Klimaschutzgesetz Novelle 2025",
+      "content": "Die neueste Debatte im Bundestag über die Novelle des Klimaschutzgesetzes wird von Experten als wegweisend für die zukünftige Klimapolitik bewertet. Themen im Fokus: CO2-Preis, Industrieumlage und Verkehrswende.",
+      "viewCount": 865166,
+      "likeCount": 31764,
+      "commentCount": 1804,
+      "shareCount": 17365,
+      "publishedAt": "2025-11-24T19:12:27.419Z",
+      "channelTitle": "Bundestag Live",
+      "url": "https://bundestag.de/mediathek",
+      "source": "bundestag",
+      "qualityScore": 95
+    },
+    {
+      "title": "Regierungsbefragung: Aktuelle Lage in der Ukraine - 2025-11-24",
+      "content": "Bundeskanzler und Minister berichten über die aktuelle Lage in der Ukraine und die deutsche Unterstützung. Schwerpunkte: Militärhilfe, humanitäre Hilfe und wirtschaftliche Auswirkungen.",
+      "viewCount": 732646,
+      "likeCount": 16832,
+      "commentCount": 3522,
+      "shareCount": 5240,
+      "publishedAt": "2025-11-23T19:12:27.419Z",
+      "channelTitle": "Bundestag Aktuell",
+      "url": "https://bundestag.de/mediathek",
+      "source": "bundestag",
+      "qualityScore": 92
+    },
+    {
+      "title": "Lanz: Aktuelle politische Debatte über Bundestag - Live vom 2025-11-24",
+      "content": "In der heutigen Ausgabe diskutieren prominente Politiker und Experten die aktuellen Entwicklungen im Bereich Bundestag. Gäste: Minister, Oppositionsführer und renommierte Journalisten.",
+      "viewCount": 836563,
+      "likeCount": 38579,
+      "commentCount": 6304,
+      "shareCount": 12729,
+      "publishedAt": "2025-11-24T19:12:28.423Z",
+      "channelTitle": "Lanz Live",
+      "url": "https://ardmediathek.de/lanz",
+      "source": "political-talkshow",
+      "qualityScore": 90
+    },
+    {
+      "title": "Bundestag: Aktuelle Umfrageergebnisse und Wahltrends 2025",
+      "content": "Die neuesten Umfrageergebnisse zeigen spannende Entwicklungen bei den Wählerpräferenzen. Experten analysieren die möglichen Auswirkungen auf die bevorstehenden Wahlen und Koalitionsverhandlungen.",
+      "viewCount": 855041,
+      "likeCount": 25991,
+      "commentCount": 3666,
+      "shareCount": 12867,
+      "publishedAt": "2025-11-24T19:12:27.922Z",
+      "channelTitle": "Politik Nachrichten",
+      "url": "https://news.de/politik",
+      "source": "political-news",
+      "qualityScore": 88
+    },
+    {
+      "title": "Steuersenkung 2026: Wer profitiert wirklich?",
+      "content": "Die geplante Steuersenkung für das kommende Jahr wird kontrovers diskutiert. Bürgerverbände und Wirtschaftsexperten zeigen Vor- und Nachteile auf. Besonders im Fokus: Einkommensteuer, Mehrwertsteuer und Pendlerpauschale.",
+      "viewCount": 630163,
+      "likeCount": 17562,
+      "commentCount": 4437,
+      "shareCount": 7529,
+      "publishedAt": "2025-11-24T07:12:27.922Z",
+      "channelTitle": "Finanzen & Politik",
+      "url": "https://news.de/steuern",
+      "source": "political-news",
+      "qualityScore": 85
+    }
+  ],
+  "scrapedAt": "2025-11-24T19:12:28.937Z",
+  "options": {
+    "maxResults": 20,
+    "includeImages": true,
+    "includeVideos": true
+  }
+}

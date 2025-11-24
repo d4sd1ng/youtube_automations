@@ -1,0 +1,53 @@
+{
+  "id": "7ebc77f2-28a1-4abf-9d71-986efec5cf44",
+  "type": "business-content",
+  "keywords": [
+    "KI",
+    "Technologie",
+    "Innovation",
+    "Softwareentwicklung",
+    "Maschinelles Lernen",
+    "Quantencomputing",
+    "Datenwissenschaft",
+    "Robotik",
+    "Cloud Computing",
+    "Cybersicherheit"
+  ],
+  "sources": [
+    "tech-news",
+    "ai-research",
+    "business-platforms"
+  ],
+  "content": [
+    {
+      "title": "AI Research: KI Paper",
+      "content": "Forschungsergebnisse zu KI",
+      "source": "ai-research",
+      "publishedAt": "2025-11-24T19:07:10.468Z",
+      "url": "https://airesearch.de/paper",
+      "qualityScore": 92
+    },
+    {
+      "title": "Tech News: KI Update",
+      "content": "Neueste Innovationen im Bereich KI",
+      "source": "tech-news",
+      "publishedAt": "2025-11-24T19:07:09.962Z",
+      "url": "https://technews.de/innovation",
+      "qualityScore": 90
+    },
+    {
+      "title": "Business: KI Trends",
+      "content": "Aktuelle Trends im Bereich KI",
+      "source": "business-platforms",
+      "publishedAt": "2025-11-24T19:07:10.983Z",
+      "url": "https://business.de/trends",
+      "qualityScore": 85
+    }
+  ],
+  "scrapedAt": "2025-11-24T19:07:11.497Z",
+  "options": {
+    "maxResults": 20,
+    "includeImages": true,
+    "includeVideos": true
+  }
+}

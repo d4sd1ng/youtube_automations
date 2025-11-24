@@ -1,0 +1,112 @@
+{
+  "id": "50368597-9566-42e9-8f21-900cfc76aeae",
+  "type": "political-content-scraping",
+  "status": "completed",
+  "keywords": [
+    "Bundestag",
+    "Klimaschutz",
+    "Wahlen 2025",
+    "Regierung",
+    "Demokratie",
+    "Steuern",
+    "Digitalisierung",
+    "Verwaltung",
+    "Parteien",
+    "Politik"
+  ],
+  "options": {
+    "maxResults": 20,
+    "includeImages": true,
+    "includeVideos": true
+  },
+  "progress": {
+    "currentStage": "scraping",
+    "stageProgress": 100,
+    "overallProgress": 100
+  },
+  "metadata": {
+    "startedAt": "2025-11-24T19:07:08.405Z",
+    "estimatedDuration": 120000,
+    "completedAt": "2025-11-24T19:07:09.936Z"
+  },
+  "logs": [
+    {
+      "timestamp": "2025-11-24T19:07:08.405Z",
+      "level": "info",
+      "message": "Starting political content scraping for: Bundestag, Klimaschutz, Wahlen 2025, Regierung, Demokratie, Steuern, Digitalisierung, Verwaltung, Parteien, Politik"
+    },
+    {
+      "timestamp": "2025-11-24T19:07:08.406Z",
+      "level": "info",
+      "message": "Scraping from bundestag..."
+    },
+    {
+      "timestamp": "2025-11-24T19:07:08.921Z",
+      "level": "info",
+      "message": "Scraping from news..."
+    },
+    {
+      "timestamp": "2025-11-24T19:07:09.423Z",
+      "level": "info",
+      "message": "Scraping from talkshows..."
+    },
+    {
+      "timestamp": "2025-11-24T19:07:09.936Z",
+      "level": "info",
+      "message": "Political content scraping completed successfully"
+    }
+  ],
+  "result": {
+    "id": "28a3249e-2468-45d9-af61-83f999f58e6c",
+    "type": "political-content",
+    "keywords": [
+      "Bundestag",
+      "Klimaschutz",
+      "Wahlen 2025",
+      "Regierung",
+      "Demokratie",
+      "Steuern",
+      "Digitalisierung",
+      "Verwaltung",
+      "Parteien",
+      "Politik"
+    ],
+    "sources": [
+      "bundestag",
+      "news",
+      "talkshows"
+    ],
+    "content": [
+      {
+        "title": "Bundestag: Bundestag Diskussion",
+        "content": "Aktuelle Diskussion im Bundestag zum Thema Bundestag",
+        "source": "bundestag",
+        "publishedAt": "2025-11-24T19:07:08.407Z",
+        "url": "https://bundestag.de/debatte",
+        "qualityScore": 95
+      },
+      {
+        "title": "Politik: Bundestag Nachrichten",
+        "content": "Aktuelle Nachrichten zum Thema Bundestag",
+        "source": "political-news",
+        "publishedAt": "2025-11-24T19:07:08.922Z",
+        "url": "https://news.de/politik",
+        "qualityScore": 85
+      },
+      {
+        "title": "Talkshow: Bundestag Diskussion",
+        "content": "Diskussion in politischer Talkshow zum Thema Bundestag",
+        "source": "political-talkshow",
+        "publishedAt": "2025-11-24T19:07:09.424Z",
+        "url": "https://talkshow.de/politik",
+        "qualityScore": 80
+      }
+    ],
+    "scrapedAt": "2025-11-24T19:07:09.936Z",
+    "options": {
+      "maxResults": 20,
+      "includeImages": true,
+      "includeVideos": true
+    }
+  }
+}

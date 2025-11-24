@@ -1,0 +1,53 @@
+{
+  "id": "f1ff6ac6-00b5-481d-87ba-1f39d143ef9b",
+  "type": "political-content",
+  "keywords": [
+    "Bundestag",
+    "Klimaschutz",
+    "Wahlen 2025",
+    "Regierung",
+    "Demokratie",
+    "Steuern",
+    "Digitalisierung",
+    "Verwaltung",
+    "Parteien",
+    "Politik"
+  ],
+  "sources": [
+    "bundestag",
+    "news",
+    "talkshows"
+  ],
+  "content": [
+    {
+      "title": "Bundestag: Bundestag Diskussion",
+      "content": "Aktuelle Diskussion im Bundestag zum Thema Bundestag",
+      "source": "bundestag",
+      "publishedAt": "2025-11-24T19:06:52.429Z",
+      "url": "https://bundestag.de/debatte",
+      "qualityScore": 95
+    },
+    {
+      "title": "Politik: Bundestag Nachrichten",
+      "content": "Aktuelle Nachrichten zum Thema Bundestag",
+      "source": "political-news",
+      "publishedAt": "2025-11-24T19:06:52.931Z",
+      "url": "https://news.de/politik",
+      "qualityScore": 85
+    },
+    {
+      "title": "Talkshow: Bundestag Diskussion",
+      "content": "Diskussion in politischer Talkshow zum Thema Bundestag",
+      "source": "political-talkshow",
+      "publishedAt": "2025-11-24T19:06:53.446Z",
+      "url": "https://talkshow.de/politik",
+      "qualityScore": 80
+    }
+  ],
+  "scrapedAt": "2025-11-24T19:06:53.957Z",
+  "options": {
+    "maxResults": 20,
+    "includeImages": true,
+    "includeVideos": true
+  }
+}

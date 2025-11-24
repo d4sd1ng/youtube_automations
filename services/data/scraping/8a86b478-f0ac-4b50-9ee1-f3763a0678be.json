@@ -1,0 +1,81 @@
+{
+  "id": "8a86b478-f0ac-4b50-9ee1-f3763a0678be",
+  "type": "business-content",
+  "keywords": [
+    "KI",
+    "Technologie",
+    "Innovation",
+    "Softwareentwicklung",
+    "Maschinelles Lernen",
+    "Quantencomputing",
+    "Datenwissenschaft",
+    "Robotik",
+    "Cloud Computing",
+    "Cybersicherheit"
+  ],
+  "sources": [
+    "tech-news",
+    "ai-research",
+    "business-platforms"
+  ],
+  "content": [
+    {
+      "title": "Neue KI-Durchbrüche in der KIentwicklung 2025",
+      "content": "Forscher präsentieren bahnbrechende Fortschritte in der KI-gestützten Softwareentwicklung. Diese Innovationen könnten die Art, wie wir programmieren, revolutionieren. Schwerpunkte: Automatisierung, Code-Generierung und Fehlererkennung.",
+      "viewCount": 1114074,
+      "likeCount": 71487,
+      "commentCount": 6796,
+      "shareCount": 14900,
+      "publishedAt": "2025-11-24T19:12:28.966Z",
+      "channelTitle": "Tech Innovation",
+      "url": "https://technews.de/ai",
+      "source": "tech-news",
+      "qualityScore": 96
+    },
+    {
+      "title": "KI in der Medizin: Diagnose und Behandlung revolutionieren",
+      "content": "Künstliche Intelligenz revolutioniert die medizinische Diagnostik. Neue Algorithmen erkennen Krankheiten früher und genauer als je zuvor. Erfolgsprojekte: Krebsfrüherkennung, Radiologie und personalisierte Therapieansätze.",
+      "viewCount": 1263836,
+      "likeCount": 43060,
+      "commentCount": 2593,
+      "shareCount": 20098,
+      "publishedAt": "2025-11-24T19:12:29.481Z",
+      "channelTitle": "MedTech Today",
+      "url": "https://airesearch.de/medical",
+      "source": "ai-research",
+      "qualityScore": 94
+    },
+    {
+      "title": "Quantencomputing: Nächste Generation von KIprozessoren",
+      "content": "Die nächste Generation von Quantenprozessoren verspricht exponentielle Leistungssteigerungen. Unternehmen investieren Milliarden in diese Technologie. Anwendungsbereiche: Kryptographie, Simulation und Optimierung.",
+      "viewCount": 1398155,
+      "likeCount": 48691,
+      "commentCount": 3040,
+      "shareCount": 16025,
+      "publishedAt": "2025-11-23T19:12:28.966Z",
+      "channelTitle": "Future Tech",
+      "url": "https://technews.de/quantum",
+      "source": "tech-news",
+      "qualityScore": 93
+    },
+    {
+      "title": "Startup-Szene: Innovative KIunternehmen im Fokus",
+      "content": "Die dynamische Startup-Szene präsentiert vielversprechende Unternehmen im Bereich KI. Investoren zeigen großes Interesse an KI, Blockchain und grüner Technologie. Trendthemen: Sustainability, Remote Work und Digital Health.",
+      "viewCount": 1023201,
+      "likeCount": 38371,
+      "commentCount": 3321,
+      "shareCount": 6238,
+      "publishedAt": "2025-11-24T19:12:29.996Z",
+      "channelTitle": "Business Insights",
+      "url": "https://business.de/startups",
+      "source": "business-platforms",
+      "qualityScore": 87
+    }
+  ],
+  "scrapedAt": "2025-11-24T19:12:30.498Z",
+  "options": {
+    "maxResults": 20,
+    "includeImages": true,
+    "includeVideos": true
+  }
+}
