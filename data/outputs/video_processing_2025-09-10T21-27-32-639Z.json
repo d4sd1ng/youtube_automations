@@ -1,0 +1,89 @@
+{
+  "originalVideo": "X:\\AGENTS\\data\\videos\\sample_video.mp4",
+  "videoInfo": {
+    "fileName": "sample_video.mp4",
+    "duration": 120,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "codec": "H.264",
+    "fileSize": "45MB",
+    "createdAt": "2025-09-10T21:27:07.592Z"
+  },
+  "keyFrames": [
+    {
+      "timestamp": 10,
+      "description": "Introduction scene"
+    },
+    {
+      "timestamp": 30,
+      "description": "Main content begins"
+    },
+    {
+      "timestamp": 60,
+      "description": "Key demonstration"
+    },
+    {
+      "timestamp": 90,
+      "description": "Summary and conclusion"
+    }
+  ],
+  "summary": "This video covers the topic of artificial intelligence in software development. \n  Key points include AI automation, machine learning models, and the future of coding. \n  The video demonstrates how AI is transforming the way we write code with tools like GitHub Copilot.",
+  "shortClips": [
+    {
+      "id": "clip_1",
+      "startTime": 10,
+      "endTime": 25,
+      "description": "Introduction scene",
+      "fileName": "short_clip_1.mp4"
+    },
+    {
+      "id": "clip_2",
+      "startTime": 30,
+      "endTime": 45,
+      "description": "Main content begins",
+      "fileName": "short_clip_2.mp4"
+    },
+    {
+      "id": "clip_3",
+      "startTime": 60,
+      "endTime": 75,
+      "description": "Key demonstration",
+      "fileName": "short_clip_3.mp4"
+    },
+    {
+      "id": "clip_4",
+      "startTime": 90,
+      "endTime": 105,
+      "description": "Summary and conclusion",
+      "fileName": "short_clip_4.mp4"
+    }
+  ],
+  "thumbnails": [
+    {
+      "id": "thumb_1",
+      "timestamp": 10,
+      "fileName": "thumbnail_1.jpg",
+      "description": "Introduction scene"
+    },
+    {
+      "id": "thumb_2",
+      "timestamp": 30,
+      "fileName": "thumbnail_2.jpg",
+      "description": "Main content begins"
+    },
+    {
+      "id": "thumb_3",
+      "timestamp": 60,
+      "fileName": "thumbnail_3.jpg",
+      "description": "Key demonstration"
+    },
+    {
+      "id": "thumb_4",
+      "timestamp": 90,
+      "fileName": "thumbnail_4.jpg",
+      "description": "Summary and conclusion"
+    }
+  ],
+  "processedAt": "2025-09-10T21:27:32.639Z"
+}

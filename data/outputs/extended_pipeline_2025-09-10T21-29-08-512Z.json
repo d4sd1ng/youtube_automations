@@ -1,0 +1,223 @@
+{
+  "pipelineId": "66a2f054-3466-45e0-afc9-8c2adf14cc4a",
+  "channelId": "extended-test-001",
+  "topic": "Künstliche Intelligenz und Machine Learning",
+  "status": "completed",
+  "createdAt": "2025-09-10T21:29:08.501Z",
+  "updatedAt": "2025-09-10T21:29:08.511Z",
+  "steps": {
+    "webScraping": {
+      "status": "completed",
+      "completedAt": "2025-09-10T21:29:08.504Z",
+      "result": {
+        "contentItems": [
+          {
+            "title": "Reddit post about Künstliche Intelligenz und Machine Learning",
+            "content": "This is sample Reddit content about Künstliche Intelligenz und Machine Learning",
+            "score": 273,
+            "num_comments": 27,
+            "permalink": "/r/sample/comments/1757539748503",
+            "created_utc": 1757539748.503,
+            "source": "reddit",
+            "qualityScore": 90
+          },
+          {
+            "title": "Twitter post about Künstliche Intelligenz und Machine Learning",
+            "content": "This is a sample Twitter post about Künstliche Intelligenz und Machine Learning #KünstlicheIntelligenzundMachineLearning",
+            "retweetCount": 2597,
+            "likeCount": 9373,
+            "publishedAt": "2025-09-10T21:29:08.504Z",
+            "url": "https://twitter.com/user/status/1757539748504",
+            "source": "twitter",
+            "qualityScore": 17
+          },
+          {
+            "title": "YouTube video about Künstliche Intelligenz und Machine Learning",
+            "description": "This is a sample YouTube video description about Künstliche Intelligenz und Machine Learning",
+            "viewCount": 757200,
+            "likeCount": 34614,
+            "commentCount": 3798,
+            "publishedAt": "2025-09-10T21:29:08.504Z",
+            "channelTitle": "Sample Channel",
+            "url": "https://youtube.com/watch?v=1757539748504",
+            "source": "youtube",
+            "qualityScore": 11
+          }
+        ],
+        "totalCount": 3,
+        "relevantCount": 0,
+        "sources": {
+          "reddit": 1,
+          "youtube": 1,
+          "twitter": 1
+        }
+      }
+    },
+    "multiInputProcessing": {
+      "status": "completed",
+      "completedAt": "2025-09-10T21:29:08.505Z",
+      "result": {
+        "processedItems": 0,
+        "consolidatedContent": "",
+        "metadata": {
+          "processedAt": "2025-09-10T21:29:08.505Z",
+          "pipelineId": "66a2f054-3466-45e0-afc9-8c2adf14cc4a"
+        }
+      }
+    },
+    "scriptGeneration": {
+      "status": "completed",
+      "completedAt": "2025-09-10T21:29:08.508Z",
+      "result": {
+        "scriptId": "script_1757539748506",
+        "content": "Welcome to our tutorial about Künstliche Intelligenz und Machine Learning. Key topics include: AI, Machine Learning, Neural Networks, Deep Learning. \n\nThis content is tailored for developers with a educational approach. The target length is 12min.\n\n[INTRO]\nHello everyone! Today we're going to explore Künstliche Intelligenz und Machine Learning.\n\n[MAIN CONTENT]\nHere's what you need to know about Künstliche Intelligenz und Machine Learning...\n\n[CONCLUSION]\nThat's all for today. Thanks for watching!\n\n[OUTRO]\nDon't forget to like, comment, and subscribe for more content!",
+        "metadata": {
+          "topic": "Künstliche Intelligenz und Machine Learning",
+          "contentType": "tutorial",
+          "targetLength": "12min",
+          "tone": "educational",
+          "audience": "developers",
+          "trendingKeywords": [
+            "AI",
+            "Machine Learning",
+            "Neural Networks",
+            "Deep Learning"
+          ],
+          "customInstructions": "",
+          "useChainOfThought": true,
+          "enableSelfReflection": true,
+          "createdAt": "2025-09-10T21:29:08.506Z",
+          "wordCount": 73,
+          "estimatedReadingTime": 1,
+          "qualityCheck": {
+            "scriptId": "script_1757539748506",
+            "approvalStatus": "approved",
+            "approvalReason": "Script meets quality standards",
+            "wordCount": 73,
+            "estimatedReadingTime": 1,
+            "checkedAt": "2025-09-10T21:29:08.507Z"
+          }
+        }
+      }
+    },
+    "contentRepurposing": {
+      "status": "completed",
+      "completedAt": "2025-09-10T21:29:08.509Z",
+      "result": {
+        "repurposedItems": 0,
+        "platforms": [],
+        "metadata": {
+          "repurposedAt": "2025-09-10T21:29:08.508Z",
+          "pipelineId": "66a2f054-3466-45e0-afc9-8c2adf14cc4a"
+        }
+      }
+    },
+    "monetizationAnalysis": {
+      "status": "completed",
+      "completedAt": "2025-09-10T21:29:08.509Z",
+      "result": {
+        "estimatedViews": 0,
+        "estimatedRevenue": 0,
+        "revenueBreakdown": {},
+        "metadata": {
+          "analyzedAt": "2025-09-10T21:29:08.509Z",
+          "pipelineId": "66a2f054-3466-45e0-afc9-8c2adf14cc4a"
+        }
+      }
+    },
+    "thumbnailGeneration": {
+      "status": "completed",
+      "completedAt": "2025-09-10T21:29:08.511Z",
+      "result": {
+        "id": "thumb_undefined_0",
+        "title": "Künstliche Intelligenz und Machine Learning",
+        "design": {
+          "colorScheme": {
+            "primary": "#4A90E2",
+            "secondary": "#50E3C2",
+            "accent": "#F5A623"
+          },
+          "layout": "clean",
+          "iconSuggestions": [
+            "🤖",
+            "💻",
+            "🧠"
+          ],
+          "fontSize": 28,
+          "textPosition": "center",
+          "hasOverlay": true
+        },
+        "style": "modern",
+        "platform": "youtube",
+        "includeBranding": true,
+        "createdAt": "2025-09-10T21:29:08.510Z"
+      }
+    }
+  },
+  "config": {
+    "channelId": "extended-test-001",
+    "topic": "Künstliche Intelligenz und Machine Learning",
+    "scrapeContent": true,
+    "generateScripts": true,
+    "createThumbnails": true,
+    "contentType": "tutorial",
+    "targetLength": "12min",
+    "tone": "educational",
+    "audience": "developers",
+    "trendingKeywords": [
+      "AI",
+      "Machine Learning",
+      "Neural Networks",
+      "Deep Learning"
+    ],
+    "maxScripts": 3,
+    "optimizeForSEO": true,
+    "targetPlatforms": [
+      "youtube",
+      "linkedin",
+      "medium"
+    ],
+    "analyzeMonetization": true,
+    "estimatedViews": 10000,
+    "translateTo": [
+      "en",
+      "fr",
+      "es"
+    ],
+    "enableTranslation": true
+  },
+  "options": {
+    "channelId": "extended-test-001",
+    "topic": "Künstliche Intelligenz und Machine Learning",
+    "scrapeContent": true,
+    "generateScripts": true,
+    "createThumbnails": true,
+    "contentType": "tutorial",
+    "targetLength": "12min",
+    "tone": "educational",
+    "audience": "developers",
+    "trendingKeywords": [
+      "AI",
+      "Machine Learning",
+      "Neural Networks",
+      "Deep Learning"
+    ],
+    "maxScripts": 3,
+    "optimizeForSEO": true,
+    "targetPlatforms": [
+      "youtube",
+      "linkedin",
+      "medium"
+    ],
+    "analyzeMonetization": true,
+    "estimatedViews": 10000,
+    "translateTo": [
+      "en",
+      "fr",
+      "es"
+    ],
+    "enableTranslation": true
+  },
+  "data": {},
+  "completedAt": "2025-09-10T21:29:08.511Z"
+}

@@ -1,0 +1,14 @@
+{
+  "originalFile": "X:\\AGENTS\\data\\audio\\test_meeting_recording.mp3",
+  "transcription": {
+    "text": "Transcribed text from test_meeting_recording.mp3: Today we're discussing the future of artificial intelligence in software development.\n    Artificial intelligence is transforming how we write code, with tools like GitHub Copilot\n    and other AI assistants becoming increasingly sophisticated.\n\n    Key points from today's discussion:\n    1. AI is automating repetitive coding tasks\n    2. Machine learning models are getting better at understanding context\n    3. Natural language processing is enabling more intuitive developer interfaces\n    4. The future holds promise for fully autonomous code generation\n\n    In conclusion, AI will continue to reshape the software development landscape,\n    making developers more productive while also raising new questions about code quality\n    and the role of human developers in the process.",
+    "language": "en",
+    "confidence": 0.92,
+    "duration": 84,
+    "wordCount": 139,
+    "estimatedReadingTime": 1
+  },
+  "summary": "Summary: This audio content discusses Transcribed text from test_meeting_recording. mp3: Today we're discussing the future of artificial intelligence in software development. \n    Artifici...\n  The main topics include artificial intelligence, software development, and the future of coding.",
+  "outputLanguage": "en",
+  "processedAt": "2025-09-10T10:06:28.393Z"
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pipeline Completion Notification</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #4CAF50; color: white; padding: 10px; text-align: center; }
+        .content { padding: 20px; background-color: #f9f9f9; }
+        .footer { padding: 10px; text-align: center; font-size: 0.8em; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Pipeline Completed Successfully</h1>
+        </div>
+        <div class="content">
+            <p>Hello,</p>
+            <p>Your content generation pipeline for <strong>Künstliche Intelligenz und Machine Learning</strong> has been completed successfully.</p>
+
+            <h2>Details:</h2>
+            <ul>
+                <li>Completion Time: 10.9.2025, 23:30:12</li>
+                <li>Steps Processed: 3</li>
+            </ul>
+
+            <p>You can now review and publish your generated content.</p>
+        </div>
+        <div class="footer">
+            <p>This is an automated message from your content generation system.</p>
+        </div>
+    </div>
+</body>
+</html>

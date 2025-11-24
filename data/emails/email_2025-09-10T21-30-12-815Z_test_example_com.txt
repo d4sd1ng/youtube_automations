@@ -1,0 +1,16 @@
+
+To: test@example.com
+Subject: Pipeline Completed: Künstliche Intelligenz und Machine Learning
+Date: Wed, 10 Sep 2025 21:30:12 GMT
+
+Your content generation pipeline has been completed successfully.
+
+Generated content:
+- 3 scripts
+- 5 thumbnails
+- 2 translations
+
+View your results in the dashboard.
+
+---
+This is an automated message from your content generation system.

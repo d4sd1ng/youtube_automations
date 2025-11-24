@@ -1,0 +1,14 @@
+{
+  "originalFile": "X:\\AGENTS\\data\\audio\\german_meeting_recording.mp3",
+  "transcription": {
+    "text": "Transkribierter Text von german_meeting_recording.mp3: Heute diskutieren wir über die Zukunft der künstlichen Intelligenz in der Softwareentwicklung.\n    Künstliche Intelligenz verändert grundlegend, wie wir Code schreiben, mit Tools wie GitHub Copilot\n    und anderen KI-Assistenten, die immer ausgefeilter werden.\n\n    Wichtige Punkte aus der heutigen Diskussion:\n    1. KI automatisiert repetitive Codieraufgaben\n    2. Machine-Learning-Modelle verstehen immer besser den Kontext\n    3. Natural-Language-Processing ermöglicht intuitivere Entwicklerschnittstellen\n    4. Die Zukunft verspricht vollständig autonome Code-Generierung\n\n    Zusammenfassend wird KI weiterhin die Landschaft der Softwareentwicklung prägen,\n    Entwickler produktiver machen und gleichzeitig neue Fragen zu Codequalität\n    und der Rolle menschlicher Entwickler aufwerfen.",
+    "language": "de",
+    "confidence": 0.92,
+    "duration": 85,
+    "wordCount": 120,
+    "estimatedReadingTime": 1
+  },
+  "summary": "Zusammenfassung: Dieser Audioinhalt behandelt Transkribierter Text von german_meeting_recording. mp3: Heute diskutieren wir über die Zukunft der künstlichen Intelligenz in der Softwareentwicklung....\n  Die Hauptthemen sind künstliche Intelligenz, Softwareentwicklung und die Zukunft des Codings.",
+  "outputLanguage": "de",
+  "processedAt": "2025-09-10T10:06:56.058Z"
+}

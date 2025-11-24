@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daily Content Generation Summary</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #2196F3; color: white; padding: 10px; text-align: center; }
+        .content { padding: 20px; background-color: #f9f9f9; }
+        .stats { display: flex; justify-content: space-between; margin: 20px 0; }
+        .stat-box { background-color: white; padding: 15px; border-radius: 5px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .stat-number { font-size: 2em; font-weight: bold; color: #2196F3; }
+        .footer { padding: 10px; text-align:  center; font-size: 0.8em; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Daily Content Generation Summary</h1>
+            <p>{{date}}</p>
+        </div>
+        <div class="content">
+            <p>Hello,</p>
+            <p>Here's your daily summary of content generation activities:</p>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number">{{totalPipelines}}</div>
+                    <div>Total Pipelines</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">{{successfulPipelines}}</div>
+                    <div>Successful</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">{{failedPipelines}}</div>
+                    <div>Failed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">{{totalRevenue}}</div>
+                    <div>Est. Revenue</div>
+                </div>
+            </div>
+
+            <p>Thank you for using our content generation platform.</p>
+        </div>
+        <div class="footer">
+            <p>This is an automated message from your content generation system.</p>
+        </div>
+    </div>
+</body>
+</html>

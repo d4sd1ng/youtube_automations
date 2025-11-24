@@ -1,0 +1,22 @@
+{
+  "testName": "English to English (No Translation)",
+  "originalFile": "X:\\AGENTS\\data\\audio\\english_discussion.mp3",
+  "transcription": {
+    "text": "Transcribed text from english_discussion.mp3: Today we're discussing the future of artificial intelligence in software development.\n    Artificial intelligence is transforming how we write code, with tools like GitHub Copilot\n    and other AI assistants becoming increasingly sophisticated.\n    \n    Key points from today's discussion:\n    1. AI is automating repetitive coding tasks\n    2. Machine learning models are getting better at understanding context\n    3. Natural language processing is enabling more intuitive developer interfaces\n    4. The future holds promise for fully autonomous code generation\n    \n    In conclusion, AI will continue to reshape the software development landscape,\n    making developers more productive while also raising new questions about code quality\n    and the role of human developers in the process.",
+    "language": "en",
+    "confidence": 0.92,
+    "duration": 84,
+    "wordCount": 147,
+    "estimatedReadingTime": 1
+  },
+  "translatedText": null,
+  "summary": "Summary: This audio content discusses artificial intelligence and software development. \n    The main topics include AI automation, machine learning models, natural language processing, and the future of coding.",
+  "configuration": {
+    "name": "English to English (No Translation)",
+    "inputFile": "english_discussion.mp3",
+    "inputLanguage": "en",
+    "outputLanguage": "en",
+    "shouldTranslate": false
+  },
+  "processedAt": "2025-09-10T13:25:16.168Z"
+}

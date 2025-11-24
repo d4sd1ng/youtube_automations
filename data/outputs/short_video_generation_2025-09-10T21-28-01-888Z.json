@@ -1,0 +1,260 @@
+{
+  "testData": {
+    "originalContent": {
+      "title": "Künstliche Intelligenz in der Softwareentwicklung",
+      "description": "Wie KI die Art und Weise verändert, wie wir Code schreiben und Software entwickeln",
+      "keyPoints": [
+        "KI automatisiert repetitive Codieraufgaben",
+        "Machine-Learning-Modelle verstehen immer besser den Kontext",
+        "Natural-Language-Processing ermöglicht intuitivere Entwicklerschnittstellen",
+        "Die Zukunft verspricht vollständig autonome Code-Generierung"
+      ],
+      "duration": 600
+    },
+    "targetPlatforms": [
+      {
+        "name": "TikTok",
+        "maxWidth": 1080,
+        "maxHeight": 1920,
+        "maxDuration": 60
+      },
+      {
+        "name": "Instagram Reels",
+        "maxWidth": 1080,
+        "maxHeight": 1920,
+        "maxDuration": 90
+      },
+      {
+        "name": "YouTube Shorts",
+        "maxWidth": 1080,
+        "maxHeight": 1920,
+        "maxDuration": 60
+      }
+    ],
+    "styles": [
+      "hookFirst",
+      "tutorial",
+      "behindTheScenes",
+      "fastPaced"
+    ]
+  },
+  "shortVideos": [
+    {
+      "id": "short_tiktok_hookFirst",
+      "title": "Künstliche Intelligenz in der Softwareentwicklung - TikTok Short",
+      "platform": "TikTok",
+      "style": "hookFirst",
+      "duration": 30,
+      "hook": "Wusstet ihr, dass KI eure Produktivität um bis zu 300% steigern kann?",
+      "callToAction": "Mehr davon? Dann abonniert diesen Kanal!",
+      "hashtags": [
+        "#KI",
+        "#Softwareentwicklung",
+        "#TechTrends",
+        "#AI",
+        "#Programmierung"
+      ],
+      "estimatedEngagement": 0.0552904198170249,
+      "createdAt": "2025-09-10T21:28:01.885Z"
+    },
+    {
+      "id": "short_tiktok_tutorial",
+      "title": "Künstliche Intelligenz in der Softwareentwicklung - TikTok Short",
+      "platform": "TikTok",
+      "style": "tutorial",
+      "duration": 30,
+      "hook": "In diesem Tutorial zeige ich euch, wie KI eure Arbeit revolutioniert",
+      "callToAction": "Verpasst keine Tutorials - klickt auf das Glockensymbol!",
+      "hashtags": [
+        "#KI",
+        "#Softwareentwicklung",
+        "#TechTrends",
+        "#AI",
+        "#Programmierung"
+      ],
+      "estimatedEngagement": 0.21294866054192568,
+      "createdAt": "2025-09-10T21:28:01.887Z"
+    },
+    {
+      "id": "short_tiktok_behindTheScenes",
+      "title": "Künstliche Intelligenz in der Softwareentwicklung - TikTok Short",
+      "platform": "TikTok",
+      "style": "behindTheScenes",
+      "duration": 30,
+      "hook": "So sieht die Zukunft der Softwareentwicklung aus!",
+      "callToAction": "Interessiert an mehr Technologie-Trends? Folgt uns!",
+      "hashtags": [
+        "#KI",
+        "#Softwareentwicklung",
+        "#TechTrends",
+        "#AI",
+        "#Programmierung"
+      ],
+      "estimatedEngagement": 0.11973058125865746,
+      "createdAt": "2025-09-10T21:28:01.887Z"
+    },
+    {
+      "id": "short_tiktok_fastPaced",
+      "title": "Künstliche Intelligenz in der Softwareentwicklung - TikTok Short",
+      "platform": "TikTok",
+      "style": "fastPaced",
+      "duration": 30,
+      "hook": "KI-Tools verändern alles! Hier sind die wichtigsten Trends 2025",
+      "callToAction": "Welches KI-Tool nutzt ihr am liebsten? Schreibt es in die Kommentare!",
+      "hashtags": [
+        "#KI",
+        "#Softwareentwicklung",
+        "#TechTrends",
+        "#AI",
+        "#Programmierung"
+      ],
+      "estimatedEngagement": 0.06493786823003594,
+      "createdAt": "2025-09-10T21:28:01.887Z"
+    },
+    {
+      "id": "short_instagram reels_hookFirst",
+      "title": "Künstliche Intelligenz in der Softwareentwicklung - Instagram Reels Short",
+      "platform": "Instagram Reels",
+      "style": "hookFirst",
+      "duration": 30,
+      "hook": "Wusstet ihr, dass KI eure Produktivität um bis zu 300% steigern kann?",
+      "callToAction": "Mehr davon? Dann abonniert diesen Kanal!",
+      "hashtags": [
+        "#KI",
+        "#Softwareentwicklung",
+        "#TechTrends",
+        "#AI",
+        "#Programmierung"
+      ],
+      "estimatedEngagement": 0.16072484924441502,
+      "createdAt": "2025-09-10T21:28:01.887Z"
+    },
+    {
+      "id": "short_instagram reels_tutorial",
+      "title": "Künstliche Intelligenz in der Softwareentwicklung - Instagram Reels Short",
+      "platform": "Instagram Reels",
+      "style": "tutorial",
+      "duration": 30,
+      "hook": "In diesem Tutorial zeige ich euch, wie KI eure Arbeit revolutioniert",
+      "callToAction": "Verpasst keine Tutorials - klickt auf das Glockensymbol!",
+      "hashtags": [
+        "#KI",
+        "#Softwareentwicklung",
+        "#TechTrends",
+        "#AI",
+        "#Programmierung"
+      ],
+      "estimatedEngagement": 0.058468689439105326,
+      "createdAt": "2025-09-10T21:28:01.887Z"
+    },
+    {
+      "id": "short_instagram reels_behindTheScenes",
+      "title": "Künstliche Intelligenz in der Softwareentwicklung - Instagram Reels Short",
+      "platform": "Instagram Reels",
+      "style": "behindTheScenes",
+      "duration": 30,
+      "hook": "So sieht die Zukunft der Softwareentwicklung aus!",
+      "callToAction": "Interessiert an mehr Technologie-Trends? Folgt uns!",
+      "hashtags": [
+        "#KI",
+        "#Softwareentwicklung",
+        "#TechTrends",
+        "#AI",
+        "#Programmierung"
+      ],
+      "estimatedEngagement": 0.056465305310703734,
+      "createdAt": "2025-09-10T21:28:01.887Z"
+    },
+    {
+      "id": "short_instagram reels_fastPaced",
+      "title": "Künstliche Intelligenz in der Softwareentwicklung - Instagram Reels Short",
+      "platform": "Instagram Reels",
+      "style": "fastPaced",
+      "duration": 30,
+      "hook": "KI-Tools verändern alles! Hier sind die wichtigsten Trends 2025",
+      "callToAction": "Welches KI-Tool nutzt ihr am liebsten? Schreibt es in die Kommentare!",
+      "hashtags": [
+        "#KI",
+        "#Softwareentwicklung",
+        "#TechTrends",
+        "#AI",
+        "#Programmierung"
+      ],
+      "estimatedEngagement": 0.16761876531994674,
+      "createdAt": "2025-09-10T21:28:01.887Z"
+    },
+    {
+      "id": "short_youtube shorts_hookFirst",
+      "title": "Künstliche Intelligenz in der Softwareentwicklung - YouTube Shorts Short",
+      "platform": "YouTube Shorts",
+      "style": "hookFirst",
+      "duration": 30,
+      "hook": "Wusstet ihr, dass KI eure Produktivität um bis zu 300% steigern kann?",
+      "callToAction": "Mehr davon? Dann abonniert diesen Kanal!",
+      "hashtags": [
+        "#KI",
+        "#Softwareentwicklung",
+        "#TechTrends",
+        "#AI",
+        "#Programmierung"
+      ],
+      "estimatedEngagement": 0.22132538012245673,
+      "createdAt": "2025-09-10T21:28:01.887Z"
+    },
+    {
+      "id": "short_youtube shorts_tutorial",
+      "title": "Künstliche Intelligenz in der Softwareentwicklung - YouTube Shorts Short",
+      "platform": "YouTube Shorts",
+      "style": "tutorial",
+      "duration": 30,
+      "hook": "In diesem Tutorial zeige ich euch, wie KI eure Arbeit revolutioniert",
+      "callToAction": "Verpasst keine Tutorials - klickt auf das Glockensymbol!",
+      "hashtags": [
+        "#KI",
+        "#Softwareentwicklung",
+        "#TechTrends",
+        "#AI",
+        "#Programmierung"
+      ],
+      "estimatedEngagement": 0.17414662420589594,
+      "createdAt": "2025-09-10T21:28:01.887Z"
+    },
+    {
+      "id": "short_youtube shorts_behindTheScenes",
+      "title": "Künstliche Intelligenz in der Softwareentwicklung - YouTube Shorts Short",
+      "platform": "YouTube Shorts",
+      "style": "behindTheScenes",
+      "duration": 30,
+      "hook": "So sieht die Zukunft der Softwareentwicklung aus!",
+      "callToAction": "Interessiert an mehr Technologie-Trends? Folgt uns!",
+      "hashtags": [
+        "#KI",
+        "#Softwareentwicklung",
+        "#TechTrends",
+        "#AI",
+        "#Programmierung"
+      ],
+      "estimatedEngagement": 0.15146366995614402,
+      "createdAt": "2025-09-10T21:28:01.887Z"
+    },
+    {
+      "id": "short_youtube shorts_fastPaced",
+      "title": "Künstliche Intelligenz in der Softwareentwicklung - YouTube Shorts Short",
+      "platform": "YouTube Shorts",
+      "style": "fastPaced",
+      "duration": 30,
+      "hook": "KI-Tools verändern alles! Hier sind die wichtigsten Trends 2025",
+      "callToAction": "Welches KI-Tool nutzt ihr am liebsten? Schreibt es in die Kommentare!",
+      "hashtags": [
+        "#KI",
+        "#Softwareentwicklung",
+        "#TechTrends",
+        "#AI",
+        "#Programmierung"
+      ],
+      "estimatedEngagement": 0.23282339472366187,
+      "createdAt": "2025-09-10T21:28:01.887Z"
+    }
+  ],
+  "generatedAt": "2025-09-10T21:28:01.888Z"
+}

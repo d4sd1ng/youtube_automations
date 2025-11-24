@@ -1,0 +1,22 @@
+{
+  "audioFile": "X:\\AGENTS\\data\\audio\\test_german_speech.mp3",
+  "transcription": {
+    "text": "Transcribed text from test_german_speech.mp3: Hallo Welt! Dies ist ein Test der deutschen Spracherkennung und Übersetzung....",
+    "language": "auto",
+    "confidence": 0.95,
+    "duration": 0.76,
+    "wordCount": 15,
+    "estimatedReadingTime": 1
+  },
+  "translation": {
+    "originalText": "Transcribed text from test_german_speech.mp3: Hallo Welt! Dies ist ein Test der deutschen Spracherkennung und Übersetzung....",
+    "translatedText": "[EN] Transcribed text from test_german_speech.mp3: Hallo Welt! Dies ist ein Test der deutschen Spracherkennung und Übersetzung....",
+    "sourceLanguage": "de",
+    "targetLanguage": "en",
+    "translationQuality": 94,
+    "translatedAt": "2025-09-10T03:29:42.912Z"
+  },
+  "sourceLanguage": "de",
+  "targetLanguage": "en",
+  "completedAt": "2025-09-10T03:29:42.913Z"
+}

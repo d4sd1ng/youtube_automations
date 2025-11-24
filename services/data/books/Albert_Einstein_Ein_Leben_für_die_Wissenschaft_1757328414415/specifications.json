@@ -1,0 +1,14 @@
+{
+  "topic": "Albert Einstein: Ein Leben für die Wissenschaft",
+  "format": "biography",
+  "writingStyle": "biographical",
+  "chapterCount": 8,
+  "wordCount": 60000,
+  "hasPreface": true,
+  "hasIntroduction": true,
+  "hasConclusion": true,
+  "hasBibliography": true,
+  "hasIndex": false,
+  "targetAudience": "general",
+  "language": "de"
+}

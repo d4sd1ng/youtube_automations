@@ -1,0 +1,8 @@
+{
+  "originalText": "Transcribed text from test_german_speech.mp3: Hallo Welt! Dies ist ein Test der deutschen Spracherkennung und Übersetzung....",
+  "translatedText": "[EN] Transcribed text from test_german_speech.mp3: Hallo Welt! Dies ist ein Test der deutschen Spracherkennung und Übersetzung....",
+  "sourceLanguage": "de",
+  "targetLanguage": "en",
+  "translationQuality": 94,
+  "translatedAt": "2025-09-10T03:29:42.912Z"
+}

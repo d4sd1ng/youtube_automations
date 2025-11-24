@@ -1,0 +1,22 @@
+{
+  "testName": "German to English (With Translation)",
+  "originalFile": "X:\\AGENTS\\data\\audio\\german_discussion.mp3",
+  "transcription": {
+    "text": "Transcribed text from german_discussion.mp3: Heute diskutieren wir über die Zukunft der künstlichen Intelligenz in der Softwareentwicklung.\n    Künstliche Intelligenz verändert grundlegend, wie wir Code schreiben, mit Tools wie GitHub Copilot\n    und anderen KI-Assistenten, die immer ausgefeilter werden.\n    \n    Wichtige Punkte aus der heutigen Diskussion:\n    1. KI automatisiert repetitive Codieraufgaben\n    2. Machine-Learning-Modelle verstehen immer besser den Kontext\n    3. Natural-Language-Processing ermöglicht intuitivere Entwicklerschnittstellen\n    4. Die Zukunft verspricht vollständig autonome Code-Generierung\n    \n    Zusammenfassend wird KI weiterhin die Landschaft der Softwareentwicklung prägen,\n    Entwickler produktiver machen und gleichzeitig neue Fragen zu Codequalität\n    und der Rolle menschlicher Entwickler aufwerfen.",
+    "language": "de",
+    "confidence": 0.92,
+    "duration": 85,
+    "wordCount": 128,
+    "estimatedReadingTime": 1
+  },
+  "translatedText": "[EN TRANSLATED] Transcribed text from german_discussion.mp3: Today diskutieren wir über die Zukunft der künstlichen Intelligenz in der Software Development.\n    Artificial Intelligence verändert grundlegend, wie wir Code schreiben, mit Tools wie GitHub Copilot\n    und anderen KI-Assistenten, die immer ausgefeilter werden.\n    \n    Wichtige Punkte aus der heutigen Diskussion:\n    1. KI automatisiert repetitive Codieraufgaben\n    2. Machine-Learning-Modelle verstehen immer besser den Kontext\n    3. Natural Language Processing ermöglicht intuitivere Entwicklerschnittstellen\n    4. Die future holds promise vollständig autonome Code-Generierung\n    \n    In conclusion wird KI weiterhin die Landschaft der Software Development prägen,\n    Entwickler produktiver machen und gleichzeitig neue Fragen zu Codequalität\n    und der Rolle menschlicher Entwickler aufwerfen.",
+  "summary": "Summary: This audio content discusses artificial intelligence and software development. \n    The main topics include AI automation, machine learning models, natural language processing, and the future of coding.",
+  "configuration": {
+    "name": "German to English (With Translation)",
+    "inputFile": "german_discussion.mp3",
+    "inputLanguage": "de",
+    "outputLanguage": "en",
+    "shouldTranslate": true
+  },
+  "processedAt": "2025-09-10T13:25:16.188Z"
+}
