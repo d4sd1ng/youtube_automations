@@ -1,0 +1,70 @@
+{
+  "content": [
+    "Aktuelle Entwicklungen in Künstlicher Intelligenz November 2025",
+    "Neue Durchbrüche in der Machine Learning Forschung",
+    "KI-Anwendungen in Medizin und Gesundheitswesen",
+    "Autonome Systeme und Robotik aktuelle Trends",
+    "Quantencomputing praktische Anwendungen 2025"
+  ],
+  "sources": [
+    "tagesschau.de",
+    "zeit.de",
+    "spiegel.de",
+    "focus.de"
+  ],
+  "metadata": {
+    "wordCount": 1250,
+    "qualityScore": 90,
+    "keywords": [
+      "KI 2025",
+      "Machine Learning",
+      "Quantencomputing",
+      "Autonome Systeme",
+      "Medizin KI",
+      "Robotik",
+      "Innovation",
+      "Technologie",
+      "Forschung",
+      "KI Ethik"
+    ],
+    "topics": [
+      "Neueste Entwicklungen in Künstlicher Intelligenz",
+      "Praktische Anwendungen von Machine Learning 2025",
+      "KI in Medizin und Gesundheitswesen",
+      "Autonome Systeme und Robotik Trends",
+      "Quantencomputing kommerzielle Anwendungen"
+    ],
+    "mostViewedVideos": [
+      {
+        "title": "KI-Durchbruch November 2025: 101% Genauigkeit bei medizinischen Diagnosen",
+        "views": 2427385,
+        "engagement": {
+          "likes": 81895,
+          "comments": 3657,
+          "shares": 15615
+        },
+        "published": "2025-11-24"
+      },
+      {
+        "title": "Quantencomputing November 2025: Lösung komplexer Probleme in Echtzeit",
+        "views": 1335184,
+        "engagement": {
+          "likes": 57128,
+          "comments": 2615,
+          "shares": 14014
+        },
+        "published": "2025-11-21"
+      },
+      {
+        "title": "Autonome Fahrzeuge 2025: Stand der Technik und regulatorische Rahmenbedingungen",
+        "views": 1119650,
+        "engagement": {
+          "likes": 57852,
+          "comments": 3439,
+          "shares": 8866
+        },
+        "published": "2025-11-17"
+      }
+    ]
+  }
+}
