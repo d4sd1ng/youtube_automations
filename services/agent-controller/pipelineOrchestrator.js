@@ -6,11 +6,15 @@ class PipelineOrchestrator {
     this.thumbnailService = options.thumbnailService || null;
     this.seoService = options.seoService || null;
     this.translationAgent = options.translationAgent || null;
-    this.webScrapingService = options.webScrapingService || null;
+    this.webScrapingAgent = options.webScrapingAgent || null;
 
     // Pipeline storage
     this.pipelines = new Map();
     this.results = new Map();
+    
+    // Video storage for daily and weekly videos
+    this.dailyVideos = new Map();
+    this.weeklyVideos = new Map();
   }
 
   async createPipeline(config) {
@@ -130,7 +134,7 @@ class PipelineOrchestrator {
 
     try {
       // Use the web scraping service if available
-      if (this.webScrapingService) {
+      if (this.webScrapingAgent) {
         // Determine scraping type based on channel
         let scrapingType, keywords, sources;
 
@@ -163,7 +167,7 @@ class PipelineOrchestrator {
           }
         };
 
-        const result = await this.webScrapingService.execute(taskData);
+        const result = await this.webScrapingAgent.execute(taskData);
 
         if (result.success) {
           console.log(`✅ Successfully scraped content for ${pipeline.channelName}`);
@@ -291,6 +295,152 @@ class PipelineOrchestrator {
 
     console.log(`✅ Content translated for ${pipeline.channelName}`);
     return translatedContent;
+  }
+
+  // Daily video creation process
+  async createDailyVideos(channelId) {
+    console.log(`🌅 Creating daily videos for channel: ${channelId}`);
+    
+    try {
+      // Get today's scraped content for the channel
+      // In a real implementation, this would fetch from the daily scraping results
+      const scrapedContent = channelId === 'senara' ? 
+        this.getMockPoliticalContent() : 
+        this.getMockTechnologyContent();
+      
+      // Create 1-2 short videos for morning
+      const morningVideos = [];
+      for (let i = 0; i < 2; i++) {
+        const video = await this.createShortVideo(scrapedContent, channelId, 'morning');
+        morningVideos.push(video);
+      }
+      
+      // Create 1-2 short videos for afternoon
+      const afternoonVideos = [];
+      for (let i = 0; i < 2; i++) {
+        const video = await this.createShortVideo(scrapedContent, channelId, 'afternoon');
+        afternoonVideos.push(video);
+      }
+      
+      // Store daily videos
+      const dailyVideoEntry = {
+        date: new Date().toISOString().split('T')[0],
+        morningVideos,
+        afternoonVideos,
+        channelId,
+        createdAt: new Date().toISOString()
+      };
+      
+      if (!this.dailyVideos.has(channelId)) {
+        this.dailyVideos.set(channelId, []);
+      }
+      this.dailyVideos.get(channelId).push(dailyVideoEntry);
+      
+      console.log(`✅ Created ${morningVideos.length} morning and ${afternoonVideos.length} afternoon videos for ${channelId}`);
+      
+      return dailyVideoEntry;
+    } catch (error) {
+      console.error(`❌ Failed to create daily videos for ${channelId}:`, error);
+      throw error;
+    }
+  }
+
+  // Weekly video creation process
+  async createWeeklyVideo(channelId) {
+    console.log(`📅 Creating weekly video for channel: ${channelId}`);
+    
+    try {
+      // Get this week's scraped content for the channel
+      // In a real implementation, this would fetch from the weekly scraping results
+      const scrapedContent = channelId === 'senara' ? 
+        this.getMockPoliticalContent() : 
+        this.getMockTechnologyContent();
+      
+      // Create one long-form video
+      const longVideo = await this.createLongVideo(scrapedContent, channelId);
+      
+      // Create short copies from the long video
+      const shortCopies = [];
+      for (let i = 0; i < 3; i++) {
+        const shortCopy = await this.createShortCopy(longVideo, channelId);
+        shortCopies.push(shortCopy);
+      }
+      
+      // Store weekly video
+      const weeklyVideoEntry = {
+        week: this.getWeekNumber(new Date()),
+        longVideo,
+        shortCopies,
+        channelId,
+        createdAt: new Date().toISOString()
+      };
+      
+      if (!this.weeklyVideos.has(channelId)) {
+        this.weeklyVideos.set(channelId, []);
+      }
+      this.weeklyVideos.get(channelId).push(weeklyVideoEntry);
+      
+      console.log(`✅ Created weekly long video and ${shortCopies.length} short copies for ${channelId}`);
+      
+      return weeklyVideoEntry;
+    } catch (error) {
+      console.error(`❌ Failed to create weekly video for ${channelId}:`, error);
+      throw error;
+    }
+  }
+
+  // Helper function to create a short video
+  async createShortVideo(scrapedContent, channelId, timeOfDay) {
+    // Mock short video creation
+    return {
+      id: `short-${channelId}-${Date.now()}-${timeOfDay}`,
+      type: 'short',
+      title: `Aktuelles aus ${channelId === 'senara' ? 'Politik' : 'Technologie'} - ${timeOfDay === 'morning' ? 'Morgens' : 'Nachmittags'}`,
+      description: `Die wichtigsten Themen des Tages für ${channelId === 'senara' ? 'Politikinteressierte' : 'Technikbegeisterte'}`,
+      duration: '60', // 60 seconds
+      platform: 'YouTube Shorts',
+      scheduledTime: timeOfDay === 'morning' ? 
+        new Date(new Date().setHours(8, 0, 0, 0)).toISOString() : 
+        new Date(new Date().setHours(14, 0, 0, 0)).toISOString(),
+      createdAt: new Date().toISOString()
+    };
+  }
+
+  // Helper function to create a long video
+  async createLongVideo(scrapedContent, channelId) {
+    // Mock long video creation
+    return {
+      id: `long-${channelId}-${Date.now()}`,
+      type: 'long',
+      title: `Die wichtigsten Entwicklungen der Woche in ${channelId === 'senara' ? 'Politik' : 'Technologie'}`,
+      description: `Ein ausführlicher Überblick über die wichtigsten Themen der Woche`,
+      duration: '600', // 10 minutes
+      platform: 'YouTube',
+      scheduledTime: new Date(new Date().setDate(new Date().getDate() + 2)).toISOString(), // In 2 days
+      createdAt: new Date().toISOString()
+    };
+  }
+
+  // Helper function to create a short copy from a long video
+  async createShortCopy(longVideo, channelId) {
+    // Mock short copy creation
+    return {
+      id: `shortcopy-${channelId}-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      type: 'short-copy',
+      title: longVideo.title,
+      description: longVideo.description,
+      duration: '60', // 60 seconds
+      platform: 'YouTube Shorts',
+      sourceVideoId: longVideo.id,
+      createdAt: new Date().toISOString()
+    };
+  }
+
+  // Helper function to get week number
+  getWeekNumber(date) {
+    const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+    const pastDaysOfYear = (date - firstDayOfYear) / 86400000;
+    return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
   }
 
   // Helper methods for mock data
@@ -527,6 +677,16 @@ class PipelineOrchestrator {
 
   getAllResults() {
     return Array.from(this.results.values());
+  }
+  
+  // Get daily videos for a channel
+  getDailyVideos(channelId) {
+    return this.dailyVideos.get(channelId) || [];
+  }
+  
+  // Get weekly videos for a channel
+  getWeeklyVideos(channelId) {
+    return this.weeklyVideos.get(channelId) || [];
   }
 }
 

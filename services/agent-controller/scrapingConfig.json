@@ -10,7 +10,7 @@
         "Digitalisierung der öffentlichen Verwaltung",
         "Soziale Reformen und Steuersystem"
       ],
-      "sources": ["bundestag", "news", "talkshows", "social-media"],
+      "sources": ["bundestag", "landtage", "politische-talkshows"],
       "targetAudience": "all"
     },
     "neurova": {
@@ -23,7 +23,7 @@
         "KI-Anwendungen in der Medizin",
         "Cloud Computing und Edge Computing"
       ],
-      "sources": ["tech-news", "ai-research", "business-platforms", "startup-platforms"],
+      "sources": ["youtube", "twitter", "tiktok", "instagram"],
       "targetAudience": "developers"
     }
   },
