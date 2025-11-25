@@ -1,0 +1,43 @@
+{
+  "approvalId": "7754a755-a759-424c-98dd-d57b26de0175",
+  "status": "pending",
+  "content": {
+    "type": "script",
+    "title": "Untitled Script",
+    "topic": "Unknown Topic",
+    "scriptId": "script_1757467155550.json",
+    "scriptData": {
+      "scriptId": "script_1757467155550",
+      "content": "Welcome to our tutorial about default topic. \n\nThis content is tailored for developers with a educational approach. The target length is 10min.\n\n[INTRO]\nHello everyone! Today we're going to explore default topic.\n\n[MAIN CONTENT]\nHere's what you need to know about default topic...\n\n[CONCLUSION]\nThat's all for today. Thanks for watching!\n\n[OUTRO]\nDon't forget to like, comment, and subscribe for more content!",
+      "metadata": {
+        "topic": "default topic",
+        "contentType": "tutorial",
+        "targetLength": "10min",
+        "tone": "educational",
+        "audience": "developers",
+        "trendingKeywords": [],
+        "customInstructions": "",
+        "useChainOfThought": true,
+        "enableSelfReflection": true,
+        "createdAt": "2025-09-10T01:19:15.550Z",
+        "wordCount": 54,
+        "estimatedReadingTime": 1,
+        "qualityCheck": {
+          "scriptId": "script_1757467155550",
+          "approvalStatus": "approved",
+          "approvalReason": "Script meets quality standards",
+          "wordCount": 54,
+          "estimatedReadingTime": 1,
+          "checkedAt": "2025-09-10T01:19:15.551Z"
+        }
+      }
+    },
+    "submittedBy": "script-generation-agent",
+    "submissionNotes": "Generated script for review and approval"
+  },
+  "submittedAt": "2025-11-24T21:23:33.170Z",
+  "submittedBy": "script-generation-agent",
+  "reviewNotes": null,
+  "reviewedAt": null,
+  "reviewedBy": null
+}

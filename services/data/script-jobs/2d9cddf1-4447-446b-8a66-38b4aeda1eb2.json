@@ -1,0 +1,90 @@
+{
+  "id": "2d9cddf1-4447-446b-8a66-38b4aeda1eb2",
+  "type": "script-generation",
+  "status": "completed",
+  "topic": "Bundestagsdebatte heute: KI-Regulierung in Deutschland",
+  "options": {
+    "scriptType": "long-form",
+    "duration": 600
+  },
+  "progress": {
+    "currentStage": "generating",
+    "stageProgress": 100,
+    "overallProgress": 100,
+    "completedStages": []
+  },
+  "metadata": {
+    "startedAt": "2025-11-24T20:35:25.393Z",
+    "estimatedDuration": 30000,
+    "completedAt": "2025-11-24T20:35:27.930Z"
+  },
+  "logs": [
+    {
+      "timestamp": "2025-11-24T20:35:25.393Z",
+      "level": "info",
+      "message": "Starting script generation for topic: Bundestagsdebatte heute: KI-Regulierung in Deutschland"
+    },
+    {
+      "timestamp": "2025-11-24T20:35:25.393Z",
+      "level": "info",
+      "message": "Analyzing topic and requirements..."
+    },
+    {
+      "timestamp": "2025-11-24T20:35:25.905Z",
+      "level": "info",
+      "message": "Generating content structure..."
+    },
+    {
+      "timestamp": "2025-11-24T20:35:26.915Z",
+      "level": "info",
+      "message": "Creating detailed script content..."
+    },
+    {
+      "timestamp": "2025-11-24T20:35:27.930Z",
+      "level": "info",
+      "message": "Script generation completed successfully"
+    }
+  ],
+  "result": {
+    "id": "f56166a3-9930-4bcb-95fc-84fe6cf58a77",
+    "topic": "Bundestagsdebatte heute: KI-Regulierung in Deutschland",
+    "title": "Alles über Bundestagsdebatte heute: KI-Regulierung in Deutschland",
+    "summary": "Ein umfassender Leitfaden zu Bundestagsdebatte heute: KI-Regulierung in Deutschland",
+    "scriptType": "long-form",
+    "typeName": "Langform-Video",
+    "estimatedDuration": 600,
+    "chapters": [
+      {
+        "id": "intro",
+        "title": "Einleitung",
+        "content": "Willkommen zu diesem Video über Bundestagsdebatte heute: KI-Regulierung in Deutschland. Heute werden wir uns eingehend mit diesem Thema beschäftigen."
+      },
+      {
+        "id": "main",
+        "title": "Hauptteil",
+        "content": "Im Hauptteil werden wir die wichtigsten Aspekte von Bundestagsdebatte heute: KI-Regulierung in Deutschland behandeln."
+      },
+      {
+        "id": "conclusion",
+        "title": "Fazit",
+        "content": "Zusammenfassend lässt sich sagen, dass Bundestagsdebatte heute: KI-Regulierung in Deutschland ein wichtiges Thema ist."
+      }
+    ],
+    "keyPoints": [
+      "Wichtigste Erkenntnisse über Bundestagsdebatte heute: KI-Regulierung in Deutschland",
+      "Praktische Anwendungen",
+      "Zukünftige Entwicklungen"
+    ],
+    "keywords": [
+      "Bundestagsdebatte heute: KI-Regulierung in Deutschland",
+      "Bundestagsdebatte heute: KI-Regulierung in Deutschland Erklärung",
+      "Bundestagsdebatte heute: KI-Regulierung in Deutschland Tutorial"
+    ],
+    "callToAction": "Wenn Ihnen dieses Video gefallen hat, abonnieren Sie unseren Kanal und aktivieren Sie die Glocke.",
+    "createdAt": "2025-11-24T20:35:27.930Z",
+    "options": {
+      "scriptType": "long-form",
+      "duration": 600
+    }
+  }
+}

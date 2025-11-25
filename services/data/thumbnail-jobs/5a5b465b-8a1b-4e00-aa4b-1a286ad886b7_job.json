@@ -1,0 +1,132 @@
+{
+  "id": "5a5b465b-8a1b-4e00-aa4b-1a286ad886b7",
+  "type": "thumbnail-generation",
+  "status": "completed",
+  "contentData": {
+    "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+    "keywords": [
+      "KI",
+      "Medizin",
+      "Technologie",
+      "Innovation"
+    ],
+    "contentType": "video",
+    "contentId": "74149b28-8d8b-4748-b801-12c6b0b62a20"
+  },
+  "options": {
+    "count": 3,
+    "style": "bold",
+    "platform": "youtube"
+  },
+  "progress": {
+    "currentStage": "generating",
+    "stageProgress": 100,
+    "overallProgress": 100,
+    "completedStages": []
+  },
+  "metadata": {
+    "startedAt": "2025-11-25T17:33:41.151Z",
+    "estimatedDuration": 15000,
+    "completedAt": "2025-11-25T17:33:42.666Z"
+  },
+  "logs": [
+    {
+      "timestamp": "2025-11-25T17:33:41.151Z",
+      "level": "info",
+      "message": "Starting thumbnail generation for content: Content Plan for Künstliche Intelligenz in der Medizin"
+    },
+    {
+      "timestamp": "2025-11-25T17:33:41.151Z",
+      "level": "info",
+      "message": "Analyzing content and requirements..."
+    },
+    {
+      "timestamp": "2025-11-25T17:33:41.662Z",
+      "level": "info",
+      "message": "Creating thumbnail designs..."
+    },
+    {
+      "timestamp": "2025-11-25T17:33:42.666Z",
+      "level": "info",
+      "message": "Thumbnail generation completed successfully"
+    }
+  ],
+  "result": {
+    "contentId": "74149b28-8d8b-4748-b801-12c6b0b62a20",
+    "thumbnails": [
+      {
+        "id": "thumb_74149b28-8d8b-4748-b801-12c6b0b62a20_0",
+        "title": "Content Plan for Künstliche Intelligenz in der ...",
+        "design": {
+          "colorScheme": {
+            "primary": "#9E9E9E",
+            "secondary": "#607D8B",
+            "accent": "#795548"
+          },
+          "layout": "highContrast",
+          "iconSuggestions": [
+            "🖥️",
+            "📱",
+            "⚡"
+          ],
+          "fontSize": 28,
+          "textPosition": "center",
+          "hasOverlay": true
+        },
+        "style": "bold",
+        "platform": "youtube",
+        "includeBranding": true,
+        "createdAt": "2025-11-25T17:33:41.662Z"
+      },
+      {
+        "id": "thumb_74149b28-8d8b-4748-b801-12c6b0b62a20_1",
+        "title": "Content Plan for Künstliche Intelligenz in der ...",
+        "design": {
+          "colorScheme": {
+            "primary": "#9E9E9E",
+            "secondary": "#607D8B",
+            "accent": "#795548"
+          },
+          "layout": "highContrast",
+          "iconSuggestions": [
+            "🖥️",
+            "📱",
+            "⚡"
+          ],
+          "fontSize": 28,
+          "textPosition": "center",
+          "hasOverlay": true
+        },
+        "style": "bold",
+        "platform": "youtube",
+        "includeBranding": true,
+        "createdAt": "2025-11-25T17:33:41.662Z"
+      },
+      {
+        "id": "thumb_74149b28-8d8b-4748-b801-12c6b0b62a20_2",
+        "title": "Content Plan for Künstliche Intelligenz in der ...",
+        "design": {
+          "colorScheme": {
+            "primary": "#9E9E9E",
+            "secondary": "#607D8B",
+            "accent": "#795548"
+          },
+          "layout": "highContrast",
+          "iconSuggestions": [
+            "🖥️",
+            "📱",
+            "⚡"
+          ],
+          "fontSize": 28,
+          "textPosition": "center",
+          "hasOverlay": true
+        },
+        "style": "bold",
+        "platform": "youtube",
+        "includeBranding": true,
+        "createdAt": "2025-11-25T17:33:41.662Z"
+      }
+    ],
+    "generatedAt": "2025-11-25T17:33:42.666Z"
+  }
+}

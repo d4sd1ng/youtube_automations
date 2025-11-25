@@ -1,0 +1,926 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+interface TokenBreakdown {
+  step: string;
+  aiRequired: boolean;
+  inputTokens: number;
+  outputTokens: number;
+  audioMinutes: number;
+  inputCost: number;
+  outputCost: number;
+  audioCost: number;
+  totalCost: number;
+}
+
+interface CostEstimate {
+  contentType: string;
+  provider: string;
+  model: string;
+  summary: {
+    totalSteps: number;
+    aiRequiredSteps: number;
+    totalInputTokens: number;
+    totalOutputTokens: number;
+    totalTokens: number;
+    totalAudioMinutes: number;
+    totalInputCost: number;
+    totalOutputCost: number;
+    totalAudioCost: number;
+    totalCost: number;
+  };
+  breakdown: Record<string, TokenBreakdown>;
+}
+
+interface ProviderComparison {
+  [key: string]: {
+    totalCost: number;
+    totalTokens: number;
+    costPerToken: number;
+  };
+}
+
+interface MonthlyProjection {
+  videosPerWeek: number;
+  videosPerMonth: number;
+  costPerVideo: number;
+  monthlyTotal: number;
+  breakdown: {
+    inputTokensPerMonth: number;
+    outputTokensPerMonth: number;
+    totalTokensPerMonth: number;
+  };
+}
+
+// NEW: Interface for quota information
+interface QuotaInfo {
+  dailyLimit: number;
+  monthlyLimit: number;
+  emergencyLimit: number;
+  dailyUsed: number;
+  monthlyUsed: number;
+  emergencyUsed: number;
+  dailyRemaining: number;
+  monthlyRemaining: number;
+  emergencyRemaining: number;
+  lastReset: string;
+}
+
+interface TokenDashboardProps {
+  apiBase: string;
+}
+
+const TokenDashboard: React.FC<TokenDashboardProps> = ({ apiBase }) => {
+  const [selectedContentType, setSelectedContentType] = useState('ai_content');
+  const [selectedProvider, setSelectedProvider] = useState('ollama');
+  const [selectedModel, setSelectedModel] = useState('llama2:7b');
+  const [videosPerWeek, setVideosPerWeek] = useState(5);
+  const [audioDuration, setAudioDuration] = useState(10);
+  
+  const [costEstimate, setCostEstimate] = useState<CostEstimate | null>(null);
+  const [providerComparison, setProviderComparison] = useState<ProviderComparison>({});
+  const [monthlyProjection, setMonthlyProjection] = useState<MonthlyProjection | null>(null);
+  // NEW: State for quota information
+  const [quotaInfo, setQuotaInfo] = useState<QuotaInfo | null>(null);
+  const [contentTypes, setContentTypes] = useState<Record<string, any>>({
+    political_content: {
+      description: 'Political analysis and commentary videos',
+      steps: 9,
+      avgTokens: 9450
+    },
+    ai_content: {
+      description: 'AI and technology focused content', 
+      steps: 9,
+      avgTokens: 11850
+    },
+    viral_shorts: {
+      description: 'Short-form viral content',
+      steps: 8, 
+      avgTokens: 3450
+    },
+    educational: {
+      description: 'Educational and instructional content',
+      steps: 9,
+      avgTokens: 8650
+    },
+    audio_analysis: {
+      description: 'Audio transcription and analysis',
+      steps: 7,
+      avgTokens: 7300
+    },
+    multimedia_analysis: {
+      description: 'Multi-media content analysis', 
+      steps: 6,
+      avgTokens: 6500
+    }
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const providerOptions = {
+    ollama: ['llama2:7b', 'codellama:7b', 'mistral:7b'],
+    openai: ['gpt-3.5-turbo', 'gpt-4-turbo', 'gpt-4'],
+    anthropic: ['claude-3-haiku', 'claude-3-sonnet', 'claude-3-opus']
+  };
+
+  useEffect(() => {
+    loadContentTypes();
+    loadQuotaInfo(); // NEW: Load quota information on component mount
+  }, []);
+
+  useEffect(() => {
+    if (selectedContentType) {
+      calculateCosts();
+    }
+  }, [selectedContentType, selectedProvider, selectedModel, videosPerWeek, audioDuration]);
+
+  const loadContentTypes = async () => {
+    try {
+      const response = await axios.get(`${apiBase}/api/tokens/content-types`);
+      setContentTypes(response.data.contentTypes);
+    } catch (error) {
+      console.error('Failed to load content types:', error);
+      setError('Fehler beim Laden der Content-Typen');
+    }
+  };
+
+  // NEW: Function to load quota information
+  const loadQuotaInfo = async () => {
+    try {
+      const response = await axios.get(`${apiBase}/api/tokens/quota`);
+      setQuotaInfo(response.data);
+    } catch (error) {
+      console.error('Failed to load quota info:', error);
+    }
+  };
+
+  const calculateCosts = async () => {
+    if (!selectedContentType) return;
+    
+    setLoading(true);
+    setError('');
+    
+    try {
+      const [estimateRes, comparisonRes, projectionRes] = await Promise.all([
+        axios.get(`${apiBase}/api/tokens/estimate`, {
+          params: { 
+            contentType: selectedContentType, 
+            provider: selectedProvider, 
+            model: selectedModel,
+            audioDuration 
+          }
+        }),
+        axios.get(`${apiBase}/api/tokens/comparison`, {
+          params: { 
+            contentType: selectedContentType,
+            audioDuration 
+          }
+        }),
+        axios.get(`${apiBase}/api/tokens/projection`, {
+          params: { 
+            contentType: selectedContentType, 
+            provider: selectedProvider, 
+            model: selectedModel, 
+            videosPerWeek 
+          }
+        })
+      ]);
+
+      setCostEstimate(estimateRes.data);
+      setProviderComparison(comparisonRes.data.comparison);
+      setMonthlyProjection(projectionRes.data);
+    } catch (error: any) {
+      console.error('Cost calculation failed:', error);
+      setError('Fehler bei der Kostenberechnung: ' + (error.response?.data?.message || error.message));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const formatCurrency = (amount: number): string => {
+    return new Intl.NumberFormat('de-DE', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 4
+    }).format(amount);
+  };
+
+  const formatNumber = (num: number): string => {
+    return new Intl.NumberFormat('de-DE').format(Math.round(num));
+  };
+
+  // NEW: Function to get quota usage percentage
+  const getUsagePercentage = (used: number, limit: number): number => {
+    return Math.min(100, Math.max(0, (used / limit) * 100));
+  };
+
+  // NEW: Function to get quota status color
+  const getQuotaStatusColor = (percentage: number): string => {
+    if (percentage < 50) return '#4caf50'; // Green
+    if (percentage < 80) return '#ffc107'; // Yellow
+    if (percentage < 95) return '#ff9800'; // Orange
+    return '#f44336'; // Red
+  };
+
+  const getCostColor = (cost: number): string => {
+    if (cost === 0) return '#4caf50'; // Green for free
+    if (cost < 0.01) return '#8bc34a'; // Light green for very cheap
+    if (cost < 0.05) return '#ffc107'; // Yellow for moderate
+    if (cost < 0.20) return '#ff9800'; // Orange for expensive
+    return '#f44336'; // Red for very expensive
+  };
+
+  const getStepIcon = (step: string): string => {
+    const icons: Record<string, string> = {
+      research: '🔍',
+      outline: '📝',
+      script_generation: '✍️',
+      fact_checking: '✅',
+      tone_adjustment: '🎭',
+      verification: '🛡️',
+      thumbnail: '🖼️',
+      description: '📄',
+      tags: '🏷️',
+      transcription: '🎤',
+      text_analysis: '📊',
+      key_points: '🔑',
+      summarization: '📋',
+      categorization: '📂',
+      action_items: '✅',
+      technical_analysis: '⚙️',
+      code_examples: '💻',
+      explanation: '💡'
+    };
+    return icons[step] || '⚡';
+  };
+
+  return (
+    <div className="token-dashboard">
+      <div className="section-header">
+        <h2>📊 Token & Kosten Dashboard</h2>
+        <p>Analysieren Sie Token-Verbrauch und Kosten für verschiedene Content-Typen und Workflow-Schritte.</p>
+      </div>
+
+      {/* NEW: Quota Information Section */}
+      {quotaInfo && (
+        <div className="quota-section">
+          <h3>📈 Token-Quota Status</h3>
+          <div className="quota-grid">
+            <div className="quota-card">
+              <div className="quota-header">
+                <span className="quota-label">Tägliches Limit</span>
+                <span className="quota-value">{formatNumber(quotaInfo.dailyLimit)} Tokens</span>
+              </div>
+              <div className="quota-progress">
+                <div 
+                  className="quota-progress-bar"
+                  style={{
+                    width: `${getUsagePercentage(quotaInfo.dailyUsed, quotaInfo.dailyLimit)}%`,
+                    backgroundColor: getQuotaStatusColor(getUsagePercentage(quotaInfo.dailyUsed, quotaInfo.dailyLimit))
+                  }}
+                ></div>
+              </div>
+              <div className="quota-details">
+                <span>Verbraucht: {formatNumber(quotaInfo.dailyUsed)} Tokens</span>
+                <span>Verfügbar: {formatNumber(quotaInfo.dailyRemaining)} Tokens</span>
+              </div>
+            </div>
+
+            <div className="quota-card">
+              <div className="quota-header">
+                <span className="quota-label">Monatliches Limit</span>
+                <span className="quota-value">{formatNumber(quotaInfo.monthlyLimit)} Tokens</span>
+              </div>
+              <div className="quota-progress">
+                <div 
+                  className="quota-progress-bar"
+                  style={{
+                    width: `${getUsagePercentage(quotaInfo.monthlyUsed, quotaInfo.monthlyLimit)}%`,
+                    backgroundColor: getQuotaStatusColor(getUsagePercentage(quotaInfo.monthlyUsed, quotaInfo.monthlyLimit))
+                  }}
+                ></div>
+              </div>
+              <div className="quota-details">
+                <span>Verbraucht: {formatNumber(quotaInfo.monthlyUsed)} Tokens</span>
+                <span>Verfügbar: {formatNumber(quotaInfo.monthlyRemaining)} Tokens</span>
+              </div>
+            </div>
+
+            <div className="quota-card">
+              <div className="quota-header">
+                <span className="quota-label">Notfall Budget</span>
+                <span className="quota-value">{formatNumber(quotaInfo.emergencyLimit)} Tokens</span>
+              </div>
+              <div className="quota-progress">
+                <div 
+                  className="quota-progress-bar"
+                  style={{
+                    width: `${getUsagePercentage(quotaInfo.emergencyUsed, quotaInfo.emergencyLimit)}%`,
+                    backgroundColor: getQuotaStatusColor(getUsagePercentage(quotaInfo.emergencyUsed, quotaInfo.emergencyLimit))
+                  }}
+                ></div>
+              </div>
+              <div className="quota-details">
+                <span>Verbraucht: {formatNumber(quotaInfo.emergencyUsed)} Tokens</span>
+                <span>Verfügbar: {formatNumber(quotaInfo.emergencyRemaining)} Tokens</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Configuration Panel */
+      <div className="config-panel">
+        <h3>⚙️ Konfiguration</h3>
+        <div className="config-grid">
+          <div className="config-group">
+            <label>Content-Typ:</label>
+            <select
+              value={selectedContentType}
+              onChange={(e) => setSelectedContentType(e.target.value)}
+            >
+              <option value="">Wählen Sie einen Typ...</option>
+              {Object.entries(contentTypes).map(([key, info]: [string, any]) => (
+                <option key={key} value={key}>
+                  {info.description} ({formatNumber(info.avgTokens)} Tokens)
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="config-group">
+            <label>LLM Provider:</label>
+            <select
+              value={selectedProvider}
+              onChange={(e) => {
+                setSelectedProvider(e.target.value);
+                setSelectedModel(providerOptions[e.target.value as keyof typeof providerOptions][0]);
+              }}
+            >
+              {Object.keys(providerOptions).map(provider => (
+                <option key={provider} value={provider}>
+                  {provider.charAt(0).toUpperCase() + provider.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="config-group">
+            <label>Modell:</label>
+            <select
+              value={selectedModel}
+              onChange={(e) => setSelectedModel(e.target.value)}
+            >
+              {providerOptions[selectedProvider as keyof typeof providerOptions]?.map(model => (
+                <option key={model} value={model}>{model}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="config-group">
+            <label>Videos pro Woche:</label>
+            <input
+              type="number"
+              min="1"
+              max="50"
+              value={videosPerWeek}
+              onChange={(e) => setVideosPerWeek(parseInt(e.target.value))}
+            />
+          </div>
+
+          {selectedContentType === 'audio_analysis' && (
+            <div className="config-group">
+              <label>Audio-Dauer (Minuten):</label>
+              <input
+                type="number"
+                min="1"
+                max="120"
+                value={audioDuration}
+                onChange={(e) => setAudioDuration(parseInt(e.target.value))}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+
+      {error && (
+        <div className="error-message">
+          ❌ {error}
+        </div>
+      )}
+
+      {loading && (
+        <div className="loading-progress">
+          <div className="progress-bar">
+            <div className="progress-fill"></div>
+          </div>
+          <p>Berechne Token-Kosten...</p>
+        </div>
+      )}
+
+      {/* Cost Overview */
+      {costEstimate && (
+        <div className="cost-overview">
+          <h3>💰 Kosten-Übersicht</h3>
+          <div className="overview-cards">
+            <div className="cost-card">
+              <div className="cost-value" style={{ color: getCostColor(costEstimate.summary.totalCost) }}>
+                {formatCurrency(costEstimate.summary.totalCost)}
+              </div>
+              <div className="cost-label">Kosten pro Video</div>
+            </div>
+            
+            <div className="cost-card">
+              <div className="cost-value">{formatNumber(costEstimate.summary.totalTokens)}</div>
+              <div className="cost-label">Gesamt-Tokens</div>
+            </div>
+            
+            <div className="cost-card">
+              <div className="cost-value">{costEstimate.summary.aiRequiredSteps}</div>
+              <div className="cost-label">KI-Schritte</div>
+            </div>
+            
+            <div className="cost-card">
+              <div className="cost-value">{costEstimate.summary.totalSteps}</div>
+              <div className="cost-label">Gesamt-Schritte</div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Monthly Projection */
+      {monthlyProjection && (
+        <div className="monthly-projection">
+          <h3>📅 Monatliche Projektion</h3>
+          <div className="projection-grid">
+            <div className="projection-item">
+              <strong>Videos pro Monat:</strong> {monthlyProjection.videosPerMonth}
+            </div>
+            <div className="projection-item">
+              <strong>Monatliche Kosten:</strong> 
+              <span style={{ color: getCostColor(monthlyProjection.monthlyTotal) }}>
+                {formatCurrency(monthlyProjection.monthlyTotal)}
+              </span>
+            </div>
+            <div className="projection-item">
+              <strong>Tokens pro Monat:</strong> {formatNumber(monthlyProjection.breakdown.totalTokensPerMonth)}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Workflow Steps Breakdown */
+      {costEstimate && (
+        <div className="workflow-breakdown">
+          <h3>🔧 Workflow-Schritte Aufschlüsselung</h3>
+          <div className="steps-list">
+            {Object.entries(costEstimate.breakdown).map(([stepName, step]) => (
+              <div key={stepName} className={`step-item ${!step.aiRequired ? 'no-ai' : ''}`}>
+                <div className="step-header">
+                  <span className="step-icon">{getStepIcon(stepName)}</span>
+                  <span className="step-name">{stepName.replace(/_/g, ' ')}</span>
+                  {!step.aiRequired && <span className="no-ai-badge">Lokal</span>}
+                  <span 
+                    className="step-cost"
+                    style={{ color: getCostColor(step.totalCost) }}
+                  >
+                    {formatCurrency(step.totalCost)}
+                  </span>
+                </div>
+                
+                {step.aiRequired && (
+                  <div className="step-details">
+                    <div className="token-info">
+                      <span>📥 Input: {formatNumber(step.inputTokens)} Tokens</span>
+                      <span>📤 Output: {formatNumber(step.outputTokens)} Tokens</span>
+                      {step.audioMinutes > 0 && (
+                        <span>🎵 Audio: {step.audioMinutes} Min</span>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Provider Comparison */
+      {Object.keys(providerComparison).length > 0 && (
+        <div className="provider-comparison">
+          <h3>🏆 Provider-Vergleich</h3>
+          <div className="comparison-table">
+            {Object.entries(providerComparison).map(([provider, data], index) => (
+              <div key={provider} className={`comparison-row ${index === 0 ? 'cheapest' : ''}`}>
+                <div className="provider-name">
+                  {provider}
+                  {index === 0 && <span className="best-badge">Günstigste</span>}
+                </div>
+                <div className="provider-cost" style={{ color: getCostColor(data.totalCost) }}>
+                  {formatCurrency(data.totalCost)}
+                </div>
+                <div className="provider-tokens">
+                  {formatNumber(data.totalTokens)} Tokens
+                </div>
+                <div className="cost-per-token">
+                  {formatCurrency(data.costPerToken)}/1K Tokens
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default TokenDashboard;
+
+/* NEW: CSS Styles for Token Dashboard */
+.token-dashboard {
+  padding: 20px;
+}
+
+.section-header h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  color: #666;
+  margin-top: 0;
+}
+
+/* NEW: Quota Section Styles */
+.quota-section {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.quota-section h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+.quota-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.quota-card {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.quota-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.quota-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.quota-value {
+  font-weight: bold;
+  color: #2196f3;
+}
+
+.quota-progress {
+  height: 10px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.quota-progress-bar {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.quota-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
+}
+
+/* Configuration Panel */
+.config-panel {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.config-panel h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.config-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.config-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.config-group select,
+.config-group input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.config-group input {
+  width: 100%;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 15px;
+  border-radius: 4px;
+  margin: 15px 0;
+  border-left: 4px solid #f44336;
+}
+
+.loading-progress {
+  text-align: center;
+  padding: 20px;
+}
+
+.loading-progress p {
+  margin-top: 10px;
+  color: #666;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #2196f3;
+  width: 50%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+/* Cost Overview */
+.cost-overview {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cost-overview h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+.overview-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.cost-card {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.cost-value {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.cost-label {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Monthly Projection */
+.monthly-projection {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.monthly-projection h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+.projection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.projection-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Workflow Steps */
+.workflow-breakdown {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.workflow-breakdown h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+.steps-list {
+  margin-top: 15px;
+}
+
+.step-item {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.step-item.no-ai {
+  border-left: 4px solid #4caf50;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.step-icon {
+  font-size: 18px;
+}
+
+.step-name {
+  flex: 1;
+  font-weight: bold;
+}
+
+.no-ai-badge {
+  background: #4caf50;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.step-cost {
+  font-weight: bold;
+}
+
+.step-details {
+  padding-left: 28px;
+}
+
+.token-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Provider Comparison */
+.provider-comparison {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.provider-comparison h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+.comparison-table {
+  margin-top: 15px;
+}
+
+.comparison-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  align-items: center;
+}
+
+.comparison-row.cheapest {
+  border-left: 4px solid #4caf50;
+}
+
+.provider-name {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.best-badge {
+  background: #4caf50;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.provider-cost {
+  font-weight: bold;
+}
+
+.provider-tokens {
+  color: #666;
+}
+
+.cost-per-token {
+  color: #666;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .comparison-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .projection-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .overview-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
