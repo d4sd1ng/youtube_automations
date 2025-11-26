@@ -1,51 +1,79 @@
-# Thumbnail Generation Agent
+# Thumbnail Generation Python Agent
 
-Der Thumbnail Generation Agent ist ein Python-basierter Microservice zur Erstellung von Vorschaubildern aus Bildern und Videos mit verschiedenen Größen und Effekten.
+## Description
+The Thumbnail Generation Python Agent is responsible for creating professional, brand-compliant thumbnails for maximum click-through rates and monetization. It generates high-quality thumbnails for YouTube videos, Shorts, and other social media platforms.
 
-## Funktionen
+## Features
+- Professional thumbnail generation with customizable templates
+- Support for multiple platforms (YouTube, Shorts, banners)
+- Multiple template styles (Premium Clickbait, Cinematic, Bold Minimal, etc.)
+- Customizable colors, fonts, and text overlays
+- Batch thumbnail generation
+- Thumbnail metadata management
 
-- **Thumbnail-Generierung**: Erstellt Vorschaubilder aus Bildern
-- **Mehrere Thumbnails**: Generiert mehrere Vorschaubilder mit unterschiedlichen Größen
-- **Effektanwendung**: Wendet visuelle Effekte auf Vorschaubilder an
+## Endpoints
 
-## API Endpunkte
-
-- `GET /health` - Health Check
-- `POST /generate-thumbnail` - Generiert ein Vorschaubild aus einem Bild
-- `POST /generate-multiple` - Generiert mehrere Vorschaubilder mit verschiedenen Größen
-- `POST /apply-effects` - Wendet visuelle Effekte auf ein Vorschaubild an
-
-## Technologie-Stack
-
-- Python 3.9
-- Flask für die REST API
-
-## Installation
-
-1. Stellen Sie sicher, dass Docker installiert ist
-2. Bauen Sie das Docker-Image:
-   ```
-   docker build -t thumbnail-generation-agent .
-   ```
-3. Führen Sie den Container aus:
-   ```
-   docker run -p 5000:5000 thumbnail-generation-agent
-   ```
-
-## Nutzung
-
-Nach dem Start des Services können Sie die API-Endpunkte über HTTP-Anfragen ansprechen:
-
-```bash
-# Health Check
-curl http://localhost:5000/health
-
-# Thumbnail generieren
-curl -X POST http://localhost:5000/generate-thumbnail \
-  -H "Content-Type: application/json" \
-  -d '{"image_path": "/path/to/image.jpg"}'
+### Health Check
+```
+GET /health
 ```
 
-## Abhängigkeiten
+### Generate Thumbnail
+```
+POST /generate-thumbnail
+```
+Payload:
+```json
+{
+  "title": "Your Title",
+  "subtitle": "Your Subtitle",
+  "template": "boldMinimal",
+  "platform": "youtube",
+  "backgroundColor": "#000000",
+  "textColor": "#FFFFFF",
+  "accentColor": "#FF0000"
+}
+```
 
-Alle erforderlichen Python-Pakete sind in der `requirements.txt` aufgeführt.
+### Generate Multiple Thumbnails
+```
+POST /generate-multiple-thumbnails
+```
+Payload:
+```json
+{
+  "title": "Your Title",
+  "subtitle": "Your Subtitle",
+  "templates": ["boldMinimal", "cinematic", "gradientImpact"],
+  "platform": "youtube"
+}
+```
+
+### Get Thumbnail
+```
+GET /get-thumbnail/<thumbnail_id>
+```
+
+### List Thumbnails
+```
+GET /list-thumbnails
+```
+
+### Get Available Templates
+```
+GET /get-available-templates
+```
+
+## Installation
+1. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+
+2. Run the agent:
+   ```
+   python app.py
+   ```
+
+## Usage
+The agent runs on port 5000 by default.
