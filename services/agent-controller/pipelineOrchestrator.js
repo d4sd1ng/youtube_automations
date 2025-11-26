@@ -1526,3 +1526,145 @@ class PipelineOrchestrator {
     }
   }
 }
+  // Quality check methods for automatic validation before publication
+  async qualityCheckScript(scriptContent, options = {}) {
+    console.log( Performing script quality check for channel: $${options.channelId || 'unknown'});
+    
+    if (!this.contentApprovalAgent) {
+      throw new Error('ContentApprovalAgent not configured');
+    }
+    
+    try {
+      const qualityReport = await this.contentApprovalAgent.execute({
+        type: 'script',
+        content: scriptContent,
+        channelId: options.channelId,
+        approvalType: 'automatic'
+      });
+      
+      console.log( Script quality check completed for $${options.channelId || 'unknown'});
+      return qualityReport;
+    } catch (error) {
+      console.error( Script quality check failed for $${options.channelId || 'unknown'}:, error);
+      throw error;
+    }
+  }
+  
+  async qualityCheckVideo(videoContent, options = {}) {
+    console.log( Performing video quality check for channel: $${options.channelId || 'unknown'});
+    
+    if (!this.contentApprovalAgent) {
+      throw new Error('ContentApprovalAgent not configured');
+    }
+    
+    try {
+      const qualityReport = await this.contentApprovalAgent.execute({
+        type: 'video',
+        content: videoContent,
+        channelId: options.channelId,
+        approvalType: 'automatic'
+      });
+      
+      console.log( Video quality check completed for $${options.channelId || 'unknown'});
+      return qualityReport;
+    } catch (error) {
+      console.error( Video quality check failed for $${options.channelId || 'unknown'}:, error);
+      throw error;
+    }
+  }
+  
+  async qualityCheckThumbnail(thumbnailContent, options = {}) {
+    console.log( Performing thumbnail quality check for channel: $${options.channelId || 'unknown'});
+    
+    if (!this.contentApprovalAgent) {
+      throw new Error('ContentApprovalAgent not configured');
+    }
+    
+    try {
+      const qualityReport = await this.contentApprovalAgent.execute({
+        type: 'thumbnail',
+        content: thumbnailContent,
+        channelId: options.channelId,
+        approvalType: 'automatic'
+      });
+      
+      console.log( Thumbnail quality check completed for $${options.channelId || 'unknown'});
+      return qualityReport;
+    } catch (error) {
+      console.error( Thumbnail quality check failed for $${options.channelId || 'unknown'}:, error);
+      throw error;
+    }
+  }
+  
+  async requestHumanApproval(content, contentType, options = {}) {
+    console.log( Requesting human approval for $${contentType} content on channel: $${options.channelId || 'unknown'});
+    
+    if (!this.contentApprovalAgent) {
+      throw new Error('ContentApprovalAgent not configured');
+    }
+    
+    try {
+      const approvalRequest = await this.contentApprovalAgent.execute({
+        type: 'approval_request',
+        content: content,
+        contentType: contentType,
+        channelId: options.channelId,
+        priority: options.priority || 'normal',
+        deadline: options.deadline || new Date(Date.now() + 24 * 60 * 60 * 1000) // 24 hours default
+      });
+      
+      console.log( Human approval requested for $${contentType} on $${options.channelId || 'unknown'});
+      return approvalRequest;
+    } catch (error) {
+      console.error( Failed to request human approval for $${contentType} on $${options.channelId || 'unknown'}:, error);
+      throw error;
+    }
+  }
+  
+  // Avatar generation methods
+  async generateAvatar(avatarConfig, options = {}) {
+    console.log( Generating avatar for channel: $${options.channelId || 'unknown'});
+    
+    // Check if AvatarGenerationAgent is available
+    const avatarAgent = this.agentPool.getAgent('AvatarGenerationAgent');
+    if (!avatarAgent) {
+      throw new Error('AvatarGenerationAgent not available');
+    }
+    
+    try {
+      const avatarJob = await avatarAgent.execute({
+        type: 'create-avatar',
+        config: avatarConfig
+      });
+      
+      console.log( Avatar generation job started for $${options.channelId || 'unknown'});
+      return avatarJob;
+    } catch (error) {
+      console.error( Avatar generation failed for $${options.channelId || 'unknown'}:, error);
+      throw error;
+    }
+  }
+  
+  async getAvatarStatus(avatarId, options = {}) {
+    console.log( Checking avatar status: $${avatarId});
+    
+    // Check if AvatarGenerationAgent is available
+    const avatarAgent = this.agentPool.getAgent('AvatarGenerationAgent');
+    if (!avatarAgent) {
+      throw new Error('AvatarGenerationAgent not available');
+    }
+    
+    try {
+      const status = await avatarAgent.execute({
+        type: 'get-job-status',
+        jobId: avatarId
+      });
+      
+      console.log( Avatar status retrieved: $${avatarId});
+      return status;
+    } catch (error) {
+      console.error( Failed to get avatar status: $${avatarId}:, error);
+      throw error;
+    }
+  }
+}
