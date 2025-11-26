@@ -1,0 +1,10 @@
+{
+  "id": "deal-negotiation",
+  "name": "Deal Negotiation",
+  "subject": "Verlagsangebot für \"{book_title}\"",
+  "body": "Sehr geehrte Damen und Herren,\n\nwir freuen uns, Ihnen mitteilen zu können, dass wir ein Verlagsangebot für Ihr Buch \"{book_title}\" erhalten haben.\n\n{offer_details}\n\nBitte überprüfen Sie die Konditionen und teilen Sie uns mit, ob Sie das Angebot annehmen möchten.\n\nMit freundlichen Grüßen,\nIhr Book Writer Agent",
+  "variables": [
+    "book_title",
+    "offer_details"
+  ]
+}

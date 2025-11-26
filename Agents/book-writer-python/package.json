@@ -1,0 +1,19 @@
+{
+  "name": "book-writer-python-agent",
+  "version": "1.0.0",
+  "description": "Python-based Book Writer Agent for automated book creation and content generation",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "dev": "python app.py"
+  },
+  "keywords": [
+    "book",
+    "writer",
+    "agent",
+    "python",
+    "content-generation"
+  ],
+  "author": "AI Agent System",
+  "license": "MIT"
+}

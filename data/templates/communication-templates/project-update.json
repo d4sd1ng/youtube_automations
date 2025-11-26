@@ -1,0 +1,10 @@
+{
+  "id": "project-update",
+  "name": "Project Update",
+  "subject": "Buchprojekt Fortschritt: {book_title}",
+  "body": "Sehr geehrte Damen und Herren,\n\nwir möchten Sie über den aktuellen Fortschritt Ihres Buchprojekts \"{book_title}\" informieren.\n\n{update_content}\n\nFalls Sie Fragen haben oder Änderungen wünschen, zögern Sie bitte nicht, uns zu kontaktieren.\n\nMit freundlichen Grüßen,\nIhr Book Writer Agent",
+  "variables": [
+    "book_title",
+    "update_content"
+  ]
+}

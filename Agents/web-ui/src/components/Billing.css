@@ -1,0 +1,102 @@
+.billing {
+  padding: 2rem;
+}
+
+.billing h1 {
+  color: #343a40;
+  margin-bottom: 2rem;
+}
+
+.plans-section {
+  margin-bottom: 3rem;
+}
+
+.plans-section h2 {
+  color: #343a40;
+  margin-bottom: 1.5rem;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.plan-card {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+}
+
+.plan-card.selected {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.plan-card h3 {
+  margin-top: 0;
+  color: #343a40;
+}
+
+.plan-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff;
+  margin: 1rem 0;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin: 1.5rem 0;
+}
+
+.plan-features li {
+  padding: 0.25rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.plan-features li:last-child {
+  border-bottom: none;
+}
+
+.plan-requests {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.payment-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+}
+
+.payment-section h2 {
+  margin-top: 0;
+  color: #343a40;
+}
+
+.free-plan-message {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+  text-align: center;
+}
+
+.free-plan-message h3 {
+  color: #343a40;
+  margin-top: 0;
+}

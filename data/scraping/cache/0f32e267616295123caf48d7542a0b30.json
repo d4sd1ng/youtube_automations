@@ -1,0 +1,17 @@
+{
+  "url": "https://example.com/topic/K%C3%BCnstliche%20Intelligenz/news",
+  "title": "Scraped Content from example.com",
+  "content": "This is mock scraped content from https://example.com/topic/K%C3%BCnstliche%20Intelligenz/news. In a real implementation, this would be actual content extracted from the webpage.",
+  "metadata": {
+    "scrapedAt": "2025-09-09T06:19:15.604Z",
+    "wordCount": 1203,
+    "qualityScore": 61,
+    "sourceType": "general"
+  },
+  "links": [
+    "https://example.com/topic/K%C3%BCnstliche%20Intelligenz/news/related-1",
+    "https://example.com/topic/K%C3%BCnstliche%20Intelligenz/news/related-2",
+    "https://example.com/topic/K%C3%BCnstliche%20Intelligenz/news/related-3"
+  ],
+  "cachedAt": "2025-09-09T06:19:15.604Z"
+}

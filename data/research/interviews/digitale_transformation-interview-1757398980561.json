@@ -1,0 +1,69 @@
+{
+  "topic": "Digitale Transformation",
+  "bookType": {
+    "type": "Umfassendes Sachbuch",
+    "audience": "Gemischte Zielgruppe",
+    "readingBehavior": "Liest gerne ausführliche Analysen",
+    "competition": "Es gibt bereits einige Bücher zu dem Thema, aber die meisten sind entweder zu oberflächlich oder zu spezialisiert."
+  },
+  "structure": {
+    "length": "Umfangreich (200+ Seiten)",
+    "chapterCount": 12,
+    "chapterTitles": "Kombination aus beidem",
+    "tableOfContents": "Systematische Struktur von Grundlagen bis Anwendung"
+  },
+  "market": {
+    "pricePositioning": "Mittelklasse (15-25€)",
+    "revenueExpectations": "Erwartete Verkäufe von 500-1000 Exemplaren im ersten Jahr",
+    "marketResearch": "Analyse ähnlicher Bücher zeigt Marktpotenzial bei Fachpublikum",
+    "distribution": "Alle Kanäle"
+  },
+  "content": {
+    "depth": "Umfassende Analyse",
+    "specialFeatures": "Fallstudien, Praktische Übungen",
+    "visualContent": "Ja, moderat",
+    "toneStyle": "Lehrbuch-artig"
+  },
+  "marketAnalysis": {
+    "topic": "Digitale Transformation",
+    "marketSize": {
+      "estimatedBooks": 161,
+      "annualGrowth": "2.49%",
+      "marketValue": "€9988467"
+    },
+    "competition": {
+      "directCompetitors": 6,
+      "indirectCompetitors": 33,
+      "bestSellers": 3
+    },
+    "targetAudience": {
+      "primary": "Professionals and researchers",
+      "secondary": "Students and enthusiasts",
+      "estimatedReaders": 15327
+    },
+    "pricing": {
+      "averagePrice": "€21.35",
+      "premiumSegment": "€31.74",
+      "budgetSegment": "€19.95"
+    },
+    "platforms": {
+      "online": [
+        "Amazon",
+        "Apple Books",
+        "Google Play"
+      ],
+      "physical": [
+        "Bertelsmann",
+        "Springer",
+        "Elsevier"
+      ],
+      "specialty": [
+        "Academic publishers",
+        "Professional associations"
+      ]
+    },
+    "analyzedAt": "2025-09-09T06:23:00.560Z"
+  },
+  "conductedAt": "2025-09-09T06:23:00.561Z",
+  "language": "de"
+}

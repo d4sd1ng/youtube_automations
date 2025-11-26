@@ -1,0 +1,260 @@
+[
+  {
+    "id": "penguin-random",
+    "name": "Penguin Random House",
+    "website": "https://www.penguinrandomhouse.com",
+    "contact": {
+      "email": "submissions@penguinrandomhouse.com",
+      "phone": "+1 212 782 9000",
+      "address": "1745 Broadway, New York, NY 10019, USA"
+    },
+    "genres": [
+      "fiction",
+      "non-fiction",
+      "children",
+      "young-adult"
+    ],
+    "submissionGuidelines": "https://www.penguinrandomhouse.com/submissions",
+    "preferences": {
+      "fictionMinPages": 200,
+      "nonFictionMinPages": 180,
+      "responseTime": "12-16 weeks"
+    },
+    "contracts": {
+      "royaltyRate": "10-15%",
+      "advance": "$10000-200000"
+    }
+  },
+  {
+    "id": "harpercollins",
+    "name": "HarperCollins Publishers",
+    "website": "https://www.harpercollins.com",
+    "contact": {
+      "email": "queries@harpercollins.com",
+      "phone": "+1 212 207 7000",
+      "address": "195 Broadway, New York, NY 10007, USA"
+    },
+    "genres": [
+      "fiction",
+      "non-fiction",
+      "romance",
+      "thriller"
+    ],
+    "submissionGuidelines": "https://www.harpercollins.com/submissions",
+    "preferences": {
+      "fictionMinPages": 250,
+      "marketPotential": "high",
+      "responseTime": "10-14 weeks"
+    },
+    "contracts": {
+      "royaltyRate": "12-16%",
+      "advance": "$15000-150000"
+    }
+  },
+  {
+    "id": "macmillan",
+    "name": "Macmillan Publishers",
+    "website": "https://www.macmillan.com",
+    "contact": {
+      "email": "submissions@macmillan.com",
+      "phone": "+1 646 307 5700",
+      "address": "120 Broadway, New York, NY 10271, USA"
+    },
+    "genres": [
+      "fiction",
+      "non-fiction",
+      "science",
+      "history"
+    ],
+    "submissionGuidelines": "https://www.macmillan.com/submissions",
+    "preferences": {
+      "nonFictionMinPages": 200,
+      "expertiseRequired": true,
+      "responseTime": "8-12 weeks"
+    },
+    "contracts": {
+      "royaltyRate": "10-14%",
+      "advance": "$5000-100000"
+    }
+  },
+  {
+    "name": "Test Publisher",
+    "website": "https://test-publisher.com",
+    "genres": [
+      "fiction",
+      "non-fiction"
+    ],
+    "contact": {
+      "email": "info@test-publisher.com"
+    },
+    "id": "test-publisher"
+  },
+  {
+    "id": "update-test",
+    "name": "Updated Name",
+    "website": "https://updated.com",
+    "genres": [
+      "fiction"
+    ]
+  },
+  {
+    "name": "Test Publisher",
+    "website": "https://test-publisher.com",
+    "genres": [
+      "fiction",
+      "non-fiction"
+    ],
+    "contact": {
+      "email": "info@test-publisher.com"
+    },
+    "id": "test-publisher"
+  },
+  {
+    "id": "update-test",
+    "name": "Original Name",
+    "website": "https://original.com",
+    "genres": [
+      "fiction"
+    ]
+  },
+  {
+    "name": "Test Publisher",
+    "website": "https://test-publisher.com",
+    "genres": [
+      "fiction",
+      "non-fiction"
+    ],
+    "contact": {
+      "email": "info@test-publisher.com"
+    },
+    "id": "test-publisher"
+  },
+  {
+    "id": "update-test",
+    "name": "Original Name",
+    "website": "https://original.com",
+    "genres": [
+      "fiction"
+    ]
+  },
+  {
+    "name": "Test Publisher",
+    "website": "https://test-publisher.com",
+    "genres": [
+      "fiction",
+      "non-fiction"
+    ],
+    "contact": {
+      "email": "info@test-publisher.com"
+    },
+    "id": "test-publisher"
+  },
+  {
+    "id": "update-test",
+    "name": "Original Name",
+    "website": "https://original.com",
+    "genres": [
+      "fiction"
+    ]
+  },
+  {
+    "name": "Test Publisher",
+    "website": "https://test-publisher.com",
+    "genres": [
+      "fiction",
+      "non-fiction"
+    ],
+    "contact": {
+      "email": "info@test-publisher.com"
+    },
+    "id": "test-publisher"
+  },
+  {
+    "id": "update-test",
+    "name": "Original Name",
+    "website": "https://original.com",
+    "genres": [
+      "fiction"
+    ]
+  },
+  {
+    "name": "Test Publisher",
+    "website": "https://test-publisher.com",
+    "genres": [
+      "fiction",
+      "non-fiction"
+    ],
+    "contact": {
+      "email": "info@test-publisher.com"
+    },
+    "id": "test-publisher"
+  },
+  {
+    "id": "update-test",
+    "name": "Original Name",
+    "website": "https://original.com",
+    "genres": [
+      "fiction"
+    ]
+  },
+  {
+    "name": "Test Publisher",
+    "website": "https://test-publisher.com",
+    "genres": [
+      "fiction",
+      "non-fiction"
+    ],
+    "contact": {
+      "email": "info@test-publisher.com"
+    },
+    "id": "test-publisher"
+  },
+  {
+    "id": "update-test",
+    "name": "Original Name",
+    "website": "https://original.com",
+    "genres": [
+      "fiction"
+    ]
+  },
+  {
+    "name": "Test Publisher",
+    "website": "https://test-publisher.com",
+    "genres": [
+      "fiction",
+      "non-fiction"
+    ],
+    "contact": {
+      "email": "info@test-publisher.com"
+    },
+    "id": "test-publisher"
+  },
+  {
+    "id": "update-test",
+    "name": "Original Name",
+    "website": "https://original.com",
+    "genres": [
+      "fiction"
+    ]
+  },
+  {
+    "name": "Test Publisher",
+    "website": "https://test-publisher.com",
+    "genres": [
+      "fiction",
+      "non-fiction"
+    ],
+    "contact": {
+      "email": "info@test-publisher.com"
+    },
+    "id": "test-publisher"
+  },
+  {
+    "id": "update-test",
+    "name": "Original Name",
+    "website": "https://original.com",
+    "genres": [
+      "fiction"
+    ]
+  }
+]

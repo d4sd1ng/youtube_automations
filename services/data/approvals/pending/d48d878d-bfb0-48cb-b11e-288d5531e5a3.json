@@ -1,0 +1,42 @@
+{
+  "approvalId": "d48d878d-bfb0-48cb-b11e-288d5531e5a3",
+  "status": "pending",
+  "content": {
+    "type": "script",
+    "title": "Untitled Script",
+    "topic": "Unknown Topic",
+    "scriptId": "script_1757467024874.json",
+    "scriptData": {
+      "scriptId": "script_1757467024874",
+      "content": "Welcome to our explanation about undefined. \n\nThis content is tailored for all with a informativ approach. The target length is 5min.\n\n[INTRO]\nHello everyone! Today we're going to explore undefined.\n\n[MAIN CONTENT]\nHere's what you need to know about undefined...\n\n[CONCLUSION]\nThat's all for today. Thanks for watching!\n\n[OUTRO]\nDon't forget to like, comment, and subscribe for more content!",
+      "metadata": {
+        "contentType": "explanation",
+        "targetLength": "5min",
+        "tone": "informativ",
+        "audience": "all",
+        "trendingKeywords": [],
+        "customInstructions": "",
+        "useChainOfThought": true,
+        "enableSelfReflection": true,
+        "createdAt": "2025-09-10T01:17:04.874Z",
+        "wordCount": 51,
+        "estimatedReadingTime": 1,
+        "qualityCheck": {
+          "scriptId": "script_1757467024874",
+          "approvalStatus": "approved",
+          "approvalReason": "Script meets quality standards",
+          "wordCount": 51,
+          "estimatedReadingTime": 1,
+          "checkedAt": "2025-09-10T01:17:04.876Z"
+        }
+      }
+    },
+    "submittedBy": "script-generation-agent",
+    "submissionNotes": "Generated script for review and approval"
+  },
+  "submittedAt": "2025-11-24T21:23:33.163Z",
+  "submittedBy": "script-generation-agent",
+  "reviewNotes": null,
+  "reviewedAt": null,
+  "reviewedBy": null
+}

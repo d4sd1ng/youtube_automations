@@ -1,0 +1,19 @@
+{
+  "name": "script-generation-python-agent",
+  "version": "1.0.0",
+  "description": "Python-based Script Generation Agent for automated content creation",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "dev": "python app.py"
+  },
+  "keywords": [
+    "script",
+    "generation",
+    "agent",
+    "python",
+    "content-creation"
+  ],
+  "author": "AI Agent System",
+  "license": "MIT"
+}

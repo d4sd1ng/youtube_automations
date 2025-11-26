@@ -1,0 +1,19 @@
+{
+  "imageData": {
+    "id": "midjourney_1757399466215_dag9xg7q6",
+    "provider": "midjourney",
+    "url": "https://cdn.midjourney.com/midjourney_1757399466215_dag9xg7q6/0_0.png",
+    "prompt": "Problematic image",
+    "generatedAt": "2025-09-09T06:31:06.215Z",
+    "dimensions": {
+      "width": 1024,
+      "height": 1024
+    },
+    "style": "test"
+  },
+  "requirements": {
+    "description": "Problematic image",
+    "style": "test"
+  },
+  "savedAt": "2025-09-09T06:31:06.215Z"
+}

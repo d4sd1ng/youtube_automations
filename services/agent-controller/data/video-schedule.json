@@ -1,0 +1,211 @@
+{
+  "channels": {
+    "senara": {
+      "name": "Senara",
+      "dailyVideos": [
+        {
+          "date": "2025-11-25",
+          "morningVideos": [
+            {
+              "id": "short-senara-1764077829043-morning",
+              "type": "short",
+              "title": "Aktuelles aus Politik - Morgens",
+              "description": "Die wichtigsten Themen des Tages für Politikinteressierte",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "scheduledTime": "2025-11-25T07:00:00.000Z",
+              "createdAt": "2025-11-25T13:37:09.043Z"
+            },
+            {
+              "id": "short-senara-1764077829043-morning",
+              "type": "short",
+              "title": "Aktuelles aus Politik - Morgens",
+              "description": "Die wichtigsten Themen des Tages für Politikinteressierte",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "scheduledTime": "2025-11-25T07:00:00.000Z",
+              "createdAt": "2025-11-25T13:37:09.043Z"
+            }
+          ],
+          "afternoonVideos": [
+            {
+              "id": "short-senara-1764077829043-afternoon",
+              "type": "short",
+              "title": "Aktuelles aus Politik - Nachmittags",
+              "description": "Die wichtigsten Themen des Tages für Politikinteressierte",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "scheduledTime": "2025-11-25T13:00:00.000Z",
+              "createdAt": "2025-11-25T13:37:09.043Z"
+            },
+            {
+              "id": "short-senara-1764077829043-afternoon",
+              "type": "short",
+              "title": "Aktuelles aus Politik - Nachmittags",
+              "description": "Die wichtigsten Themen des Tages für Politikinteressierte",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "scheduledTime": "2025-11-25T13:00:00.000Z",
+              "createdAt": "2025-11-25T13:37:09.043Z"
+            }
+          ],
+          "channelId": "senara",
+          "createdAt": "2025-11-25T13:37:09.043Z"
+        }
+      ],
+      "weeklyVideos": [
+        {
+          "week": 48,
+          "longVideo": {
+            "id": "long-senara-1764077829045",
+            "type": "long",
+            "title": "Die wichtigsten Entwicklungen der Woche in Politik",
+            "description": "Ein ausführlicher Überblick über die wichtigsten Themen der Woche",
+            "duration": "600",
+            "platform": "YouTube",
+            "scheduledTime": "2025-11-27T13:37:09.045Z",
+            "createdAt": "2025-11-25T13:37:09.045Z"
+          },
+          "shortCopies": [
+            {
+              "id": "shortcopy-senara-1764077829045-399",
+              "type": "short-copy",
+              "title": "Die wichtigsten Entwicklungen der Woche in Politik",
+              "description": "Ein ausführlicher Überblick über die wichtigsten Themen der Woche",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "sourceVideoId": "long-senara-1764077829045",
+              "createdAt": "2025-11-25T13:37:09.045Z"
+            },
+            {
+              "id": "shortcopy-senara-1764077829045-995",
+              "type": "short-copy",
+              "title": "Die wichtigsten Entwicklungen der Woche in Politik",
+              "description": "Ein ausführlicher Überblick über die wichtigsten Themen der Woche",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "sourceVideoId": "long-senara-1764077829045",
+              "createdAt": "2025-11-25T13:37:09.045Z"
+            },
+            {
+              "id": "shortcopy-senara-1764077829045-924",
+              "type": "short-copy",
+              "title": "Die wichtigsten Entwicklungen der Woche in Politik",
+              "description": "Ein ausführlicher Überblick über die wichtigsten Themen der Woche",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "sourceVideoId": "long-senara-1764077829045",
+              "createdAt": "2025-11-25T13:37:09.045Z"
+            }
+          ],
+          "channelId": "senara",
+          "createdAt": "2025-11-25T13:37:09.046Z"
+        }
+      ]
+    },
+    "neurova": {
+      "name": "Neurova",
+      "dailyVideos": [
+        {
+          "date": "2025-11-25",
+          "morningVideos": [
+            {
+              "id": "short-neurova-1764077829043-morning",
+              "type": "short",
+              "title": "Aktuelles aus Technologie - Morgens",
+              "description": "Die wichtigsten Themen des Tages für Technikbegeisterte",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "scheduledTime": "2025-11-25T07:00:00.000Z",
+              "createdAt": "2025-11-25T13:37:09.043Z"
+            },
+            {
+              "id": "short-neurova-1764077829043-morning",
+              "type": "short",
+              "title": "Aktuelles aus Technologie - Morgens",
+              "description": "Die wichtigsten Themen des Tages für Technikbegeisterte",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "scheduledTime": "2025-11-25T07:00:00.000Z",
+              "createdAt": "2025-11-25T13:37:09.043Z"
+            }
+          ],
+          "afternoonVideos": [
+            {
+              "id": "short-neurova-1764077829043-afternoon",
+              "type": "short",
+              "title": "Aktuelles aus Technologie - Nachmittags",
+              "description": "Die wichtigsten Themen des Tages für Technikbegeisterte",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "scheduledTime": "2025-11-25T13:00:00.000Z",
+              "createdAt": "2025-11-25T13:37:09.043Z"
+            },
+            {
+              "id": "short-neurova-1764077829043-afternoon",
+              "type": "short",
+              "title": "Aktuelles aus Technologie - Nachmittags",
+              "description": "Die wichtigsten Themen des Tages für Technikbegeisterte",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "scheduledTime": "2025-11-25T13:00:00.000Z",
+              "createdAt": "2025-11-25T13:37:09.043Z"
+            }
+          ],
+          "channelId": "neurova",
+          "createdAt": "2025-11-25T13:37:09.043Z"
+        }
+      ],
+      "weeklyVideos": [
+        {
+          "week": 48,
+          "longVideo": {
+            "id": "long-neurova-1764077829046",
+            "type": "long",
+            "title": "Die wichtigsten Entwicklungen der Woche in Technologie",
+            "description": "Ein ausführlicher Überblick über die wichtigsten Themen der Woche",
+            "duration": "600",
+            "platform": "YouTube",
+            "scheduledTime": "2025-11-27T13:37:09.046Z",
+            "createdAt": "2025-11-25T13:37:09.046Z"
+          },
+          "shortCopies": [
+            {
+              "id": "shortcopy-neurova-1764077829046-813",
+              "type": "short-copy",
+              "title": "Die wichtigsten Entwicklungen der Woche in Technologie",
+              "description": "Ein ausführlicher Überblick über die wichtigsten Themen der Woche",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "sourceVideoId": "long-neurova-1764077829046",
+              "createdAt": "2025-11-25T13:37:09.046Z"
+            },
+            {
+              "id": "shortcopy-neurova-1764077829046-181",
+              "type": "short-copy",
+              "title": "Die wichtigsten Entwicklungen der Woche in Technologie",
+              "description": "Ein ausführlicher Überblick über die wichtigsten Themen der Woche",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "sourceVideoId": "long-neurova-1764077829046",
+              "createdAt": "2025-11-25T13:37:09.046Z"
+            },
+            {
+              "id": "shortcopy-neurova-1764077829046-869",
+              "type": "short-copy",
+              "title": "Die wichtigsten Entwicklungen der Woche in Technologie",
+              "description": "Ein ausführlicher Überblick über die wichtigsten Themen der Woche",
+              "duration": "60",
+              "platform": "YouTube Shorts",
+              "sourceVideoId": "long-neurova-1764077829046",
+              "createdAt": "2025-11-25T13:37:09.046Z"
+            }
+          ],
+          "channelId": "neurova",
+          "createdAt": "2025-11-25T13:37:09.046Z"
+        }
+      ]
+    }
+  },
+  "lastUpdated": "2025-11-25T13:37:09.050Z"
+}

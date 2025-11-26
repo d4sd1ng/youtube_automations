@@ -1,0 +1,12 @@
+{
+  "items": [
+    {
+      "title": "Test Item",
+      "qualityScore": 80
+    }
+  ],
+  "statistics": {
+    "totalItems": 1,
+    "averageQuality": 80
+  }
+}

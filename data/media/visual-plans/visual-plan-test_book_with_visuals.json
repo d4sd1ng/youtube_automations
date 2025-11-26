@@ -1,0 +1,108 @@
+{
+  "bookTitle": "Test Book with Visuals",
+  "totalElements": 4,
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "chapterTitle": "Introduction",
+      "elements": [
+        {
+          "type": "cover",
+          "description": "Professional book cover",
+          "purpose": "marketing",
+          "priority": "high",
+          "format": "png",
+          "dimensions": {
+            "width": 1600,
+            "height": 2400
+          }
+        },
+        {
+          "type": "chapter-illustration",
+          "description": "Illustration for chapter 1",
+          "purpose": "content-enhancement",
+          "priority": "medium",
+          "format": "png",
+          "dimensions": {
+            "width": 1200,
+            "height": 800
+          }
+        }
+      ],
+      "totalElements": 2
+    },
+    {
+      "chapterNumber": 2,
+      "chapterTitle": "Main Content",
+      "elements": [
+        {
+          "type": "cover",
+          "description": "Professional book cover",
+          "purpose": "marketing",
+          "priority": "high",
+          "format": "png",
+          "dimensions": {
+            "width": 1600,
+            "height": 2400
+          }
+        }
+      ],
+      "totalElements": 1
+    },
+    {
+      "chapterNumber": 3,
+      "chapterTitle": "Conclusion",
+      "elements": [
+        {
+          "type": "cover",
+          "description": "Professional book cover",
+          "purpose": "marketing",
+          "priority": "high",
+          "format": "png",
+          "dimensions": {
+            "width": 1600,
+            "height": 2400
+          }
+        },
+        {
+          "type": "chapter-illustration",
+          "description": "Illustration for chapter 1",
+          "purpose": "content-enhancement",
+          "priority": "medium",
+          "format": "png",
+          "dimensions": {
+            "width": 1200,
+            "height": 800
+          }
+        },
+        {
+          "type": "chapter-illustration",
+          "description": "Illustration for chapter 2",
+          "purpose": "content-enhancement",
+          "priority": "medium",
+          "format": "png",
+          "dimensions": {
+            "width": 1200,
+            "height": 800
+          }
+        },
+        {
+          "type": "chapter-illustration",
+          "description": "Illustration for chapter 3",
+          "purpose": "content-enhancement",
+          "priority": "medium",
+          "format": "png",
+          "dimensions": {
+            "width": 1200,
+            "height": 800
+          }
+        }
+      ],
+      "totalElements": 4
+    }
+  ],
+  "metadata": {
+    "createdAt": "2025-09-09T07:56:47.130Z",
+    "version": "1.0"
+  }
+}

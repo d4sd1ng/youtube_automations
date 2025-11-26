@@ -1,0 +1,19 @@
+{
+  "name": "content-planning-python-agent",
+  "version": "1.0.0",
+  "description": "Python-based Content Planning Agent for content strategy and scheduling",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "dev": "python app.py"
+  },
+  "keywords": [
+    "content-planning",
+    "strategy",
+    "agent",
+    "python",
+    "scheduling"
+  ],
+  "author": "AI Agent System",
+  "license": "MIT"
+}

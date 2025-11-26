@@ -1,0 +1,19 @@
+{
+  "name": "web-scraping-python-agent",
+  "version": "1.0.0",
+  "description": "Python-based Web Scraping Agent for data extraction and monitoring",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "dev": "python app.py"
+  },
+  "keywords": [
+    "web-scraping",
+    "data-extraction",
+    "agent",
+    "python",
+    "monitoring"
+  ],
+  "author": "AI Agent System",
+  "license": "MIT"
+}

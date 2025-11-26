@@ -1,0 +1,121 @@
+{
+  "id": "8e8b4fc3-0a94-4587-9d18-a0b12fa83eca",
+  "type": "caption-generation",
+  "status": "completed",
+  "content": {
+    "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+    "text": "",
+    "id": "da51d643-b2ba-42ce-ae6f-ba43428f28a1"
+  },
+  "options": {
+    "platform": "youtube"
+  },
+  "progress": {
+    "currentStage": "generating",
+    "stageProgress": 100,
+    "overallProgress": 100,
+    "completedStages": []
+  },
+  "metadata": {
+    "startedAt": "2025-11-25T17:35:55.374Z",
+    "estimatedDuration": 25000,
+    "completedAt": "2025-11-25T17:35:59.403Z"
+  },
+  "logs": [
+    {
+      "timestamp": "2025-11-25T17:35:55.374Z",
+      "level": "info",
+      "message": "Generating captions for content: Content Plan for Künstliche Intelligenz in der Medizin"
+    },
+    {
+      "timestamp": "2025-11-25T17:35:55.375Z",
+      "level": "info",
+      "message": "Analyzing content..."
+    },
+    {
+      "timestamp": "2025-11-25T17:35:56.388Z",
+      "level": "info",
+      "message": "Generating caption text..."
+    },
+    {
+      "timestamp": "2025-11-25T17:35:58.395Z",
+      "level": "info",
+      "message": "Formatting captions..."
+    },
+    {
+      "timestamp": "2025-11-25T17:35:59.403Z",
+      "level": "info",
+      "message": "Caption generation completed successfully"
+    }
+  ],
+  "result": {
+    "id": "6307ca1f-bf94-4acf-a9cf-27ac98c51e00",
+    "content": {
+      "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+      "text": "",
+      "id": "da51d643-b2ba-42ce-ae6f-ba43428f28a1"
+    },
+    "analysis": {
+      "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+      "description": "",
+      "duration": 300,
+      "keyPoints": [],
+      "tone": "neutral",
+      "audience": "general",
+      "complexity": "medium",
+      "analyzedAt": "2025-11-25T17:35:56.388Z"
+    },
+    "rawText": "Dies ist Absatz 1 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.\n\nDies ist Absatz 2 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.\n\nDies ist Absatz 3 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.\n\nDies ist Absatz 4 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.\n\nDies ist Absatz 5 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.",
+    "formattedCaptions": [
+      {
+        "id": "caption-0",
+        "text": "Dies ist Absatz 1 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.",
+        "startTime": 0,
+        "endTime": 5,
+        "position": "bottom",
+        "style": "standard"
+      },
+      {
+        "id": "caption-2",
+        "text": "Dies ist Absatz 2 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.",
+        "startTime": 5,
+        "endTime": 10,
+        "position": "bottom",
+        "style": "standard"
+      },
+      {
+        "id": "caption-4",
+        "text": "Dies ist Absatz 3 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.",
+        "startTime": 10,
+        "endTime": 15,
+        "position": "bottom",
+        "style": "standard"
+      },
+      {
+        "id": "caption-6",
+        "text": "Dies ist Absatz 4 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.",
+        "startTime": 15,
+        "endTime": 20,
+        "position": "bottom",
+        "style": "standard"
+      },
+      {
+        "id": "caption-8",
+        "text": "Dies ist Absatz 5 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.",
+        "startTime": 20,
+        "endTime": 25,
+        "position": "bottom",
+        "style": "standard"
+      }
+    ],
+    "platform": "youtube",
+    "language": "de",
+    "style": "standard",
+    "wordCount": 166,
+    "characterCount": 1168,
+    "generatedAt": "2025-11-25T17:35:59.401Z",
+    "options": {
+      "platform": "youtube"
+    }
+  }
+}

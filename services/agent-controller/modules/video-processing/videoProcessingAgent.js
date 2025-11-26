@@ -624,6 +624,162 @@ class VideoProcessingAgent {
   sleep(milliseconds) {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
   }
+
+  /**
+   * Optimize and convert video for different platforms
+   * @param {string} videoId - Video ID
+   * @param {Object} optimizationOptions - Optimization options
+   * @returns {Object} Optimization result
+   */
+  async optimizeVideo(videoId, optimizationOptions = {}) {
+    const jobId = uuidv4();
+
+    // Create job record
+    const job = {
+      id: jobId,
+      type: 'video-optimization',
+      status: 'processing',
+      videoId: videoId,
+      options: optimizationOptions,
+      progress: {
+        currentStage: 'optimizing',
+        stageProgress: 0,
+        overallProgress: 0,
+        completedStages: []
+      },
+      metadata: {
+        startedAt: new Date().toISOString(),
+        estimatedDuration: 180000 // 3 minutes
+      },
+      logs: [{ timestamp: new Date().toISOString(), level: 'info', message: `Starting video optimization for video: ${videoId}` }]
+    };
+
+    // Save job
+    this.saveJob(job);
+
+    try {
+      // Load video info
+      job.progress.stageProgress = 10;
+      job.progress.overallProgress = 10;
+      job.logs.push({ timestamp: new Date().toISOString(), level: 'info', message: 'Loading video info...' });
+      this.saveJob(job);
+
+      const video = await this.getVideoInfo(videoId);
+      if (!video) {
+        throw new Error(`Video ${videoId} not found`);
+      }
+
+      await this.sleep(500);
+
+      // Determine target formats based on platforms
+      const targetFormats = optimizationOptions.targetPlatforms || ['youtube'];
+      const optimizedVideos = [];
+
+      // Optimize for each platform
+      job.progress.stageProgress = 30;
+      job.progress.overallProgress = 30;
+      job.logs.push({ timestamp: new Date().toISOString(), level: 'info', message: `Optimizing for platforms: ${targetFormats.join(', ')}` });
+      this.saveJob(job);
+
+      for (const platform of targetFormats) {
+        await this.sleep(1000);
+
+        // Get platform-specific settings
+        let platformSettings;
+        switch (platform) {
+          case 'youtube':
+            platformSettings = {
+              format: 'mp4',
+              codec: 'h264',
+              resolution: '1920x1080',
+              bitrate: '8000k',
+              fps: 30
+            };
+            break;
+          case 'tiktok':
+            platformSettings = {
+              format: 'mp4',
+              codec: 'h264',
+              resolution: '1080x1920',
+              bitrate: '5000k',
+              fps: 30
+            };
+            break;
+          case 'instagram':
+            platformSettings = {
+              format: 'mp4',
+              codec: 'h264',
+              resolution: '1080x1350',
+              bitrate: '4000k',
+              fps: 30
+            };
+            break;
+          case 'x':
+            platformSettings = {
+              format: 'mp4',
+              codec: 'h264',
+              resolution: '1920x1080',
+              bitrate: '6000k',
+              fps: 30
+            };
+            break;
+          default:
+            platformSettings = {
+              format: 'mp4',
+              codec: 'h264',
+              resolution: '1920x1080',
+              bitrate: '8000k',
+              fps: 30
+            };
+        }
+
+        // Override with custom settings if provided
+        if (optimizationOptions.customSettings && optimizationOptions.customSettings[platform]) {
+          platformSettings = { ...platformSettings, ...optimizationOptions.customSettings[platform] };
+        }
+
+        // Mock optimized video
+        const optimizedVideo = {
+          id: `${videoId}-${platform}`,
+          originalVideoId: videoId,
+          platform: platform,
+          title: `${video.title || 'Video'} - ${this.supportedPlatforms[platform]?.name || platform} Version`,
+          filename: `optimized_${videoId}_${platform}.${platformSettings.format}`,
+          format: platformSettings.format,
+          codec: platformSettings.codec,
+          resolution: platformSettings.resolution,
+          bitrate: platformSettings.bitrate,
+          fps: platformSettings.fps,
+          duration: video.duration,
+          size: Math.floor(video.size * 0.8), // Assume 20% reduction
+          createdAt: new Date().toISOString(),
+          optimizedAt: new Date().toISOString()
+        };
+
+        optimizedVideos.push(optimizedVideo);
+        this.saveVideo(optimizedVideo);
+      }
+
+      await this.sleep(1000);
+
+      // Complete job
+      job.status = 'completed';
+      job.progress.stageProgress = 100;
+      job.progress.overallProgress = 100;
+      job.result = { optimizedVideos, platformSettings: targetFormats.map(p => ({ platform: p, settings: optimizationOptions.customSettings?.[p] || {} })) };
+      job.metadata.completedAt = new Date().toISOString();
+      job.logs.push({ timestamp: new Date().toISOString(), level: 'info', message: `Video optimization completed. Created ${optimizedVideos.length} versions.` });
+      this.saveJob(job);
+
+      return { optimizedVideos, jobId };
+    } catch (error) {
+      job.status = 'failed';
+      job.error = error.message;
+      job.logs.push({ timestamp: new Date().toISOString(), level: 'error', message: `Video optimization failed: ${error.message}` });
+      this.saveJob(job);
+      throw error;
+    }
+  }
 }
 
 module.exports = VideoProcessingAgent;

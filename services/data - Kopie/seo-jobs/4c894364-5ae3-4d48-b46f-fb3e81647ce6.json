@@ -1,0 +1,128 @@
+{
+  "id": "4c894364-5ae3-4d48-b46f-fb3e81647ce6",
+  "type": "video-optimization",
+  "status": "completed",
+  "videoData": {
+    "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+    "description": {
+      "id": "10917235-755f-4624-aa6c-42a56dc8fcc3",
+      "topic": "Content Plan for Künstliche Intelligenz in der Medizin",
+      "title": "Alles über Content Plan for Künstliche Intelligenz in der Medizin",
+      "summary": "Ein umfassender Leitfaden zu Content Plan for Künstliche Intelligenz in der Medizin",
+      "scriptType": "medium",
+      "typeName": "Langform-Video",
+      "estimatedDuration": 600,
+      "chapters": [
+        {
+          "id": "intro",
+          "title": "Einleitung",
+          "content": "Willkommen zu diesem Video über Content Plan for Künstliche Intelligenz in der Medizin. Heute werden wir uns eingehend mit diesem Thema beschäftigen."
+        },
+        {
+          "id": "main",
+          "title": "Hauptteil",
+          "content": "Im Hauptteil werden wir die wichtigsten Aspekte von Content Plan for Künstliche Intelligenz in der Medizin behandeln."
+        },
+        {
+          "id": "conclusion",
+          "title": "Fazit",
+          "content": "Zusammenfassend lässt sich sagen, dass Content Plan for Künstliche Intelligenz in der Medizin ein wichtiges Thema ist."
+        }
+      ],
+      "keyPoints": [
+        "Wichtigste Erkenntnisse über Content Plan for Künstliche Intelligenz in der Medizin",
+        "Praktische Anwendungen",
+        "Zukünftige Entwicklungen"
+      ],
+      "keywords": [
+        "Content Plan for Künstliche Intelligenz in der Medizin",
+        "Content Plan for Künstliche Intelligenz in der Medizin Erklärung",
+        "Content Plan for Künstliche Intelligenz in der Medizin Tutorial"
+      ],
+      "callToAction": "Wenn Ihnen dieses Video gefallen hat, abonnieren Sie unseren Kanal und aktivieren Sie die Glocke.",
+      "createdAt": "2025-11-25T17:32:10.942Z",
+      "options": {
+        "scriptType": "medium",
+        "tone": "informative",
+        "keywords": [
+          "KI",
+          "Medizin",
+          "Technologie",
+          "Innovation"
+        ]
+      }
+    },
+    "keywords": [
+      "KI",
+      "Medizin",
+      "Technologie",
+      "Innovation"
+    ]
+  },
+  "options": {
+    "language": "de",
+    "category": "Entertainment",
+    "optimizationLevel": "standard"
+  },
+  "progress": {
+    "currentStage": "optimizing",
+    "stageProgress": 100,
+    "overallProgress": 100,
+    "completedStages": []
+  },
+  "metadata": {
+    "startedAt": "2025-11-25T17:32:17.014Z",
+    "estimatedDuration": 45000,
+    "completedAt": "2025-11-25T17:32:20.047Z"
+  },
+  "logs": [
+    {
+      "timestamp": "2025-11-25T17:32:17.014Z",
+      "level": "info",
+      "message": "Starting video optimization for: Content Plan for Künstliche Intelligenz in der Medizin"
+    },
+    {
+      "timestamp": "2025-11-25T17:32:17.014Z",
+      "level": "info",
+      "message": "Analyzing video data..."
+    },
+    {
+      "timestamp": "2025-11-25T17:32:17.518Z",
+      "level": "info",
+      "message": "Generating optimized video description..."
+    },
+    {
+      "timestamp": "2025-11-25T17:32:18.528Z",
+      "level": "info",
+      "message": "Generating relevant tags..."
+    },
+    {
+      "timestamp": "2025-11-25T17:32:19.541Z",
+      "level": "info",
+      "message": "Optimizing video title..."
+    },
+    {
+      "timestamp": "2025-11-25T17:32:20.047Z",
+      "level": "info",
+      "message": "Video optimization completed successfully"
+    }
+  ],
+  "result": {
+    "id": "a6cc1b27-86f3-4d6e-a16f-55dbe050443c",
+    "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+    "description": "In diesem Video erfahren Sie alles über Content Plan for Künstliche Intelligenz in der Medizin.",
+    "tags": [
+      "Content Plan for Künstliche Intelligenz in der Medizin",
+      "YouTube",
+      "Video"
+    ],
+    "language": "de",
+    "category": "Entertainment",
+    "optimizedAt": "2025-11-25T17:32:20.047Z",
+    "recommendations": [
+      "Verwenden Sie ein klares Title-Tag",
+      "Fügen Sie relevante Keywords in die Beschreibung ein",
+      "Nutzen Sie eine ansprechende Thumbnail-Grafik"
+    ]
+  }
+}

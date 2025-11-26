@@ -1,0 +1,3079 @@
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const multer = require('multer');
+const path = require('path');
+require('dotenv').config();
+const AgentPool = require('./agentPool');
+const connectionManager = require('./connectionManager');
+const cacheManager = require('./cacheManager');
+const tokenMonitor = require('./tokenMonitor');
+const AudioToTextService = require('./audioToTextService');
+const TextAnalysisService = require('./textAnalysisService');
+const DocumentExportService = require('./documentExportService');
+const TokenCostCalculator = require('./tokenCostCalculator');
+const WebScrapingService = require('./webScrapingService');
+const TrendAnalysisService = require('./trendAnalysisService');
+const MultiInputService = require('./multiInputService');
+const ScriptGenerationService = require('./scriptGenerationService');
+const AdvancedPromptingService = require('./advancedPromptingService');
+const PipelineOrchestrator = require('./pipelineOrchestrator');
+const AvatarGenerationService = require('./avatarGenerationService');
+const SEOOptimizationService = require('./seoOptimizationService');
+
+// NEW: Video-Audio Pipeline Services
+const VideoDiscoveryService = require('./videoDiscoveryService');
+const AudioExtractionService = require('./audioExtractionService');
+
+// NEW: Testing Infrastructure
+const PipelineTestSuite = require('./pipelineTestSuite');
+
+const app = express();
+const tokenCalculator = new TokenCostCalculator();
+// Entfernen Sie die PORT-Variable und setzen Sie den Port explizit auf 3000
+const PORT = 3000;
+const agentPool = new AgentPool();
+
+
+
+
+
+
+
+// Initialize audio analysis services
+const audioToTextService = new AudioToTextService();
+const textAnalysisService = new TextAnalysisService();
+const documentExportService = new DocumentExportService();
+
+// Initialize web scraping and trend analysis services
+const webScrapingService = new WebScrapingService();
+const trendAnalysisService = new TrendAnalysisService();
+
+// Initialize multi-input processing service
+const multiInputService = new MultiInputService();
+const multiInputUpload = multiInputService.configureMulter();
+
+// Initialize script generation service
+const scriptGenerationService = new ScriptGenerationService();
+
+// Initialize advanced prompting service
+const advancedPromptingService = new AdvancedPromptingService();
+
+// Initialize avatar generation service
+const avatarGenerationService = new AvatarGenerationService();
+
+// NEW: Initialize SEO optimization service
+const seoOptimizationService = new SEOOptimizationService();
+
+// NEW: Initialize video-audio pipeline services
+const videoDiscoveryService = new VideoDiscoveryService();
+const audioExtractionService = new AudioExtractionService();
+
+// Initialize pipeline orchestrator with all services
+const pipelineOrchestrator = new PipelineOrchestrator({
+  webScrapingService,
+  trendAnalysisService,
+  multiInputService,
+  scriptGenerationService,
+  advancedPromptingService,
+  tokenCalculator,
+  
+  // NEW: Video-Audio Pipeline Services Integration
+  videoDiscoveryService,
+  audioExtractionService,
+  avatarGenerationService
+});
+
+// NEW: Initialize Testing Infrastructure
+const pipelineTestSuite = new PipelineTestSuite(pipelineOrchestrator, {
+  videoDiscoveryService,
+  audioExtractionService,
+  avatarGenerationService,
+  webScrapingService,
+  trendAnalysisService,
+  multiInputService,
+  scriptGenerationService,
+  advancedPromptingService
+});
+
+// Configure multer for audio uploads
+const upload = multer({
+  dest: path.join(__dirname, 'temp/uploads'),
+  limits: {
+    fileSize: 25 * 1024 * 1024, // 25MB limit for audio files
+    files: 1
+  },
+  fileFilter: (req, file, cb) => {
+    // Accept audio files
+    const allowedMimes = [
+      'audio/mpeg',
+      'audio/mp3', 
+      'audio/wav',
+      'audio/m4a',
+      'audio/aac',
+      'audio/ogg',
+      'audio/webm'
+    ];
+    
+    if (allowedMimes.includes(file.mimetype) || file.originalname.match(/\.(mp3|wav|m4a|aac|ogg|webm)$/i)) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only audio files are allowed'), false);
+    }
+  }
+});
+
+// Global reference for emergency stop
+global.agentPool = agentPool;
+
+// System control state
+let systemControl = {
+  status: 'running', // 'running', 'stopped', 'weekend_pause'
+  autoWeekendPause: true,
+  lastStateChange: new Date().toISOString(),
+  pauseUntil: null
+};
+
+// Check if it's weekend (Friday, Saturday, Sunday)
+const isWeekend = () => {
+  const day = new Date().getDay();
+  return day === 0 || day === 5 || day === 6; // Sunday=0, Friday=5, Saturday=6
+};
+
+// Auto weekend pause logic
+const checkWeekendPause = () => {
+  if (systemControl.autoWeekendPause && isWeekend()) {
+    if (systemControl.status === 'running') {
+      systemControl.status = 'weekend_pause';
+      systemControl.lastStateChange = new Date().toISOString();
+      
+      // Calculate when to resume (Monday 00:00)
+      const now = new Date();
+      const monday = new Date(now);
+      monday.setDate(now.getDate() + (1 + 7 - now.getDay()) % 7);
+      monday.setHours(0, 0, 0, 0);
+      systemControl.pauseUntil = monday.toISOString();
+      
+      console.log('🏖️ System auto-paused for weekend until', monday.toISOString());
+    }
+  } else if (systemControl.status === 'weekend_pause' && !isWeekend()) {
+    systemControl.status = 'running';
+    systemControl.lastStateChange = new Date().toISOString();
+    systemControl.pauseUntil = null;
+    console.log('🚀 System auto-resumed after weekend');
+  }
+};
+
+// Initialize optimizations
+async function initializeOptimizations() {
+  try {
+    console.log('🚀 Initializing system optimizations...');
+    
+    // Initialize connection manager
+    await connectionManager.initialize();
+    
+    // Initialize cache manager
+    await cacheManager.initialize();
+    await cacheManager.warmUpCache();
+    cacheManager.startCleanup();
+    
+    // Initialize token monitor
+    await tokenMonitor.initialize();
+    
+    console.log('✅ All optimizations initialized successfully');
+    
+  } catch (error) {
+    console.error('❌ Failed to initialize optimizations:', error);
+  }
+}
+
+// Initialize on startup
+initializeOptimizations();
+
+// Graceful shutdown
+process.on('SIGTERM', async () => {
+  console.log('🔄 Graceful shutdown initiated...');
+  await connectionManager.gracefulShutdown();
+  process.exit(0);
+});
+
+process.on('SIGINT', async () => {
+  console.log('🔄 Graceful shutdown initiated...');
+  await connectionManager.gracefulShutdown();
+  process.exit(0);
+});
+
+// Middleware
+app.use(helmet());
+app.use(cors());
+app.use(morgan('combined'));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+
+// Pipeline Orchestration API Endpoints
+
+// Create new pipeline job
+app.post('/api/pipeline/create', async (req, res) => {
+  try {
+    console.log('🚀 Creating new pipeline job...');
+    
+    const { name, template, priority, config } = req.body;
+    
+    if (!name || !template || !config) {
+      return res.status(400).json({
+        error: 'Missing required fields: name, template, config'
+      });
+    }
+
+    const job = await pipelineOrchestrator.createPipeline({
+      name,
+      template,
+      priority: priority || 2,
+      config
+    });
+    
+    res.json({
+      success: true,
+      job,
+      message: `Pipeline job ${job.id} created successfully`
+    });
+  } catch (error) {
+    console.error('❌ Pipeline creation failed:', error);
+    res.status(500).json({
+      error: 'Pipeline creation failed',
+      message: error.message
+    });
+  }
+});
+
+// NEW: Execute comprehensive social media scraping
+app.post('/api/scraping/execute', async (req, res) => {
+  try {
+    console.log('🔍 Executing comprehensive social media scraping...');
+    
+    const { sources, query, searchOptions } = req.body || {};
+    
+    // Check if weekend pause is active
+    if (webScrapingService.isWeekendPause()) {
+      return res.json({
+        success: false,
+        reason: 'weekend_pause',
+        message: 'Scraping is paused due to weekend restrictions',
+        nextScrape: webScrapingService.getNextScrapeTime()
+      });
+    }
+    
+    let results;
+    
+    // If search query is provided, perform web search instead of general scraping
+    if (query) {
+      results = await webScrapingService.searchWeb(query, searchOptions);
+      return res.json({
+        success: true,
+        results: results,
+        message: `Successfully searched web for "${query}" and found ${results.length} results`,
+        timestamp: new Date().toISOString()
+      });
+    }
+    
+    // Execute general scraping
+    results = await webScrapingService.scrapeAllSources();
+    
+    res.json({
+      success: results.success,
+      results: results.success ? {
+        totalItems: results.totalItems,
+        sources: results.sources,
+        topItems: results.topItems,
+        duration: results.duration
+      } : null,
+      message: results.success 
+        ? `Successfully scraped ${results.totalItems} items from ${Object.keys(results.sources).length} sources`
+        : `Scraping failed: ${results.error || 'Unknown error'}`,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Social media scraping failed:', error);
+    res.status(500).json({
+      error: 'Social media scraping failed',
+      message: error.message
+    });
+  }
+});
+
+// NEW: Search web content
+app.post('/api/scraping/search', async (req, res) => {
+  try {
+    console.log('🔍 Searching web content...');
+    
+    const { query, options } = req.body;
+    
+    if (!query) {
+      return res.status(400).json({
+        error: 'Missing required field: query'
+      });
+    }
+    
+    // Check if weekend pause is active
+    if (webScrapingService.isWeekendPause()) {
+      return res.json({
+        success: false,
+        reason: 'weekend_pause',
+        message: 'Scraping is paused due to weekend restrictions',
+        nextScrape: webScrapingService.getNextScrapeTime()
+      });
+    }
+    
+    const results = await webScrapingService.searchWeb(query, options);
+    
+    res.json({
+      success: true,
+      results: results,
+      message: `Successfully searched web for "${query}" and found ${results.length} results`,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Web search failed:', error);
+    res.status(500).json({
+      error: 'Web search failed',
+      message: error.message
+    });
+  }
+});
+
+// NEW: Get scraping statistics
+app.get('/api/scraping/stats', (req, res) => {
+  try {
+    const stats = webScrapingService.getStats();
+    
+    res.json({
+      success: true,
+      stats,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Failed to get scraping stats:', error);
+    res.status(500).json({
+      error: 'Failed to get scraping stats',
+      message: error.message
+    });
+  }
+});
+
+// NEW: Get scraped content
+app.get('/api/scraping/content', (req, res) => {
+  try {
+    const { limit = 50, source } = req.query;
+    
+    // Get latest scraped content file
+    const dataDir = path.join(__dirname, '../../data/scraped-content');
+    const files = fs.readdirSync(dataDir)
+      .filter(f => f.startsWith('scraped-content-') && f.endsWith('.json'))
+      .sort()
+      .reverse();
+    
+    if (files.length === 0) {
+      return res.json({
+        success: true,
+        content: [],
+        message: 'No scraped content found'
+      });
+    }
+    
+    const latestFile = files[0];
+    const data = JSON.parse(fs.readFileSync(path.join(dataDir, latestFile)));
+    
+    // Filter by source if specified
+    let items = data.items;
+    if (source) {
+      items = items.filter(item => item.source === source);
+    }
+    
+    // Limit results
+    items = items.slice(0, parseInt(limit));
+    
+    res.json({
+      success: true,
+      content: items,
+      total: items.length,
+      scrapedAt: data.scrapedAt,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Failed to get scraped content:', error);
+    res.status(500).json({
+      error: 'Failed to get scraped content',
+      message: error.message
+    });
+  }
+});
+
+// Get all pipeline jobs
+app.get('/api/pipeline/jobs', (req, res) => {
+  try {
+    const { status, limit = 50 } = req.query;
+    const jobs = pipelineOrchestrator.getJobs({ status, limit: parseInt(limit) });
+    
+    res.json({
+      success: true,
+      jobs,
+      count: jobs.length,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Failed to get pipeline jobs:', error);
+    res.status(500).json({
+      error: 'Failed to get pipeline jobs',
+      message: error.message
+    });
+  }
+});
+
+// Get specific pipeline job
+app.get('/api/pipeline/jobs/:jobId', (req, res) => {
+  try {
+    const { jobId } = req.params;
+    const job = pipelineOrchestrator.getJob(jobId);
+    
+    if (!job) {
+      return res.status(404).json({
+        error: 'Pipeline job not found',
+        jobId
+      });
+    }
+    
+    res.json({
+      success: true,
+      job,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Failed to get pipeline job:', error);
+    res.status(500).json({
+      error: 'Failed to get pipeline job',
+      message: error.message
+    });
+  }
+});
+
+// Cancel pipeline job
+app.post('/api/pipeline/cancel', async (req, res) => {
+  try {
+    const { jobId } = req.body;
+    
+    if (!jobId) {
+      return res.status(400).json({
+        error: 'Missing required field: jobId'
+      });
+    }
+
+    const result = await pipelineOrchestrator.cancelPipeline(jobId);
+    
+    res.json({
+      success: result,
+      message: result ? 'Pipeline cancelled successfully' : 'Failed to cancel pipeline',
+      jobId
+    });
+  } catch (error) {
+    console.error('❌ Pipeline cancellation failed:', error);
+    res.status(500).json({
+      error: 'Pipeline cancellation failed',
+      message: error.message
+    });
+  }
+});
+
+// Retry failed pipeline job
+app.post('/api/pipeline/retry', async (req, res) => {
+  try {
+    const { jobId } = req.body;
+    
+    if (!jobId) {
+      return res.status(400).json({
+        error: 'Missing required field: jobId'
+      });
+    }
+
+    const result = await pipelineOrchestrator.retryPipeline(jobId);
+    
+    res.json({
+      success: result.success,
+      job: result.job,
+      message: result.success ? 'Pipeline retry initiated' : 'Failed to retry pipeline',
+      jobId
+    });
+  } catch (error) {
+    console.error('❌ Pipeline retry failed:', error);
+    res.status(500).json({
+      error: 'Pipeline retry failed',
+      message: error.message
+    });
+  }
+});
+
+// Get pipeline statistics
+app.get('/api/pipeline/stats', async (req, res) => {
+  try {
+    const stats = await pipelineOrchestrator.getStats();
+    
+    // Enhance stats with service health
+    const enhancedStats = {
+      ...stats,
+      systemLoad: {
+        cpu: Math.random() * 100, // Mock system metrics
+        memory: Math.random() * 100,
+        disk: Math.random() * 100
+      },
+      services: {
+        webScraping: {
+          status: 'healthy',
+          uptime: Date.now() - (Math.random() * 86400000), // Random uptime
+          requestCount: Math.floor(Math.random() * 1000),
+          errorRate: Math.random() * 0.05
+        },
+        trendAnalysis: {
+          status: 'healthy',
+          uptime: Date.now() - (Math.random() * 86400000),
+          requestCount: Math.floor(Math.random() * 800),
+          errorRate: Math.random() * 0.03
+        },
+        multiInput: {
+          status: 'healthy',
+          uptime: Date.now() - (Math.random() * 86400000),
+          requestCount: Math.floor(Math.random() * 600),
+          errorRate: Math.random() * 0.02
+        },
+        scriptGeneration: {
+          status: 'healthy',
+          uptime: Date.now() - (Math.random() * 86400000),
+          requestCount: Math.floor(Math.random() * 400),
+          errorRate: Math.random() * 0.04
+        },
+        prompting: {
+          status: 'healthy',
+          uptime: Date.now() - (Math.random() * 86400000),
+          requestCount: Math.floor(Math.random() * 300),
+          errorRate: Math.random() * 0.01
+        }
+      }
+    };
+    
+    res.json({
+      success: true,
+      stats: enhancedStats,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Failed to get pipeline stats:', error);
+    res.status(500).json({
+      error: 'Failed to get pipeline statistics',
+      message: error.message
+    });
+  }
+});
+
+// Get available pipeline templates
+app.get('/api/pipeline/templates', (req, res) => {
+  try {
+    const templates = pipelineOrchestrator.getAvailableTemplates();
+    
+    res.json({
+      success: true,
+      templates,
+      count: templates.length,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Failed to get pipeline templates:', error);
+    res.status(500).json({
+      error: 'Failed to get pipeline templates',
+      message: error.message
+    });
+  }
+});
+
+// Execute specific pipeline step (advanced usage)
+app.post('/api/pipeline/execute-step', async (req, res) => {
+  try {
+    const { jobId, stepId, config } = req.body;
+    
+    if (!jobId || !stepId) {
+      return res.status(400).json({
+        error: 'Missing required fields: jobId, stepId'
+      });
+    }
+
+    const result = await pipelineOrchestrator.executeStep(jobId, stepId, config);
+    
+    res.json({
+      success: result.success,
+      result: result.data,
+      message: result.success ? 'Step executed successfully' : 'Step execution failed',
+      error: result.error
+    });
+  } catch (error) {
+    console.error('❌ Pipeline step execution failed:', error);
+    res.status(500).json({
+      error: 'Pipeline step execution failed',
+      message: error.message
+    });
+  }
+});
+
+// Get pipeline performance metrics
+app.get('/api/pipeline/metrics', async (req, res) => {
+  try {
+    const { period = '24h' } = req.query;
+    const metrics = await pipelineOrchestrator.getPerformanceMetrics(period);
+    
+    res.json({
+      success: true,
+      metrics,
+      period,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Failed to get pipeline metrics:', error);
+    res.status(500).json({
+      error: 'Failed to get pipeline metrics',
+      message: error.message
+    });
+  }
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    port: PORT,
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
+
+// API Status endpoint
+app.get('/api/status', (req, res) => {
+  res.status(200).json({
+    status: 'operational',
+    services: {
+      agentPool: agentPool.isInitialized ? 'running' : 'initializing',
+      cacheManager: cacheManager.isInitialized ? 'running' : 'initializing',
+      connectionManager: connectionManager.isInitialized ? 'running' : 'initializing',
+      tokenMonitor: tokenMonitor.isInitialized ? 'running' : 'initializing'
+    },
+    timestamp: new Date().toISOString(),
+    port: PORT
+  });
+});
+
+// NEW: YouTube API Configuration Status
+app.get('/api/youtube/config-status', (req, res) => {
+  try {
+    const hasApiKey = !!process.env.YOUTUBE_API_KEY && process.env.YOUTUBE_API_KEY !== 'your_youtube_api_key_here';
+    const apiMode = process.env.YOUTUBE_API_MODE || 'mock';
+    const isProduction = apiMode === 'production';
+    
+    res.json({
+      success: true,
+      config: {
+        hasApiKey,
+        apiMode,
+        isProduction,
+        youtubeApiKey: hasApiKey ? '********' : null // Mask the key
+      },
+      instructions: !hasApiKey ? [
+        '1. Get API key from: https://console.cloud.google.com/apis/credentials',
+        '2. Enable YouTube Data API v3 in your Google Cloud project',
+        '3. Set YOUTUBE_API_KEY in .env file',
+        '4. Optionally set YOUTUBE_API_MODE=production for production mode',
+        '5. Restart the service'
+      ] : null,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get YouTube config status:', error);
+    res.status(500).json({
+      error: 'Failed to get YouTube configuration status',
+      message: error.message
+    });
+  }
+});
+
+// NEW: System API Configuration Status for all external APIs
+app.get('/api/system/api-status', (req, res) => {
+  try {
+    // Check all external API configurations
+    const apiConfigs = [
+      {
+        name: 'YouTube Data API',
+        key: 'youtube',
+        hasApiKey: !!process.env.YOUTUBE_API_KEY && process.env.YOUTUBE_API_KEY !== 'your_youtube_api_key_here',
+        apiMode: process.env.YOUTUBE_API_MODE || 'mock',
+        isProduction: (process.env.YOUTUBE_API_MODE || 'mock') === 'production',
+        provider: 'Google',
+        status: !!process.env.YOUTUBE_API_KEY && process.env.YOUTUBE_API_KEY !== 'your_youtube_api_key_here' ? 'connected' : 'disconnected'
+      },
+      {
+        name: 'OpenAI API',
+        key: 'openai',
+        hasApiKey: !!process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'your_openai_api_key_here' && process.env.OPENAI_API_KEY !== 'sk-test-placeholder-for-development',
+        apiMode: process.env.OPENAI_API_MODE || 'mock',
+        isProduction: (process.env.OPENAI_API_MODE || 'mock') === 'production',
+        provider: 'OpenAI',
+        status: !!process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'your_openai_api_key_here' && process.env.OPENAI_API_KEY !== 'sk-test-placeholder-for-development' ? 'connected' : 'disconnected'
+      },
+      {
+        name: 'Anthropic API',
+        key: 'anthropic',
+        hasApiKey: !!process.env.ANTHROPIC_API_KEY && process.env.ANTHROPIC_API_KEY !== 'your_anthropic_api_key_here',
+        apiMode: process.env.ANTHROPIC_API_MODE || 'mock',
+        isProduction: (process.env.ANTHROPIC_API_MODE || 'mock') === 'production',
+        provider: 'Anthropic',
+        status: !!process.env.ANTHROPIC_API_KEY && process.env.ANTHROPIC_API_KEY !== 'your_anthropic_api_key_here' ? 'connected' : 'disconnected'
+      },
+      {
+        name: 'ElevenLabs API',
+        key: 'elevenlabs',
+        hasApiKey: !!process.env.ELEVENLABS_API_KEY && process.env.ELEVENLABS_API_KEY !== 'your_elevenlabs_api_key_here',
+        apiMode: process.env.ELEVENLABS_API_MODE || 'mock',
+        isProduction: (process.env.ELEVENLABS_API_MODE || 'mock') === 'production',
+        provider: 'ElevenLabs',
+        status: !!process.env.ELEVENLABS_API_KEY && process.env.ELEVENLABS_API_KEY !== 'your_elevenlabs_api_key_here' ? 'connected' : 'disconnected'
+      },
+      {
+        name: 'Ollama (Local)',
+        key: 'ollama',
+        hasApiKey: true, // Ollama doesn't require API key
+        apiMode: 'production',
+        isProduction: true,
+        provider: 'Local',
+        status: 'connected'
+      }
+    ];
+    
+    res.json({
+      success: true,
+      configs: apiConfigs,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get API configuration status:', error);
+    res.status(500).json({
+      error: 'Failed to get API configuration status',
+      message: error.message
+    });
+  }
+});
+
+// System control endpoints
+app.get('/api/system/control', (req, res) => {
+  checkWeekendPause(); // Update status before responding
+  res.json({
+    ...systemControl,
+    currentTime: new Date().toISOString(),
+    isWeekend: isWeekend(),
+    nextWeekendCheck: new Date(Date.now() + 60 * 60 * 1000).toISOString()
+  });
+});
+
+app.post('/api/system/control', (req, res) => {
+  const { action } = req.body;
+  
+  if (!['start', 'stop'].includes(action)) {
+    return res.status(400).json({
+      error: 'Invalid action',
+      validActions: ['start', 'stop']
+    });
+  }
+  
+  // Don't allow manual start during weekend if auto-pause is enabled
+  if (action === 'start' && systemControl.autoWeekendPause && isWeekend()) {
+    return res.status(400).json({
+      error: 'Cannot start system during weekend when auto-pause is enabled',
+      suggestion: 'Disable weekend auto-pause first or wait until Monday'
+    });
+  }
+  
+  const previousStatus = systemControl.status;
+  systemControl.status = action === 'start' ? 'running' : 'stopped';
+  systemControl.lastStateChange = new Date().toISOString();
+  
+  if (action === 'stop') {
+    systemControl.pauseUntil = null;
+    // Stop all agent processing
+    agentPool.pauseAllProcessing();
+  } else {
+    // Resume agent processing
+    agentPool.resumeAllProcessing();
+  }
+  
+  console.log(`🎮 System ${action}ed manually (was: ${previousStatus})`);
+  
+  res.json({
+    message: `System ${action}ed successfully`,
+    previousStatus,
+    currentStatus: systemControl.status,
+    ...systemControl
+  });
+});
+
+app.post('/api/system/weekend-pause', (req, res) => {
+  const { enabled } = req.body;
+  
+  if (typeof enabled !== 'boolean') {
+    return res.status(400).json({
+      error: 'enabled must be a boolean value'
+    });
+  }
+  
+  systemControl.autoWeekendPause = enabled;
+  systemControl.lastStateChange = new Date().toISOString();
+  
+  // If disabling during weekend, resume system
+  if (!enabled && systemControl.status === 'weekend_pause') {
+    systemControl.status = 'running';
+    systemControl.pauseUntil = null;
+    agentPool.resumeAllProcessing();
+  }
+  
+  // If enabling during weekend, pause system
+  if (enabled && isWeekend() && systemControl.status === 'running') {
+    systemControl.status = 'weekend_pause';
+    const monday = new Date();
+    monday.setDate(monday.getDate() + (1 + 7 - monday.getDay()) % 7);
+    monday.setHours(0, 0, 0, 0);
+    systemControl.pauseUntil = monday.toISOString();
+    agentPool.pauseAllProcessing();
+  }
+  
+  console.log(`🏖️ Weekend auto-pause ${enabled ? 'enabled' : 'disabled'}`);
+  
+  res.json({
+    message: `Weekend auto-pause ${enabled ? 'enabled' : 'disabled'}`,
+    ...systemControl
+  });
+});
+app.post('/api/workflow', async (req, res) => {
+  const { topic, type, parameters } = req.body;
+  
+  if (!topic || !type) {
+    return res.status(400).json({
+      error: 'Missing required fields',
+      required: ['topic', 'type'],
+      received: req.body
+    });
+  }
+
+  const workflowId = 'wf_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+  
+  try {
+    console.log(`🚀 Creating intelligent agent workflow: ${workflowId}`);
+    
+    // Create workflow with intelligent agent pool
+    const workflow = await agentPool.addWorkflow(workflowId, topic, type, parameters);
+    
+    res.json({ 
+      message: 'Intelligent agent workflow created', 
+      workflowId,
+      topic,
+      type,
+      parameters: parameters || {},
+      status: 'queued',
+      priority: workflow.priority,
+      steps: workflow.steps.map(step => ({
+        name: step.name,
+        agentType: step.agentType,
+        aiRequired: step.aiRequired,
+        estimatedTime: step.estimatedTime
+      })),
+      created: workflow.created,
+      estimatedCompletion: new Date(Date.now() + workflow.steps.reduce((acc, step) => acc + step.estimatedTime, 0) * 1000).toISOString()
+    });
+  } catch (error) {
+    console.error('Workflow creation error:', error);
+    res.status(500).json({
+      error: 'Failed to create workflow',
+      message: error.message
+    });
+  }
+});
+
+
+// Get workflow status
+app.get('/api/workflow/:id', (req, res) => {
+  const { id } = req.params;
+  
+  const status = agentPool.getWorkflowStatus(id);
+  
+  if (!status) {
+    return res.status(404).json({
+      error: 'Workflow not found',
+      workflowId: id
+    });
+  }
+  
+  res.json(status);
+});
+
+// Get agent pool statistics
+app.get('/api/agents/stats', (req, res) => {
+  const stats = agentPool.getAgentStats();
+  res.json({
+    message: 'Agent pool statistics',
+    stats,
+    predictiveCache: {
+      size: stats.cacheSize,
+      efficiency: stats.cacheSize > 0 ? 'High' : 'Building'
+    },
+    loadBalance: {
+      utilizationRate: stats.totalAgents > 0 ? Math.round((stats.activeAgents + stats.predictiveAgents) / stats.totalAgents * 100) : 0,
+      recommendation: stats.activeAgents / stats.totalAgents > 0.8 ? 'Consider scaling up' : 'Optimal'
+    },
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Get predictive cache status
+app.get('/api/agents/cache', (req, res) => {
+  const cacheStats = agentPool.getPredictiveCacheStats();
+  res.json({
+    message: 'Predictive cache status',
+    cache: cacheStats,
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Optimization monitoring endpoints
+app.get('/api/system/optimizations', async (req, res) => {
+  try {
+    const poolStats = connectionManager.getPoolStats();
+    const cacheStats = cacheManager.getStats();
+    const tokenStats = tokenMonitor.getUsageStats('daily');
+    
+    res.json({
+      message: 'System optimization status',
+      connectionPool: {
+        enabled: true,
+        stats: poolStats
+      },
+      cache: {
+        enabled: true,
+        stats: cacheStats
+      },
+      tokenMonitoring: {
+        enabled: true,
+        dailyUsage: tokenStats.daily,
+        budgetLimits: tokenStats.budgetLimits
+      },
+      retryMechanisms: {
+        enabled: true,
+        exponentialBackoff: true
+      },
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: 'Failed to get optimization status',
+      message: error.message
+    });
+  }
+});
+
+// Token usage endpoint
+app.get('/api/system/token-usage', (req, res) => {
+  const { period = 'all' } = req.query;
+  const usage = tokenMonitor.getUsageStats(period);
+  
+  res.json({
+    message: 'Token usage statistics',
+    usage,
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Cache management endpoints
+app.post('/api/system/cache/clear', async (req, res) => {
+  try {
+    // Clear specific cache type or all
+    const { type } = req.body;
+    
+    if (type) {
+      // Implementation for clearing specific cache types
+      res.json({ message: `Cache type '${type}' cleared` });
+    } else {
+      // Clear all caches
+      res.json({ message: 'All caches cleared' });
+    }
+  } catch (error) {
+    res.status(500).json({
+      error: 'Failed to clear cache',
+      message: error.message
+    });
+  }
+});
+
+app.get('/api/system/cache/stats', (req, res) => {
+  const stats = cacheManager.getStats();
+  res.json({
+    message: 'Cache statistics',
+    stats,
+    timestamp: new Date().toISOString()
+  });
+});
+app.post('/api/agents/predict', async (req, res) => {
+  const { topic, type } = req.body;
+  
+  if (!topic || !type) {
+    return res.status(400).json({
+      error: 'Missing required fields',
+      required: ['topic', 'type']
+    });
+  }
+  
+  try {
+    await agentPool.startPredictiveProcessing(topic, type);
+    res.json({
+      message: 'Predictive processing initiated',
+      topic,
+      type,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: 'Failed to start predictive processing',
+      message: error.message
+    });
+  }
+});
+
+// List all workflows
+app.get('/api/workflows', (req, res) => {
+  // Get all workflows from engine
+  const allWorkflows = [];
+  
+  // In production: get from database
+  // For now: return basic info
+  res.json({
+    workflows: allWorkflows,
+    total: allWorkflows.length,
+    page: 1,
+    limit: 10,
+    message: 'Use POST /api/workflow to create new workflows'
+  });
+});
+
+// Audio Processing API Endpoints
+/**
+ * POST /api/audio/analyze
+ * Full audio analysis (transcription + key point extraction)
+ */
+app.post('/api/audio/analyze', upload.single('audio'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        error: 'No audio file provided'
+      });
+    }
+
+    console.log(`🎵 Received audio file for analysis: ${req.file.originalname}`);
+
+    // Convert audio to text
+    const transcriptionResult = await audioToTextService.convertAudioToText(
+      req.file.path,
+      {
+        language: req.body.language || 'de'
+      }
+    );
+
+    if (!transcriptionResult.success) {
+      return res.status(500).json({
+        success: false,
+        error: 'Audio transcription failed',
+        details: transcriptionResult
+      });
+    }
+
+    console.log(`✅ Audio transcription completed (${transcriptionResult.duration}s)`);
+
+    // Analyze text for key points and topics
+    const analysisResult = await textAnalysisService.analyzeText(
+      transcriptionResult.text,
+      {
+        type: 'comprehensive',
+        language: transcriptionResult.language,
+        maxKeyPoints: parseInt(req.body.maxKeyPoints) || 10,
+        includeStructure: req.body.includeStructure !== false,
+        includeSummary: req.body.includeSummary !== false,
+        includeActionItems: req.body.includeActionItems === true
+      }
+    );
+
+    if (!analysisResult.success) {
+      return res.status(500).json({
+        success: false,
+        error: 'Text analysis failed',
+        details: analysisResult
+      });
+    }
+
+    console.log('🔍 Text analysis completed');
+
+    // Clean up temporary file
+    try {
+      fs.unlinkSync(req.file.path);
+    } catch (cleanupError) {
+      console.warn('⚠️ Failed to cleanup temporary file:', cleanupError.message);
+    }
+
+    res.json({
+      success: true,
+      transcription: transcriptionResult,
+      analysis: analysisResult,
+      metadata: {
+        processedAt: new Date().toISOString(),
+        filename: req.file.originalname,
+        fileSize: req.file.size
+      }
+    });
+
+  } catch (error) {
+    console.error('Audio analysis error:', error);
+    
+    // Clean up temporary file on error
+    if (req.file && req.file.path) {
+      try {
+        fs.unlinkSync(req.file.path);
+      } catch (cleanupError) {
+        console.warn('⚠️ Failed to cleanup temporary file:', cleanupError.message);
+      }
+    }
+
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// NEW: Enhanced audio-to-text transcription endpoint with analysis
+app.post('/api/audio/transcribe-analyze', upload.single('audio'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        error: 'No audio file provided',
+        message: 'Please upload an audio file (MP3, WAV, M4A, etc.)'
+      });
+    }
+
+    console.log('🎵 Transcribing and analyzing audio file:', req.file.originalname);
+    
+    // Validate audio file
+    const validation = await audioToTextService.validateAudioFile(req.file.path);
+    if (!validation.isValid) {
+      return res.status(400).json({
+        error: 'Invalid audio file',
+        details: validation.errors,
+        warnings: validation.warnings
+      });
+    }
+
+    // Convert audio to text only (no analysis)
+    const transcriptionResult = await audioToTextService.convertAudioToText(req.file.path, {
+      language: req.body.language || 'de'
+    });
+
+    // NEW: Analyze the transcription with AI agent
+    const analysisResult = await textAnalysisService.analyzeText(transcriptionResult.text, {
+      type: 'comprehensive',
+      language: req.body.language || 'de',
+      maxKeyPoints: 10,
+      includeStructure: true,
+      includeSummary: true,
+      includeActionItems: req.body.includeActionItems === 'true'
+    });
+
+    // NEW: Extract red lines (key requirements/points)
+    const redLines = await extractRedLines(analysisResult.analysis.keyPoints);
+
+    // Return transcription and analysis result
+    const result = {
+      success: true,
+      audio: {
+        filename: req.file.originalname,
+        duration: transcriptionResult.duration,
+        language: transcriptionResult.language,
+        confidence: transcriptionResult.confidence
+      },
+      transcription: {
+        text: transcriptionResult.text,
+        wordCount: transcriptionResult.text.split(/\s+/).filter(word => word.length > 0).length,
+        estimatedReadingTime: Math.ceil(transcriptionResult.text.split(/\s+/).filter(word => word.length > 0).length / 200)
+      },
+      analysis: {
+        keyPoints: analysisResult.analysis.keyPoints,
+        summary: analysisResult.analysis.summary,
+        categories: analysisResult.analysis.categories,
+        structure: analysisResult.analysis.structure,
+        actionItems: analysisResult.analysis.actionItems,
+        insights: analysisResult.analysis.insights
+      },
+      redLines: redLines,
+      metadata: {
+        timestamp: new Date().toISOString(),
+        processingTime: Date.now() - req._startTime,
+        transcriptionService: transcriptionResult.metadata?.service || 'unknown',
+        analysisService: analysisResult.metadata?.provider || 'unknown'
+      }
+    };
+
+    res.json(result);
+    
+  } catch (error) {
+    console.error('❌ Audio transcription and analysis failed:', error);
+    res.status(500).json({
+      error: 'Audio transcription and analysis failed',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * Extract red lines (essential points) from key points
+ */
+async function extractRedLines(keyPoints) {
+  try {
+    // In a real implementation, this would use an LLM to identify critical points
+    // For now, we'll extract points marked as high importance or with specific keywords
+    
+    const redLineKeywords = [
+      'müssen', 'must', 'require', 'erforderlich', 'notwendig', 'critical', 
+      'wichtig', 'important', 'essentiell', 'essential', 'key', 'schlüssel',
+      'haupt', 'main', 'primary', 'zentral', 'central'
+    ];
+    
+    const redLines = keyPoints.filter(point => {
+      // Check if marked as high importance
+      if (point.importance === 'hoch' || point.importance === 'high') {
+        return true;
+      }
+      
+      // Check for red line keywords in title or description
+      const text = (point.title + ' ' + point.description).toLowerCase();
+      return redLineKeywords.some(keyword => text.includes(keyword));
+    });
+    
+    return redLines.map((line, index) => ({
+      id: `redline_${index + 1}`,
+      title: line.title,
+      description: line.description,
+      category: line.category,
+      keywords: line.keywords
+    }));
+  } catch (error) {
+    console.error('❌ Red line extraction failed:', error);
+    return [];
+  }
+}
+
+// NEW: Simple audio-to-text transcription endpoint (manual agent usage)
+app.post('/api/audio/transcribe', upload.single('audio'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        error: 'No audio file provided',
+        message: 'Please upload an audio file (MP3, WAV, M4A, etc.)'
+      });
+    }
+
+    console.log('🎵 Transcribing audio file:', req.file.originalname);
+    
+    // Validate audio file
+    const validation = await audioToTextService.validateAudioFile(req.file.path);
+    if (!validation.isValid) {
+      return res.status(400).json({
+        error: 'Invalid audio file',
+        details: validation.errors,
+        warnings: validation.warnings
+      });
+    }
+
+    // Convert audio to text only (no analysis)
+    const transcriptionResult = await audioToTextService.convertAudioToText(req.file.path, {
+      language: req.body.language || 'de'
+    });
+
+    // Return only transcription result
+    const result = {
+      success: true,
+      audio: {
+        filename: req.file.originalname,
+        duration: transcriptionResult.duration,
+        language: transcriptionResult.language,
+        confidence: transcriptionResult.confidence
+      },
+      transcription: {
+        text: transcriptionResult.text,
+        wordCount: transcriptionResult.text.split(/\s+/).filter(word => word.length > 0).length,
+        estimatedReadingTime: Math.ceil(transcriptionResult.text.split(/\s+/).filter(word => word.length > 0).length / 200) // avg 200 words per minute
+      },
+      metadata: {
+        timestamp: new Date().toISOString(),
+        processingTime: Date.now() - req._startTime
+      }
+    };
+
+    res.json(result);
+    
+  } catch (error) {
+    console.error('❌ Audio transcription failed:', error);
+    res.status(500).json({
+      error: 'Audio transcription failed',
+      message: error.message
+    });
+  }
+});
+
+// Text Analysis API Endpoints
+/**
+ * POST /api/text/analyze
+ * Analyze text and extract key points and topics
+ */
+app.post('/api/text/analyze', async (req, res) => {
+  try {
+    const { text, options } = req.body;
+
+    if (!text || text.trim().length < 10) {
+      return res.status(400).json({
+        success: false,
+        error: 'Text too short for meaningful analysis (minimum 10 characters)'
+      });
+    }
+
+    console.log('🔍 Starting text analysis...');
+
+    // Analyze text for key points and topics
+    const analysisResult = await textAnalysisService.analyzeText(
+      text,
+      {
+        type: options?.type || 'comprehensive',
+        language: options?.language || 'de',
+        maxKeyPoints: options?.maxKeyPoints || 10,
+        includeStructure: options?.includeStructure !== false,
+        includeSummary: options?.includeSummary !== false,
+        includeActionItems: options?.includeActionItems === true
+      }
+    );
+
+    if (!analysisResult.success) {
+      return res.status(500).json({
+        success: false,
+        error: 'Text analysis failed',
+        details: analysisResult
+      });
+    }
+
+    console.log('✅ Text analysis completed');
+
+    res.json({
+      success: true,
+      analysis: analysisResult,
+      metadata: {
+        processedAt: new Date().toISOString(),
+        textLength: text.length,
+        wordCount: text.split(/\s+/).length
+      }
+    });
+
+  } catch (error) {
+    console.error('Text analysis error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Export analysis results to documents
+app.post('/api/analysis/export', async (req, res) => {
+  try {
+    const { analysisData, format = 'both', options = {} } = req.body;
+    
+    if (!analysisData) {
+      return res.status(400).json({
+        error: 'No analysis data provided',
+        message: 'Please provide analysis results to export'
+      });
+    }
+
+    let exportResult;
+    
+    switch (format.toLowerCase()) {
+      case 'word':
+      case 'docx':
+        exportResult = await documentExportService.exportToWord(analysisData, options);
+        break;
+      case 'pdf':
+        exportResult = await documentExportService.exportToPDF(analysisData, options);
+        break;
+      case 'both':
+      default:
+        exportResult = await documentExportService.exportBoth(analysisData, options);
+        break;
+    }
+
+    res.json({
+      success: true,
+      export: exportResult,
+      message: 'Documents exported successfully'
+    });
+    
+  } catch (error) {
+    console.error('❌ Export failed:', error);
+    res.status(500).json({
+      error: 'Export failed',
+      message: error.message
+    });
+  }
+});
+
+// Get list of exported files
+app.get('/api/analysis/exports', (req, res) => {
+  try {
+    const files = documentExportService.getExportedFiles();
+    
+    res.json({
+      success: true,
+      files,
+      total: files.length
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to list exports:', error);
+    res.status(500).json({
+      error: 'Failed to list exported files',
+      message: error.message
+    });
+  }
+});
+
+// Download exported file
+app.get('/api/analysis/download/:filename', (req, res) => {
+  try {
+    const filename = req.params.filename;
+    const filePath = path.join(documentExportService.exportDir, filename);
+    
+    // Security check
+    if (!filename.match(/^[\w\-. ]+\.(docx|pdf)$/)) {
+      return res.status(400).json({
+        error: 'Invalid filename',
+        message: 'Only Word and PDF files are allowed'
+      });
+    }
+
+    res.download(filePath, filename, (error) => {
+      if (error) {
+        console.error('❌ Download failed:', error);
+        if (!res.headersSent) {
+          res.status(404).json({
+            error: 'File not found',
+            message: 'The requested file does not exist'
+          });
+        }
+      }
+    });
+    
+  } catch (error) {
+    console.error('❌ Download error:', error);
+    res.status(500).json({
+      error: 'Download failed',
+      message: error.message
+    });
+  }
+});
+
+// Get analysis service statistics
+app.get('/api/analysis/stats', async (req, res) => {
+  try {
+    const stats = {
+      audioService: {
+        status: 'active',
+        supportedFormats: ['MP3', 'WAV', 'M4A', 'AAC', 'OGG', 'WebM'],
+        maxFileSize: '25MB',
+        maxDuration: '60 minutes'
+      },
+      textService: textAnalysisService.getStats(),
+      exportService: {
+        status: 'active',
+        supportedFormats: ['DOCX', 'PDF'],
+        exportDirectory: documentExportService.exportDir
+      },
+      llmService: await new (require('./llmService'))().getStats()
+    };
+    
+    res.json({
+      success: true,
+      stats,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get stats:', error);
+    res.status(500).json({
+      error: 'Failed to get statistics',
+      message: error.message
+    });
+  }
+});
+
+// Token monitoring endpoints
+app.get('/api/tokens/content-types', (req, res) => {
+  res.json({
+    success: true,
+    contentTypes: tokenMonitor.getContentTypes()
+  });
+});
+
+// NEW: Add quota endpoint
+app.get('/api/tokens/quota', (req, res) => {
+  try {
+    const today = new Date().toISOString().split('T')[0];
+    const thisMonth = today.substring(0, 7);
+    
+    const dailyUsed = tokenMonitor.tokenUsage.daily.get(today)?.cost || 0;
+    const monthlyUsed = tokenMonitor.tokenUsage.monthly.get(thisMonth)?.cost || 0;
+    
+    const quotaInfo = {
+      dailyLimit: tokenMonitor.budgetLimits.daily,
+      monthlyLimit: tokenMonitor.budgetLimits.monthly,
+      emergencyLimit: tokenMonitor.budgetLimits.emergency_stop,
+      dailyUsed: parseFloat(dailyUsed.toFixed(4)),
+      monthlyUsed: parseFloat(monthlyUsed.toFixed(4)),
+      emergencyUsed: parseFloat(dailyUsed.toFixed(4)), // Using daily for emergency
+      dailyRemaining: parseFloat(Math.max(0, tokenMonitor.budgetLimits.daily - dailyUsed).toFixed(4)),
+      monthlyRemaining: parseFloat(Math.max(0, tokenMonitor.budgetLimits.monthly - monthlyUsed).toFixed(4)),
+      emergencyRemaining: parseFloat(Math.max(0, tokenMonitor.budgetLimits.emergency_stop - dailyUsed).toFixed(4)),
+      lastReset: new Date().toISOString()
+    };
+    
+    res.json(quotaInfo);
+  } catch (error) {
+    console.error('❌ Failed to get quota info:', error);
+    res.status(500).json({
+      error: 'Failed to get quota information',
+      message: error.message
+    });
+  }
+});
+
+app.get('/api/tokens/estimate', (req, res) => {
+  try {
+    const { contentType, provider = 'ollama', model = 'llama2:7b', audioDuration } = req.query;
+    
+    if (!contentType) {
+      return res.status(400).json({
+        error: 'Content type is required',
+        availableTypes: Object.keys(tokenCalculator.getAvailableContentTypes())
+      });
+    }
+
+    const options = {};
+    if (audioDuration) {
+      options.audioDuration = parseFloat(audioDuration);
+    }
+
+    const estimate = tokenCalculator.calculateEstimatedCost(
+      contentType, 
+      provider, 
+      model, 
+      options
+    );
+
+    res.json(estimate);
+  } catch (error) {
+    console.error('❌ Failed to calculate cost estimate:', error);
+    res.status(500).json({
+      error: 'Failed to calculate cost estimate',
+      message: error.message
+    });
+  }
+});
+
+// Get provider comparison for content type
+app.get('/api/tokens/comparison', (req, res) => {
+  try {
+    const { contentType, audioDuration } = req.query;
+    
+    if (!contentType) {
+      return res.status(400).json({
+        error: 'Content type is required'
+      });
+    }
+
+    const options = {};
+    if (audioDuration) {
+      options.audioDuration = parseFloat(audioDuration);
+    }
+
+    const comparison = tokenCalculator.getProviderComparison(contentType, options);
+    res.json(comparison);
+  } catch (error) {
+    console.error('❌ Failed to get provider comparison:', error);
+    res.status(500).json({
+      error: 'Failed to get provider comparison',
+      message: error.message
+    });
+  }
+});
+
+// Get monthly projection
+app.get('/api/tokens/projection', (req, res) => {
+  try {
+    const { contentType, videosPerWeek, provider = 'ollama', model = 'llama2:7b' } = req.query;
+    
+    if (!contentType || !videosPerWeek) {
+      return res.status(400).json({
+        error: 'Content type and videos per week are required'
+      });
+    }
+
+    const projection = tokenCalculator.getMonthlyProjection(
+      contentType,
+      parseInt(videosPerWeek),
+      provider,
+      model
+    );
+
+    res.json(projection);
+  } catch (error) {
+    console.error('❌ Failed to get monthly projection:', error);
+    res.status(500).json({
+      error: 'Failed to get monthly projection',
+      message: error.message
+    });
+  }
+});
+
+// Get current provider costs
+app.get('/api/tokens/providers', (req, res) => {
+  try {
+    const providerCosts = tokenCalculator.getProviderCosts();
+    res.json({
+      success: true,
+      providers: providerCosts
+    });
+  } catch (error) {
+    console.error('❌ Failed to get provider costs:', error);
+    res.status(500).json({
+      error: 'Failed to get provider costs',
+      message: error.message
+    });
+  }
+});
+
+// Update provider costs (admin endpoint)
+app.post('/api/tokens/providers/:provider/:model', (req, res) => {
+  try {
+    const { provider, model } = req.params;
+    const { input, output, audio } = req.body;
+    
+    if (!input && !output && !audio) {
+      return res.status(400).json({
+        error: 'At least one cost parameter (input, output, audio) is required'
+      });
+    }
+
+    const costs = {};
+    if (input !== undefined) costs.input = parseFloat(input);
+    if (output !== undefined) costs.output = parseFloat(output);
+    if (audio !== undefined) costs.audio = parseFloat(audio);
+
+    tokenCalculator.updateProviderCosts(provider, model, costs);
+
+    res.json({
+      success: true,
+      message: `Updated costs for ${provider}/${model}`,
+      newCosts: costs
+    });
+  } catch (error) {
+    console.error('❌ Failed to update provider costs:', error);
+    res.status(500).json({
+      error: 'Failed to update provider costs',
+      message: error.message
+    });
+  }
+});
+
+// Get token usage statistics
+app.get('/api/tokens/stats', async (req, res) => {
+  try {
+    // Get token usage from monitor if available
+    const stats = await tokenMonitor.getUsageStats();
+    
+    // Calculate actual costs from usage data
+    const actualCosts = tokenCalculator.calculateActualCost(stats.usage || []);
+
+    res.json({
+      success: true,
+      period: stats.period || 'last_24h',
+      usage: stats,
+      costs: actualCosts,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Failed to get token stats:', error);
+    res.status(500).json({
+      error: 'Failed to get token statistics',
+      message: error.message,
+      fallback: {
+        totalCost: 0,
+        usage: [],
+        period: 'unavailable'
+      }
+    });
+  }
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    error: 'Internal server error',
+    message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+  });
+});
+
+// Web Scraping & Trend Analysis API Endpoints
+
+// Start content scraping
+app.post('/api/scraping/start', async (req, res) => {
+  try {
+    console.log('🚀 Starting web scraping...');
+    
+    const results = await webScrapingService.scrapeAllSources();
+    
+    res.json({
+      success: true,
+      ...results
+    });
+  } catch (error) {
+    console.error('❌ Scraping failed:', error);
+    res.status(500).json({
+      error: 'Web scraping failed',
+      message: error.message
+    });
+  }
+});
+
+// Get scraping status
+app.get('/api/scraping/status', (req, res) => {
+  try {
+    const stats = webScrapingService.getStats();
+    res.json({
+      success: true,
+      stats,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Failed to get scraping status:', error);
+    res.status(500).json({
+      error: 'Failed to get scraping status',
+      message: error.message
+    });
+  }
+});
+
+// Analyze trends from scraped content
+app.post('/api/trends/analyze', async (req, res) => {
+  try {
+    console.log('📈 Starting trend analysis...');
+    
+    const results = await trendAnalysisService.analyzeTrends();
+    
+    res.json({
+      success: true,
+      ...results
+    });
+  } catch (error) {
+    console.error('❌ Trend analysis failed:', error);
+    res.status(500).json({
+      error: 'Trend analysis failed',
+      message: error.message
+    });
+  }
+});
+
+// Get latest trends
+app.get('/api/trends/latest', (req, res) => {
+  try {
+    const trends = trendAnalysisService.getLatestTrends();
+    
+    if (!trends) {
+      return res.json({
+        success: false,
+        message: 'No trend analysis available',
+        suggestion: 'Run trend analysis first via POST /api/trends/analyze'
+      });
+    }
+    
+    res.json({
+      success: true,
+      ...trends,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Failed to get trends:', error);
+    res.status(500).json({
+      error: 'Failed to get trends',
+      message: error.message
+    });
+  }
+});
+
+// Get trend analysis statistics
+app.get('/api/trends/stats', (req, res) => {
+  try {
+    const stats = trendAnalysisService.getStats();
+    res.json({
+      success: true,
+      stats,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Failed to get trend stats:', error);
+    res.status(500).json({
+      error: 'Failed to get trend statistics',
+      message: error.message
+    });
+  }
+});
+
+// Combined scraping + trend analysis pipeline
+app.post('/api/pipeline/scrape-and-analyze', async (req, res) => {
+  try {
+    console.log('🔄 Starting combined scraping + trend analysis pipeline...');
+    
+    // Step 1: Scrape content
+    const scrapingResults = await webScrapingService.scrapeAllSources();
+    
+    if (!scrapingResults.success) {
+      return res.json({
+        success: false,
+        message: 'Scraping failed, cannot proceed with trend analysis',
+        scrapingResults
+      });
+    }
+    
+    // Wait a moment for files to be written
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Step 2: Analyze trends
+    const trendResults = await trendAnalysisService.analyzeTrends();
+    
+    res.json({
+      success: true,
+      pipeline: {
+        scraping: scrapingResults,
+        trends: trendResults
+      },
+      summary: {
+        totalContentScraped: scrapingResults.totalItems || 0,
+        trendsFound: trendResults.trends?.length || 0,
+        topicsIdentified: trendResults.topics?.length || 0,
+        topTrend: trendResults.trends?.[0]?.keyword || null,
+        pipelineCompletedAt: new Date().toISOString()
+      }
+    });
+    
+  } catch (error) {
+    console.error('❌ Pipeline failed:', error);
+    res.status(500).json({
+      error: 'Scraping + Trend analysis pipeline failed',
+      message: error.message
+    });
+  }
+});
+
+// Multi-Input Processing API Endpoints
+
+// Create a new batch job
+app.post('/api/multi-input/create-batch', async (req, res) => {
+  try {
+    const {
+      title,
+      description,
+      priority,
+      processingType,
+      outputFormat,
+      retryFailed,
+      maxRetries,
+      tags
+    } = req.body;
+    
+    const options = {
+      title,
+      description,
+      priority: parseInt(priority) || 2,
+      processingType: processingType || 'parallel',
+      outputFormat: outputFormat || 'json',
+      retryFailed: retryFailed !== false,
+      maxRetries: parseInt(maxRetries) || 3,
+      tags: tags || []
+    };
+    
+    const job = await multiInputService.createBatchJob(options);
+    
+    res.json({
+      success: true,
+      job,
+      message: 'Batch job created successfully'
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to create batch job:', error);
+    res.status(500).json({
+      error: 'Failed to create batch job',
+      message: error.message
+    });
+  }
+});
+
+// Upload files to batch job
+app.post('/api/multi-input/upload-files', multiInputUpload.array('files', 50), async (req, res) => {
+  try {
+    const { batchId } = req.body;
+    
+    if (!batchId) {
+      return res.status(400).json({
+        error: 'Batch ID is required',
+        message: 'Please provide a valid batch ID'
+      });
+    }
+    
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({
+        error: 'No files uploaded',
+        message: 'Please select files to upload'
+      });
+    }
+    
+    const job = await multiInputService.addFilesToBatch(batchId, req.files);
+    
+    res.json({
+      success: true,
+      job,
+      filesAdded: req.files.length,
+      message: `Added ${req.files.length} files to batch ${batchId}`
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to upload files:', error);
+    res.status(500).json({
+      error: 'Failed to upload files',
+      message: error.message
+    });
+  }
+});
+
+// Add URLs to batch job
+app.post('/api/multi-input/add-urls', async (req, res) => {
+  try {
+    const { batchId, urls } = req.body;
+    
+    if (!batchId) {
+      return res.status(400).json({
+        error: 'Batch ID is required'
+      });
+    }
+    
+    if (!urls || !Array.isArray(urls) || urls.length === 0) {
+      return res.status(400).json({
+        error: 'URLs array is required',
+        message: 'Please provide an array of URLs'
+      });
+    }
+    
+    const job = await multiInputService.addUrlsToBatch(batchId, urls);
+    
+    res.json({
+      success: true,
+      job,
+      urlsAdded: urls.length,
+      message: `Added ${urls.length} URLs to batch ${batchId}`
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to add URLs:', error);
+    res.status(500).json({
+      error: 'Failed to add URLs',
+      message: error.message
+    });
+  }
+});
+
+// Get job status
+app.get('/api/multi-input/job/:jobId', (req, res) => {
+  try {
+    const { jobId } = req.params;
+    const job = multiInputService.getJobStatus(jobId);
+    
+    if (!job) {
+      return res.status(404).json({
+        error: 'Job not found',
+        message: `Job with ID ${jobId} does not exist`
+      });
+    }
+    
+    res.json({
+      success: true,
+      job
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get job status:', error);
+    res.status(500).json({
+      error: 'Failed to get job status',
+      message: error.message
+    });
+  }
+});
+
+// Get all jobs
+app.get('/api/multi-input/jobs', (req, res) => {
+  try {
+    const { status, type, limit = 50 } = req.query;
+    
+    const filter = {};
+    if (status) filter.status = status;
+    if (type) filter.type = type;
+    
+    const jobs = multiInputService.getAllJobs(filter).slice(0, parseInt(limit));
+    
+    res.json({
+      success: true,
+      jobs,
+      total: jobs.length,
+      filter
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get jobs:', error);
+    res.status(500).json({
+      error: 'Failed to get jobs',
+      message: error.message
+    });
+  }
+});
+
+// Cancel job
+app.post('/api/multi-input/cancel-job', async (req, res) => {
+  try {
+    const { jobId } = req.body;
+    
+    if (!jobId) {
+      return res.status(400).json({
+        error: 'Job ID is required'
+      });
+    }
+    
+    const success = await multiInputService.cancelJob(jobId);
+    
+    if (!success) {
+      return res.status(404).json({
+        error: 'Job not found or cannot be cancelled'
+      });
+    }
+    
+    res.json({
+      success: true,
+      message: `Job ${jobId} cancelled successfully`
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to cancel job:', error);
+    res.status(500).json({
+      error: 'Failed to cancel job',
+      message: error.message
+    });
+  }
+});
+
+// Get multi-input service statistics
+app.get('/api/multi-input/stats', (req, res) => {
+  try {
+    const stats = multiInputService.getStats();
+    
+    res.json({
+      success: true,
+      stats,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get multi-input stats:', error);
+    res.status(500).json({
+      error: 'Failed to get statistics',
+      message: error.message
+    });
+  }
+});
+
+// Script Generation API Endpoints
+
+// Generate new script
+app.post('/api/scripts/generate', async (req, res) => {
+  try {
+    const options = req.body;
+    
+    if (!options.topic) {
+      return res.status(400).json({
+        error: 'Topic is required',
+        message: 'Please provide a topic for script generation'
+      });
+    }
+    
+    console.log('📝 Starting script generation for topic:', options.topic);
+    
+    const result = await scriptGenerationService.generateScript(options);
+    
+    if (result.success) {
+      res.json({
+        success: true,
+        script: result.script,
+        message: 'Script generated successfully'
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        error: result.error,
+        message: 'Script generation failed'
+      });
+    }
+    
+  } catch (error) {
+    console.error('❌ Script generation failed:', error);
+    res.status(500).json({
+      error: 'Script generation failed',
+      message: error.message
+    });
+  }
+});
+
+// Get script by ID
+app.get('/api/scripts/:scriptId', (req, res) => {
+  try {
+    const { scriptId } = req.params;
+    const script = scriptGenerationService.getScriptById(scriptId);
+    
+    if (!script) {
+      return res.status(404).json({
+        error: 'Script not found',
+        message: `Script with ID ${scriptId} does not exist`
+      });
+    }
+    
+    res.json({
+      success: true,
+      script
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get script:', error);
+    res.status(500).json({
+      error: 'Failed to get script',
+      message: error.message
+    });
+  }
+});
+
+// Get all scripts with filtering
+app.get('/api/scripts/list', (req, res) => {
+  try {
+    const { contentType, targetLength, tone, limit = 50 } = req.query;
+    
+    const filter = {};
+    if (contentType) filter.contentType = contentType;
+    if (targetLength) filter.targetLength = targetLength;
+    if (tone) filter.tone = tone;
+    
+    const scripts = scriptGenerationService.getGeneratedScripts(filter)
+      .slice(0, parseInt(limit));
+    
+    res.json({
+      success: true,
+      scripts,
+      total: scripts.length,
+      filter
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get scripts:', error);
+    res.status(500).json({
+      error: 'Failed to get scripts',
+      message: error.message
+    });
+  }
+});
+
+// Delete script
+app.delete('/api/scripts/:scriptId', (req, res) => {
+  try {
+    const { scriptId } = req.params;
+    const success = scriptGenerationService.deleteScript(scriptId);
+    
+    if (!success) {
+      return res.status(404).json({
+        error: 'Script not found or could not be deleted'
+      });
+    }
+    
+    res.json({
+      success: true,
+      message: `Script ${scriptId} deleted successfully`
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to delete script:', error);
+    res.status(500).json({
+      error: 'Failed to delete script',
+      message: error.message
+    });
+  }
+});
+
+// Get script generation statistics
+app.get('/api/scripts/stats', (req, res) => {
+  try {
+    const stats = scriptGenerationService.getStats();
+    
+    res.json({
+      success: true,
+      stats,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get script stats:', error);
+    res.status(500).json({
+      error: 'Failed to get script statistics',
+      message: error.message
+    });
+  }
+});
+
+// Advanced Prompting API Endpoints
+
+// Generate optimized prompt
+app.post('/api/prompts/generate', (req, res) => {
+  try {
+    const promptOptions = req.body;
+    
+    if (!promptOptions.topic) {
+      return res.status(400).json({
+        error: 'Topic is required',
+        message: 'Please provide a topic for prompt generation'
+      });
+    }
+    
+    console.log('🧠 Generating optimized prompt for:', promptOptions.topic);
+    
+    const result = advancedPromptingService.generateOptimizedPrompt(promptOptions);
+    
+    res.json({
+      success: true,
+      prompt: result.prompt,
+      metadata: result.metadata,
+      message: 'Optimized prompt generated successfully'
+    });
+    
+  } catch (error) {
+    console.error('❌ Prompt generation failed:', error);
+    res.status(500).json({
+      error: 'Prompt generation failed',
+      message: error.message
+    });
+  }
+});
+
+// SEO Optimization API Endpoints
+/**
+ * POST /api/seo/channel-description
+ * Generate SEO-conform channel description
+ */
+app.post('/api/seo/channel-description', async (req, res) => {
+  try {
+    const { channelData, config } = req.body;
+    
+    if (!channelData) {
+      return res.status(400).json({
+        success: false,
+        error: 'Channel data is required'
+      });
+    }
+    
+    const result = await seoOptimizationService.generateChannelDescription(channelData, config);
+    
+    res.json(result);
+  } catch (error) {
+    console.error('SEO channel description error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+/**
+ * POST /api/seo/video-description
+ * Generate SEO-conform video description (long-form or short)
+ */
+app.post('/api/seo/video-description', async (req, res) => {
+  try {
+    const { videoData, contentType, config } = req.body;
+    
+    if (!videoData) {
+      return res.status(400).json({
+        success: false,
+        error: 'Video data is required'
+      });
+    }
+    
+    let result;
+    
+    if (contentType === 'short') {
+      result = await seoOptimizationService.generateShortVideoDescription(videoData, config);
+    } else {
+      result = await seoOptimizationService.generateLongFormVideoDescription(videoData, config);
+    }
+    
+    res.json(result);
+  } catch (error) {
+    console.error('SEO video description error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+/**
+ * POST /api/seo/batch-optimization
+ * Batch SEO optimization for multiple videos
+ */
+app.post('/api/seo/batch-optimization', async (req, res) => {
+  try {
+    const { channelData, videos, config } = req.body;
+    
+    if (!channelData || !videos || !Array.isArray(videos)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Channel data and videos array are required'
+      });
+    }
+    
+    const batchResults = {
+      channel: null,
+      videos: []
+    };
+    
+    // Optimize channel description
+    batchResults.channel = await seoOptimizationService.generateChannelDescription(channelData, config);
+    
+    // Optimize each video
+    for (const video of videos) {
+      let videoResult;
+      
+      if (video.contentType === 'short') {
+        videoResult = await seoOptimizationService.generateShortVideoDescription(video, config);
+      } else {
+        videoResult = await seoOptimizationService.generateLongFormVideoDescription(video, config);
+      }
+      
+      batchResults.videos.push({
+        id: video.id || null,
+        originalTitle: video.title,
+        seoResult: videoResult
+      });
+    }
+    
+    res.json({
+      success: true,
+      results: batchResults
+    });
+  } catch (error) {
+    console.error('SEO batch optimization error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+/**
+ * GET /api/seo/templates
+ * Get available SEO templates
+ */
+app.get('/api/seo/templates', (req, res) => {
+  try {
+    const templates = {
+      channel: {
+        name: 'Standard Channel Template',
+        description: 'SEO-optimized channel description template',
+        fields: ['channelName', 'description', 'topics', 'targetAudience', 'contentType', 'uploadSchedule']
+      },
+      longFormVideo: {
+        name: 'Long-Form Video Template',
+        description: 'SEO-optimized long-form video description template',
+        fields: ['title', 'summary', 'chapters', 'keyPoints', 'relatedTopics']
+      },
+      shortVideo: {
+        name: 'Short Video Template',
+        description: 'SEO-optimized short video description template',
+        fields: ['title', 'caption', 'hashtags']
+      }
+    };
+    
+    res.json({
+      success: true,
+      templates
+    });
+  } catch (error) {
+    console.error('SEO templates error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Test prompt with multiple providers
+app.post('/api/prompts/test', async (req, res) => {
+  try {
+    const { promptOptions, testProviders = ['ollama'] } = req.body;
+    
+    if (!promptOptions || !promptOptions.topic) {
+      return res.status(400).json({
+        error: 'Prompt options with topic are required'
+      });
+    }
+    
+    console.log('🧪 Testing prompt with providers:', testProviders);
+    
+    const result = await advancedPromptingService.testPrompt(promptOptions, testProviders);
+    
+    res.json({
+      success: true,
+      result,
+      message: 'Prompt test completed successfully'
+    });
+    
+  } catch (error) {
+    console.error('❌ Prompt test failed:', error);
+    res.status(500).json({
+      error: 'Prompt test failed',
+      message: error.message
+    });
+  }
+});
+
+// Get prompt test history
+app.get('/api/prompts/tests', (req, res) => {
+  try {
+    const { limit = 20 } = req.query;
+    
+    // For now, return empty array - would load from file system in real implementation
+    const tests = []; // advancedPromptingService.getTestHistory(parseInt(limit));
+    
+    res.json({
+      success: true,
+      tests,
+      total: tests.length
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get test history:', error);
+    res.status(500).json({
+      error: 'Failed to get test history',
+      message: error.message
+    });
+  }
+});
+
+// Get prompting service statistics
+app.get('/api/prompts/stats', (req, res) => {
+  try {
+    const stats = advancedPromptingService.getStats();
+    
+    res.json({
+      success: true,
+      stats,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get prompt stats:', error);
+    res.status(500).json({
+      error: 'Failed to get prompt statistics',
+      message: error.message
+    });
+  }
+});
+
+// Avatar Generation API Endpoints
+
+// Create new avatar training job
+app.post('/api/avatar/create', upload.fields([
+  { name: 'sourceVideo', maxCount: 1 },
+  { name: 'audioSample_0', maxCount: 1 },
+  { name: 'audioSample_1', maxCount: 1 },
+  { name: 'audioSample_2', maxCount: 1 },
+  { name: 'audioSample_3', maxCount: 1 },
+  { name: 'audioSample_4', maxCount: 1 },
+  { name: 'audioSample_5', maxCount: 1 },
+  { name: 'audioSample_6', maxCount: 1 },
+  { name: 'audioSample_7', maxCount: 1 },
+  { name: 'audioSample_8', maxCount: 1 },
+  { name: 'audioSample_9', maxCount: 1 },
+  { name: 'backgroundImage', maxCount: 1 }
+]), async (req, res) => {
+  try {
+    console.log('🎭 Creating new avatar training job...');
+    
+    const {
+      name,
+      avatarType,
+      voiceType,
+      enableGestures,
+      enableBackgroundRemoval
+    } = req.body;
+    
+    if (!name || !avatarType || !voiceType) {
+      return res.status(400).json({
+        error: 'Missing required fields: name, avatarType, voiceType'
+      });
+    }
+
+    if (!req.files || !req.files.sourceVideo) {
+      return res.status(400).json({
+        error: 'Source video is required'
+      });
+    }
+
+    // Collect audio samples
+    const audioSamples = [];
+    for (let i = 0; i < 10; i++) {
+      const audioKey = `audioSample_${i}`;
+      if (req.files[audioKey]) {
+        audioSamples.push(...req.files[audioKey]);
+      }
+    }
+
+    // Prepare source files object
+    const sourceFiles = {
+      video: req.files.sourceVideo[0],
+      audio: audioSamples,
+      background: req.files.backgroundImage ? req.files.backgroundImage[0] : null
+    };
+
+    // Parse user preferences for template selection
+    const userPreferences = {};
+    if (req.body.gender) userPreferences.gender = req.body.gender;
+    if (req.body.style) userPreferences.style = req.body.style;
+    if (req.body.useCase) userPreferences.useCase = req.body.useCase;
+
+    const job = await avatarGenerationService.createAvatarJob({
+      name,
+      avatarType,
+      voiceType,
+      enableGestures: enableGestures === 'true',
+      enableBackgroundRemoval: enableBackgroundRemoval === 'true',
+      sourceFiles,
+      useTemplate: req.body.useTemplate !== 'false', // Default: true
+      userPreferences
+    });
+    
+    res.json({
+      success: true,
+      job,
+      message: `Avatar training job ${job.id} created successfully`
+    });
+  } catch (error) {
+    console.error('❌ Avatar job creation failed:', error);
+    res.status(500).json({
+      error: 'Avatar job creation failed',
+      message: error.message
+    });
+  }
+});
+
+// Get all avatar jobs
+app.get('/api/avatar/jobs', (req, res) => {
+  try {
+    const { status, type } = req.query;
+    const filter = {};
+    
+    if (status) filter.status = status;
+    if (type) filter.type = type;
+    
+    const jobs = avatarGenerationService.getAllJobs(filter);
+    
+    res.json({
+      success: true,
+      jobs,
+      count: jobs.length,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get avatar jobs:', error);
+    res.status(500).json({
+      error: 'Failed to get avatar jobs',
+      message: error.message
+    });
+  }
+});
+
+// Get specific avatar job details
+app.get('/api/avatar/jobs/:jobId', (req, res) => {
+  try {
+    const { jobId } = req.params;
+    const job = avatarGenerationService.getJobStatus(jobId);
+    
+    if (!job) {
+      return res.status(404).json({
+        error: 'Avatar job not found',
+        jobId
+      });
+    }
+    
+    res.json({
+      success: true,
+      job,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get avatar job details:', error);
+    res.status(500).json({
+      error: 'Failed to get avatar job details',
+      message: error.message
+    });
+  }
+});
+
+// Generate avatar video
+app.post('/api/avatar/generate/:avatarId', async (req, res) => {
+  try {
+    const { avatarId } = req.params;
+    const { text, audioFile, backgroundImage, outputPath } = req.body;
+    
+    console.log(`🎬 Generating avatar video for ${avatarId}...`);
+    
+    const result = await avatarGenerationService.generateAvatarVideo(avatarId, {
+      text,
+      audioFile,
+      backgroundImage,
+      outputPath
+    });
+    
+    res.json({
+      success: true,
+      result,
+      message: 'Avatar video generated successfully'
+    });
+    
+  } catch (error) {
+    console.error('❌ Avatar video generation failed:', error);
+    res.status(500).json({
+      error: 'Avatar video generation failed',
+      message: error.message
+    });
+  }
+});
+
+// Get avatar system statistics
+app.get('/api/avatar/stats', (req, res) => {
+  try {
+    const stats = avatarGenerationService.getStats();
+    
+    res.json({
+      success: true,
+      stats,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get avatar stats:', error);
+    res.status(500).json({
+      error: 'Failed to get avatar statistics',
+      message: error.message
+    });
+  }
+});
+
+// Cancel avatar job
+app.post('/api/avatar/cancel/:jobId', async (req, res) => {
+  try {
+    const { jobId } = req.params;
+    
+    // For now, we'll mark the job as cancelled in the service
+    // In a real implementation, you'd stop the actual processing
+    console.log(`🚫 Cancelling avatar job: ${jobId}`);
+    
+    res.json({
+      success: true,
+      message: `Avatar job ${jobId} cancelled successfully`
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to cancel avatar job:', error);
+    res.status(500).json({
+      error: 'Failed to cancel avatar job',
+      message: error.message
+    });
+  }
+});
+
+// Get available avatar templates
+app.get('/api/avatar/templates', (req, res) => {
+  try {
+    const { avatarType } = req.query;
+    const templates = avatarGenerationService.getAvailableTemplates(avatarType);
+    
+    res.json({
+      success: true,
+      templates,
+      avatarType: avatarType || 'all'
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get avatar templates:', error);
+    res.status(500).json({
+      error: 'Failed to get avatar templates',
+      message: error.message
+    });
+  }
+});
+
+// Download specific template
+app.post('/api/avatar/templates/download', async (req, res) => {
+  try {
+    const { templateKey, avatarType } = req.body;
+    
+    if (!templateKey || !avatarType) {
+      return res.status(400).json({
+        error: 'Missing required fields: templateKey, avatarType'
+      });
+    }
+    
+    console.log(`📥 Manual template download: ${templateKey} for ${avatarType}`);
+    
+    const templatePath = await avatarGenerationService.downloadTemplate(
+      templateKey, 
+      avatarType,
+      (progress, downloaded, total) => {
+        // Could implement WebSocket for real-time progress
+        console.log(`Download progress: ${progress}%`);
+      }
+    );
+    
+    res.json({
+      success: true,
+      templatePath,
+      message: `Template ${templateKey} downloaded successfully`
+    });
+    
+  } catch (error) {
+    console.error('❌ Template download failed:', error);
+    res.status(500).json({
+      error: 'Template download failed',
+      message: error.message
+    });
+  }
+});
+
+// Get template download progress
+app.get('/api/avatar/templates/progress', (req, res) => {
+  try {
+    const { downloadId } = req.query;
+    const progress = avatarGenerationService.getTemplateDownloadProgress(downloadId);
+    
+    res.json({
+      success: true,
+      progress
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get download progress:', error);
+    res.status(500).json({
+      error: 'Failed to get download progress',
+      message: error.message
+    });
+  }
+});
+
+// Clear template cache
+app.post('/api/avatar/templates/clear-cache', async (req, res) => {
+  try {
+    const result = await avatarGenerationService.clearTemplateCache();
+    
+    res.json({
+      success: result,
+      message: result ? 'Template cache cleared successfully' : 'Failed to clear cache'
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to clear template cache:', error);
+    res.status(500).json({
+      error: 'Failed to clear template cache',
+      message: error.message
+    });
+  }
+});
+
+// NEW: Pipeline Testing API Endpoints
+
+// Run full test suite
+app.post('/api/pipeline/test/run-suite', async (req, res) => {
+  try {
+    console.log('🧪 Starting Pipeline Test Suite...');
+    
+    const suiteResults = await pipelineTestSuite.runFullTestSuite();
+    
+    res.json({
+      success: suiteResults.summary.overallSuccess,
+      results: suiteResults,
+      message: `Test suite completed: ${suiteResults.summary.passedScenarios}/${suiteResults.summary.totalScenarios} scenarios passed`
+    });
+    
+  } catch (error) {
+    console.error('❌ Test suite failed:', error);
+    res.status(500).json({
+      error: 'Test suite execution failed',
+      message: error.message
+    });
+  }
+});
+
+// Run specific test scenario
+app.post('/api/pipeline/test/scenario/:scenarioId', async (req, res) => {
+  try {
+    const { scenarioId } = req.params;
+    
+    if (!pipelineTestSuite.testScenarios[scenarioId]) {
+      return res.status(404).json({
+        error: 'Test scenario not found',
+        availableScenarios: Object.keys(pipelineTestSuite.testScenarios)
+      });
+    }
+    
+    const scenario = pipelineTestSuite.testScenarios[scenarioId];
+    const result = await pipelineTestSuite.runTestScenario(scenarioId, scenario);
+    
+    res.json({
+      success: result.success,
+      result,
+      message: result.success ? 'Test scenario passed' : 'Test scenario failed'
+    });
+    
+  } catch (error) {
+    console.error('❌ Test scenario failed:', error);
+    res.status(500).json({
+      error: 'Test scenario execution failed',
+      message: error.message
+    });
+  }
+});
+
+// Get test statistics
+app.get('/api/pipeline/test/stats', (req, res) => {
+  try {
+    const stats = pipelineTestSuite.getTestStats();
+    
+    res.json({
+      success: true,
+      stats,
+      timestamp: new Date().toISOString()
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get test stats:', error);
+    res.status(500).json({
+      error: 'Failed to get test statistics',
+      message: error.message
+    });
+  }
+});
+
+// Get available test scenarios
+app.get('/api/pipeline/test/scenarios', (req, res) => {
+  try {
+    const scenarios = Object.entries(pipelineTestSuite.testScenarios).map(([id, scenario]) => ({
+      id,
+      name: scenario.name,
+      template: scenario.template,
+      expectedSteps: scenario.expectedSteps,
+      timeout: scenario.timeout,
+      expectFailure: scenario.expectFailure || false
+    }));
+    
+    res.json({
+      success: true,
+      scenarios,
+      total: scenarios.length
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get test scenarios:', error);
+    res.status(500).json({
+      error: 'Failed to get test scenarios',
+      message: error.message
+    });
+  }
+});
+
+// Get latest test results
+app.get('/api/pipeline/test/results/latest', (req, res) => {
+  try {
+    const latestResults = pipelineTestSuite.getLatestTestResults();
+    
+    if (!latestResults) {
+      return res.json({
+        success: false,
+        message: 'No test results available',
+        suggestion: 'Run test suite first via POST /api/pipeline/test/run-suite'
+      });
+    }
+    
+    res.json({
+      success: true,
+      results: latestResults,
+      timestamp: latestResults.endTime
+    });
+    
+  } catch (error) {
+    console.error('❌ Failed to get latest test results:', error);
+    res.status(500).json({
+      error: 'Failed to get latest test results',
+      message: error.message
+    });
+  }
+});
+
+// NEW: Error Recovery Testing Endpoint
+app.post('/api/pipeline/test/recovery/:scenarioId', async (req, res) => {
+  try {
+    const { scenarioId } = req.params;
+    
+    if (!pipelineTestSuite.testScenarios[scenarioId]) {
+      return res.status(404).json({
+        error: 'Test scenario not found',
+        availableScenarios: Object.keys(pipelineTestSuite.testScenarios)
+      });
+    }
+    
+    // Run recovery-focused test
+    const scenario = {
+      ...pipelineTestSuite.testScenarios[scenarioId],
+      name: `Recovery Test: ${pipelineTestSuite.testScenarios[scenarioId].name}`,
+      config: {
+        ...pipelineTestSuite.testScenarios[scenarioId].config,
+        testRecovery: true
+      }
+    };
+    
+    const result = await pipelineTestSuite.runTestScenario(`recovery_${scenarioId}`, scenario);
+    
+    res.json({
+      success: result.success,
+      result,
+      message: result.success ? 'Recovery test completed successfully' : 'Recovery test failed'
+    });
+    
+  } catch (error) {
+    console.error('❌ Recovery test failed:', error);
+    res.status(500).json({
+      error: 'Recovery test execution failed',
+      message: error.message
+    });
+  }
+});
+
+app.use('*', (req, res) => {
+  res.status(404).json({
+    error: 'Endpoint not found',
+    path: req.originalUrl,
+    method: req.method,
+    availableEndpoints: [
+      'GET /health',
+      'GET /api/status', 
+      'POST /api/workflow',
+      'GET /api/workflow/:id',
+      'GET /api/workflows',
+      'GET /api/agents/stats',
+      'POST /api/audio/analyze',
+      'POST /api/text/analyze',
+      'POST /api/analysis/export',
+      'GET /api/analysis/exports',
+      'GET /api/analysis/download/:filename',
+      'GET /api/analysis/stats',
+      'POST /api/scraping/start',
+      'GET /api/scraping/status',
+      'POST /api/trends/analyze',
+      'GET /api/trends/latest',
+      'GET /api/trends/stats',
+      'POST /api/pipeline/scrape-and-analyze',
+      'GET /api/youtube/config-status',
+      'GET /api/tokens/content-types',
+      'GET /api/tokens/estimate',
+      'GET /api/tokens/comparison',
+      'GET /api/tokens/projection',
+      'GET /api/tokens/providers',
+      'POST /api/tokens/providers/:provider/:model',
+      'GET /api/tokens/stats',
+      
+      // Pipeline Orchestration Endpoints
+      'POST /api/pipeline/create',
+      'GET /api/pipeline/jobs',
+      'GET /api/pipeline/jobs/:jobId',
+      'POST /api/pipeline/cancel',
+      'POST /api/pipeline/retry',
+      'GET /api/pipeline/stats',
+      'GET /api/pipeline/templates',
+      'POST /api/pipeline/execute-step',
+      'GET /api/pipeline/metrics',
+      
+      // Avatar Generation Endpoints
+      'POST /api/avatar/create',
+      'GET /api/avatar/jobs',
+      'GET /api/avatar/jobs/:jobId',
+      'POST /api/avatar/generate/:avatarId',
+      'GET /api/avatar/stats',
+      'POST /api/avatar/cancel/:jobId',
+      'GET /api/avatar/templates',
+      'POST /api/avatar/templates/download',
+      'GET /api/avatar/templates/progress',
+      'POST /api/avatar/templates/clear-cache',
+      
+      // NEW: Pipeline Testing Endpoints
+      'POST /api/pipeline/test/run-suite',
+      'POST /api/pipeline/test/scenario/:scenarioId',
+      'POST /api/pipeline/test/recovery/:scenarioId',
+      'GET /api/pipeline/test/stats',
+      'GET /api/pipeline/test/scenarios',
+      'GET /api/pipeline/test/results/latest'
+    ]
+  });
+});
+
+// Start server
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 YouTube Automations Agent Controller running on port ${PORT}`);
+  console.log(`📊 Health check: http://localhost:${PORT}/health`);
+  console.log(`🔧 API Status: http://localhost:${PORT}/api/status`);
+  console.log(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
+});

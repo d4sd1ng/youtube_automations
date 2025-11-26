@@ -1,0 +1,19 @@
+{
+  "name": "video-discovery-python-agent",
+  "version": "1.0.0",
+  "description": "Python-based Video Discovery Agent for finding and analyzing video content",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "dev": "python app.py"
+  },
+  "keywords": [
+    "video",
+    "discovery",
+    "agent",
+    "python",
+    "content-analysis"
+  ],
+  "author": "AI Agent System",
+  "license": "MIT"
+}

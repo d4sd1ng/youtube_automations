@@ -1,0 +1,17 @@
+{
+  "url": "https://example.com/test2",
+  "title": "Scraped Content from example.com",
+  "content": "This is mock scraped content from https://example.com/test2. In a real implementation, this would be actual content extracted from the webpage.",
+  "metadata": {
+    "scrapedAt": "2025-09-09T06:19:07.555Z",
+    "wordCount": 966,
+    "qualityScore": 98,
+    "sourceType": "general"
+  },
+  "links": [
+    "https://example.com/test2/related-1",
+    "https://example.com/test2/related-2",
+    "https://example.com/test2/related-3"
+  ],
+  "cachedAt": "2025-09-09T06:19:07.555Z"
+}

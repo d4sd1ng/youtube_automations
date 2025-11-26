@@ -1,0 +1,13 @@
+{
+  "format": "html",
+  "title": "Test Book",
+  "author": "Test Author",
+  "content": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Test Book</title>\n</head>\n<body>\n    <header>\n        <h1>Test Book</h1>\n        <p>Author: Test Author</p>\n    </header>\n    <main>\n        <section>\n            <h2>Chapter 1</h2>\n            <div>Content 1...</div>\n        </section>\n        <section>\n            <h2>Chapter 2</h2>\n            <div>Content 2...</div>\n        </section>\n    </main>\n</body>\n</html>",
+  "fileSize": 439,
+  "contentPreview": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Test Book</title>\n</head>\n<body>\n    <header>\n        <h1>Test Book</h1>\n        <p>Author: Test Author</p>\n    </header>\n    <main>\n        <section>\n            <h2>Chapter 1</h2>\n            <div>Content 1...</div>\n        </section>\n        <section>\n            <h2>Chapter 2</h2>\n            <div>Content 2...</div>\n        </section>\n    </...",
+  "metadata": {
+    "formattedAt": "2025-09-09T07:56:51.673Z",
+    "formatter": "DocumentFormatter",
+    "formatVersion": "1.0"
+  }
+}

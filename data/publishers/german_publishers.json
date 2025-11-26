@@ -1,0 +1,79 @@
+[
+  {
+    "id": "bertelsmann",
+    "name": "Bertelsmann AG",
+    "website": "https://www.bertelsmann.de",
+    "contact": {
+      "email": "submissions@bertelsmann.de",
+      "phone": "+49 521 599 0",
+      "address": "Carl-Bertelsmann-Straße 270, 33311 Gütersloh, Germany"
+    },
+    "genres": [
+      "fiction",
+      "non-fiction",
+      "business",
+      "politics"
+    ],
+    "submissionGuidelines": "https://www.bertelsmann.de/submissions",
+    "preferences": {
+      "fictionMinPages": 200,
+      "nonFictionMinPages": 150,
+      "responseTime": "8-12 weeks"
+    },
+    "contracts": {
+      "royaltyRate": "10-15%",
+      "advance": "€5000-50000"
+    }
+  },
+  {
+    "id": "springer",
+    "name": "Springer Nature",
+    "website": "https://www.springernature.com",
+    "contact": {
+      "email": "proposals@springernature.com",
+      "phone": "+49 30 890030",
+      "address": "Heidelberger Platz 3, 14197 Berlin, Germany"
+    },
+    "genres": [
+      "academic",
+      "scientific",
+      "technical",
+      "medicine"
+    ],
+    "submissionGuidelines": "https://www.springernature.com/submissions",
+    "preferences": {
+      "academicMinPages": 250,
+      "peerReviewRequired": true,
+      "responseTime": "6-10 weeks"
+    },
+    "contracts": {
+      "royaltyRate": "8-12%",
+      "advance": "€3000-30000"
+    }
+  },
+  {
+    "id": "piper",
+    "name": "Piper Verlag",
+    "website": "https://www.piper.de",
+    "contact": {
+      "email": "info@piper.de",
+      "phone": "+49 89 381000",
+      "address": "Rappenwörtstr. 3, 80331 Munich, Germany"
+    },
+    "genres": [
+      "fiction",
+      "literature",
+      "biography"
+    ],
+    "submissionGuidelines": "https://www.piper.de/submissions",
+    "preferences": {
+      "fictionMinPages": 150,
+      "literaryQuality": "high",
+      "responseTime": "10-14 weeks"
+    },
+    "contracts": {
+      "royaltyRate": "12-18%",
+      "advance": "€10000-100000"
+    }
+  }
+]

@@ -1,0 +1,116 @@
+{
+  "id": "fb0a2a80-b44d-4272-a5da-4c1445fb8c46",
+  "type": "content-plan-creation",
+  "status": "completed",
+  "channelId": "workflow-channel",
+  "options": {
+    "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+    "period": "week",
+    "startDate": "2025-11-25T17:34:57.628Z",
+    "contentTypes": [
+      "long",
+      "short"
+    ],
+    "keywords": [
+      "KI",
+      "Medizin",
+      "Technologie",
+      "Innovation"
+    ]
+  },
+  "progress": {
+    "currentStage": "planning",
+    "stageProgress": 100,
+    "overallProgress": 100,
+    "completedStages": []
+  },
+  "metadata": {
+    "startedAt": "2025-11-25T17:34:57.630Z",
+    "estimatedDuration": 30000,
+    "completedAt": "2025-11-25T17:34:58.639Z"
+  },
+  "logs": [
+    {
+      "timestamp": "2025-11-25T17:34:57.630Z",
+      "level": "info",
+      "message": "Starting content plan creation for channel: workflow-channel"
+    },
+    {
+      "timestamp": "2025-11-25T17:34:57.630Z",
+      "level": "info",
+      "message": "Generating content plan..."
+    },
+    {
+      "timestamp": "2025-11-25T17:34:58.639Z",
+      "level": "info",
+      "message": "Content plan creation completed successfully"
+    }
+  ],
+  "result": {
+    "id": "8fc06d92-4528-4c41-aa6b-c2c555a757e7",
+    "channelId": "workflow-channel",
+    "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+    "period": "week",
+    "startDate": "2025-11-25T17:34:57.628Z",
+    "endDate": "2025-12-02T17:34:57.628Z",
+    "contentItems": [
+      {
+        "id": "567f67be-1bf1-4ad1-8b0b-a3a172112ffa",
+        "type": "long",
+        "title": "Geplanter Langform-Video",
+        "topic": "Allgemein",
+        "description": "Geplanter Inhalt für workflow-channel",
+        "estimatedDuration": 600,
+        "status": "planned",
+        "priority": 3,
+        "createdAt": "2025-11-25T17:34:57.631Z"
+      },
+      {
+        "id": "6dced3bb-0687-4f35-bdd7-d289c6ea59ac",
+        "type": "short",
+        "title": "Geplanter Short-Video",
+        "topic": "Allgemein",
+        "description": "Geplanter Inhalt für workflow-channel",
+        "estimatedDuration": 60,
+        "status": "planned",
+        "priority": 3,
+        "createdAt": "2025-11-25T17:34:57.631Z"
+      },
+      {
+        "id": "1e723839-279d-4e70-86a2-085cc2dadf96",
+        "type": "short",
+        "title": "Geplanter Short-Video",
+        "topic": "Allgemein",
+        "description": "Geplanter Inhalt für workflow-channel",
+        "estimatedDuration": 60,
+        "status": "planned",
+        "priority": 2,
+        "createdAt": "2025-11-25T17:34:57.631Z"
+      },
+      {
+        "id": "77b61f58-6456-47e9-b4c4-9647a38724c3",
+        "type": "short",
+        "title": "Geplanter Short-Video",
+        "topic": "Allgemein",
+        "description": "Geplanter Inhalt für workflow-channel",
+        "estimatedDuration": 60,
+        "status": "planned",
+        "priority": 3,
+        "createdAt": "2025-11-25T17:34:57.631Z"
+      },
+      {
+        "id": "c86df516-5a88-4327-bcd3-0930c2fdc3f6",
+        "type": "short",
+        "title": "Geplanter Short-Video",
+        "topic": "Allgemein",
+        "description": "Geplanter Inhalt für workflow-channel",
+        "estimatedDuration": 60,
+        "status": "planned",
+        "priority": 3,
+        "createdAt": "2025-11-25T17:34:57.631Z"
+      }
+    ],
+    "createdAt": "2025-11-25T17:34:57.631Z",
+    "createdBy": "ContentPlanningAgent"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "avatar-generation-agent",
+  "version": "1.0.0",
+  "description": "A Python-based microservice for avatar generation and customization",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "dev": "python app.py",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "flask": "^2.0.1",
+    "Pillow": "^8.3.1"
+  },
+  "author": "AI Agent System",
+  "license": "MIT"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "publication-confirmation",
+  "name": "Publication Confirmation",
+  "subject": "Ihr Buch \"{book_title}\" wurde veröffentlicht!",
+  "body": "Sehr geehrte Damen und Herren,\n\nwir freuen uns, Ihnen mitteilen zu können, dass Ihr Buch \"{book_title}\" erfolgreich veröffentlicht wurde.\n\n{publication_details}\n\nDas Buch ist nun in den folgenden Formaten erhältlich:\n{available_formats}\n\nVielen Dank für Ihr Vertrauen in unseren Service.\n\nMit freundlichen Grüßen,\nIhr Book Writer Agent",
+  "variables": [
+    "book_title",
+    "publication_details",
+    "available_formats"
+  ]
+}

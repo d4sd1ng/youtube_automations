@@ -1,0 +1,19 @@
+{
+  "imageData": {
+    "id": "midjourney_1757398779834_6araqd9z0",
+    "provider": "midjourney",
+    "url": "https://cdn.midjourney.com/midjourney_1757398779834_6araqd9z0/0_0.png",
+    "prompt": "Test image for book cover",
+    "generatedAt": "2025-09-09T06:19:39.834Z",
+    "dimensions": {
+      "width": 1024,
+      "height": 1024
+    },
+    "style": "professional"
+  },
+  "requirements": {
+    "description": "Test image for book cover",
+    "style": "professional"
+  },
+  "savedAt": "2025-09-09T06:19:39.835Z"
+}

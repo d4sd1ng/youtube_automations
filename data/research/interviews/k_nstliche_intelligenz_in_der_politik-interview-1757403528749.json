@@ -1,0 +1,69 @@
+{
+  "topic": "Künstliche Intelligenz in der Politik",
+  "bookType": {
+    "type": "Umfassendes Sachbuch",
+    "audience": "Gemischte Zielgruppe",
+    "readingBehavior": "Liest gerne ausführliche Analysen",
+    "competition": "Es gibt bereits einige Bücher zu dem Thema, aber die meisten sind entweder zu oberflächlich oder zu spezialisiert."
+  },
+  "structure": {
+    "length": "Umfangreich (200+ Seiten)",
+    "chapterCount": 12,
+    "chapterTitles": "Kombination aus beidem",
+    "tableOfContents": "Systematische Struktur von Grundlagen bis Anwendung"
+  },
+  "market": {
+    "pricePositioning": "Mittelklasse (15-25€)",
+    "revenueExpectations": "Erwartete Verkäufe von 500-1000 Exemplaren im ersten Jahr",
+    "marketResearch": "Analyse ähnlicher Bücher zeigt Marktpotenzial bei Fachpublikum",
+    "distribution": "Alle Kanäle"
+  },
+  "content": {
+    "depth": "Umfassende Analyse",
+    "specialFeatures": "Fallstudien, Praktische Übungen",
+    "visualContent": "Ja, moderat",
+    "toneStyle": "Lehrbuch-artig"
+  },
+  "marketAnalysis": {
+    "topic": "Künstliche Intelligenz in der Politik",
+    "marketSize": {
+      "estimatedBooks": 557,
+      "annualGrowth": "7.47%",
+      "marketValue": "€10372544"
+    },
+    "competition": {
+      "directCompetitors": 19,
+      "indirectCompetitors": 69,
+      "bestSellers": 2
+    },
+    "targetAudience": {
+      "primary": "Professionals and researchers",
+      "secondary": "Students and enthusiasts",
+      "estimatedReaders": 80569
+    },
+    "pricing": {
+      "averagePrice": "€16.56",
+      "premiumSegment": "€73.44",
+      "budgetSegment": "€6.60"
+    },
+    "platforms": {
+      "online": [
+        "Amazon",
+        "Apple Books",
+        "Google Play"
+      ],
+      "physical": [
+        "Bertelsmann",
+        "Springer",
+        "Elsevier"
+      ],
+      "specialty": [
+        "Academic publishers",
+        "Professional associations"
+      ]
+    },
+    "analyzedAt": "2025-09-09T07:38:48.745Z"
+  },
+  "conductedAt": "2025-09-09T07:38:48.748Z",
+  "language": "de"
+}

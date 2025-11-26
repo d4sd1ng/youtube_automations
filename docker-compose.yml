@@ -1,0 +1,56 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: content-postgres
+    environment:
+      POSTGRES_DB: content_automation
+      POSTGRES_USER: content_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: content-redis
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  agent-controller:
+    build: ./services/agent-controller
+    container_name: agent-controller
+    ports:
+      - "${API_PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=development
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=content_automation
+      - POSTGRES_USER=content_user
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+  gui:
+    build: ./services/gui
+    container_name: gui
+    ports:
+      - "${GUI_PORT:-3001}:80"
+    depends_on:
+      - agent-controller
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:

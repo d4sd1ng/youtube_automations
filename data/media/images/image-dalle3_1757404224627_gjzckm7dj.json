@@ -1,0 +1,19 @@
+{
+  "imageData": {
+    "id": "dalle3_1757404224627_gjzckm7dj",
+    "provider": "dalle3",
+    "url": "https://cdn.openai.com/dall-e3/dalle3_1757404224627_gjzckm7dj.png",
+    "prompt": "Test image for chapter illustration",
+    "generatedAt": "2025-09-09T07:50:24.627Z",
+    "dimensions": {
+      "width": 1024,
+      "height": 1024
+    },
+    "style": "illustrative"
+  },
+  "requirements": {
+    "description": "Test image for chapter illustration",
+    "style": "illustrative"
+  },
+  "savedAt": "2025-09-09T07:50:24.627Z"
+}

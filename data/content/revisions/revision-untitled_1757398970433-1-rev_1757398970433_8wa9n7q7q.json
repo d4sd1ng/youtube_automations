@@ -1,0 +1,24 @@
+{
+  "id": "rev_1757398970433_8wa9n7q7q",
+  "contentId": "untitled_1757398970433",
+  "title": "Untitled",
+  "feedback": {
+    "qualityScore": 0.6
+  },
+  "revisionConfig": {
+    "tone": "educational"
+  },
+  "revisionNumber": 1,
+  "changesRequested": [],
+  "revisionStartedAt": "2025-09-09T06:22:50.434Z",
+  "author": "Book Writer Agent",
+  "revisedContent": {
+    "content": "Original chapter content that needs improvement",
+    "qualityScore": 0.6,
+    "chapter": {
+      "title": "Test Chapter"
+    }
+  },
+  "qualityScore": 0.8,
+  "revisionCompletedAt": "2025-09-09T06:22:53.448Z"
+}

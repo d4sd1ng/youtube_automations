@@ -1,0 +1,21 @@
+{
+  "imageData": {
+    "id": "midjourney_1757398977089_bt8q5hbin",
+    "provider": "midjourney",
+    "url": "https://cdn.midjourney.com/midjourney_1757398977089_bt8q5hbin/0_0.png",
+    "prompt": "Professional book cover",
+    "generatedAt": "2025-09-09T06:22:57.089Z",
+    "dimensions": {
+      "width": 1024,
+      "height": 1024
+    },
+    "style": "professional"
+  },
+  "requirements": {
+    "chapter": 1,
+    "description": "Professional book cover",
+    "type": "cover",
+    "style": "professional"
+  },
+  "savedAt": "2025-09-09T06:22:57.089Z"
+}

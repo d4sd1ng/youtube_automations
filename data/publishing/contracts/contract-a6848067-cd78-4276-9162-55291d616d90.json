@@ -1,0 +1,52 @@
+{
+  "id": "a6848067-cd78-4276-9162-55291d616d90",
+  "templateId": "standard-publishing-agreement",
+  "dealId": null,
+  "parties": {
+    "author": {
+      "name": "Test Author",
+      "email": "author@test.com",
+      "address": "Author Address"
+    },
+    "publisher": {
+      "name": "Test Publisher",
+      "email": "info@test-publisher.com",
+      "address": "Test Address"
+    }
+  },
+  "terms": {
+    "parties": {
+      "title": "Parties",
+      "content": "This Agreement is made between Test Author (the \"Author\") and Test Publisher (the \"Publisher\")."
+    },
+    "grantOfRights": {
+      "title": "Grant of Rights",
+      "content": "The Author grants to the Publisher the exclusive right to publish, reproduce, distribute, and sell the Work in all formats and media throughout the world for the full term of copyright and any renewals or extensions."
+    },
+    "royalties": {
+      "title": "Royalties",
+      "content": "The Publisher shall pay the Author a royalty of 0.12% of the net receipts received by the Publisher from the sale of the Work."
+    },
+    "advance": {
+      "title": "Advance",
+      "content": "The Publisher shall pay the Author an advance of 10.000,00 € against future royalties, payable as follows: 50% upon signing, 50% upon manuscript delivery."
+    },
+    "publication": {
+      "title": "Publication",
+      "content": "The Publisher shall use its best efforts to publish and distribute the Work within 12-18 months of the date of this Agreement."
+    },
+    "warranties": {
+      "title": "Warranties",
+      "content": "The Author warrants that the Work is original, does not infringe upon any copyright or violate any right of privacy, and is not defamatory."
+    },
+    "termination": {
+      "title": "Termination",
+      "content": "This Agreement may be terminated by either party upon 30 days written notice if the other party is in material breach of any provision of this Agreement."
+    }
+  },
+  "metadata": {
+    "createdAt": "2025-09-09T07:50:19.692Z",
+    "generatedFromDeal": "2025-09-09T07:50:19.692Z",
+    "status": "draft"
+  }
+}

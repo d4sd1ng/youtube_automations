@@ -1,0 +1,90 @@
+{
+  "book": {
+    "title": "Complete Test Book",
+    "author": "Test Author",
+    "wordCount": 60000
+  },
+  "formattedDocuments": {
+    "pdf": {
+      "format": "pdf",
+      "title": "Complete Test Book",
+      "author": "Test Author",
+      "pages": 200,
+      "fileSize": 457,
+      "contentPreview": "",
+      "metadata": {
+        "formattedAt": "2025-09-09T07:56:53.723Z",
+        "formatter": "DocumentFormatter",
+        "formatVersion": "1.0"
+      }
+    },
+    "epub": {
+      "format": "epub",
+      "title": "Complete Test Book",
+      "author": "Test Author",
+      "chapters": 10,
+      "fileSize": 387,
+      "contentPreview": "",
+      "metadata": {
+        "formattedAt": "2025-09-09T07:56:55.232Z",
+        "formatter": "DocumentFormatter",
+        "formatVersion": "1.0",
+        "epubVersion": "3.0"
+      }
+    },
+    "mobi": {
+      "format": "mobi",
+      "title": "Complete Test Book",
+      "author": "Test Author",
+      "chapters": 10,
+      "fileSize": 352,
+      "contentPreview": "",
+      "metadata": {
+        "formattedAt": "2025-09-09T07:56:56.738Z",
+        "formatter": "DocumentFormatter",
+        "formatVersion": "1.0",
+        "mobiVersion": "7"
+      }
+    },
+    "docx": {
+      "format": "docx",
+      "title": "Complete Test Book",
+      "author": "Test Author",
+      "wordCount": 60000,
+      "fileSize": 422,
+      "contentPreview": "",
+      "metadata": {
+        "formattedAt": "2025-09-09T07:56:57.745Z",
+        "formatter": "DocumentFormatter",
+        "formatVersion": "1.0"
+      }
+    },
+    "txt": {
+      "format": "txt",
+      "title": "Complete Test Book",
+      "author": "Test Author",
+      "wordCount": 60000,
+      "fileSize": 352,
+      "contentPreview": "",
+      "metadata": {
+        "formattedAt": "2025-09-09T07:56:58.250Z",
+        "formatter": "DocumentFormatter",
+        "formatVersion": "1.0"
+      }
+    },
+    "html": {
+      "format": "html",
+      "title": "Complete Test Book",
+      "author": "Test Author",
+      "content": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Complete Test Book</title>\n</head>\n<body>\n    <header>\n        <h1>Complete Test Book</h1>\n        <p>Author: Test Author</p>\n    </header>\n    <main>\n    </main>\n</body>\n</html>",
+      "fileSize": 439,
+      "contentPreview": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Complete Test Book</title>\n</head>\n<body>\n    <header>\n        <h1>Complete Test Book</h1>\n        <p>Author: Test Author</p>\n    </header>\n    <main>\n    </main>\n</body>\n</html>",
+      "metadata": {
+        "formattedAt": "2025-09-09T07:56:59.256Z",
+        "formatter": "DocumentFormatter",
+        "formatVersion": "1.0"
+      }
+    }
+  },
+  "savedAt": "2025-09-09T07:56:59.258Z"
+}

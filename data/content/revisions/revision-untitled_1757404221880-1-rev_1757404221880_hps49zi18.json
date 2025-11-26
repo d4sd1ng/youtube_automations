@@ -1,0 +1,24 @@
+{
+  "id": "rev_1757404221880_hps49zi18",
+  "contentId": "untitled_1757404221880",
+  "title": "Untitled",
+  "feedback": {
+    "qualityScore": 0.3
+  },
+  "revisionConfig": {
+    "tone": "professional"
+  },
+  "revisionNumber": 1,
+  "changesRequested": [],
+  "revisionStartedAt": "2025-09-09T07:50:21.880Z",
+  "author": "Book Writer Agent",
+  "revisedContent": {
+    "content": "Poor quality content that needs significant improvement",
+    "qualityScore": 0.3,
+    "chapter": {
+      "title": "Poor Quality Chapter"
+    }
+  },
+  "qualityScore": 0.5,
+  "revisionCompletedAt": "2025-09-09T07:50:24.895Z"
+}

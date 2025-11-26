@@ -1,0 +1,24 @@
+{
+  "personal_avatar": true,
+  "voiceSample": "user_voice_sample.wav",
+  "character": "politician",
+  "style": "professional",
+  "theme": "ai_and_politics",
+  "customization": {
+    "gender": "neutral",
+    "age": "middle_aged",
+    "hair_color": "dark_brown",
+    "eye_color": "brown",
+    "clothing": "business_suit",
+    "accessories": ["glasses"],
+    "expression": "neutral"
+  },
+  "voiceTone": "professional",
+  "voiceSpeed": 1.0,
+  "language": "de",
+  "fullBody": true,
+  "gestureSupport": true,
+  "handAnimations": true,
+  "bodyLanguage": "professional",
+  "gestures": ["pointing", "hand_gestures", "natural_movement"]
+}

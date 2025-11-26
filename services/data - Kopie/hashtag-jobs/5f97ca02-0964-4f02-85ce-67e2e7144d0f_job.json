@@ -1,0 +1,35 @@
+{
+  "id": "5f97ca02-0964-4f02-85ce-67e2e7144d0f",
+  "type": "hashtag-optimization",
+  "status": "failed",
+  "options": {},
+  "progress": {
+    "currentStage": "optimizing",
+    "stageProgress": 25,
+    "overallProgress": 25,
+    "completedStages": []
+  },
+  "metadata": {
+    "startedAt": "2025-11-25T17:32:44.260Z",
+    "estimatedDuration": 20000,
+    "failedAt": "2025-11-25T17:32:45.267Z"
+  },
+  "logs": [
+    {
+      "timestamp": "2025-11-25T17:32:44.260Z",
+      "level": "info",
+      "message": "Optimizing hashtags for undefined"
+    },
+    {
+      "timestamp": "2025-11-25T17:32:44.261Z",
+      "level": "info",
+      "message": "Analyzing content..."
+    },
+    {
+      "timestamp": "2025-11-25T17:32:45.267Z",
+      "level": "error",
+      "message": "Hashtag optimization failed: Cannot read properties of undefined (reading 'title')"
+    }
+  ],
+  "error": "Cannot read properties of undefined (reading 'title')"
+}

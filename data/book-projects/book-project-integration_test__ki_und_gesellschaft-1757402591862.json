@@ -1,0 +1,351 @@
+{
+  "title": "Integration Test: KI und Gesellschaft",
+  "interviewResults": {
+    "bookType": {
+      "suggestedFormats": [
+        "Sachbuch"
+      ],
+      "targetLength": "200 pages"
+    },
+    "structure": {
+      "chapterCount": 3,
+      "targetLength": "200 pages"
+    },
+    "market": {
+      "targetPrice": "19.99",
+      "pricePositioning": "mid-range"
+    },
+    "marketAnalysis": {
+      "topic": "Integration Test: KI und Gesellschaft",
+      "marketSize": {
+        "estimatedBooks": 1000
+      },
+      "competition": {
+        "directCompetitors": 50
+      }
+    }
+  },
+  "marketAnalysis": {
+    "topic": "Integration Test: KI und Gesellschaft",
+    "competitiveAnalysis": {
+      "directCompetitors": 50
+    },
+    "targetAudience": {
+      "primary": "Professionals",
+      "estimatedSize": 10000
+    },
+    "pricingStrategy": {
+      "recommendedPrice": 19.99
+    },
+    "distributionChannels": {
+      "online": [
+        "Amazon"
+      ],
+      "physical": [
+        "Bertelsmann"
+      ]
+    },
+    "monetization": {
+      "revenuePotential": 50000
+    },
+    "analyzedAt": "2025-09-09T07:23:11.834Z"
+  },
+  "researchData": {
+    "items": [
+      {
+        "title": "AI and Society Research 1",
+        "content": "Research content about AI and society",
+        "qualityScore": 85,
+        "relevanceScore": 90
+      },
+      {
+        "title": "AI and Society Research 2",
+        "content": "More research content about AI and society",
+        "qualityScore": 80,
+        "relevanceScore": 85
+      }
+    ],
+    "grouped": {
+      "test-source": [
+        {
+          "title": "AI and Society Research 1",
+          "qualityScore": 85
+        }
+      ]
+    },
+    "keyInsights": [
+      {
+        "type": "trend",
+        "description": "AI adoption is increasing"
+      }
+    ],
+    "statistics": {
+      "totalItems": 2,
+      "sources": [
+        "test-source"
+      ],
+      "averageQuality": 82.5,
+      "averageRelevance": 87.5
+    },
+    "scrapedAt": "2025-09-09T07:23:11.835Z"
+  },
+  "contentPlan": {
+    "title": "Integration Test: KI und Gesellschaft",
+    "chapters": [
+      {
+        "number": 1,
+        "title": "Einleitung: KI und Gesellschaft",
+        "topic": "Integration Test: KI und Gesellschaft",
+        "keyPoints": [
+          "Definition",
+          "Geschichte",
+          "Aktuelle Entwicklungen"
+        ],
+        "type": "introduction"
+      },
+      {
+        "number": 2,
+        "title": "Hauptteil: Auswirkungen",
+        "topic": "Integration Test: KI und Gesellschaft",
+        "keyPoints": [
+          "Wirtschaft",
+          "Arbeit",
+          "Ethik"
+        ],
+        "type": "main"
+      },
+      {
+        "number": 3,
+        "title": "Fazit: Zukunftsperspektiven",
+        "topic": "Integration Test: KI und Gesellschaft",
+        "keyPoints": [
+          "Chancen",
+          "Risiken",
+          "Handlungsempfehlungen"
+        ],
+        "type": "conclusion"
+      }
+    ],
+    "styleGuide": {
+      "tone": "educational",
+      "targetAudience": "general",
+      "languageLevel": "intermediate",
+      "formatting": {
+        "citationStyle": "APA",
+        "headingStructure": "descriptive"
+      }
+    },
+    "metadata": {
+      "createdAt": "2025-09-09T07:23:11.835Z"
+    }
+  },
+  "chapters": [
+    {
+      "chapter": {
+        "number": 1,
+        "title": "Einleitung: KI und Gesellschaft",
+        "topic": "Integration Test: KI und Gesellschaft",
+        "keyPoints": [
+          "Definition",
+          "Geschichte",
+          "Aktuelle Entwicklungen"
+        ],
+        "type": "introduction"
+      },
+      "content": "This is the content for chapter \"Einleitung: KI und Gesellschaft\". It discusses Integration Test: KI und Gesellschaft and covers key points like Definition, Geschichte, Aktuelle Entwicklungen.",
+      "qualityScore": 0.85,
+      "wordCount": 1500,
+      "needsRevision": false,
+      "generatedAt": "2025-09-09T07:23:11.853Z"
+    },
+    {
+      "chapter": {
+        "number": 2,
+        "title": "Hauptteil: Auswirkungen",
+        "topic": "Integration Test: KI und Gesellschaft",
+        "keyPoints": [
+          "Wirtschaft",
+          "Arbeit",
+          "Ethik"
+        ],
+        "type": "main"
+      },
+      "content": "This is the content for chapter \"Hauptteil: Auswirkungen\". It discusses Integration Test: KI und Gesellschaft and covers key points like Wirtschaft, Arbeit, Ethik.",
+      "qualityScore": 0.85,
+      "wordCount": 1500,
+      "needsRevision": false,
+      "generatedAt": "2025-09-09T07:23:11.853Z"
+    },
+    {
+      "chapter": {
+        "number": 3,
+        "title": "Fazit: Zukunftsperspektiven",
+        "topic": "Integration Test: KI und Gesellschaft",
+        "keyPoints": [
+          "Chancen",
+          "Risiken",
+          "Handlungsempfehlungen"
+        ],
+        "type": "conclusion"
+      },
+      "content": "This is the content for chapter \"Fazit: Zukunftsperspektiven\". It discusses Integration Test: KI und Gesellschaft and covers key points like Chancen, Risiken, Handlungsempfehlungen.",
+      "qualityScore": 0.85,
+      "wordCount": 1500,
+      "needsRevision": false,
+      "generatedAt": "2025-09-09T07:23:11.853Z"
+    }
+  ],
+  "visualPlan": {
+    "bookTitle": "Integration Test: KI und Gesellschaft",
+    "totalElements": 4,
+    "chapters": [
+      {
+        "chapterNumber": 0,
+        "chapterTitle": "Cover",
+        "elements": [
+          {
+            "type": "cover",
+            "description": "Book cover design"
+          }
+        ],
+        "totalElements": 1
+      },
+      {
+        "chapterNumber": 1,
+        "chapterTitle": "Einleitung: KI und Gesellschaft",
+        "elements": [
+          {
+            "type": "illustration",
+            "description": "Introduction illustration"
+          }
+        ],
+        "totalElements": 1
+      },
+      {
+        "chapterNumber": 2,
+        "chapterTitle": "Hauptteil: Auswirkungen",
+        "elements": [
+          {
+            "type": "chart",
+            "description": "Impact chart"
+          }
+        ],
+        "totalElements": 1
+      },
+      {
+        "chapterNumber": 3,
+        "chapterTitle": "Fazit: Zukunftsperspektiven",
+        "elements": [
+          {
+            "type": "diagram",
+            "description": "Future diagram"
+          }
+        ],
+        "totalElements": 1
+      }
+    ],
+    "metadata": {
+      "createdAt": "2025-09-09T07:23:11.835Z",
+      "version": "1.0"
+    }
+  },
+  "images": [
+    {
+      "success": true,
+      "requirement": {
+        "type": "cover"
+      },
+      "result": {
+        "id": "cover-1",
+        "url": "https://example.com/cover.jpg",
+        "provider": "midjourney"
+      }
+    },
+    {
+      "success": true,
+      "requirement": {
+        "type": "illustration"
+      },
+      "result": {
+        "id": "illus-1",
+        "url": "https://example.com/illustration.jpg",
+        "provider": "dalle3"
+      }
+    },
+    {
+      "success": true,
+      "requirement": {
+        "type": "chart"
+      },
+      "result": {
+        "id": "chart-1",
+        "url": "https://example.com/chart.jpg",
+        "provider": "stablediffusion"
+      }
+    },
+    {
+      "success": true,
+      "requirement": {
+        "type": "diagram"
+      },
+      "result": {
+        "id": "diag-1",
+        "url": "https://example.com/diagram.jpg",
+        "provider": "dalle3"
+      }
+    }
+  ],
+  "formattedBook": {
+    "pdf": {
+      "format": "pdf",
+      "fileSize": 2048,
+      "title": "Integration Test: KI und Gesellschaft"
+    },
+    "epub": {
+      "format": "epub",
+      "fileSize": 1024,
+      "title": "Integration Test: KI und Gesellschaft"
+    },
+    "mobi": {
+      "format": "mobi",
+      "fileSize": 1000,
+      "title": "Integration Test: KI und Gesellschaft"
+    },
+    "docx": {
+      "format": "docx",
+      "fileSize": 1500,
+      "title": "Integration Test: KI und Gesellschaft"
+    },
+    "txt": {
+      "format": "txt",
+      "fileSize": 800,
+      "title": "Integration Test: KI und Gesellschaft"
+    },
+    "html": {
+      "format": "html",
+      "fileSize": 1200,
+      "title": "Integration Test: KI und Gesellschaft"
+    }
+  },
+  "publishing": {
+    "publisherDeals": [
+      {
+        "success": true,
+        "publisher": {
+          "name": "Test Publisher"
+        },
+        "finalOffer": {
+          "royaltyRate": 0.12,
+          "advance": 10000,
+          "territory": "worldwide"
+        }
+      }
+    ],
+    "amazonListing": {
+      "success": true,
+      "asin": "B0123456789"
+    }
+  },
+  "createdAt": "2025-09-09T07:23:11.862Z",
+  "status": "completed"
+}

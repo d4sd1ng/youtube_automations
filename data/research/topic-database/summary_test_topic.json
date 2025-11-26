@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "title": "Item 1",
+      "qualityScore": 80,
+      "relevanceScore": 90
+    },
+    {
+      "title": "Item 2",
+      "qualityScore": 70,
+      "relevanceScore": 80
+    }
+  ],
+  "statistics": {
+    "totalItems": 2,
+    "sources": [
+      "source1"
+    ],
+    "averageQuality": 75,
+    "averageRelevance": 85
+  },
+  "keyInsights": [
+    {
+      "type": "trend",
+      "description": "Test trend"
+    }
+  ],
+  "scrapedAt": "2025-09-09T07:56:49.794Z"
+}

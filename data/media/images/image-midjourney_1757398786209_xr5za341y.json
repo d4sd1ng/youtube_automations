@@ -1,0 +1,21 @@
+{
+  "imageData": {
+    "id": "midjourney_1757398786209_xr5za341y",
+    "provider": "midjourney",
+    "url": "https://cdn.midjourney.com/midjourney_1757398786209_xr5za341y/0_0.png",
+    "prompt": "Illustration for chapter 1",
+    "generatedAt": "2025-09-09T06:19:46.209Z",
+    "dimensions": {
+      "width": 1024,
+      "height": 1024
+    },
+    "style": "professional"
+  },
+  "requirements": {
+    "chapter": 1,
+    "description": "Illustration for chapter 1",
+    "type": "chapter-illustration",
+    "style": "professional"
+  },
+  "savedAt": "2025-09-09T06:19:46.209Z"
+}

@@ -1,0 +1,82 @@
+{
+  "topic": "Künstliche Intelligenz",
+  "sources": 5,
+  "items": [
+    {
+      "id": "930ad1fd63a60d1fcfb6191f0b2d3fc0",
+      "url": "https://example.com/topic/K%C3%BCnstliche%20Intelligenz/research",
+      "title": "Scraped Content from example.com",
+      "content": "This is mock scraped content from https://example.com/topic/K%C3%BCnstliche%20Intelligenz/research. In a real implementation, this would be actual content extracted from the webpage.",
+      "metadata": {
+        "scrapedAt": "2025-09-09T06:19:13.587Z",
+        "wordCount": 1495,
+        "qualityScore": 97,
+        "sourceType": "general"
+      },
+      "qualityScore": 97,
+      "relevanceScore": 50
+    },
+    {
+      "id": "a01b7d470f7a00941c72221ecc04f799",
+      "url": "https://example.com/topic/K%C3%BCnstliche%20Intelligenz/overview",
+      "title": "Scraped Content from example.com",
+      "content": "This is mock scraped content from https://example.com/topic/K%C3%BCnstliche%20Intelligenz/overview. In a real implementation, this would be actual content extracted from the webpage.",
+      "metadata": {
+        "scrapedAt": "2025-09-09T06:19:11.577Z",
+        "wordCount": 692,
+        "qualityScore": 83,
+        "sourceType": "general"
+      },
+      "qualityScore": 83,
+      "relevanceScore": 50
+    },
+    {
+      "id": "1ee295383631c342d86f02a55676bd69",
+      "url": "https://example.com/search?q=K%C3%BCnstliche%20Intelligenz",
+      "title": "Scraped Content from example.com",
+      "content": "This is mock scraped content from https://example.com/search?q=K%C3%BCnstliche%20Intelligenz. In a real implementation, this would be actual content extracted from the webpage.",
+      "metadata": {
+        "scrapedAt": "2025-09-09T06:19:09.566Z",
+        "wordCount": 1173,
+        "qualityScore": 73,
+        "sourceType": "general"
+      },
+      "qualityScore": 73,
+      "relevanceScore": 50
+    },
+    {
+      "id": "dffcb680c518151b92a28ec66a0346e7",
+      "url": "https://example.com/topic/K%C3%BCnstliche%20Intelligenz/analysis",
+      "title": "Scraped Content from example.com",
+      "content": "This is mock scraped content from https://example.com/topic/K%C3%BCnstliche%20Intelligenz/analysis. In a real implementation, this would be actual content extracted from the webpage.",
+      "metadata": {
+        "scrapedAt": "2025-09-09T06:19:17.608Z",
+        "wordCount": 1037,
+        "qualityScore": 62,
+        "sourceType": "general"
+      },
+      "qualityScore": 62,
+      "relevanceScore": 50
+    },
+    {
+      "id": "0f32e267616295123caf48d7542a0b30",
+      "url": "https://example.com/topic/K%C3%BCnstliche%20Intelligenz/news",
+      "title": "Scraped Content from example.com",
+      "content": "This is mock scraped content from https://example.com/topic/K%C3%BCnstliche%20Intelligenz/news. In a real implementation, this would be actual content extracted from the webpage.",
+      "metadata": {
+        "scrapedAt": "2025-09-09T06:19:15.604Z",
+        "wordCount": 1203,
+        "qualityScore": 61,
+        "sourceType": "general"
+      },
+      "qualityScore": 61,
+      "relevanceScore": 50
+    }
+  ],
+  "statistics": {
+    "totalItems": 5,
+    "averageQuality": 75.2,
+    "averageRelevance": 50
+  },
+  "scrapedAt": "2025-09-09T07:56:48.718Z"
+}

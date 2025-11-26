@@ -1,0 +1,187 @@
+/* ============================================
+   SIDEBAR STYLES
+   ============================================ */
+
+.sidebar {
+  width: 280px;
+  background: rgba(15, 20, 35, 0.95);
+  border-right: 1px solid rgba(100, 150, 255, 0.2);
+  backdrop-filter: blur(10px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.sidebar.closed {
+  width: 0;
+  border-right: none;
+  overflow: hidden;
+}
+
+.sidebar-content {
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ============================================
+   NAVIGATION GROUPS
+   ============================================ */
+
+.nav-group {
+  padding: 0 12px;
+  margin-bottom: 8px;
+}
+
+.group-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 12px;
+  margin-bottom: 8px;
+  color: rgba(224, 224, 255, 0.6);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.group-icon {
+  font-size: 16px;
+}
+
+.group-title {
+  margin: 0;
+  flex: 1;
+}
+
+.group-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ============================================
+   NAVIGATION ITEMS
+   ============================================ */
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: rgba(224, 224, 255, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-item:hover {
+  background: rgba(100, 150, 255, 0.1);
+  color: #e0e0ff;
+  padding-left: 16px;
+}
+
+.nav-item.active {
+  background: linear-gradient(135deg, rgba(92, 107, 192, 0.2) 0%, rgba(121, 134, 222, 0.1) 100%);
+  color: #7986de;
+  border-left: 3px solid #5c6bc0;
+  padding-left: 9px;
+  font-weight: 600;
+}
+
+.nav-item.active::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: #5c6bc0;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.item-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.item-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(100, 150, 255, 0.2);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 150, 255, 0.4);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    height: calc(100vh - 60px);
+    z-index: 50;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .sidebar.closed {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 240px;
+  }
+
+  .group-header {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .nav-item {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .item-icon {
+    font-size: 16px;
+  }
+}

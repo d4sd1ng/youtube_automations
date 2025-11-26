@@ -1,0 +1,17 @@
+{
+  "name": "orchestrator-agent",
+  "version": "1.0.0",
+  "description": "A Python-based microservice for orchestrating AI agents in content creation workflows",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "dev": "python app.py",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "flask": "^2.0.1",
+    "requests": "^2.25.1"
+  },
+  "author": "AI Agent System",
+  "license": "MIT"
+}

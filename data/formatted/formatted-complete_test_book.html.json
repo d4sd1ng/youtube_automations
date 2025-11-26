@@ -1,0 +1,13 @@
+{
+  "format": "html",
+  "title": "Complete Test Book",
+  "author": "Test Author",
+  "content": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Complete Test Book</title>\n</head>\n<body>\n    <header>\n        <h1>Complete Test Book</h1>\n        <p>Author: Test Author</p>\n    </header>\n    <main>\n    </main>\n</body>\n</html>",
+  "fileSize": 439,
+  "contentPreview": "<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Complete Test Book</title>\n</head>\n<body>\n    <header>\n        <h1>Complete Test Book</h1>\n        <p>Author: Test Author</p>\n    </header>\n    <main>\n    </main>\n</body>\n</html>",
+  "metadata": {
+    "formattedAt": "2025-09-09T07:56:59.256Z",
+    "formatter": "DocumentFormatter",
+    "formatVersion": "1.0"
+  }
+}

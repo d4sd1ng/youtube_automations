@@ -1,0 +1,102 @@
+{
+  "id": "b1ca0f8c-8496-4031-a4c3-0a3fa06f654d",
+  "type": "script-generation",
+  "status": "completed",
+  "topic": "Content Plan for Künstliche Intelligenz in der Medizin",
+  "options": {
+    "scriptType": "medium",
+    "tone": "informative",
+    "keywords": [
+      "KI",
+      "Medizin",
+      "Technologie",
+      "Innovation"
+    ]
+  },
+  "progress": {
+    "currentStage": "generating",
+    "stageProgress": 100,
+    "overallProgress": 100,
+    "completedStages": []
+  },
+  "metadata": {
+    "startedAt": "2025-11-25T17:34:58.640Z",
+    "estimatedDuration": 30000,
+    "completedAt": "2025-11-25T17:35:01.163Z"
+  },
+  "logs": [
+    {
+      "timestamp": "2025-11-25T17:34:58.640Z",
+      "level": "info",
+      "message": "Starting script generation for topic: Content Plan for Künstliche Intelligenz in der Medizin"
+    },
+    {
+      "timestamp": "2025-11-25T17:34:58.640Z",
+      "level": "info",
+      "message": "Analyzing topic and requirements..."
+    },
+    {
+      "timestamp": "2025-11-25T17:34:59.152Z",
+      "level": "info",
+      "message": "Generating content structure..."
+    },
+    {
+      "timestamp": "2025-11-25T17:35:00.154Z",
+      "level": "info",
+      "message": "Creating detailed script content..."
+    },
+    {
+      "timestamp": "2025-11-25T17:35:01.163Z",
+      "level": "info",
+      "message": "Script generation completed successfully"
+    }
+  ],
+  "result": {
+    "id": "f0ff5bad-d687-4cc2-b297-0fc1b46d993b",
+    "topic": "Content Plan for Künstliche Intelligenz in der Medizin",
+    "title": "Alles über Content Plan for Künstliche Intelligenz in der Medizin",
+    "summary": "Ein umfassender Leitfaden zu Content Plan for Künstliche Intelligenz in der Medizin",
+    "scriptType": "medium",
+    "typeName": "Langform-Video",
+    "estimatedDuration": 600,
+    "chapters": [
+      {
+        "id": "intro",
+        "title": "Einleitung",
+        "content": "Willkommen zu diesem Video über Content Plan for Künstliche Intelligenz in der Medizin. Heute werden wir uns eingehend mit diesem Thema beschäftigen."
+      },
+      {
+        "id": "main",
+        "title": "Hauptteil",
+        "content": "Im Hauptteil werden wir die wichtigsten Aspekte von Content Plan for Künstliche Intelligenz in der Medizin behandeln."
+      },
+      {
+        "id": "conclusion",
+        "title": "Fazit",
+        "content": "Zusammenfassend lässt sich sagen, dass Content Plan for Künstliche Intelligenz in der Medizin ein wichtiges Thema ist."
+      }
+    ],
+    "keyPoints": [
+      "Wichtigste Erkenntnisse über Content Plan for Künstliche Intelligenz in der Medizin",
+      "Praktische Anwendungen",
+      "Zukünftige Entwicklungen"
+    ],
+    "keywords": [
+      "Content Plan for Künstliche Intelligenz in der Medizin",
+      "Content Plan for Künstliche Intelligenz in der Medizin Erklärung",
+      "Content Plan for Künstliche Intelligenz in der Medizin Tutorial"
+    ],
+    "callToAction": "Wenn Ihnen dieses Video gefallen hat, abonnieren Sie unseren Kanal und aktivieren Sie die Glocke.",
+    "createdAt": "2025-11-25T17:35:01.162Z",
+    "options": {
+      "scriptType": "medium",
+      "tone": "informative",
+      "keywords": [
+        "KI",
+        "Medizin",
+        "Technologie",
+        "Innovation"
+      ]
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "whiskAI": {
+    "enabled": true,
+    "baseUrl": "https://labs.google.com/whisk",
+    "experimental": true,
+    "dailyLimit": 100,
+    "currentUsage": 0,
+    "lastReset": "2025-09-09",
+    "features": {
+      "promptOptimization": true,
+      "visualConceptGeneration": true
+    },
+    "limits": {
+      "dailyPromptOptimizations": 50,
+      "dailyVisualConcepts": 50
+    }
+  },
+  "genspark": {
+    "enabled": true,
+    "baseUrl": "https://api.genspark.ai",
+    "apiKey": "IHR_GENSARK_API_SCHLÜSSEL_HIER",
+    "tier": "free",
+    "monthlyLimit": 100,
+    "currentUsage": 0,
+    "costPerThumbnail": 0.05,
+    "dailyLimit": 50,
+    "features": {
+      "staticThumbnailGeneration": true,
+      "imageEnhancement": true
+    },
+    "limits": {
+      "dailyStaticThumbnails": 30,
+      "dailyImageEnhancements": 20
+    },
+    "lastReset": "2025-09-09"
+  },
+  "wan22": {
+    "enabled": true,
+    "localPath": "/pfad/zu/wan22",
+    "gpuEnabled": true,
+    "estimatedCostPerHour": 0.15,
+    "monthlyHardwareCost": 20,
+    "features": {
+      "animatedThumbnailGeneration": true,
+      "videoSequenceGeneration": true
+    },
+    "limits": {
+      "dailyProcessingHours": 5,
+      "maxVideoLength": 60
+    },
+    "currentUsage": 0,
+    "lastReset": "2025-09-09"
+  },
+  "budget": {
+    "monthlyLimit": 100,
+    "currentSpent": 20,
+    "currency": "EUR"
+  }
+}

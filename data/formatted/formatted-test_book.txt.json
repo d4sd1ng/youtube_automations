@@ -1,0 +1,13 @@
+{
+  "format": "txt",
+  "title": "Test Book",
+  "author": "Test Author",
+  "wordCount": 50000,
+  "fileSize": 293,
+  "contentPreview": "Content 1",
+  "metadata": {
+    "formattedAt": "2025-09-09T07:56:50.657Z",
+    "formatter": "DocumentFormatter",
+    "formatVersion": "1.0"
+  }
+}

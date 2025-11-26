@@ -1,0 +1,11 @@
+{
+  "id": "review-request",
+  "name": "Review Request",
+  "subject": "Bitte überprüfen Sie Ihr Kapitel: {chapter_title}",
+  "body": "Sehr geehrte Damen und Herren,\n\ndas Kapitel \"{chapter_title}\" Ihres Buches \"{book_title}\" ist nun fertiggestellt und steht zur Überprüfung bereit.\n\n{chapter_preview}\n\nBitte überprüfen Sie den Inhalt und teilen Sie uns Ihre Änderungswünsche mit.\n\nVielen Dank für Ihre Zusammenarbeit.\n\nMit freundlichen Grüßen,\nIhr Book Writer Agent",
+  "variables": [
+    "book_title",
+    "chapter_title",
+    "chapter_preview"
+  ]
+}

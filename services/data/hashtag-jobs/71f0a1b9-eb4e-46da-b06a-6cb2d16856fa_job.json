@@ -1,0 +1,486 @@
+{
+  "id": "71f0a1b9-eb4e-46da-b06a-6cb2d16856fa",
+  "type": "hashtag-optimization",
+  "status": "completed",
+  "content": {
+    "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+    "description": ""
+  },
+  "platform": "youtube",
+  "options": {},
+  "progress": {
+    "currentStage": "optimizing",
+    "stageProgress": 100,
+    "overallProgress": 100,
+    "completedStages": []
+  },
+  "metadata": {
+    "startedAt": "2025-11-25T17:35:10.242Z",
+    "estimatedDuration": 20000,
+    "completedAt": "2025-11-25T17:35:14.254Z"
+  },
+  "logs": [
+    {
+      "timestamp": "2025-11-25T17:35:10.242Z",
+      "level": "info",
+      "message": "Optimizing hashtags for youtube"
+    },
+    {
+      "timestamp": "2025-11-25T17:35:10.242Z",
+      "level": "info",
+      "message": "Analyzing content..."
+    },
+    {
+      "timestamp": "2025-11-25T17:35:11.247Z",
+      "level": "info",
+      "message": "Researching hashtags..."
+    },
+    {
+      "timestamp": "2025-11-25T17:35:13.250Z",
+      "level": "info",
+      "message": "Optimizing hashtag selection..."
+    },
+    {
+      "timestamp": "2025-11-25T17:35:14.254Z",
+      "level": "info",
+      "message": "Hashtag optimization completed successfully"
+    }
+  ],
+  "result": {
+    "id": "optimization-594705d3-07aa-4a9c-b357-91999da1dd04",
+    "content": {
+      "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+      "description": ""
+    },
+    "platform": "youtube",
+    "keywords": [
+      "content",
+      "plan",
+      "künstliche",
+      "intelligenz",
+      "medizin"
+    ],
+    "hashtagData": {
+      "keywords": [
+        "content",
+        "plan",
+        "künstliche",
+        "intelligenz",
+        "medizin"
+      ],
+      "platform": "youtube",
+      "hashtags": [
+        {
+          "tag": "#intelligenz4",
+          "volume": 96012,
+          "competition": 4,
+          "relevance": 93,
+          "category": "community"
+        },
+        {
+          "tag": "#künstliche4",
+          "volume": 26262,
+          "competition": 12,
+          "relevance": 83,
+          "category": "campaign"
+        },
+        {
+          "tag": "#content4",
+          "volume": 41473,
+          "competition": 1,
+          "relevance": 61,
+          "category": "community"
+        },
+        {
+          "tag": "#content2",
+          "volume": 34066,
+          "competition": 9,
+          "relevance": 63,
+          "category": "campaign"
+        },
+        {
+          "tag": "#content5",
+          "volume": 81601,
+          "competition": 19,
+          "relevance": 69,
+          "category": "trending"
+        },
+        {
+          "tag": "#content1",
+          "volume": 15533,
+          "competition": 11,
+          "relevance": 55,
+          "category": "campaign"
+        },
+        {
+          "tag": "#plan1",
+          "volume": 85698,
+          "competition": 16,
+          "relevance": 55,
+          "category": "community"
+        },
+        {
+          "tag": "#content",
+          "volume": 66447,
+          "competition": 54,
+          "relevance": 81,
+          "category": "industry"
+        },
+        {
+          "tag": "#medizin4",
+          "volume": 75741,
+          "competition": 28,
+          "relevance": 59,
+          "category": "trending"
+        },
+        {
+          "tag": "#künstliche",
+          "volume": 46640,
+          "competition": 10,
+          "relevance": 36,
+          "category": "industry"
+        },
+        {
+          "tag": "#intelligenz5",
+          "volume": 37298,
+          "competition": 96,
+          "relevance": 97,
+          "category": "trending"
+        },
+        {
+          "tag": "#intelligenz2",
+          "volume": 50439,
+          "competition": 22,
+          "relevance": 37,
+          "category": "campaign"
+        },
+        {
+          "tag": "#content3",
+          "volume": 89684,
+          "competition": 89,
+          "relevance": 86,
+          "category": "location"
+        },
+        {
+          "tag": "#medizin",
+          "volume": 23908,
+          "competition": 77,
+          "relevance": 76,
+          "category": "trending"
+        },
+        {
+          "tag": "#künstliche1",
+          "volume": 50690,
+          "competition": 68,
+          "relevance": 69,
+          "category": "industry"
+        },
+        {
+          "tag": "#intelligenz3",
+          "volume": 81568,
+          "competition": 96,
+          "relevance": 84,
+          "category": "campaign"
+        },
+        {
+          "tag": "#künstliche5",
+          "volume": 96952,
+          "competition": 47,
+          "relevance": 40,
+          "category": "industry"
+        },
+        {
+          "tag": "#plan",
+          "volume": 2253,
+          "competition": 92,
+          "relevance": 70,
+          "category": "community"
+        },
+        {
+          "tag": "#medizin5",
+          "volume": 68709,
+          "competition": 41,
+          "relevance": 31,
+          "category": "campaign"
+        },
+        {
+          "tag": "#medizin6",
+          "volume": 16711,
+          "competition": 19,
+          "relevance": 12,
+          "category": "industry"
+        },
+        {
+          "tag": "#künstliche2",
+          "volume": 57909,
+          "competition": 50,
+          "relevance": 33,
+          "category": "community"
+        },
+        {
+          "tag": "#intelligenz1",
+          "volume": 39923,
+          "competition": 50,
+          "relevance": 32,
+          "category": "brand"
+        },
+        {
+          "tag": "#plan2",
+          "volume": 28067,
+          "competition": 55,
+          "relevance": 34,
+          "category": "trending"
+        },
+        {
+          "tag": "#intelligenz",
+          "volume": 42768,
+          "competition": 30,
+          "relevance": 15,
+          "category": "industry"
+        },
+        {
+          "tag": "#medizin3",
+          "volume": 80676,
+          "competition": 63,
+          "relevance": 23,
+          "category": "brand"
+        },
+        {
+          "tag": "#künstliche3",
+          "volume": 4640,
+          "competition": 52,
+          "relevance": 0,
+          "category": "industry"
+        },
+        {
+          "tag": "#plan3",
+          "volume": 58240,
+          "competition": 69,
+          "relevance": 8,
+          "category": "community"
+        },
+        {
+          "tag": "#medizin1",
+          "volume": 58802,
+          "competition": 63,
+          "relevance": 1,
+          "category": "brand"
+        },
+        {
+          "tag": "#medizin2",
+          "volume": 9958,
+          "competition": 84,
+          "relevance": 3,
+          "category": "location"
+        }
+      ]
+    },
+    "optimizedHashtags": [
+      {
+        "tag": "#intelligenz4",
+        "volume": 96012,
+        "competition": 4,
+        "relevance": 93,
+        "category": "community"
+      },
+      {
+        "tag": "#künstliche4",
+        "volume": 26262,
+        "competition": 12,
+        "relevance": 83,
+        "category": "campaign"
+      },
+      {
+        "tag": "#content4",
+        "volume": 41473,
+        "competition": 1,
+        "relevance": 61,
+        "category": "community"
+      },
+      {
+        "tag": "#content2",
+        "volume": 34066,
+        "competition": 9,
+        "relevance": 63,
+        "category": "campaign"
+      },
+      {
+        "tag": "#content5",
+        "volume": 81601,
+        "competition": 19,
+        "relevance": 69,
+        "category": "trending"
+      },
+      {
+        "tag": "#content1",
+        "volume": 15533,
+        "competition": 11,
+        "relevance": 55,
+        "category": "campaign"
+      },
+      {
+        "tag": "#plan1",
+        "volume": 85698,
+        "competition": 16,
+        "relevance": 55,
+        "category": "community"
+      },
+      {
+        "tag": "#content",
+        "volume": 66447,
+        "competition": 54,
+        "relevance": 81,
+        "category": "industry"
+      },
+      {
+        "tag": "#medizin4",
+        "volume": 75741,
+        "competition": 28,
+        "relevance": 59,
+        "category": "trending"
+      },
+      {
+        "tag": "#künstliche",
+        "volume": 46640,
+        "competition": 10,
+        "relevance": 36,
+        "category": "industry"
+      },
+      {
+        "tag": "#intelligenz5",
+        "volume": 37298,
+        "competition": 96,
+        "relevance": 97,
+        "category": "trending"
+      },
+      {
+        "tag": "#intelligenz2",
+        "volume": 50439,
+        "competition": 22,
+        "relevance": 37,
+        "category": "campaign"
+      },
+      {
+        "tag": "#content3",
+        "volume": 89684,
+        "competition": 89,
+        "relevance": 86,
+        "category": "location"
+      },
+      {
+        "tag": "#medizin",
+        "volume": 23908,
+        "competition": 77,
+        "relevance": 76,
+        "category": "trending"
+      },
+      {
+        "tag": "#künstliche1",
+        "volume": 50690,
+        "competition": 68,
+        "relevance": 69,
+        "category": "industry"
+      },
+      {
+        "tag": "#intelligenz3",
+        "volume": 81568,
+        "competition": 96,
+        "relevance": 84,
+        "category": "campaign"
+      },
+      {
+        "tag": "#künstliche5",
+        "volume": 96952,
+        "competition": 47,
+        "relevance": 40,
+        "category": "industry"
+      },
+      {
+        "tag": "#plan",
+        "volume": 2253,
+        "competition": 92,
+        "relevance": 70,
+        "category": "community"
+      },
+      {
+        "tag": "#medizin5",
+        "volume": 68709,
+        "competition": 41,
+        "relevance": 31,
+        "category": "campaign"
+      },
+      {
+        "tag": "#medizin6",
+        "volume": 16711,
+        "competition": 19,
+        "relevance": 12,
+        "category": "industry"
+      },
+      {
+        "tag": "#künstliche2",
+        "volume": 57909,
+        "competition": 50,
+        "relevance": 33,
+        "category": "community"
+      },
+      {
+        "tag": "#intelligenz1",
+        "volume": 39923,
+        "competition": 50,
+        "relevance": 32,
+        "category": "brand"
+      },
+      {
+        "tag": "#plan2",
+        "volume": 28067,
+        "competition": 55,
+        "relevance": 34,
+        "category": "trending"
+      },
+      {
+        "tag": "#intelligenz",
+        "volume": 42768,
+        "competition": 30,
+        "relevance": 15,
+        "category": "industry"
+      },
+      {
+        "tag": "#medizin3",
+        "volume": 80676,
+        "competition": 63,
+        "relevance": 23,
+        "category": "brand"
+      },
+      {
+        "tag": "#künstliche3",
+        "volume": 4640,
+        "competition": 52,
+        "relevance": 0,
+        "category": "industry"
+      },
+      {
+        "tag": "#plan3",
+        "volume": 58240,
+        "competition": 69,
+        "relevance": 8,
+        "category": "community"
+      },
+      {
+        "tag": "#medizin1",
+        "volume": 58802,
+        "competition": 63,
+        "relevance": 1,
+        "category": "brand"
+      },
+      {
+        "tag": "#medizin2",
+        "volume": 9958,
+        "competition": 84,
+        "relevance": 3,
+        "category": "location"
+      }
+    ],
+    "optimizedAt": "2025-11-25T17:35:14.253Z",
+    "options": {}
+  }
+}

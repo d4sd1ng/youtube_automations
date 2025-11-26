@@ -1,0 +1,19 @@
+{
+  "name": "thumbnail-generation-python-agent",
+  "version": "1.0.0",
+  "description": "Python-based Thumbnail Generation Agent for image processing and optimization",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "dev": "python app.py"
+  },
+  "keywords": [
+    "thumbnail",
+    "generation",
+    "agent",
+    "python",
+    "image-processing"
+  ],
+  "author": "AI Agent System",
+  "license": "MIT"
+}

@@ -1,0 +1,147 @@
+{
+  "items": [
+    {
+      "id": "item_4",
+      "title": "AI in Politics - Research Item 5",
+      "content": "This is sample content about AI in Politics. In a real implementation, this would be actual scraped content from politik-talkshows.",
+      "source": "politik-talkshows",
+      "url": "https://politik-talkshows/article/4",
+      "date": "2025-08-24T07:56:49.782Z",
+      "qualityScore": 85,
+      "relevanceScore": 82,
+      "wordCount": 1462
+    },
+    {
+      "id": "item_0",
+      "title": "AI in Politics - Research Item 1",
+      "content": "This is sample content about AI in Politics. In a real implementation, this would be actual scraped content from bundestag.de.",
+      "source": "bundestag.de",
+      "url": "https://bundestag.de/article/0",
+      "date": "2025-08-17T07:56:49.782Z",
+      "qualityScore": 88,
+      "relevanceScore": 75,
+      "wordCount": 729
+    },
+    {
+      "id": "item_1",
+      "title": "AI in Politics - Research Item 2",
+      "content": "This is sample content about AI in Politics. In a real implementation, this would be actual scraped content from politik-talkshows.",
+      "source": "politik-talkshows",
+      "url": "https://politik-talkshows/article/1",
+      "date": "2025-08-19T07:56:49.782Z",
+      "qualityScore": 70,
+      "relevanceScore": 89,
+      "wordCount": 1449
+    },
+    {
+      "id": "item_2",
+      "title": "AI in Politics - Research Item 3",
+      "content": "This is sample content about AI in Politics. In a real implementation, this would be actual scraped content from bundestag.de.",
+      "source": "bundestag.de",
+      "url": "https://bundestag.de/article/2",
+      "date": "2025-08-25T07:56:49.782Z",
+      "qualityScore": 65,
+      "relevanceScore": 93,
+      "wordCount": 827
+    },
+    {
+      "id": "item_3",
+      "title": "AI in Politics - Research Item 4",
+      "content": "This is sample content about AI in Politics. In a real implementation, this would be actual scraped content from bundestag.de.",
+      "source": "bundestag.de",
+      "url": "https://bundestag.de/article/3",
+      "date": "2025-08-26T07:56:49.782Z",
+      "qualityScore": 66,
+      "relevanceScore": 89,
+      "wordCount": 580
+    }
+  ],
+  "grouped": {
+    "politik-talkshows": [
+      {
+        "id": "item_4",
+        "title": "AI in Politics - Research Item 5",
+        "content": "This is sample content about AI in Politics. In a real implementation, this would be actual scraped content from politik-talkshows.",
+        "source": "politik-talkshows",
+        "url": "https://politik-talkshows/article/4",
+        "date": "2025-08-24T07:56:49.782Z",
+        "qualityScore": 85,
+        "relevanceScore": 82,
+        "wordCount": 1462
+      },
+      {
+        "id": "item_1",
+        "title": "AI in Politics - Research Item 2",
+        "content": "This is sample content about AI in Politics. In a real implementation, this would be actual scraped content from politik-talkshows.",
+        "source": "politik-talkshows",
+        "url": "https://politik-talkshows/article/1",
+        "date": "2025-08-19T07:56:49.782Z",
+        "qualityScore": 70,
+        "relevanceScore": 89,
+        "wordCount": 1449
+      }
+    ],
+    "bundestag.de": [
+      {
+        "id": "item_0",
+        "title": "AI in Politics - Research Item 1",
+        "content": "This is sample content about AI in Politics. In a real implementation, this would be actual scraped content from bundestag.de.",
+        "source": "bundestag.de",
+        "url": "https://bundestag.de/article/0",
+        "date": "2025-08-17T07:56:49.782Z",
+        "qualityScore": 88,
+        "relevanceScore": 75,
+        "wordCount": 729
+      },
+      {
+        "id": "item_2",
+        "title": "AI in Politics - Research Item 3",
+        "content": "This is sample content about AI in Politics. In a real implementation, this would be actual scraped content from bundestag.de.",
+        "source": "bundestag.de",
+        "url": "https://bundestag.de/article/2",
+        "date": "2025-08-25T07:56:49.782Z",
+        "qualityScore": 65,
+        "relevanceScore": 93,
+        "wordCount": 827
+      },
+      {
+        "id": "item_3",
+        "title": "AI in Politics - Research Item 4",
+        "content": "This is sample content about AI in Politics. In a real implementation, this would be actual scraped content from bundestag.de.",
+        "source": "bundestag.de",
+        "url": "https://bundestag.de/article/3",
+        "date": "2025-08-26T07:56:49.782Z",
+        "qualityScore": 66,
+        "relevanceScore": 89,
+        "wordCount": 580
+      }
+    ]
+  },
+  "keyInsights": [
+    {
+      "type": "trend",
+      "description": "Current trends in the field show significant growth",
+      "confidence": 0.85
+    },
+    {
+      "type": "opportunity",
+      "description": "There is an opportunity to address gaps in existing literature",
+      "confidence": 0.75
+    },
+    {
+      "type": "challenge",
+      "description": "Key challenges include regulatory complexity and public acceptance",
+      "confidence": 0.9
+    }
+  ],
+  "statistics": {
+    "totalItems": 5,
+    "sources": [
+      "politik-talkshows",
+      "bundestag.de"
+    ],
+    "averageQuality": 74.8,
+    "averageRelevance": 85.6
+  },
+  "scrapedAt": "2025-09-09T07:56:49.782Z"
+}

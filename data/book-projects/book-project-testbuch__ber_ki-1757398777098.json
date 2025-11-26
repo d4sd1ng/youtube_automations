@@ -1,0 +1,137 @@
+{
+  "title": "Testbuch über KI",
+  "interviewResults": {
+    "bookType": {
+      "suggestedFormats": [
+        "Sachbuch"
+      ]
+    },
+    "structure": {
+      "chapterCount": 3
+    }
+  },
+  "marketAnalysis": {
+    "marketSize": {
+      "estimatedBooks": 100
+    },
+    "competition": {
+      "directCompetitors": 10
+    }
+  },
+  "researchData": {
+    "items": [
+      {
+        "title": "Test Research",
+        "qualityScore": 80
+      }
+    ]
+  },
+  "contentPlan": {
+    "title": "Testbuch über KI",
+    "chapters": [
+      {
+        "number": 1,
+        "title": "Einleitung",
+        "type": "introduction"
+      },
+      {
+        "number": 2,
+        "title": "Hauptteil",
+        "type": "main"
+      },
+      {
+        "number": 3,
+        "title": "Fazit",
+        "type": "conclusion"
+      }
+    ],
+    "styleGuide": {
+      "tone": "educational"
+    }
+  },
+  "chapters": [
+    {
+      "content": "Revised Chapter 1 content",
+      "qualityScore": 0.95
+    },
+    {
+      "content": "Revised Chapter 2 content",
+      "qualityScore": 0.92
+    },
+    {
+      "content": "Revised Chapter 3 content",
+      "qualityScore": 0.93
+    }
+  ],
+  "visualPlan": {
+    "chapters": [
+      {
+        "chapterNumber": 1,
+        "elements": [
+          {
+            "type": "cover"
+          }
+        ]
+      },
+      {
+        "chapterNumber": 2,
+        "elements": [
+          {
+            "type": "illustration"
+          }
+        ]
+      },
+      {
+        "chapterNumber": 3,
+        "elements": [
+          {
+            "type": "chart"
+          }
+        ]
+      }
+    ]
+  },
+  "images": [
+    {
+      "success": true,
+      "result": {
+        "url": "image1.jpg"
+      }
+    },
+    {
+      "success": true,
+      "result": {
+        "url": "image2.jpg"
+      }
+    },
+    {
+      "success": true,
+      "result": {
+        "url": "image3.jpg"
+      }
+    }
+  ],
+  "formattedBook": {
+    "pdf": {
+      "format": "pdf",
+      "fileSize": 1024
+    },
+    "epub": {
+      "format": "epub",
+      "fileSize": 512
+    }
+  },
+  "publishing": {
+    "publisherDeals": [
+      {
+        "success": true,
+        "publisher": "Test Publisher"
+      }
+    ],
+    "amazonListing": {
+      "success": true
+    }
+  },
+  "createdAt": "2025-09-09T06:19:37.097Z",
+  "status": "completed"
+}

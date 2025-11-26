@@ -12,7 +12,7 @@ class VideoScheduler {
     this.scraper = new DailyScraper();
     this.resultsDirectory = './data/scraping-results';
     this.videoSchedule = './data/video-schedule.json';
-    
+
     // Channel configurations
     this.channels = {
       'senara': {
@@ -20,7 +20,7 @@ class VideoScheduler {
         type: 'political'
       },
       'neurova': {
-        name: 'Neurova', 
+        name: 'Neurova',
         type: 'technology'
       }
     };
@@ -34,7 +34,7 @@ class VideoScheduler {
       // Create required directories
       await fs.mkdir('./data', { recursive: true });
       await fs.mkdir(this.resultsDirectory, { recursive: true });
-      
+
       console.log('✅ Video scheduler initialized');
     } catch (error) {
       console.error('❌ Failed to initialize video scheduler:', error);
@@ -47,19 +47,19 @@ class VideoScheduler {
   async runDailyVideoProcess() {
     try {
       console.log('🌅 Starting daily video creation process...');
-      
+
       // First, run daily scraping for both channels
       console.log('🔍 Running daily scraping for both channels...');
       await this.scraper.runDailyScraping();
-      
+
       // Create daily videos for each channel
       for (const channelId in this.channels) {
         console.log(`\n🎬 Creating daily videos for ${this.channels[channelId].name}...`);
         await this.orchestrator.createDailyVideos(channelId);
       }
-      
+
       console.log('\n✅ Daily video creation process completed');
-      
+
       // Log summary
       this.logVideoScheduleSummary();
     } catch (error) {
@@ -74,15 +74,15 @@ class VideoScheduler {
   async runWeeklyVideoProcess() {
     try {
       console.log('📅 Starting weekly video creation process...');
-      
+
       // Create weekly videos for each channel
       for (const channelId in this.channels) {
         console.log(`\n🎬 Creating weekly video for ${this.channels[channelId].name}...`);
         await this.orchestrator.createWeeklyVideo(channelId);
       }
-      
+
       console.log('\n✅ Weekly video creation process completed');
-      
+
       // Log summary
       this.logVideoScheduleSummary();
     } catch (error) {
@@ -96,7 +96,7 @@ class VideoScheduler {
    */
   scheduleVideoProcesses() {
     console.log('⏰ Scheduling video processes...');
-    
+
     // Run daily process at 2 AM
     const now = new Date();
     const nextDailyRun = new Date();
@@ -104,7 +104,7 @@ class VideoScheduler {
     if (nextDailyRun < now) {
       nextDailyRun.setDate(nextDailyRun.getDate() + 1);
     }
-    
+
     const dailyDelay = nextDailyRun.getTime() - now.getTime();
     setTimeout(() => {
       this.runDailyVideoProcess();
@@ -113,15 +113,15 @@ class VideoScheduler {
         this.runDailyVideoProcess();
       }, 24 * 60 * 60 * 1000);
     }, dailyDelay);
-    
+
     console.log(`✅ Daily video process scheduled for ${nextDailyRun.toLocaleString()}`);
-    
+
     // Run weekly process on Monday at 3 AM
     const nextWeeklyRun = new Date();
     nextWeeklyRun.setHours(3, 0, 0, 0);
     const daysUntilMonday = (8 - nextWeeklyRun.getDay()) % 7;
     nextWeeklyRun.setDate(nextWeeklyRun.getDate() + daysUntilMonday);
-    
+
     const weeklyDelay = nextWeeklyRun.getTime() - now.getTime();
     setTimeout(() => {
       this.runWeeklyVideoProcess();
@@ -130,7 +130,7 @@ class VideoScheduler {
         this.runWeeklyVideoProcess();
       }, 7 * 24 * 60 * 60 * 1000);
     }, weeklyDelay);
-    
+
     console.log(`✅ Weekly video process scheduled for ${nextWeeklyRun.toLocaleString()}`);
   }
 
@@ -139,23 +139,23 @@ class VideoScheduler {
    */
   logVideoScheduleSummary() {
     console.log('\n📊 Video Schedule Summary:');
-    
+
     for (const channelId in this.channels) {
       const channelName = this.channels[channelId].name;
       const dailyVideos = this.orchestrator.getDailyVideos(channelId);
       const weeklyVideos = this.orchestrator.getWeeklyVideos(channelId);
-      
+
       console.log(`\n📺 ${channelName} (${channelId}):`);
       console.log(`   Daily videos created: ${dailyVideos.length}`);
       console.log(`   Weekly videos created: ${weeklyVideos.length}`);
-      
+
       if (dailyVideos.length > 0) {
         const latestDaily = dailyVideos[dailyVideos.length - 1];
         console.log(`   Latest daily video date: ${latestDaily.date}`);
         console.log(`   Morning videos: ${latestDaily.morningVideos.length}`);
         console.log(`   Afternoon videos: ${latestDaily.afternoonVideos.length}`);
       }
-      
+
       if (weeklyVideos.length > 0) {
         const latestWeekly = weeklyVideos[weeklyVideos.length - 1];
         console.log(`   Latest weekly video week: ${latestWeekly.week}`);
@@ -174,7 +174,7 @@ class VideoScheduler {
         channels: {},
         lastUpdated: new Date().toISOString()
       };
-      
+
       for (const channelId in this.channels) {
         schedule.channels[channelId] = {
           name: this.channels[channelId].name,
@@ -182,7 +182,7 @@ class VideoScheduler {
           weeklyVideos: this.orchestrator.getWeeklyVideos(channelId)
         };
       }
-      
+
       return schedule;
     } catch (error) {
       console.error('❌ Failed to get video schedule:', error);
@@ -209,7 +209,7 @@ class VideoScheduler {
 // If run directly, start the video scheduler
 if (require.main === module) {
   const videoScheduler = new VideoScheduler();
-  
+
   videoScheduler.initialize().then(() => {
     // For testing purposes, run daily process immediately
     videoScheduler.runDailyVideoProcess().then(() => {

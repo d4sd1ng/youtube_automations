@@ -1,0 +1,76 @@
+{
+  "success": true,
+  "publisher": {
+    "name": "Test Publisher",
+    "contracts": {
+      "royaltyRate": "10-15%",
+      "advance": "€5000-20000"
+    }
+  },
+  "book": {
+    "title": "Test Book",
+    "wordCount": 60000,
+    "researchQuality": 7,
+    "marketPotential": 8
+  },
+  "finalOffer": {
+    "royaltyRate": "0.1979",
+    "advance": 9060.15,
+    "territory": "worldwide",
+    "rights": [
+      "print",
+      "digital",
+      "audio"
+    ],
+    "publicationTimeline": "12-18 months"
+  },
+  "negotiationRounds": 3,
+  "negotiationHistory": [
+    {
+      "royaltyRate": "10-15%",
+      "advance": 8500,
+      "territory": "worldwide",
+      "rights": [
+        "print",
+        "digital",
+        "audio"
+      ],
+      "publicationTimeline": "12-18 months"
+    },
+    {
+      "royaltyRate": "0.2000",
+      "advance": 9350,
+      "territory": "worldwide",
+      "rights": [
+        "print",
+        "digital",
+        "audio"
+      ],
+      "publicationTimeline": "12-18 months"
+    },
+    {
+      "royaltyRate": "0.1964",
+      "advance": 8882.5,
+      "territory": "worldwide",
+      "rights": [
+        "print",
+        "digital",
+        "audio"
+      ],
+      "publicationTimeline": "12-18 months"
+    },
+    {
+      "royaltyRate": "0.1979",
+      "advance": 9060.15,
+      "territory": "worldwide",
+      "rights": [
+        "print",
+        "digital",
+        "audio"
+      ],
+      "publicationTimeline": "12-18 months"
+    }
+  ],
+  "agreementReached": true,
+  "timestamp": "2025-09-09T06:30:52.262Z"
+}

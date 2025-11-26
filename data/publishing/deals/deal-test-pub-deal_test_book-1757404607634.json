@@ -1,0 +1,9 @@
+{
+  "publisher": {
+    "id": "test-pub",
+    "name": "Test Publisher"
+  },
+  "book": {
+    "title": "Deal Test Book"
+  }
+}

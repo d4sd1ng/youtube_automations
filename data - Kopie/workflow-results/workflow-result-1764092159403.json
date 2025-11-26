@@ -1,0 +1,743 @@
+{
+  "contentPlan": {
+    "id": "066fb603-b0ed-45e4-b8ec-2641d336a459",
+    "channelId": "workflow-channel",
+    "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+    "period": "week",
+    "startDate": "2025-11-25T17:35:38.720Z",
+    "endDate": "2025-12-02T17:35:38.720Z",
+    "contentItems": [
+      {
+        "id": "2840bc01-f9fa-421b-be79-8d150f051d06",
+        "type": "long",
+        "title": "Geplanter Langform-Video",
+        "topic": "Allgemein",
+        "description": "Geplanter Inhalt für workflow-channel",
+        "estimatedDuration": 600,
+        "status": "planned",
+        "priority": 2,
+        "createdAt": "2025-11-25T17:35:38.723Z"
+      },
+      {
+        "id": "f09800dd-a184-4cb3-bddf-1e10d41a924a",
+        "type": "short",
+        "title": "Geplanter Short-Video",
+        "topic": "Allgemein",
+        "description": "Geplanter Inhalt für workflow-channel",
+        "estimatedDuration": 60,
+        "status": "planned",
+        "priority": 3,
+        "createdAt": "2025-11-25T17:35:38.723Z"
+      },
+      {
+        "id": "8cf0c39e-d41c-4c67-8d98-0b297e1ecd21",
+        "type": "short",
+        "title": "Geplanter Short-Video",
+        "topic": "Allgemein",
+        "description": "Geplanter Inhalt für workflow-channel",
+        "estimatedDuration": 60,
+        "status": "planned",
+        "priority": 3,
+        "createdAt": "2025-11-25T17:35:38.723Z"
+      },
+      {
+        "id": "ea2eda4e-876b-4657-83f5-6db5b4317f1e",
+        "type": "short",
+        "title": "Geplanter Short-Video",
+        "topic": "Allgemein",
+        "description": "Geplanter Inhalt für workflow-channel",
+        "estimatedDuration": 60,
+        "status": "planned",
+        "priority": 2,
+        "createdAt": "2025-11-25T17:35:38.723Z"
+      },
+      {
+        "id": "87baa657-b3af-4090-9d41-226ac7e9587e",
+        "type": "short",
+        "title": "Geplanter Short-Video",
+        "topic": "Allgemein",
+        "description": "Geplanter Inhalt für workflow-channel",
+        "estimatedDuration": 60,
+        "status": "planned",
+        "priority": 1,
+        "createdAt": "2025-11-25T17:35:38.723Z"
+      }
+    ],
+    "createdAt": "2025-11-25T17:35:38.723Z",
+    "createdBy": "ContentPlanningAgent"
+  },
+  "script": {
+    "id": "da51d643-b2ba-42ce-ae6f-ba43428f28a1",
+    "topic": "Content Plan for Künstliche Intelligenz in der Medizin",
+    "title": "Alles über Content Plan for Künstliche Intelligenz in der Medizin",
+    "summary": "Ein umfassender Leitfaden zu Content Plan for Künstliche Intelligenz in der Medizin",
+    "scriptType": "medium",
+    "typeName": "Langform-Video",
+    "estimatedDuration": 600,
+    "chapters": [
+      {
+        "id": "intro",
+        "title": "Einleitung",
+        "content": "Willkommen zu diesem Video über Content Plan for Künstliche Intelligenz in der Medizin. Heute werden wir uns eingehend mit diesem Thema beschäftigen."
+      },
+      {
+        "id": "main",
+        "title": "Hauptteil",
+        "content": "Im Hauptteil werden wir die wichtigsten Aspekte von Content Plan for Künstliche Intelligenz in der Medizin behandeln."
+      },
+      {
+        "id": "conclusion",
+        "title": "Fazit",
+        "content": "Zusammenfassend lässt sich sagen, dass Content Plan for Künstliche Intelligenz in der Medizin ein wichtiges Thema ist."
+      }
+    ],
+    "keyPoints": [
+      "Wichtigste Erkenntnisse über Content Plan for Künstliche Intelligenz in der Medizin",
+      "Praktische Anwendungen",
+      "Zukünftige Entwicklungen"
+    ],
+    "keywords": [
+      "Content Plan for Künstliche Intelligenz in der Medizin",
+      "Content Plan for Künstliche Intelligenz in der Medizin Erklärung",
+      "Content Plan for Künstliche Intelligenz in der Medizin Tutorial"
+    ],
+    "callToAction": "Wenn Ihnen dieses Video gefallen hat, abonnieren Sie unseren Kanal und aktivieren Sie die Glocke.",
+    "createdAt": "2025-11-25T17:35:42.245Z",
+    "options": {
+      "scriptType": "medium",
+      "tone": "informative",
+      "keywords": [
+        "KI",
+        "Medizin",
+        "Technologie",
+        "Innovation"
+      ]
+    }
+  },
+  "video": {
+    "id": "cc4f8440-c4e5-4a42-bc49-ae753b6db5f5",
+    "scriptId": "da51d643-b2ba-42ce-ae6f-ba43428f28a1",
+    "title": "Alles über Content Plan for Künstliche Intelligenz in der Medizin",
+    "description": "Ein umfassender Leitfaden zu Content Plan for Künstliche Intelligenz in der Medizin",
+    "filename": "video_da51d643-b2ba-42ce-ae6f-ba43428f28a1.mp4",
+    "format": "mp4",
+    "resolution": "1920x1080",
+    "duration": 600,
+    "size": 84062029,
+    "createdAt": "2025-11-25T17:35:46.783Z",
+    "platform": "youtube",
+    "tags": [
+      "Content Plan for Künstliche Intelligenz in der Medizin",
+      "Content Plan for Künstliche Intelligenz in der Medizin Erklärung",
+      "Content Plan for Künstliche Intelligenz in der Medizin Tutorial"
+    ],
+    "videoOptions": {
+      "style": "standard",
+      "duration": "5min"
+    }
+  },
+  "thumbnail": [
+    {
+      "id": "thumb_da51d643-b2ba-42ce-ae6f-ba43428f28a1_0",
+      "title": "Content Plan for Künstliche Intelligenz in der ...",
+      "design": {
+        "colorScheme": {
+          "primary": "#9E9E9E",
+          "secondary": "#607D8B",
+          "accent": "#795548"
+        },
+        "layout": "highContrast",
+        "iconSuggestions": [
+          "🖥️",
+          "📱",
+          "⚡"
+        ],
+        "fontSize": 28,
+        "textPosition": "center",
+        "hasOverlay": true
+      },
+      "style": "bold",
+      "platform": "youtube",
+      "includeBranding": true,
+      "createdAt": "2025-11-25T17:35:47.290Z"
+    },
+    {
+      "id": "thumb_da51d643-b2ba-42ce-ae6f-ba43428f28a1_1",
+      "title": "Content Plan for Künstliche Intelligenz in der ...",
+      "design": {
+        "colorScheme": {
+          "primary": "#9E9E9E",
+          "secondary": "#607D8B",
+          "accent": "#795548"
+        },
+        "layout": "highContrast",
+        "iconSuggestions": [
+          "🖥️",
+          "📱",
+          "⚡"
+        ],
+        "fontSize": 28,
+        "textPosition": "center",
+        "hasOverlay": true
+      },
+      "style": "bold",
+      "platform": "youtube",
+      "includeBranding": true,
+      "createdAt": "2025-11-25T17:35:47.290Z"
+    },
+    {
+      "id": "thumb_da51d643-b2ba-42ce-ae6f-ba43428f28a1_2",
+      "title": "Content Plan for Künstliche Intelligenz in der ...",
+      "design": {
+        "colorScheme": {
+          "primary": "#9E9E9E",
+          "secondary": "#607D8B",
+          "accent": "#795548"
+        },
+        "layout": "highContrast",
+        "iconSuggestions": [
+          "🖥️",
+          "📱",
+          "⚡"
+        ],
+        "fontSize": 28,
+        "textPosition": "center",
+        "hasOverlay": true
+      },
+      "style": "bold",
+      "platform": "youtube",
+      "includeBranding": true,
+      "createdAt": "2025-11-25T17:35:47.290Z"
+    }
+  ],
+  "seo": {
+    "video": {
+      "id": "8e1ff068-7f28-49ec-b24d-0250fa35ae87",
+      "videoId": "da51d643-b2ba-42ce-ae6f-ba43428f28a1",
+      "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+      "description": "In diesem Video erfahren Sie alles über Content Plan for Künstliche Intelligenz in der Medizin.",
+      "tags": [
+        "Content Plan for Künstliche Intelligenz in der Medizin",
+        "YouTube",
+        "Video"
+      ],
+      "language": "de",
+      "category": "Entertainment",
+      "optimizedAt": "2025-11-25T17:35:51.345Z",
+      "recommendations": [
+        "Verwenden Sie ein klares Title-Tag",
+        "Fügen Sie relevante Keywords in die Beschreibung ein",
+        "Nutzen Sie eine ansprechende Thumbnail-Grafik"
+      ]
+    },
+    "jobId": "26f28fca-a072-4edc-9069-59e9c7a94bfa"
+  },
+  "hashtags": {
+    "id": "optimization-e8262b2a-6ac5-4489-9233-f52b46cda097",
+    "content": {
+      "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+      "description": ""
+    },
+    "platform": "youtube",
+    "keywords": [
+      "content",
+      "plan",
+      "künstliche",
+      "intelligenz",
+      "medizin"
+    ],
+    "hashtagData": {
+      "keywords": [
+        "content",
+        "plan",
+        "künstliche",
+        "intelligenz",
+        "medizin"
+      ],
+      "platform": "youtube",
+      "hashtags": [
+        {
+          "tag": "#intelligenz3",
+          "volume": 28146,
+          "competition": 20,
+          "relevance": 83,
+          "category": "trending"
+        },
+        {
+          "tag": "#medizin5",
+          "volume": 9103,
+          "competition": 25,
+          "relevance": 80,
+          "category": "location"
+        },
+        {
+          "tag": "#content",
+          "volume": 5326,
+          "competition": 39,
+          "relevance": 75,
+          "category": "trending"
+        },
+        {
+          "tag": "#medizin3",
+          "volume": 2020,
+          "competition": 7,
+          "relevance": 50,
+          "category": "campaign"
+        },
+        {
+          "tag": "#intelligenz4",
+          "volume": 55144,
+          "competition": 54,
+          "relevance": 74,
+          "category": "trending"
+        },
+        {
+          "tag": "#plan3",
+          "volume": 20767,
+          "competition": 30,
+          "relevance": 56,
+          "category": "community"
+        },
+        {
+          "tag": "#künstliche4",
+          "volume": 83215,
+          "competition": 69,
+          "relevance": 84,
+          "category": "community"
+        },
+        {
+          "tag": "#künstliche3",
+          "volume": 61563,
+          "competition": 58,
+          "relevance": 73,
+          "category": "trending"
+        },
+        {
+          "tag": "#plan4",
+          "volume": 6022,
+          "competition": 35,
+          "relevance": 55,
+          "category": "brand"
+        },
+        {
+          "tag": "#medizin4",
+          "volume": 85131,
+          "competition": 48,
+          "relevance": 59,
+          "category": "brand"
+        },
+        {
+          "tag": "#künstliche2",
+          "volume": 39442,
+          "competition": 85,
+          "relevance": 86,
+          "category": "trending"
+        },
+        {
+          "tag": "#intelligenz5",
+          "volume": 36660,
+          "competition": 61,
+          "relevance": 66,
+          "category": "campaign"
+        },
+        {
+          "tag": "#künstliche",
+          "volume": 9843,
+          "competition": 73,
+          "relevance": 75,
+          "category": "trending"
+        },
+        {
+          "tag": "#medizin2",
+          "volume": 79494,
+          "competition": 96,
+          "relevance": 91,
+          "category": "community"
+        },
+        {
+          "tag": "#content2",
+          "volume": 59819,
+          "competition": 90,
+          "relevance": 74,
+          "category": "location"
+        },
+        {
+          "tag": "#medizin6",
+          "volume": 46376,
+          "competition": 70,
+          "relevance": 58,
+          "category": "brand"
+        },
+        {
+          "tag": "#künstliche1",
+          "volume": 16531,
+          "competition": 18,
+          "relevance": 19,
+          "category": "campaign"
+        },
+        {
+          "tag": "#medizin1",
+          "volume": 99262,
+          "competition": 36,
+          "relevance": 29,
+          "category": "industry"
+        },
+        {
+          "tag": "#content3",
+          "volume": 23882,
+          "competition": 87,
+          "relevance": 66,
+          "category": "industry"
+        },
+        {
+          "tag": "#intelligenz1",
+          "volume": 91777,
+          "competition": 43,
+          "relevance": 31,
+          "category": "industry"
+        },
+        {
+          "tag": "#künstliche5",
+          "volume": 37523,
+          "competition": 76,
+          "relevance": 55,
+          "category": "trending"
+        },
+        {
+          "tag": "#content1",
+          "volume": 70820,
+          "competition": 68,
+          "relevance": 48,
+          "category": "industry"
+        },
+        {
+          "tag": "#intelligenz",
+          "volume": 99174,
+          "competition": 85,
+          "relevance": 60,
+          "category": "location"
+        },
+        {
+          "tag": "#medizin",
+          "volume": 97232,
+          "competition": 96,
+          "relevance": 65,
+          "category": "industry"
+        },
+        {
+          "tag": "#plan",
+          "volume": 55037,
+          "competition": 55,
+          "relevance": 17,
+          "category": "trending"
+        },
+        {
+          "tag": "#plan1",
+          "volume": 11891,
+          "competition": 81,
+          "relevance": 32,
+          "category": "community"
+        },
+        {
+          "tag": "#intelligenz2",
+          "volume": 99178,
+          "competition": 79,
+          "relevance": 28,
+          "category": "location"
+        },
+        {
+          "tag": "#plan2",
+          "volume": 55792,
+          "competition": 76,
+          "relevance": 20,
+          "category": "industry"
+        },
+        {
+          "tag": "#intelligenz6",
+          "volume": 55706,
+          "competition": 98,
+          "relevance": 30,
+          "category": "industry"
+        }
+      ]
+    },
+    "optimizedHashtags": [
+      {
+        "tag": "#intelligenz3",
+        "volume": 28146,
+        "competition": 20,
+        "relevance": 83,
+        "category": "trending"
+      },
+      {
+        "tag": "#medizin5",
+        "volume": 9103,
+        "competition": 25,
+        "relevance": 80,
+        "category": "location"
+      },
+      {
+        "tag": "#content",
+        "volume": 5326,
+        "competition": 39,
+        "relevance": 75,
+        "category": "trending"
+      },
+      {
+        "tag": "#medizin3",
+        "volume": 2020,
+        "competition": 7,
+        "relevance": 50,
+        "category": "campaign"
+      },
+      {
+        "tag": "#intelligenz4",
+        "volume": 55144,
+        "competition": 54,
+        "relevance": 74,
+        "category": "trending"
+      },
+      {
+        "tag": "#plan3",
+        "volume": 20767,
+        "competition": 30,
+        "relevance": 56,
+        "category": "community"
+      },
+      {
+        "tag": "#künstliche4",
+        "volume": 83215,
+        "competition": 69,
+        "relevance": 84,
+        "category": "community"
+      },
+      {
+        "tag": "#künstliche3",
+        "volume": 61563,
+        "competition": 58,
+        "relevance": 73,
+        "category": "trending"
+      },
+      {
+        "tag": "#plan4",
+        "volume": 6022,
+        "competition": 35,
+        "relevance": 55,
+        "category": "brand"
+      },
+      {
+        "tag": "#medizin4",
+        "volume": 85131,
+        "competition": 48,
+        "relevance": 59,
+        "category": "brand"
+      },
+      {
+        "tag": "#künstliche2",
+        "volume": 39442,
+        "competition": 85,
+        "relevance": 86,
+        "category": "trending"
+      },
+      {
+        "tag": "#intelligenz5",
+        "volume": 36660,
+        "competition": 61,
+        "relevance": 66,
+        "category": "campaign"
+      },
+      {
+        "tag": "#künstliche",
+        "volume": 9843,
+        "competition": 73,
+        "relevance": 75,
+        "category": "trending"
+      },
+      {
+        "tag": "#medizin2",
+        "volume": 79494,
+        "competition": 96,
+        "relevance": 91,
+        "category": "community"
+      },
+      {
+        "tag": "#content2",
+        "volume": 59819,
+        "competition": 90,
+        "relevance": 74,
+        "category": "location"
+      },
+      {
+        "tag": "#medizin6",
+        "volume": 46376,
+        "competition": 70,
+        "relevance": 58,
+        "category": "brand"
+      },
+      {
+        "tag": "#künstliche1",
+        "volume": 16531,
+        "competition": 18,
+        "relevance": 19,
+        "category": "campaign"
+      },
+      {
+        "tag": "#medizin1",
+        "volume": 99262,
+        "competition": 36,
+        "relevance": 29,
+        "category": "industry"
+      },
+      {
+        "tag": "#content3",
+        "volume": 23882,
+        "competition": 87,
+        "relevance": 66,
+        "category": "industry"
+      },
+      {
+        "tag": "#intelligenz1",
+        "volume": 91777,
+        "competition": 43,
+        "relevance": 31,
+        "category": "industry"
+      },
+      {
+        "tag": "#künstliche5",
+        "volume": 37523,
+        "competition": 76,
+        "relevance": 55,
+        "category": "trending"
+      },
+      {
+        "tag": "#content1",
+        "volume": 70820,
+        "competition": 68,
+        "relevance": 48,
+        "category": "industry"
+      },
+      {
+        "tag": "#intelligenz",
+        "volume": 99174,
+        "competition": 85,
+        "relevance": 60,
+        "category": "location"
+      },
+      {
+        "tag": "#medizin",
+        "volume": 97232,
+        "competition": 96,
+        "relevance": 65,
+        "category": "industry"
+      },
+      {
+        "tag": "#plan",
+        "volume": 55037,
+        "competition": 55,
+        "relevance": 17,
+        "category": "trending"
+      },
+      {
+        "tag": "#plan1",
+        "volume": 11891,
+        "competition": 81,
+        "relevance": 32,
+        "category": "community"
+      },
+      {
+        "tag": "#intelligenz2",
+        "volume": 99178,
+        "competition": 79,
+        "relevance": 28,
+        "category": "location"
+      },
+      {
+        "tag": "#plan2",
+        "volume": 55792,
+        "competition": 76,
+        "relevance": 20,
+        "category": "industry"
+      },
+      {
+        "tag": "#intelligenz6",
+        "volume": 55706,
+        "competition": 98,
+        "relevance": 30,
+        "category": "industry"
+      }
+    ],
+    "optimizedAt": "2025-11-25T17:35:55.372Z",
+    "options": {}
+  },
+  "caption": {
+    "id": "6307ca1f-bf94-4acf-a9cf-27ac98c51e00",
+    "content": {
+      "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+      "text": "",
+      "id": "da51d643-b2ba-42ce-ae6f-ba43428f28a1"
+    },
+    "analysis": {
+      "title": "Content Plan for Künstliche Intelligenz in der Medizin",
+      "description": "",
+      "duration": 300,
+      "keyPoints": [],
+      "tone": "neutral",
+      "audience": "general",
+      "complexity": "medium",
+      "analyzedAt": "2025-11-25T17:35:56.388Z"
+    },
+    "rawText": "Dies ist Absatz 1 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.\n\nDies ist Absatz 2 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.\n\nDies ist Absatz 3 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.\n\nDies ist Absatz 4 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.\n\nDies ist Absatz 5 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.",
+    "formattedCaptions": [
+      {
+        "id": "caption-0",
+        "text": "Dies ist Absatz 1 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.",
+        "startTime": 0,
+        "endTime": 5,
+        "position": "bottom",
+        "style": "standard"
+      },
+      {
+        "id": "caption-2",
+        "text": "Dies ist Absatz 2 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.",
+        "startTime": 5,
+        "endTime": 10,
+        "position": "bottom",
+        "style": "standard"
+      },
+      {
+        "id": "caption-4",
+        "text": "Dies ist Absatz 3 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.",
+        "startTime": 10,
+        "endTime": 15,
+        "position": "bottom",
+        "style": "standard"
+      },
+      {
+        "id": "caption-6",
+        "text": "Dies ist Absatz 4 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.",
+        "startTime": 15,
+        "endTime": 20,
+        "position": "bottom",
+        "style": "standard"
+      },
+      {
+        "id": "caption-8",
+        "text": "Dies ist Absatz 5 der Untertitel für \"Content Plan for Künstliche Intelligenz in der Medizin\". Hier wird der Inhalt des Videos klar und präzise wiedergegeben. Die Untertitel sind optimiert für bessere Zugänglichkeit und Verständnis.",
+        "startTime": 20,
+        "endTime": 25,
+        "position": "bottom",
+        "style": "standard"
+      }
+    ],
+    "platform": "youtube",
+    "language": "de",
+    "style": "standard",
+    "wordCount": 166,
+    "characterCount": 1168,
+    "generatedAt": "2025-11-25T17:35:59.401Z",
+    "options": {
+      "platform": "youtube"
+    }
+  },
+  "timestamp": "2025-11-25T17:35:59.403Z"
+}

@@ -1,0 +1,11 @@
+{
+  "publisher": {
+    "name": "Test Publisher"
+  },
+  "book": {
+    "title": "Test Book"
+  },
+  "accepted": true,
+  "acceptedAt": "2025-09-09T07:38:47.354Z",
+  "status": "accepted"
+}

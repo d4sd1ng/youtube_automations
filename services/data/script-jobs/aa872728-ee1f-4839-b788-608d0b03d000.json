@@ -1,0 +1,90 @@
+{
+  "id": "aa872728-ee1f-4839-b788-608d0b03d000",
+  "type": "script-generation",
+  "status": "completed",
+  "topic": "KI und Datenschutz: Wie schützen TikTok und Instagram persönliche Daten?",
+  "options": {
+    "scriptType": "long-form",
+    "duration": 600
+  },
+  "progress": {
+    "currentStage": "generating",
+    "stageProgress": 100,
+    "overallProgress": 100,
+    "completedStages": []
+  },
+  "metadata": {
+    "startedAt": "2025-11-24T21:20:42.287Z",
+    "estimatedDuration": 30000,
+    "completedAt": "2025-11-24T21:20:44.820Z"
+  },
+  "logs": [
+    {
+      "timestamp": "2025-11-24T21:20:42.288Z",
+      "level": "info",
+      "message": "Starting script generation for topic: KI und Datenschutz: Wie schützen TikTok und Instagram persönliche Daten?"
+    },
+    {
+      "timestamp": "2025-11-24T21:20:42.289Z",
+      "level": "info",
+      "message": "Analyzing topic and requirements..."
+    },
+    {
+      "timestamp": "2025-11-24T21:20:42.797Z",
+      "level": "info",
+      "message": "Generating content structure..."
+    },
+    {
+      "timestamp": "2025-11-24T21:20:43.808Z",
+      "level": "info",
+      "message": "Creating detailed script content..."
+    },
+    {
+      "timestamp": "2025-11-24T21:20:44.820Z",
+      "level": "info",
+      "message": "Script generation completed successfully"
+    }
+  ],
+  "result": {
+    "id": "3c4c4b11-7b37-4db3-a8ab-8f7e79e485ad",
+    "topic": "KI und Datenschutz: Wie schützen TikTok und Instagram persönliche Daten?",
+    "title": "Alles über KI und Datenschutz: Wie schützen TikTok und Instagram persönliche Daten?",
+    "summary": "Ein umfassender Leitfaden zu KI und Datenschutz: Wie schützen TikTok und Instagram persönliche Daten?",
+    "scriptType": "long-form",
+    "typeName": "Langform-Video",
+    "estimatedDuration": 600,
+    "chapters": [
+      {
+        "id": "intro",
+        "title": "Einleitung",
+        "content": "Willkommen zu diesem Video über KI und Datenschutz: Wie schützen TikTok und Instagram persönliche Daten?. Heute werden wir uns eingehend mit diesem Thema beschäftigen."
+      },
+      {
+        "id": "main",
+        "title": "Hauptteil",
+        "content": "Im Hauptteil werden wir die wichtigsten Aspekte von KI und Datenschutz: Wie schützen TikTok und Instagram persönliche Daten? behandeln."
+      },
+      {
+        "id": "conclusion",
+        "title": "Fazit",
+        "content": "Zusammenfassend lässt sich sagen, dass KI und Datenschutz: Wie schützen TikTok und Instagram persönliche Daten? ein wichtiges Thema ist."
+      }
+    ],
+    "keyPoints": [
+      "Wichtigste Erkenntnisse über KI und Datenschutz: Wie schützen TikTok und Instagram persönliche Daten?",
+      "Praktische Anwendungen",
+      "Zukünftige Entwicklungen"
+    ],
+    "keywords": [
+      "KI und Datenschutz: Wie schützen TikTok und Instagram persönliche Daten?",
+      "KI und Datenschutz: Wie schützen TikTok und Instagram persönliche Daten? Erklärung",
+      "KI und Datenschutz: Wie schützen TikTok und Instagram persönliche Daten? Tutorial"
+    ],
+    "callToAction": "Wenn Ihnen dieses Video gefallen hat, abonnieren Sie unseren Kanal und aktivieren Sie die Glocke.",
+    "createdAt": "2025-11-24T21:20:44.819Z",
+    "options": {
+      "scriptType": "long-form",
+      "duration": 600
+    }
+  }
+}
