@@ -1,4 +1,4 @@
-gentenclass PipelineOrchestrator {
+class PipelineOrchestrator {
   constructor(options = {}) {
     this.agentPool = options.agentPool || null;
     this.scriptService = options.scriptService || null;

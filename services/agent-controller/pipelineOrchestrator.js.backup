@@ -1,4 +1,4 @@
-gentenclass PipelineOrchestrator {
+class PipelineOrchestrator {
   constructor(options = {}) {
     this.agentPool = options.agentPool || null;
     this.scriptService = options.scriptService || null;
@@ -55,7 +55,7 @@ gentenclass PipelineOrchestrator {
       // Step 1: Scrape content using WebScrapingAgent
       const scrapedContent = await this.scrapeContent(pipeline);
       
-      // Step 2: Identify most viewed content\n      const mostViewedVideo = this.identifyMostViewedContent(scrapedContent);\n\n      // Step 3: Analyze content
+      // Step 2: Analyze content
       const analyzedContent = await this.analyzeContent(scrapedContent, pipeline);
       
       // Step 3: Generate scripts (if requested)
@@ -86,19 +86,6 @@ gentenclass PipelineOrchestrator {
       let translatedContent = null;
       if (pipeline.config.translateContent) {
         translatedContent = await this.translateContent(analyzedContent, pipeline);
-      }
-      
-      // Quality check for shorts content
-      for (let i = 0; i < shortsContent.length; i++) {
-        const shortContent = shortsContent[i];
-        const qualityReport = await this.qualityCheckVideo(shortContent, { channelId: pipeline.channelId });
-        
-        if (!qualityReport.approved) {
-          console.log( Short content quality check failed, requesting human approval for channel: ${pipeline.channelName});
-          await this.requestHumanApproval(shortContent, 'short', { channelId: pipeline.channelId, priority: 'high' });
-        } else {
-          console.log( Short content passed quality check for channel: ${pipeline.channelName});
-        }
       }
       
       // Compile results
@@ -169,54 +156,6 @@ gentenclass PipelineOrchestrator {
   async executeDailyShortsPipeline(pipelineId) {
     const pipeline = this.pipelines.get(pipelineId);
     if (!pipeline) {
-      throw new Error(Pipeline ${pipelineId} not found);
-    }
-    
-    try {
-      pipeline.status = 'running';
-      pipeline.startedAt = new Date().toISOString();
-      this.pipelines.set(pipelineId, pipeline);
-      
-      console.log( Executing daily shorts pipeline ${pipelineId} for channel: ${pipeline.channelName});
-      
-      // Step 1: Scrape trending content for shorts
-      const scrapedContent = await this.scrapeShortsContent(pipeline);
-      
-      // Step 2: Select best content for conversion to shorts
-      const selectedContent = await this.selectBestShortsContent(scrapedContent, pipeline);
-      
-      // Step 3: Convert long-form content to shorts format
-      const shortsContent = await this.convertToShorts(selectedContent, pipeline);
-      
-      // Step 4: Generate thumbnails with KI integration (Whisk AI/WAN 2.2)
-      let thumbnails = null;
-      if (pipeline.config.generateThumbnails) {
-        thumbnails = await this.generateShortsThumbnails(shortsContent, pipeline);
-        
-        // Quality check for thumbnails
-        for (let i = 0; i < thumbnails.length; i++) {
-          const thumbnail = thumbnails[i];
-          const qualityReport = await this.qualityCheckThumbnail(thumbnail, { channelId: pipeline.channelId });
-          
-          if (!qualityReport.approved) {
-            console.log( Thumbnail quality check failed, requesting human approval for channel: ${pipeline.channelName});
-            await this.requestHumanApproval(thumbnail, 'thumbnail', { channelId: pipeline.channelId, priority: 'high' });
-          } else {
-            console.log( Thumbnail passed quality check for channel: ${pipeline.channelName});
-          }
-        }
-      }
-      
-      // Step 5: Optimize for SEO
-      let seoOptimization = null;
-      if (pipeline.config.optimizeSEO) {
-        seoOptimization = await this.optimizeShortsSEO(shortsContent, pipeline);
-      }
-      
-      // Step 6: Schedule publication
-      const scheduledPublication = await this.scheduleShortsPublication(shortsContent, pipeline);
-    const pipeline = this.pipelines.get(pipelineId);
-    if (!pipeline) {
       throw new Error(`Pipeline ${pipelineId} not found`);
     }
     
@@ -250,19 +189,6 @@ gentenclass PipelineOrchestrator {
       
       // Step 6: Schedule publication
       const scheduledPublication = await this.scheduleShortsPublication(shortsContent, pipeline);
-      
-      // Quality check for shorts content
-      for (let i = 0; i < shortsContent.length; i++) {
-        const shortContent = shortsContent[i];
-        const qualityReport = await this.qualityCheckVideo(shortContent, { channelId: pipeline.channelId });
-        
-        if (!qualityReport.approved) {
-          console.log( Short content quality check failed, requesting human approval for channel: ${pipeline.channelName});
-          await this.requestHumanApproval(shortContent, 'short', { channelId: pipeline.channelId, priority: 'high' });
-        } else {
-          console.log( Short content passed quality check for channel: ${pipeline.channelName});
-        }
-      }
       
       // Compile results
       const results = {
@@ -345,7 +271,7 @@ gentenclass PipelineOrchestrator {
       // Step 1: Scrape content for long-form video
       const scrapedContent = await this.scrapeLongContent(pipeline);
       
-      // Step 2: Identify most viewed content\n      const mostViewedVideo = this.identifyMostViewedContent(scrapedContent);\n\n      // Step 3: Analyze content
+      // Step 2: Analyze content
       const analyzedContent = await this.analyzeContent(scrapedContent, pipeline);
       
       // Step 3: Generate comprehensive script
@@ -375,19 +301,6 @@ gentenclass PipelineOrchestrator {
         shortSEO = await this.optimizeShortSEO(shortCopy, pipeline);
       }
       
-      // Quality check for shorts content
-      for (let i = 0; i < shortsContent.length; i++) {
-        const shortContent = shortsContent[i];
-        const qualityReport = await this.qualityCheckVideo(shortContent, { channelId: pipeline.channelId });
-        
-        if (!qualityReport.approved) {
-          console.log( Short content quality check failed, requesting human approval for channel: ${pipeline.channelName});
-          await this.requestHumanApproval(shortContent, 'short', { channelId: pipeline.channelId, priority: 'high' });
-        } else {
-          console.log( Short content passed quality check for channel: ${pipeline.channelName});
-        }
-      }
-      
       // Compile results
       const results = {
         pipelineId,
@@ -402,7 +315,7 @@ gentenclass PipelineOrchestrator {
         thumbnails,
         seoOptimization,
         shortCopy,
-        shortSEO,\n        mostViewedVideo, // Meistgesehenes Video
+        shortSEO,
         completedAt: new Date().toISOString(),
         duration: Date.now() - new Date(pipeline.startedAt).getTime()
       };
@@ -863,8 +776,8 @@ gentenclass PipelineOrchestrator {
     
     // Optimize long-form content for maximum reach
     const seoOptimization = {
-      title: `${mostViewedVideo.title} | ${pipeline.channelName} Wochenanalyse`,
-      description: mostViewedVideo.description,
+      title: `${videoContent.title} | ${pipeline.channelName} Wochenanalyse`,
+      description: videoContent.description,
       tags: videoContent.tags,
       suggestedKeywords: [pipeline.channelName, `lange ${pipeline.channelName} Analyse`, `wöchentliche ${pipeline.channelName} Übersicht`],
       engagementOptimization: {
@@ -983,19 +896,19 @@ gentenclass PipelineOrchestrator {
   }
   
   async createOneToOneShortCopy(mostViewedVideo, pipeline) {
-    console.log(`🔄 Creating 1:1 short copy of most viewed video for channel: ${pipeline.channelName}`);
+    console.log(`🔄 Creating 1:1 short copy for channel: ${pipeline.channelName}`);
     
     // Create 1:1 copy of long-form content as short
     const shortCopy = {
       id: `${pipeline.pipelineId}_short_copy`,
       originalContent: mostViewedVideo,
-      title: `Kurz & Knackig: ${mostViewedVideo.title.substring(0, 50)}...`,
-      description: `Die wichtigsten Erkenntnisse aus unserem meistgesehenen Video. ${mostViewedVideo.description.substring(0, 100)}...`,
+      title: `Kurz & Knackig: ${videoContent.title.substring(0, 50)}...`,
+      description: `Die wichtigsten Erkenntnisse aus unserem Lang-Form-Video. ${videoContent.description.substring(0, 100)}...`,
       duration: '0:45-1:00', // Shorts format
       format: 'vertical', // 9:16 aspect ratio
       suggestedHashtags: [`#${pipeline.channelName}`, '#Shorts', '#Zusammenfassung'],
       targetPlatform: 'YouTube Shorts',
-      keyPoints: mostViewedVideo.chapters ? mostViewedVideo.chapters.map(ch => ch.title) : ['Hauptthemen der Woche']
+      keyPoints: videoContent.chapters ? videoContent.chapters.map(ch => ch.title) : ['Hauptthemen der Woche']
     };
     
     console.log(`✅ 1:1 short copy created for ${pipeline.channelName}`);
@@ -1610,148 +1523,6 @@ gentenclass PipelineOrchestrator {
     } catch (error) {
       console.error(`❌ Failed to execute weekly long-form pipeline ${job.pipelineId}:`, error);
       return { jobId, error: error.message, success: false };
-    }
-  }
-}
-  // Quality check methods for automatic validation before publication
-  async qualityCheckScript(scriptContent, options = {}) {
-    console.log( Performing script quality check for channel: $${options.channelId || 'unknown'});
-    
-    if (!this.contentApprovalAgent) {
-      throw new Error('ContentApprovalAgent not configured');
-    }
-    
-    try {
-      const qualityReport = await this.contentApprovalAgent.execute({
-        type: 'script',
-        content: scriptContent,
-        channelId: options.channelId,
-        approvalType: 'automatic'
-      });
-      
-      console.log( Script quality check completed for $${options.channelId || 'unknown'});
-      return qualityReport;
-    } catch (error) {
-      console.error( Script quality check failed for $${options.channelId || 'unknown'}:, error);
-      throw error;
-    }
-  }
-  
-  async qualityCheckVideo(videoContent, options = {}) {
-    console.log( Performing video quality check for channel: $${options.channelId || 'unknown'});
-    
-    if (!this.contentApprovalAgent) {
-      throw new Error('ContentApprovalAgent not configured');
-    }
-    
-    try {
-      const qualityReport = await this.contentApprovalAgent.execute({
-        type: 'video',
-        content: videoContent,
-        channelId: options.channelId,
-        approvalType: 'automatic'
-      });
-      
-      console.log( Video quality check completed for $${options.channelId || 'unknown'});
-      return qualityReport;
-    } catch (error) {
-      console.error( Video quality check failed for $${options.channelId || 'unknown'}:, error);
-      throw error;
-    }
-  }
-  
-  async qualityCheckThumbnail(thumbnailContent, options = {}) {
-    console.log( Performing thumbnail quality check for channel: $${options.channelId || 'unknown'});
-    
-    if (!this.contentApprovalAgent) {
-      throw new Error('ContentApprovalAgent not configured');
-    }
-    
-    try {
-      const qualityReport = await this.contentApprovalAgent.execute({
-        type: 'thumbnail',
-        content: thumbnailContent,
-        channelId: options.channelId,
-        approvalType: 'automatic'
-      });
-      
-      console.log( Thumbnail quality check completed for $${options.channelId || 'unknown'});
-      return qualityReport;
-    } catch (error) {
-      console.error( Thumbnail quality check failed for $${options.channelId || 'unknown'}:, error);
-      throw error;
-    }
-  }
-  
-  async requestHumanApproval(content, contentType, options = {}) {
-    console.log( Requesting human approval for $${contentType} content on channel: $${options.channelId || 'unknown'});
-    
-    if (!this.contentApprovalAgent) {
-      throw new Error('ContentApprovalAgent not configured');
-    }
-    
-    try {
-      const approvalRequest = await this.contentApprovalAgent.execute({
-        type: 'approval_request',
-        content: content,
-        contentType: contentType,
-        channelId: options.channelId,
-        priority: options.priority || 'normal',
-        deadline: options.deadline || new Date(Date.now() + 24 * 60 * 60 * 1000) // 24 hours default
-      });
-      
-      console.log( Human approval requested for $${contentType} on $${options.channelId || 'unknown'});
-      return approvalRequest;
-    } catch (error) {
-      console.error( Failed to request human approval for $${contentType} on $${options.channelId || 'unknown'}:, error);
-      throw error;
-    }
-  }
-  
-  // Avatar generation methods
-  async generateAvatar(avatarConfig, options = {}) {
-    console.log( Generating avatar for channel: $${options.channelId || 'unknown'});
-    
-    // Check if AvatarGenerationAgent is available
-    const avatarAgent = this.agentPool.getAgent('AvatarGenerationAgent');
-    if (!avatarAgent) {
-      throw new Error('AvatarGenerationAgent not available');
-    }
-    
-    try {
-      const avatarJob = await avatarAgent.execute({
-        type: 'create-avatar',
-        config: avatarConfig
-      });
-      
-      console.log( Avatar generation job started for $${options.channelId || 'unknown'});
-      return avatarJob;
-    } catch (error) {
-      console.error( Avatar generation failed for $${options.channelId || 'unknown'}:, error);
-      throw error;
-    }
-  }
-  
-  async getAvatarStatus(avatarId, options = {}) {
-    console.log( Checking avatar status: $${avatarId});
-    
-    // Check if AvatarGenerationAgent is available
-    const avatarAgent = this.agentPool.getAgent('AvatarGenerationAgent');
-    if (!avatarAgent) {
-      throw new Error('AvatarGenerationAgent not available');
-    }
-    
-    try {
-      const status = await avatarAgent.execute({
-        type: 'get-job-status',
-        jobId: avatarId
-      });
-      
-      console.log( Avatar status retrieved: $${avatarId});
-      return status;
-    } catch (error) {
-      console.error( Failed to get avatar status: $${avatarId}:, error);
-      throw error;
     }
   }
 }
