@@ -1,0 +1,16 @@
+{
+  \ name\: \web-scraping-agent\,
+  \version\: \1.0.0\,
+  \description\: \Python-based Web Scraping Agent\,
+  \main\: \app.py\,
+  \scripts\: {
+    \start\: \python app.py\
+  },
+  \dependencies\: {
+    \flask\: \^2.0.0\,
+    \requests\: \^2.25.0\,
+    \beautifulsoup4\: \^4.9.0\,
+    \selenium\: \^4.0.0\,
+    \numpy\: \^1.20.0\
+  }
+}
