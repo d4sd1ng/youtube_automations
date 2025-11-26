@@ -101,7 +101,7 @@ CONFIG = {
 def health_check():
     """Health check endpoint"""
     return jsonify({
-        "status": "healthy", 
+        "status": "healthy",
         "service": "Thumbnail Generation Python Agent",
         "version": "1.0.0"
     }), 200
@@ -111,7 +111,7 @@ def generate_thumbnail():
     """Generate a thumbnail with text overlay"""
     try:
         data = request.get_json()
-        
+
         # Extract parameters
         title = data.get('title', 'Default Title')
         subtitle = data.get('subtitle', '')
@@ -120,29 +120,29 @@ def generate_thumbnail():
         background_color = data.get('backgroundColor', CONFIG['colors']['background'])
         text_color = data.get('textColor', CONFIG['colors']['secondary'])
         accent_color = data.get('accentColor', CONFIG['colors']['primary'])
-        
+
         # Get canvas dimensions
         dimensions = CONFIG['dimensions'].get(platform, CONFIG['dimensions']['standard'])
-        
+
         # Create image
         img = Image.new('RGB', (dimensions['width'], dimensions['height']), background_color)
         draw = ImageDraw.Draw(img)
-        
+
         # Apply template-specific styling
         template_config = CONFIG['templates'].get(template)
         if template_config:
             apply_template_styling(draw, dimensions, template_config, accent_color)
-        
+
         # Draw text
         draw_text(draw, dimensions, title, subtitle, text_color)
-        
+
         # Generate output path
         thumbnail_id = str(uuid.uuid4())
         output_path = os.path.join(GENERATED_DIR, f"{thumbnail_id}.png")
-        
+
         # Save the thumbnail
         img.save(output_path, 'PNG')
-        
+
         # Create thumbnail record
         thumbnail_record = {
             'id': thumbnail_id,
@@ -154,12 +154,12 @@ def generate_thumbnail():
             'path': output_path,
             'createdAt': datetime.now().isoformat()
         }
-        
+
         # Save thumbnail metadata
         save_thumbnail(thumbnail_record)
-        
+
         logger.info(f"Thumbnail generated successfully: {thumbnail_id}")
-        
+
         return jsonify({
             "message": "Thumbnail generated successfully",
             "thumbnailId": thumbnail_id,
@@ -178,9 +178,9 @@ def generate_multiple_thumbnails():
         subtitle = data.get('subtitle', '')
         templates = data.get('templates', ['boldMinimal', 'cinematic', 'gradientImpact'])
         platform = data.get('platform', 'youtube')
-        
+
         logger.info(f"Generating {len(templates)} thumbnails")
-        
+
         # Generate multiple thumbnails
         thumbnails = []
         for template in templates:
@@ -189,22 +189,22 @@ def generate_multiple_thumbnails():
                 dimensions = CONFIG['dimensions'].get(platform, CONFIG['dimensions']['standard'])
                 img = Image.new('RGB', (dimensions['width'], dimensions['height']), CONFIG['colors']['background'])
                 draw = ImageDraw.Draw(img)
-                
+
                 # Apply template-specific styling
                 template_config = CONFIG['templates'].get(template)
                 if template_config:
                     apply_template_styling(draw, dimensions, template_config, CONFIG['colors']['primary'])
-                
+
                 # Draw text
                 draw_text(draw, dimensions, title, subtitle, CONFIG['colors']['secondary'])
-                
+
                 # Generate output path
                 thumbnail_id = str(uuid.uuid4())
                 output_path = os.path.join(GENERATED_DIR, f"{thumbnail_id}.png")
-                
+
                 # Save the thumbnail
                 img.save(output_path, 'PNG')
-                
+
                 # Create thumbnail record
                 thumbnail_record = {
                     'id': thumbnail_id,
@@ -216,17 +216,17 @@ def generate_multiple_thumbnails():
                     'path': output_path,
                     'createdAt': datetime.now().isoformat()
                 }
-                
+
                 # Save thumbnail metadata
                 save_thumbnail(thumbnail_record)
-                
+
                 thumbnails.append(thumbnail_record)
             except Exception as e:
                 logger.error(f"Error generating thumbnail with template {template}: {str(e)}")
                 continue
-        
+
         logger.info(f"Generated {len(thumbnails)} thumbnails successfully")
-        
+
         return jsonify({
             "message": "Thumbnails generated successfully",
             "thumbnails": thumbnails
@@ -242,9 +242,9 @@ def get_thumbnail(thumbnail_id):
         thumbnail = load_thumbnail(thumbnail_id)
         if not thumbnail:
             return jsonify({"error": "Thumbnail not found"}), 404
-        
+
         logger.info(f"Thumbnail retrieved: {thumbnail_id}")
-        
+
         return jsonify({
             "message": "Thumbnail retrieved successfully",
             "thumbnail": thumbnail
@@ -258,9 +258,9 @@ def list_thumbnails():
     """List all thumbnails"""
     try:
         thumbnails = load_all_thumbnails()
-        
+
         logger.info(f"Retrieved {len(thumbnails)} thumbnails")
-        
+
         return jsonify({
             "message": "Thumbnails retrieved successfully",
             "thumbnails": thumbnails
@@ -287,16 +287,16 @@ def apply_template_styling(draw, dimensions, template_config, accent_color):
     if template_config['name'] == 'Gradient Impact':
         # For simplicity, we'll draw a rectangle with the primary color
         draw.rectangle([0, 0, dimensions['width'], dimensions['height']], fill=CONFIG['colors']['primary'])
-    
+
     # Apply cinematic overlay for cinematic template
     if template_config['name'] == 'Cinematic Design':
         # For simplicity, we'll draw a dark overlay
         draw.rectangle([0, 0, dimensions['width'], dimensions['height']], fill="#333333")
-    
+
     # Add accent elements for bold minimal template
     if template_config['name'] == 'Bold Minimal':
         draw.rectangle([
-            dimensions['width'] * 0.1, 
+            dimensions['width'] * 0.1,
             dimensions['height'] * 0.85,
             dimensions['width'] * 0.9,
             dimensions['height'] * 0.85 + 8
@@ -307,26 +307,26 @@ def draw_text(draw, dimensions, title, subtitle, text_color):
     try:
         # For simplicity, we'll use default fonts
         # In a production environment, you would load specific fonts
-        
+
         # Draw title (centered)
         title_bbox = draw.textbbox((0, 0), title)
         title_width = title_bbox[2] - title_bbox[0]
         title_height = title_bbox[3] - title_bbox[1]
-        
+
         title_x = (dimensions['width'] - title_width) / 2
         title_y = (dimensions['height'] / 2) - (title_height / 2)
-        
+
         draw.text((title_x, title_y), title, fill=text_color)
-        
+
         # Draw subtitle if provided (below title)
         if subtitle:
             subtitle_bbox = draw.textbbox((0, 0), subtitle)
             subtitle_width = subtitle_bbox[2] - subtitle_bbox[0]
             subtitle_height = subtitle_bbox[3] - subtitle_bbox[1]
-            
+
             subtitle_x = (dimensions['width'] - subtitle_width) / 2
             subtitle_y = title_y + title_height + 20  # 20 pixels below title
-            
+
             draw.text((subtitle_x, subtitle_y), subtitle, fill=text_color)
     except Exception as e:
         logger.error(f"Error drawing text: {str(e)}")

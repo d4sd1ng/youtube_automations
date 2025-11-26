@@ -1,84 +1,125 @@
-from flask import Flask, jsonify, request
+import os
 import json
-import base64
+import uuid
 import logging
-from PIL import Image
-import io
+import asyncio
+import aiohttp
+from datetime import datetime
+from flask import Flask, jsonify, request
+import boto3
+from botocore.exceptions import NoCredentialsError
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# Configuration
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, '../../data/avatars')
+MODELS_DIR = os.path.join(BASE_DIR, '../../data/avatar-models')
+TEMP_DIR = os.path.join(BASE_DIR, '../../data/temp/avatar-processing')
+OUTPUT_DIR = os.path.join(BASE_DIR, '../../data/avatar-output')
+TEMPLATES_DIR = os.path.join(BASE_DIR, '../../data/templates')
+
+# Create directories if they don't exist
+os.makedirs(DATA_DIR, exist_ok=True)
+os.makedirs(MODELS_DIR, exist_ok=True)
+os.makedirs(TEMP_DIR, exist_ok=True)
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+os.makedirs(TEMPLATES_DIR, exist_ok=True)
+
+# Processing queue and workers
+processing_queue = []
+active_jobs = {}
+max_concurrent_jobs = 2
+
+# AWS S3 integration for cloud storage
+s3_client = None
+use_s3 = False
+s3_bucket = None
+
+# Try to initialize AWS S3 client
+try:
+    if os.environ.get('AWS_ACCESS_KEY_ID') and os.environ.get('AWS_SECRET_ACCESS_KEY'):
+        s3_client = boto3.client(
+            's3',
+            aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
+            aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
+            region_name=os.environ.get('AWS_REGION', 'eu-central-1')
+        )
+        use_s3 = True
+        s3_bucket = os.environ.get('AWS_S3_BUCKET')
+except Exception as e:
+    logger.warning(f"AWS S3 initialization failed: {str(e)}")
+
+# CDN configuration for fast delivery
+cdn_base_url = os.environ.get('CDN_BASE_URL')
+
+# Avatar types with detailed specifications
+avatar_types = {
+    'head_only': {
+        'name': 'Kopf-Avatar',
+        'description': 'Realistischer Avatar nur mit Kopf und Schultern',
+        'estimatedTime': 120000,  # 2 minutes in ms
+        'resolution': '1080x1080',
+        'features': ['lip_sync', 'facial_expressions', 'head_movement'],
+        'price': 49.99
+    },
+    'upper_body': {
+        'name': 'Oberkörper-Avatar',
+        'description': 'Avatar mit Kopf, Schultern und Oberkörper',
+        'estimatedTime': 180000,  # 3 minutes in ms
+        'resolution': '1920x1080',
+        'features': ['lip_sync', 'facial_expressions', 'head_movement', 'hand_gestures', 'upper_body_movement'],
+        'price': 79.99
+    },
+    'full_person': {
+        'name': 'Vollkörperform-Avatar',
+        'description': 'Vollständiger Avatar mit allen Bewegungsmöglichkeiten',
+        'estimatedTime': 300000,  # 5 minutes in ms
+        'resolution': '1920x1080',
+        'features': ['lip_sync', 'facial_expressions', 'full_body_movement', 'hand_gestures', 'object_interaction'],
+        'price': 129.99
+    }
+}
+
+# Voice options for avatar speech
+voice_options = {
+    'de-DE': {
+        'male': ['Hans', 'Stefan', 'Klaus'],
+        'female': ['Anna', 'Julia', 'Sarah']
+    },
+    'en-US': {
+        'male': ['John', 'Michael', 'David'],
+        'female': ['Emma', 'Olivia', 'Sophia']
+    }
+}
+
+# Model status tracking
+model_status = {
+    'lip_sync': 'available',
+    'facial_expressions': 'available',
+    'head_movement': 'available',
+    'hand_gestures': 'available',
+    'full_body_movement': 'available',
+    'object_interaction': 'training'
+}
 
 # Health check endpoint
 @app.route('/health', methods=['GET'])
 def health_check():
     """Health check endpoint"""
     logger.info("Health check requested")
-    return jsonify({"status": "healthy", "service": "avatar-generation-agent"}), 200
+    return jsonify({
+        "status": "healthy",
+        "service": "Avatar Generation Agent",
+        "version": "1.0.0"
+    }), 200
 
-# Customize avatar
-@app.route('/customize-avatar', methods=['POST'])
-def customize_avatar():
-    """Customize existing avatar"""
-    try:
-        data = request.get_json()
-
-        # Validate input data
-        if not data or 'avatar_id' not in data:
-            return jsonify({"error": "Missing avatar_id in request"}), 400
-
-        avatar_id = data['avatar_id']
-        customizations = data.get('customizations', {})
-
-        # In a real implementation, this would modify an existing avatar
-        # For now, we'll return a sample response
-        updated_avatar = {
-            "avatar_id": avatar_id,
-            "updated_features": customizations,
-            "timestamp": "2025-11-26T10:30:00Z"
-        }
-
-        logger.info("Avatar customization completed")
-        return jsonify({
-            "message": "Avatar customization successful",
-            "avatar": updated_avatar
-        }), 200
-
-    except Exception as e:
-        logger.error(f"Error in avatar customization: {str(e)}")
-        return jsonify({"error": f"Avatar customization failed: {str(e)}"}), 500
-
-# Render avatar
-@app.route('/render-avatar', methods=['POST'])
-def render_avatar():
-    """Render avatar as image"""
-    try:
-        data = request.get_json()
-
-        # Validate input data
-        if not data or 'avatar_spec' not in data:
-            return jsonify({"error": "Missing avatar_spec in request"}), 400
-
-        avatar_spec = data['avatar_spec']
-        # In a real implementation, this would render the avatar as an image
-        # For now, we'll return a sample response with base64 encoded dummy image
-        dummy_image = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
-
-        logger.info("Avatar rendering completed")
-        return jsonify({
-            "message": "Avatar rendering successful",
-            "image_data": dummy_image,
-            "format": "png"
-        }), 200
-
-    except Exception as e:
-        logger.error(f"Error in avatar rendering: {str(e)}")
-        return jsonify({"error": f"Avatar rendering failed: {str(e)}"}), 500
-
-# Generate avatar with training (neuer Endpunkt für KI-Avatar-Erstellung)
-@app.route('/generate-avatar', methods=['POST'])
-def generate_avatar_with_training():
-    """Generate avatar with training for KI-Avatar creation"""
+# Create avatar endpoint
+@app.route('/create-avatar', methods=['POST'])
+def create_avatar():
+    """Create a new AI-avatar with specified parameters"""
     try:
         data = request.get_json()
 
@@ -86,240 +127,281 @@ def generate_avatar_with_training():
         if not data:
             return jsonify({"error": "Missing request data"}), 400
 
-        creation_type = data.get('creationType', 'new')
-        voice_option = data.get('voiceOption', 'existing')
-        gestures = data.get('gestures', 'with')
-        body_inclusion = data.get('bodyInclusion', 'full')
-        character = data.get('character', 'politician')
-        style = data.get('style', 'professional')
-        theme = data.get('theme', 'ai_and_politics')
-        customization = data.get('customization', {})
-        training = data.get('training', {})
-        user_data_session = data.get('userDataSession')
+        avatar_type = data.get('type', 'head_only')
+        name = data.get('name', 'Unbenannter Avatar')
+        voice_settings = data.get('voiceSettings', {})
+        appearance = data.get('appearance', {})
+        user_id = data.get('userId', 'anonymous')
 
-        # Generate unique IDs
-        import uuid
-        avatar_id = f"avtr_{uuid.uuid4().hex[:8]}"
-        training_job_id = f"train_{uuid.uuid4().hex[:8]}"
+        # Validate avatar type
+        if avatar_type not in avatar_types:
+            return jsonify({"error": f"Invalid avatar type. Supported types: {list(avatar_types.keys())}"}), 400
 
-        # Estimate training time based on parameters
-        training_samples = training.get('samples', 100)
-        optimization = training.get('optimization', 'quality')
+        # Generate avatar ID
+        avatar_id = f"avatar_{uuid.uuid4().hex[:12]}"
 
-        if optimization == 'quality':
-            estimated_time = "45-90 Minuten"
-        elif optimization == 'speed':
-            estimated_time = "15-30 Minuten"
-        else:
-            estimated_time = "30-60 Minuten"
-
-        # In a real implementation, this would start the avatar training process
-        # For now, we'll return a sample response
-        training_response = {
-            "avatarId": avatar_id,
-            "trainingJobId": training_job_id,
-            "creationType": creation_type,
-            "voiceOption": voice_option,
-            "gestures": gestures,
-            "bodyInclusion": body_inclusion,
-            "character": character,
-            "style": style,
-            "theme": theme,
-            "customization": customization,
-            "training": training,
-            "userDataSession": user_data_session,
-            "estimatedTrainingTime": estimated_time,
-            "status": "training_started",
-            "timestamp": datetime.datetime.now().isoformat()
+        # Create job
+        job = {
+            'id': avatar_id,
+            'type': avatar_type,
+            'name': name,
+            'status': 'queued',
+            'userId': user_id,
+            'config': {
+                'voiceSettings': voice_settings,
+                'appearance': appearance,
+                'templatePath': None
+            },
+            'progress': {
+                'currentStage': 'initialization',
+                'overallProgress': 0
+            },
+            'files': {
+                'workspacePath': os.path.join(TEMP_DIR, avatar_id),
+                'outputPath': os.path.join(OUTPUT_DIR, f"{avatar_id}.mp4"),
+                'modelPath': os.path.join(MODELS_DIR, avatar_type)
+            },
+            'logs': [],
+            'metadata': {
+                'created': datetime.now().isoformat(),
+                'estimatedDuration': avatar_types[avatar_type]['estimatedTime'],
+                'templateUsed': False
+            }
         }
 
-        logger.info(f"Avatar training started: {avatar_id}")
+        # Create workspace directory
+        os.makedirs(job['files']['workspacePath'], exist_ok=True)
+
+        # Add job to queue
+        processing_queue.append(job)
+        save_job(job)
+
+        logger.info(f"Avatar creation job queued: {avatar_id}")
+
+        # Start processing if we have capacity
+        if len(active_jobs) < max_concurrent_jobs:
+            asyncio.run(process_next_job())
+
         return jsonify({
-            "message": "Avatar training started successfully",
+            "message": "Avatar creation job started successfully",
             "avatarId": avatar_id,
-            "trainingJobId": training_job_id,
-            "estimatedTrainingTime": estimated_time
+            "estimatedTime": avatar_types[avatar_type]['estimatedTime'],
+            "queuePosition": len(processing_queue)
         }), 201
 
     except Exception as e:
-        logger.error(f"Error in avatar training: {str(e)}")
-        return jsonify({"error": f"Avatar training failed: {str(e)}"}), 500
+        logger.error(f"Error in avatar creation: {str(e)}")
+        return jsonify({"error": f"Avatar creation failed: {str(e)}"}), 500
 
-# Training status endpoint
-@app.route('/training-status/<training_job_id>', methods=['GET'])
-def get_training_status(training_job_id):
-    """Get avatar training status"""
+# Process avatar video endpoint
+@app.route('/process-video', methods=['POST'])
+def process_avatar_video():
+    """Process avatar video with lip sync and background removal"""
     try:
-        # In a real implementation, this would check the actual training progress
-        # For now, we'll simulate training progress
-        import random
-        import time
+        data = request.get_json()
 
-        # Simulate training completion after some time
-        progress = random.randint(70, 100)  # Simulate 70-100% progress
+        # Validate input data
+        if not data or 'avatarId' not in data:
+            return jsonify({"error": "Missing avatarId in request"}), 400
 
-        if progress >= 100:
-            status = "completed"
-            message = "Avatar training completed successfully"
-            avatar_url = f"/avatars/{training_job_id}/final_avatar.mp4"
-        elif progress >= 80:
-            status = "training"
-            message = "Finalizing avatar model"
-            avatar_url = None
-        elif progress >= 50:
-            status = "training"
-            message = "Training facial expressions and gestures"
-            avatar_url = None
+        avatar_id = data['avatarId']
+        text = data.get('text', '')
+        audio_file = data.get('audioFile', '')
+        output_path = data.get('outputPath', '')
+        background_image = data.get('backgroundImage', '')
+
+        # Generate job ID
+        job_id = f"video_{uuid.uuid4().hex[:8]}"
+
+        # Create video processing job
+        job = {
+            'id': job_id,
+            'type': 'video_processing',
+            'avatarId': avatar_id,
+            'status': 'queued',
+            'config': {
+                'text': text,
+                'audioFile': audio_file,
+                'outputPath': output_path,
+                'backgroundImage': background_image
+            },
+            'progress': {
+                'currentStage': 'initialization',
+                'overallProgress': 0
+            },
+            'logs': [],
+            'metadata': {
+                'created': datetime.now().isoformat(),
+                'estimatedDuration': 8000  # 8 seconds
+            }
+        }
+
+        # Add job to queue
+        processing_queue.append(job)
+        save_job(job)
+
+        logger.info(f"Video processing job queued: {job_id}")
+
+        # Start processing if we have capacity
+        if len(active_jobs) < max_concurrent_jobs:
+            asyncio.run(process_next_job())
+
+        return jsonify({
+            "message": "Video processing job started successfully",
+            "jobId": job_id,
+            "estimatedTime": 8000,
+            "queuePosition": len(processing_queue)
+        }), 201
+
+    except Exception as e:
+        logger.error(f"Error in video processing: {str(e)}")
+        return jsonify({"error": f"Video processing failed: {str(e)}"}), 500
+
+# Get job status endpoint
+@app.route('/job-status/<job_id>', methods=['GET'])
+def get_job_status(job_id):
+    """Get status of avatar creation or processing job"""
+    try:
+        job_file = os.path.join(DATA_DIR, f"{job_id}.json")
+        if os.path.exists(job_file):
+            with open(job_file, 'r') as f:
+                job = json.load(f)
+
+            # Add template information to response
+            if job.get('config', {}).get('templatePath'):
+                job['templateInfo'] = {
+                    'used': job['metadata'].get('templateUsed', False),
+                    'path': job['config']['templatePath'],
+                    'timeSaved': job['metadata'].get('templateUsed', False) and (
+                        avatar_types[job['type']]['estimatedTime'] - job['metadata'].get('estimatedDuration', 0)
+                    ) or 0
+                }
+
+            logger.info(f"Job status requested: {job_id}")
+            return jsonify(job), 200
         else:
-            status = "training"
-            message = "Training basic avatar model"
-            avatar_url = None
-
-        status_response = {
-            "trainingJobId": training_job_id,
-            "status": status,
-            "progress": progress,
-            "message": message,
-            "avatarUrl": avatar_url,
-            "timestamp": datetime.datetime.now().isoformat()
-        }
-
-        logger.info(f"Training status requested: {training_job_id} - {progress}%")
-        return jsonify(status_response), 200
+            return jsonify({"error": "Job not found"}), 404
 
     except Exception as e:
-        logger.error(f"Error getting training status: {str(e)}")
-        return jsonify({"error": f"Failed to get training status: {str(e)}"}), 500
+        logger.error(f"Error getting job status: {str(e)}")
+        return jsonify({"error": f"Failed to get job status: {str(e)}"}), 500
 
-# Validate avatar quality
-@app.route('/validate-avatar', methods=['POST'])
-def validate_avatar():
-    """Validate avatar quality"""
+# List jobs endpoint
+@app.route('/list-jobs', methods=['GET'])
+def list_jobs():
+    """List all avatar creation jobs with optional filtering"""
     try:
-        data = request.get_json()
+        # Get filter parameters
+        status_filter = request.args.get('status')
+        type_filter = request.args.get('type')
 
-        # Validate input data
-        if not data or 'avatarId' not in data:
-            return jsonify({"error": "Missing avatarId in request"}), 400
+        # Read all job files
+        jobs = []
+        for filename in os.listdir(DATA_DIR):
+            if filename.endswith('.json'):
+                try:
+                    with open(os.path.join(DATA_DIR, filename), 'r') as f:
+                        job = json.load(f)
 
-        avatar_id = data['avatarId']
-        checks = data.get('checks', [])
+                    # Apply filters
+                    if status_filter and job.get('status') != status_filter:
+                        continue
+                    if type_filter and job.get('type') != type_filter:
+                        continue
 
-        # In a real implementation, this would perform actual quality checks
-        # For now, we'll simulate quality validation
-        import random
+                    jobs.append(job)
+                except Exception as e:
+                    logger.warning(f"Failed to read job file {filename}: {str(e)}")
 
-        # Simulate quality score based on checks
-        quality_score = random.randint(85, 95)
+        # Sort by creation date (newest first)
+        jobs.sort(key=lambda x: x['metadata']['created'], reverse=True)
 
-        # Simulate issues based on checks
-        issues = []
-        if 'visual_quality' in checks and quality_score < 90:
-            issues.append("Improve facial detail rendering")
-        if 'movement_naturalness' in checks and quality_score < 88:
-            issues.append("Adjust gesture fluidity")
-        if 'voice_sync' in checks and quality_score < 92:
-            issues.append("Fine-tune lip sync accuracy")
-        if 'expression_variety' in checks and quality_score < 89:
-            issues.append("Add more micro-expressions")
-
-        validation_response = {
-            "avatarId": avatar_id,
-            "qualityScore": quality_score,
-            "checks": checks,
-            "issues": issues,
-            "recommendations": [
-                "Run additional training iterations for better quality",
-                "Fine-tune facial expression parameters",
-                "Optimize gesture library"
-            ],
-            "timestamp": datetime.datetime.now().isoformat()
-        }
-
-        logger.info(f"Avatar validation completed: {avatar_id} - Score: {quality_score}")
+        logger.info(f"Listed {len(jobs)} jobs")
         return jsonify({
-            "message": "Avatar validation completed successfully",
-            "qualityScore": quality_score,
-            "issues": issues
+            "jobs": jobs,
+            "total": len(jobs)
         }), 200
 
     except Exception as e:
-        logger.error(f"Error in avatar validation: {str(e)}")
-        return jsonify({"error": f"Avatar validation failed: {str(e)}"}), 500
+        logger.error(f"Error listing jobs: {str(e)}")
+        return jsonify({"error": f"Failed to list jobs: {str(e)}"}), 500
 
-# Save avatar
-@app.route('/save-avatar', methods=['POST'])
-def save_avatar():
-    """Save avatar configuration"""
+# Get statistics endpoint
+@app.route('/stats', methods=['GET'])
+def get_stats():
+    """Get avatar generation statistics"""
     try:
-        data = request.get_json()
+        # Read all job files
+        all_jobs = []
+        for filename in os.listdir(DATA_DIR):
+            if filename.endswith('.json'):
+                try:
+                    with open(os.path.join(DATA_DIR, filename), 'r') as f:
+                        job = json.load(f)
+                        all_jobs.append(job)
+                except Exception as e:
+                    logger.warning(f"Failed to read job file {filename}: {str(e)}")
 
-        # Validate input data
-        if not data or 'avatarId' not in data:
-            return jsonify({"error": "Missing avatarId in request"}), 400
-
-        avatar_id = data['avatarId']
-        name = data.get('name', 'Unnamed Avatar')
-        description = data.get('description', '')
-        tags = data.get('tags', [])
-        is_default = data.get('isDefault', False)
-
-        # In a real implementation, this would save the avatar to a database
-        # For now, we'll return a sample response
-        save_response = {
-            "avatarId": avatar_id,
-            "name": name,
-            "description": description,
-            "tags": tags,
-            "isDefault": is_default,
-            "avatarUrl": f"/avatars/{avatar_id}/avatar_model.pkl",
-            "savedAt": datetime.datetime.now().isoformat()
+        # Calculate statistics
+        stats = {
+            'totalJobs': len(all_jobs),
+            'activeJobs': len(active_jobs),
+            'queueLength': len(processing_queue),
+            'modelStatus': model_status,
+            'jobsByStatus': {
+                'queued': len([j for j in all_jobs if j.get('status') == 'queued']),
+                'processing': len([j for j in all_jobs if j.get('status') == 'processing']),
+                'completed': len([j for j in all_jobs if j.get('status') == 'completed']),
+                'failed': len([j for j in all_jobs if j.get('status') == 'failed'])
+            },
+            'jobsByType': {
+                'head_only': len([j for j in all_jobs if j.get('type') == 'head_only']),
+                'upper_body': len([j for j in all_jobs if j.get('type') == 'upper_body']),
+                'full_person': len([j for j in all_jobs if j.get('type') == 'full_person'])
+            },
+            'averageProcessingTime': calculate_average_processing_time(all_jobs),
+            'supportedTypes': avatar_types,
+            'supportedVoices': voice_options
         }
 
-        logger.info(f"Avatar saved: {avatar_id}")
-        return jsonify({
-            "message": "Avatar saved successfully",
-            "avatarId": avatar_id,
-            "avatarUrl": save_response["avatarUrl"]
-        }), 200
+        logger.info("Statistics requested")
+        return jsonify(stats), 200
 
     except Exception as e:
-        logger.error(f"Error saving avatar: {str(e)}")
-        return jsonify({"error": f"Failed to save avatar: {str(e)}"}), 500
+        logger.error(f"Error getting statistics: {str(e)}")
+        return jsonify({"error": f"Failed to get statistics: {str(e)}"}), 500
 
-# Models status endpoint
-@app.route('/models-status', methods=['GET'])
-def get_models_status():
-    """Get status of required pre-trained models"""
+# Get available avatar types endpoint
+@app.route('/avatar-types', methods=['GET'])
+def get_avatar_types():
+    """Get list of available avatar types"""
     try:
-        # In a real implementation, this would check actual model files
-        # For now, we'll return sample data
-        required_models = [
-            "face_detection_model",
-            "facial_landmark_model",
-            "expression_recognition_model",
-            "voice_conversion_model",
-            "lip_sync_model",
-            "gesture_generation_model",
-            "body_pose_model"
-        ]
-
-        # Simulate some missing models
-        import random
-        missing_models = random.sample(required_models, 2) if random.random() > 0.5 else []
-
-        models_response = {
-            "requiredModels": required_models,
-            "missingModels": missing_models,
-            "availableModels": [model for model in required_models if model not in missing_models],
-            "timestamp": datetime.datetime.now().isoformat()
-        }
-
-        logger.info("Models status requested")
-        return jsonify(models_response), 200
-
+        logger.info("Avatar types requested")
+        return jsonify(avatar_types), 200
     except Exception as e:
-        logger.error(f"Error getting models status: {str(e)}")
+        logger.error(f"Error getting avatar types: {str(e)}")
+        return jsonify({"error": f"Failed to get avatar types: {str(e)}"}), 500
+
+# Get voice options endpoint
+@app.route('/voice-options', methods=['GET'])
+def get_voice_options():
+    """Get available voice options"""
+    try:
+        logger.info("Voice options requested")
+        return jsonify(voice_options), 200
+    except Exception as e:
+        logger.error(f"Error getting voice options: {str(e)}")
+        return jsonify({"error": f"Failed to get voice options: {str(e)}"}), 500
+
+# Get model status endpoint
+@app.route('/model-status', methods=['GET'])
+def get_model_status():
+    """Get status of pre-trained models"""
+    try:
+        logger.info("Model status requested")
+        return jsonify(model_status), 200
+    except Exception as e:
+        logger.error(f"Error getting model status: {str(e)}")
         return jsonify({"error": f"Failed to get models status: {str(e)}"}), 500
 
 # Download models endpoint
@@ -336,7 +418,6 @@ def download_models():
         priority = data.get('priority', 'normal')
 
         # Generate job ID
-        import uuid
         job_id = f"download_{uuid.uuid4().hex[:8]}"
 
         # In a real implementation, this would start actual downloads
@@ -347,7 +428,7 @@ def download_models():
             "priority": priority,
             "status": "started",
             "estimatedTime": f"{len(models_to_download) * 5}-10 Minuten",
-            "timestamp": datetime.datetime.now().isoformat()
+            "timestamp": datetime.now().isoformat()
         }
 
         logger.info(f"Model download job started: {job_id}")
@@ -369,7 +450,6 @@ def get_download_status(job_id):
         # In a real implementation, this would check actual download progress
         # For now, we'll simulate progress
         import random
-        import time
 
         # Simulate download completion
         progress = random.randint(80, 100)
@@ -386,7 +466,7 @@ def get_download_status(job_id):
             "status": status,
             "progress": progress,
             "message": message,
-            "timestamp": datetime.datetime.now().isoformat()
+            "timestamp": datetime.now().isoformat()
         }
 
         logger.info(f"Download status requested: {job_id} - {progress}%")
@@ -411,7 +491,6 @@ def upload_user_data():
         user_id = data.get('userId', 'anonymous')
 
         # Generate session ID
-        import uuid
         session_id = f"upload_{uuid.uuid4().hex[:8]}"
 
         # In a real implementation, this would handle actual file uploads
@@ -423,7 +502,7 @@ def upload_user_data():
             "userId": user_id,
             "status": "upload_started",
             "expectedFiles": len(files),
-            "timestamp": datetime.datetime.now().isoformat()
+            "timestamp": datetime.now().isoformat()
         }
 
         logger.info(f"User data upload session started: {session_id}")
@@ -454,7 +533,7 @@ def confirm_upload():
         confirm_response = {
             "sessionId": session_id,
             "status": status,
-            "confirmedAt": datetime.datetime.now().isoformat()
+            "confirmedAt": datetime.now().isoformat()
         }
 
         logger.info(f"User data upload confirmed: {session_id} - {status}")
@@ -467,6 +546,178 @@ def confirm_upload():
         logger.error(f"Error confirming user data upload: {str(e)}")
         return jsonify({"error": f"Failed to confirm user data upload: {str(e)}"}), 500
 
+# Helper functions
+def save_job(job):
+    """Save job data to file"""
+    try:
+        job_file = os.path.join(DATA_DIR, f"{job['id']}.json")
+        with open(job_file, 'w') as f:
+            json.dump(job, f, indent=2)
+    except Exception as e:
+        logger.error(f"Failed to save job {job['id']}: {str(e)}")
+
+def calculate_average_processing_time(jobs):
+    """Calculate average processing time for completed jobs"""
+    completed_jobs = [j for j in jobs if j.get('status') == 'completed' and 'metadata' in j and 'actualDuration' in j['metadata']]
+    if not completed_jobs:
+        return 0
+
+    total_time = sum(j['metadata']['actualDuration'] for j in completed_jobs)
+    return round(total_time / len(completed_jobs))
+
+async def process_next_job():
+    """Process the next job in the queue"""
+    if not processing_queue or len(active_jobs) >= max_concurrent_jobs:
+        return
+
+    # Get next job from queue
+    job = processing_queue.pop(0)
+    job_id = job['id']
+
+    # Mark as active
+    active_jobs[job_id] = job
+    job['status'] = 'processing'
+    job['metadata']['started'] = datetime.now().isoformat()
+    save_job(job)
+
+    try:
+        # Process based on job type
+        if job['type'] in avatar_types:
+            # Avatar creation job
+            await process_avatar_creation(job)
+        elif job['type'] == 'video_processing':
+            # Video processing job
+            await process_video_generation(job)
+
+        # Mark as completed
+        job['status'] = 'completed'
+        job['metadata']['completed'] = datetime.now().isoformat()
+        job['metadata']['actualDuration'] = (
+            datetime.fromisoformat(job['metadata']['completed']) -
+            datetime.fromisoformat(job['metadata']['started'])
+        ).total_seconds() * 1000
+
+    except Exception as e:
+        # Mark as failed
+        job['status'] = 'failed'
+        job['error'] = str(e)
+        job['metadata']['failed'] = datetime.now().isoformat()
+        logger.error(f"Job {job_id} failed: {str(e)}")
+
+    finally:
+        # Save final job state and remove from active jobs
+        save_job(job)
+        del active_jobs[job_id]
+
+        # Process next job if available
+        if processing_queue:
+            await process_next_job()
+
+async def process_avatar_creation(job):
+    """Process avatar creation job"""
+    job_id = job['id']
+    avatar_type = job['type']
+
+    # Update progress
+    job['progress']['currentStage'] = 'workspace_setup'
+    job['progress']['overallProgress'] = 10
+    save_job(job)
+
+    # Simulate workspace setup
+    await asyncio.sleep(2)
+
+    # Update progress
+    job['progress']['currentStage'] = 'model_loading'
+    job['progress']['overallProgress'] = 30
+    save_job(job)
+
+    # Simulate model loading
+    await asyncio.sleep(3)
+
+    # Update progress
+    job['progress']['currentStage'] = 'avatar_generation'
+    job['progress']['overallProgress'] = 70
+    save_job(job)
+
+    # Simulate avatar generation
+    estimated_time = avatar_types[avatar_type]['estimatedTime'] / 1000  # Convert to seconds
+    await asyncio.sleep(min(estimated_time, 10))  # Cap at 10 seconds for demo
+
+    # Update progress
+    job['progress']['currentStage'] = 'finalizing'
+    job['progress']['overallProgress'] = 90
+    save_job(job)
+
+    # Simulate finalizing
+    await asyncio.sleep(1)
+
+    # Complete
+    job['progress']['currentStage'] = 'completed'
+    job['progress']['overallProgress'] = 100
+    job['result'] = {
+        'avatarId': job_id,
+        'type': avatar_type,
+        'outputPath': job['files']['outputPath'],
+        'duration': estimated_time * 1000,  # Convert back to ms
+        'resolution': avatar_types[avatar_type]['resolution']
+    }
+    save_job(job)
+
+async def process_video_generation(job):
+    """Process video generation job"""
+    job_id = job['id']
+
+    # Update progress
+    job['progress']['currentStage'] = 'loading_avatar'
+    job['progress']['overallProgress'] = 10
+    save_job(job)
+
+    # Simulate loading avatar
+    await asyncio.sleep(1)
+
+    # Update progress
+    job['progress']['currentStage'] = 'processing_audio'
+    job['progress']['overallProgress'] = 30
+    save_job(job)
+
+    # Simulate audio processing
+    await asyncio.sleep(2)
+
+    # Update progress
+    job['progress']['currentStage'] = 'lip_sync_generation'
+    job['progress']['overallProgress'] = 60
+    save_job(job)
+
+    # Simulate lip sync generation
+    await asyncio.sleep(3)
+
+    # Update progress
+    job['progress']['currentStage'] = 'background_processing'
+    job['progress']['overallProgress'] = 80
+    save_job(job)
+
+    # Simulate background processing
+    await asyncio.sleep(1)
+
+    # Update progress
+    job['progress']['currentStage'] = 'finalizing'
+    job['progress']['overallProgress'] = 90
+    save_job(job)
+
+    # Simulate finalizing
+    await asyncio.sleep(1)
+
+    # Complete
+    job['progress']['currentStage'] = 'completed'
+    job['progress']['overallProgress'] = 100
+    job['result'] = {
+        'jobId': job_id,
+        'outputPath': job['config'].get('outputPath', f"{job_id}_output.mp4"),
+        'duration': 30000,  # 30 seconds
+        'resolution': '1920x1080',
+        'fileSize': '15.2 MB'
+    }
+    save_job(job)
+
 if __name__ == '__main__':
-    import datetime
     app.run(host='0.0.0.0', port=5000, debug=True)
