@@ -1,0 +1,24 @@
+{
+  "name": "@agents/rate-limiter",
+  "version": "1.0.0",
+  "description": "Central rate limiting service for all microservices with security headers",
+  "main": "rateLimiter.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "rate-limiting",
+    "security",
+    "microservices",
+    "express",
+    "middleware"
+  ],
+  "author": "d4sd1ng",
+  "license": "ISC",
+  "dependencies": {
+    "express-rate-limit": "^6.7.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "markets": {
+    "germany": {
+      "name": "Deutschland",
+      "publishingHouses": [
+        {
+          "id": "bertelsmann",
+          "name": "Bertelsmann AG",
+          "genres": ["fiction", "non-fiction", "business", "politics"],
+          "marketShare": 0.25
+        },
+        {
+          "id": "springer",
+          "name": "Springer Nature",
+          "genres": ["academic", "scientific", "technical"],
+          "marketShare": 0.15
+        },
+        {
+          "id": "piper",
+          "name": "Piper Verlag",
+          "genres": ["fiction", "literature", "biography"],
+          "marketShare": 0.10
+        }
+      ],
+      "averageBookPrice": {
+        "paperback": 12.99,
+        "hardcover": 24.99,
+        "ebook": 9.99
+      },
+      "readingHabits": {
+        "booksPerYear": 18.2,
+        "preferredFormats": ["paperback", "ebook"],
+        "popularGenres": ["fiction", "non-fiction", "crime", "sci-fi"]
+      }
+    },
+    "austria": {
+      "name": "Österreich",
+      "publishingHouses": [
+        {
+          "id": "residenz",
+          "name": "Residenz Verlag",
+          "genres": ["literature", "non-fiction", "politics"],
+          "marketShare": 0.12
+        },
+        {
+          "id": "picus",
+          "name": "Picus Verlag",
+          "genres": ["fiction", "crime", "fantasy"],
+          "marketShare": 0.08
+        }
+      ],
+      "averageBookPrice": {
+        "paperback": 14.99,
+        "hardcover": 26.99,
+        "ebook": 11.99
+      },
+      "readingHabits": {
+        "booksPerYear": 12.5,
+        "preferredFormats": ["paperback", "hardcover"],
+        "popularGenres": ["fiction", "non-fiction", "history", "crime"]
+      }
+    },
+    "switzerland": {
+      "name": "Schweiz",
+      "publishingHouses": [
+        {
+          "id": "kehlmann",
+          "name": "Kehlmann Verlag",
+          "genres": ["literature", "philosophy", "non-fiction"],
+          "marketShare": 0.05
+        }
+      ],
+      "averageBookPrice": {
+        "paperback": 16.99,
+        "hardcover": 29.99,
+        "ebook": 12.99
+      },
+      "readingHabits": {
+        "booksPerYear": 14.8,
+        "preferredFormats": ["paperback", "ebook"],
+        "popularGenres": ["literature", "non-fiction", "philosophy", "history"]
+      }
+    }
+  },
+  "global": {
+    "trends": {
+      "digitalGrowth": 0.15,
+      "printStability": 0.02,
+      "audioBooks": 0.25
+    },
+    "majorPublishers": [
+      {
+        "id": "penguin-random",
+        "name": "Penguin Random House",
+        "globalMarketShare": 0.20
+      },
+      {
+        "id": "harpercollins",
+        "name": "HarperCollins",
+        "globalMarketShare": 0.10
+      },
+      {
+        "id": "macmillan",
+        "name": "Macmillan Publishers",
+        "globalMarketShare": 0.08
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@agents/database",
+  "version": "1.0.0",
+  "description": "Zentraler Datenbankdienst für alle Microservices",
+  "main": "dbService.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "database",
+    "mongodb",
+    "microservices",
+    "persistence"
+  ],
+  "author": "d4sd1ng",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^4.17.1"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

@@ -1,0 +1,1005 @@
+{
+  "success": true,
+  "timestamp": "2025-11-24T20:23:16.044Z",
+  "keywords": [
+    "ki",
+    "afd",
+    "politik"
+  ],
+  "sources": [
+    "youtube",
+    "twitter",
+    "tiktok",
+    "instagram",
+    "bundestag",
+    "landtage",
+    "politische-talkshows"
+  ],
+  "totalItems": 25,
+  "highQualityItems": 24,
+  "contentItems": [
+    {
+      "title": "YouTube Video über ki #1",
+      "description": "Dies ist eine Beispielbeschreibung für ein YouTube-Video über ki",
+      "viewCount": 777456,
+      "likeCount": 88876,
+      "commentCount": 9297,
+      "publishedAt": "2025-11-24T03:54:49.912Z",
+      "channelTitle": "Beispielkanal",
+      "url": "https://youtube.com/watch?v=1764015796037-0",
+      "source": "youtube",
+      "platform": {
+        "name": "YouTube",
+        "icon": "▶️"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "YouTube Video über ki #2",
+      "description": "Dies ist eine Beispielbeschreibung für ein YouTube-Video über ki",
+      "viewCount": 395941,
+      "likeCount": 74205,
+      "commentCount": 7363,
+      "publishedAt": "2025-11-18T04:26:10.479Z",
+      "channelTitle": "Beispielkanal",
+      "url": "https://youtube.com/watch?v=1764015796037-1",
+      "source": "youtube",
+      "platform": {
+        "name": "YouTube",
+        "icon": "▶️"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "YouTube Video über ki #3",
+      "description": "Dies ist eine Beispielbeschreibung für ein YouTube-Video über ki",
+      "viewCount": 574497,
+      "likeCount": 41131,
+      "commentCount": 9412,
+      "publishedAt": "2025-11-23T01:06:45.510Z",
+      "channelTitle": "Beispielkanal",
+      "url": "https://youtube.com/watch?v=1764015796037-2",
+      "source": "youtube",
+      "platform": {
+        "name": "YouTube",
+        "icon": "▶️"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "YouTube Video über ki #4",
+      "description": "Dies ist eine Beispielbeschreibung für ein YouTube-Video über ki",
+      "viewCount": 750667,
+      "likeCount": 34483,
+      "commentCount": 3088,
+      "publishedAt": "2025-11-22T17:35:49.268Z",
+      "channelTitle": "Beispielkanal",
+      "url": "https://youtube.com/watch?v=1764015796037-3",
+      "source": "youtube",
+      "platform": {
+        "name": "YouTube",
+        "icon": "▶️"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #1",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 3780,
+      "likeCount": 6469,
+      "commentCount": 407,
+      "publishedAt": "2025-11-24T19:17:51.695Z",
+      "url": "https://twitter.com/user/status/1764015796037-0",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #2",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 8136,
+      "likeCount": 6487,
+      "commentCount": 407,
+      "publishedAt": "2025-11-23T20:56:22.884Z",
+      "url": "https://twitter.com/user/status/1764015796037-1",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #3",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 3840,
+      "likeCount": 4913,
+      "commentCount": 151,
+      "publishedAt": "2025-11-24T16:40:56.625Z",
+      "url": "https://twitter.com/user/status/1764015796038-2",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #4",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 6336,
+      "likeCount": 6894,
+      "commentCount": 444,
+      "publishedAt": "2025-11-24T17:29:56.707Z",
+      "url": "https://twitter.com/user/status/1764015796038-3",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #5",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 5047,
+      "likeCount": 9685,
+      "commentCount": 975,
+      "publishedAt": "2025-11-24T18:35:44.387Z",
+      "url": "https://twitter.com/user/status/1764015796038-4",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #6",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 5944,
+      "likeCount": 291,
+      "commentCount": 889,
+      "publishedAt": "2025-11-24T20:00:05.056Z",
+      "url": "https://twitter.com/user/status/1764015796038-5",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #7",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 555,
+      "likeCount": 3324,
+      "commentCount": 898,
+      "publishedAt": "2025-11-24T14:17:33.574Z",
+      "url": "https://twitter.com/user/status/1764015796038-6",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "TikTok Video über ki #1",
+      "description": "#ki #TikTok #Viral",
+      "viewCount": 561230,
+      "likeCount": 436556,
+      "commentCount": 38821,
+      "shareCount": 92631,
+      "publishedAt": "2025-11-23T07:47:15.805Z",
+      "creator": "BeispielCreator",
+      "url": "https://tiktok.com/@creator/video/1764015796038-0",
+      "source": "tiktok",
+      "platform": {
+        "name": "TikTok",
+        "icon": "🎵"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "TikTok Video über ki #2",
+      "description": "#ki #TikTok #Viral",
+      "viewCount": 3384032,
+      "likeCount": 464247,
+      "commentCount": 22901,
+      "shareCount": 11879,
+      "publishedAt": "2025-11-24T19:36:47.946Z",
+      "creator": "BeispielCreator",
+      "url": "https://tiktok.com/@creator/video/1764015796038-1",
+      "source": "tiktok",
+      "platform": {
+        "name": "TikTok",
+        "icon": "🎵"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "TikTok Video über ki #3",
+      "description": "#ki #TikTok #Viral",
+      "viewCount": 1190781,
+      "likeCount": 28277,
+      "commentCount": 48786,
+      "shareCount": 73348,
+      "publishedAt": "2025-11-24T02:47:34.264Z",
+      "creator": "BeispielCreator",
+      "url": "https://tiktok.com/@creator/video/1764015796038-2",
+      "source": "tiktok",
+      "platform": {
+        "name": "TikTok",
+        "icon": "🎵"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "TikTok Video über ki #4",
+      "description": "#ki #TikTok #Viral",
+      "viewCount": 272921,
+      "likeCount": 353620,
+      "commentCount": 39390,
+      "shareCount": 81392,
+      "publishedAt": "2025-11-24T10:02:24.945Z",
+      "creator": "BeispielCreator",
+      "url": "https://tiktok.com/@creator/video/1764015796038-3",
+      "source": "tiktok",
+      "platform": {
+        "name": "TikTok",
+        "icon": "🎵"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Instagram-Post über ki #1",
+      "caption": "Beispielbild über ki #ki #Instagram",
+      "likeCount": 68634,
+      "commentCount": 2491,
+      "publishedAt": "2025-11-23T09:20:03.069Z",
+      "url": "https://instagram.com/p/1764015796038-0",
+      "source": "instagram",
+      "platform": {
+        "name": "Instagram",
+        "icon": "📸"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Instagram-Post über ki #2",
+      "caption": "Beispielbild über ki #ki #Instagram",
+      "likeCount": 33970,
+      "commentCount": 3576,
+      "publishedAt": "2025-11-21T20:33:30.461Z",
+      "url": "https://instagram.com/p/1764015796038-1",
+      "source": "instagram",
+      "platform": {
+        "name": "Instagram",
+        "icon": "📸"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Instagram-Post über ki #3",
+      "caption": "Beispielbild über ki #ki #Instagram",
+      "likeCount": 34597,
+      "commentCount": 488,
+      "publishedAt": "2025-11-21T20:30:32.186Z",
+      "url": "https://instagram.com/p/1764015796038-2",
+      "source": "instagram",
+      "platform": {
+        "name": "Instagram",
+        "icon": "📸"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Instagram-Post über ki #4",
+      "caption": "Beispielbild über ki #ki #Instagram",
+      "likeCount": 412,
+      "commentCount": 3191,
+      "publishedAt": "2025-11-23T15:40:57.702Z",
+      "url": "https://instagram.com/p/1764015796038-3",
+      "source": "instagram",
+      "platform": {
+        "name": "Instagram",
+        "icon": "📸"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Talksendung: Diskussion über ki #1",
+      "content": "Zusammenfassung der Talksendung über ki mit Expertengast",
+      "viewCount": 553056,
+      "publishedAt": "2025-11-22T07:41:56.525Z",
+      "url": "https://talkshow.de/sendung-1764015796038-0",
+      "source": "politische-talkshows",
+      "platform": {
+        "name": "Politische Talkshows",
+        "icon": "📺"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Talksendung: Diskussion über ki #2",
+      "content": "Zusammenfassung der Talksendung über ki mit Expertengast",
+      "viewCount": 60172,
+      "publishedAt": "2025-11-21T14:05:19.397Z",
+      "url": "https://talkshow.de/sendung-1764015796038-1",
+      "source": "politische-talkshows",
+      "platform": {
+        "name": "Politische Talkshows",
+        "icon": "📺"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Talksendung: Diskussion über ki #3",
+      "content": "Zusammenfassung der Talksendung über ki mit Expertengast",
+      "viewCount": 1897454,
+      "publishedAt": "2025-11-20T02:35:09.971Z",
+      "url": "https://talkshow.de/sendung-1764015796038-2",
+      "source": "politische-talkshows",
+      "platform": {
+        "name": "Politische Talkshows",
+        "icon": "📺"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Bundestag: Debatte über ki #1",
+      "content": "Amtlicher Bericht der Debatte über ki im Deutschen Bundestag",
+      "publishedAt": "2025-11-21T15:30:35.420Z",
+      "url": "https://bundestag.de/dokument-1764015796038-0",
+      "source": "bundestag",
+      "platform": {
+        "name": "Bundestag",
+        "icon": "🏛️"
+      },
+      "qualityScore": 95
+    },
+    {
+      "title": "Bundestag: Debatte über ki #2",
+      "content": "Amtlicher Bericht der Debatte über ki im Deutschen Bundestag",
+      "publishedAt": "2025-11-22T09:11:24.208Z",
+      "url": "https://bundestag.de/dokument-1764015796038-1",
+      "source": "bundestag",
+      "platform": {
+        "name": "Bundestag",
+        "icon": "🏛️"
+      },
+      "qualityScore": 95
+    },
+    {
+      "title": "Landtag: Diskussion über ki #1",
+      "content": "Amtlicher Bericht der Diskussion über ki im Landtag",
+      "publishedAt": "2025-11-22T08:48:37.382Z",
+      "url": "https://landtag.de/dokument-1764015796038-0",
+      "source": "landtage",
+      "platform": {
+        "name": "Landtage",
+        "icon": "🏛️"
+      },
+      "qualityScore": 90
+    }
+  ],
+  "highQualityContent": [
+    {
+      "title": "YouTube Video über ki #1",
+      "description": "Dies ist eine Beispielbeschreibung für ein YouTube-Video über ki",
+      "viewCount": 777456,
+      "likeCount": 88876,
+      "commentCount": 9297,
+      "publishedAt": "2025-11-24T03:54:49.912Z",
+      "channelTitle": "Beispielkanal",
+      "url": "https://youtube.com/watch?v=1764015796037-0",
+      "source": "youtube",
+      "platform": {
+        "name": "YouTube",
+        "icon": "▶️"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "YouTube Video über ki #2",
+      "description": "Dies ist eine Beispielbeschreibung für ein YouTube-Video über ki",
+      "viewCount": 395941,
+      "likeCount": 74205,
+      "commentCount": 7363,
+      "publishedAt": "2025-11-18T04:26:10.479Z",
+      "channelTitle": "Beispielkanal",
+      "url": "https://youtube.com/watch?v=1764015796037-1",
+      "source": "youtube",
+      "platform": {
+        "name": "YouTube",
+        "icon": "▶️"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "YouTube Video über ki #3",
+      "description": "Dies ist eine Beispielbeschreibung für ein YouTube-Video über ki",
+      "viewCount": 574497,
+      "likeCount": 41131,
+      "commentCount": 9412,
+      "publishedAt": "2025-11-23T01:06:45.510Z",
+      "channelTitle": "Beispielkanal",
+      "url": "https://youtube.com/watch?v=1764015796037-2",
+      "source": "youtube",
+      "platform": {
+        "name": "YouTube",
+        "icon": "▶️"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "YouTube Video über ki #4",
+      "description": "Dies ist eine Beispielbeschreibung für ein YouTube-Video über ki",
+      "viewCount": 750667,
+      "likeCount": 34483,
+      "commentCount": 3088,
+      "publishedAt": "2025-11-22T17:35:49.268Z",
+      "channelTitle": "Beispielkanal",
+      "url": "https://youtube.com/watch?v=1764015796037-3",
+      "source": "youtube",
+      "platform": {
+        "name": "YouTube",
+        "icon": "▶️"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #1",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 3780,
+      "likeCount": 6469,
+      "commentCount": 407,
+      "publishedAt": "2025-11-24T19:17:51.695Z",
+      "url": "https://twitter.com/user/status/1764015796037-0",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #2",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 8136,
+      "likeCount": 6487,
+      "commentCount": 407,
+      "publishedAt": "2025-11-23T20:56:22.884Z",
+      "url": "https://twitter.com/user/status/1764015796037-1",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #3",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 3840,
+      "likeCount": 4913,
+      "commentCount": 151,
+      "publishedAt": "2025-11-24T16:40:56.625Z",
+      "url": "https://twitter.com/user/status/1764015796038-2",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #4",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 6336,
+      "likeCount": 6894,
+      "commentCount": 444,
+      "publishedAt": "2025-11-24T17:29:56.707Z",
+      "url": "https://twitter.com/user/status/1764015796038-3",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #5",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 5047,
+      "likeCount": 9685,
+      "commentCount": 975,
+      "publishedAt": "2025-11-24T18:35:44.387Z",
+      "url": "https://twitter.com/user/status/1764015796038-4",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #6",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 5944,
+      "likeCount": 291,
+      "commentCount": 889,
+      "publishedAt": "2025-11-24T20:00:05.056Z",
+      "url": "https://twitter.com/user/status/1764015796038-5",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Twitter-Post über ki #7",
+      "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+      "retweetCount": 555,
+      "likeCount": 3324,
+      "commentCount": 898,
+      "publishedAt": "2025-11-24T14:17:33.574Z",
+      "url": "https://twitter.com/user/status/1764015796038-6",
+      "source": "twitter",
+      "platform": {
+        "name": "Twitter/X",
+        "icon": "🐦"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "TikTok Video über ki #1",
+      "description": "#ki #TikTok #Viral",
+      "viewCount": 561230,
+      "likeCount": 436556,
+      "commentCount": 38821,
+      "shareCount": 92631,
+      "publishedAt": "2025-11-23T07:47:15.805Z",
+      "creator": "BeispielCreator",
+      "url": "https://tiktok.com/@creator/video/1764015796038-0",
+      "source": "tiktok",
+      "platform": {
+        "name": "TikTok",
+        "icon": "🎵"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "TikTok Video über ki #2",
+      "description": "#ki #TikTok #Viral",
+      "viewCount": 3384032,
+      "likeCount": 464247,
+      "commentCount": 22901,
+      "shareCount": 11879,
+      "publishedAt": "2025-11-24T19:36:47.946Z",
+      "creator": "BeispielCreator",
+      "url": "https://tiktok.com/@creator/video/1764015796038-1",
+      "source": "tiktok",
+      "platform": {
+        "name": "TikTok",
+        "icon": "🎵"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "TikTok Video über ki #3",
+      "description": "#ki #TikTok #Viral",
+      "viewCount": 1190781,
+      "likeCount": 28277,
+      "commentCount": 48786,
+      "shareCount": 73348,
+      "publishedAt": "2025-11-24T02:47:34.264Z",
+      "creator": "BeispielCreator",
+      "url": "https://tiktok.com/@creator/video/1764015796038-2",
+      "source": "tiktok",
+      "platform": {
+        "name": "TikTok",
+        "icon": "🎵"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "TikTok Video über ki #4",
+      "description": "#ki #TikTok #Viral",
+      "viewCount": 272921,
+      "likeCount": 353620,
+      "commentCount": 39390,
+      "shareCount": 81392,
+      "publishedAt": "2025-11-24T10:02:24.945Z",
+      "creator": "BeispielCreator",
+      "url": "https://tiktok.com/@creator/video/1764015796038-3",
+      "source": "tiktok",
+      "platform": {
+        "name": "TikTok",
+        "icon": "🎵"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Instagram-Post über ki #1",
+      "caption": "Beispielbild über ki #ki #Instagram",
+      "likeCount": 68634,
+      "commentCount": 2491,
+      "publishedAt": "2025-11-23T09:20:03.069Z",
+      "url": "https://instagram.com/p/1764015796038-0",
+      "source": "instagram",
+      "platform": {
+        "name": "Instagram",
+        "icon": "📸"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Instagram-Post über ki #2",
+      "caption": "Beispielbild über ki #ki #Instagram",
+      "likeCount": 33970,
+      "commentCount": 3576,
+      "publishedAt": "2025-11-21T20:33:30.461Z",
+      "url": "https://instagram.com/p/1764015796038-1",
+      "source": "instagram",
+      "platform": {
+        "name": "Instagram",
+        "icon": "📸"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Instagram-Post über ki #3",
+      "caption": "Beispielbild über ki #ki #Instagram",
+      "likeCount": 34597,
+      "commentCount": 488,
+      "publishedAt": "2025-11-21T20:30:32.186Z",
+      "url": "https://instagram.com/p/1764015796038-2",
+      "source": "instagram",
+      "platform": {
+        "name": "Instagram",
+        "icon": "📸"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Instagram-Post über ki #4",
+      "caption": "Beispielbild über ki #ki #Instagram",
+      "likeCount": 412,
+      "commentCount": 3191,
+      "publishedAt": "2025-11-23T15:40:57.702Z",
+      "url": "https://instagram.com/p/1764015796038-3",
+      "source": "instagram",
+      "platform": {
+        "name": "Instagram",
+        "icon": "📸"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Talksendung: Diskussion über ki #1",
+      "content": "Zusammenfassung der Talksendung über ki mit Expertengast",
+      "viewCount": 553056,
+      "publishedAt": "2025-11-22T07:41:56.525Z",
+      "url": "https://talkshow.de/sendung-1764015796038-0",
+      "source": "politische-talkshows",
+      "platform": {
+        "name": "Politische Talkshows",
+        "icon": "📺"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Talksendung: Diskussion über ki #2",
+      "content": "Zusammenfassung der Talksendung über ki mit Expertengast",
+      "viewCount": 60172,
+      "publishedAt": "2025-11-21T14:05:19.397Z",
+      "url": "https://talkshow.de/sendung-1764015796038-1",
+      "source": "politische-talkshows",
+      "platform": {
+        "name": "Politische Talkshows",
+        "icon": "📺"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Talksendung: Diskussion über ki #3",
+      "content": "Zusammenfassung der Talksendung über ki mit Expertengast",
+      "viewCount": 1897454,
+      "publishedAt": "2025-11-20T02:35:09.971Z",
+      "url": "https://talkshow.de/sendung-1764015796038-2",
+      "source": "politische-talkshows",
+      "platform": {
+        "name": "Politische Talkshows",
+        "icon": "📺"
+      },
+      "qualityScore": 100
+    },
+    {
+      "title": "Bundestag: Debatte über ki #1",
+      "content": "Amtlicher Bericht der Debatte über ki im Deutschen Bundestag",
+      "publishedAt": "2025-11-21T15:30:35.420Z",
+      "url": "https://bundestag.de/dokument-1764015796038-0",
+      "source": "bundestag",
+      "platform": {
+        "name": "Bundestag",
+        "icon": "🏛️"
+      },
+      "qualityScore": 95
+    },
+    {
+      "title": "Bundestag: Debatte über ki #2",
+      "content": "Amtlicher Bericht der Debatte über ki im Deutschen Bundestag",
+      "publishedAt": "2025-11-22T09:11:24.208Z",
+      "url": "https://bundestag.de/dokument-1764015796038-1",
+      "source": "bundestag",
+      "platform": {
+        "name": "Bundestag",
+        "icon": "🏛️"
+      },
+      "qualityScore": 95
+    }
+  ],
+  "relevantKeywords": [
+    {
+      "word": "ber",
+      "frequency": 188
+    },
+    {
+      "word": "ki",
+      "frequency": 100
+    },
+    {
+      "word": "afd",
+      "frequency": 100
+    },
+    {
+      "word": "politik",
+      "frequency": 100
+    },
+    {
+      "word": "post",
+      "frequency": 76
+    },
+    {
+      "word": "twitter",
+      "frequency": 56
+    },
+    {
+      "word": "video",
+      "frequency": 52
+    },
+    {
+      "word": "dies",
+      "frequency": 33
+    },
+    {
+      "word": "ist",
+      "frequency": 33
+    },
+    {
+      "word": "ein",
+      "frequency": 33
+    },
+    {
+      "word": "youtube",
+      "frequency": 32
+    },
+    {
+      "word": "tiktok",
+      "frequency": 32
+    },
+    {
+      "word": "instagram",
+      "frequency": 32
+    },
+    {
+      "word": "talksendung",
+      "frequency": 24
+    },
+    {
+      "word": "diskussion",
+      "frequency": 23
+    }
+  ],
+  "todaysTopKeywords": [
+    {
+      "word": "ki",
+      "frequency": 100
+    },
+    {
+      "word": "afd",
+      "frequency": 100
+    },
+    {
+      "word": "politik",
+      "frequency": 100
+    },
+    {
+      "word": "ber",
+      "frequency": 64
+    },
+    {
+      "word": "twitter",
+      "frequency": 42
+    },
+    {
+      "word": "post",
+      "frequency": 42
+    },
+    {
+      "word": "video",
+      "frequency": 22
+    },
+    {
+      "word": "tiktok",
+      "frequency": 21
+    },
+    {
+      "word": "dies",
+      "frequency": 14
+    },
+    {
+      "word": "ist",
+      "frequency": 14
+    }
+  ],
+  "themes": [
+    {
+      "theme": "ki",
+      "score": 301
+    },
+    {
+      "theme": "politik",
+      "score": 27
+    }
+  ],
+  "themeSpecificContent": {
+    "ki": [
+      {
+        "title": "Twitter-Post über ki #1",
+        "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+        "retweetCount": 3780,
+        "likeCount": 6469,
+        "commentCount": 407,
+        "publishedAt": "2025-11-24T19:17:51.695Z",
+        "url": "https://twitter.com/user/status/1764015796037-0",
+        "source": "twitter",
+        "platform": {
+          "name": "Twitter/X",
+          "icon": "🐦"
+        },
+        "qualityScore": 100,
+        "themeRelevance": 3
+      },
+      {
+        "title": "Twitter-Post über ki #2",
+        "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+        "retweetCount": 8136,
+        "likeCount": 6487,
+        "commentCount": 407,
+        "publishedAt": "2025-11-23T20:56:22.884Z",
+        "url": "https://twitter.com/user/status/1764015796037-1",
+        "source": "twitter",
+        "platform": {
+          "name": "Twitter/X",
+          "icon": "🐦"
+        },
+        "qualityScore": 100,
+        "themeRelevance": 3
+      },
+      {
+        "title": "Twitter-Post über ki #3",
+        "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+        "retweetCount": 3840,
+        "likeCount": 4913,
+        "commentCount": 151,
+        "publishedAt": "2025-11-24T16:40:56.625Z",
+        "url": "https://twitter.com/user/status/1764015796038-2",
+        "source": "twitter",
+        "platform": {
+          "name": "Twitter/X",
+          "icon": "🐦"
+        },
+        "qualityScore": 100,
+        "themeRelevance": 3
+      },
+      {
+        "title": "Twitter-Post über ki #4",
+        "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+        "retweetCount": 6336,
+        "likeCount": 6894,
+        "commentCount": 444,
+        "publishedAt": "2025-11-24T17:29:56.707Z",
+        "url": "https://twitter.com/user/status/1764015796038-3",
+        "source": "twitter",
+        "platform": {
+          "name": "Twitter/X",
+          "icon": "🐦"
+        },
+        "qualityScore": 100,
+        "themeRelevance": 3
+      },
+      {
+        "title": "Twitter-Post über ki #5",
+        "content": "Dies ist ein Beispiel-Twitter-Post über ki #ki",
+        "retweetCount": 5047,
+        "likeCount": 9685,
+        "commentCount": 975,
+        "publishedAt": "2025-11-24T18:35:44.387Z",
+        "url": "https://twitter.com/user/status/1764015796038-4",
+        "source": "twitter",
+        "platform": {
+          "name": "Twitter/X",
+          "icon": "🐦"
+        },
+        "qualityScore": 100,
+        "themeRelevance": 3
+      }
+    ],
+    "afd": [],
+    "politik": [
+      {
+        "title": "Bundestag: Debatte über ki #1",
+        "content": "Amtlicher Bericht der Debatte über ki im Deutschen Bundestag",
+        "publishedAt": "2025-11-21T15:30:35.420Z",
+        "url": "https://bundestag.de/dokument-1764015796038-0",
+        "source": "bundestag",
+        "platform": {
+          "name": "Bundestag",
+          "icon": "🏛️"
+        },
+        "qualityScore": 95,
+        "themeRelevance": 2
+      },
+      {
+        "title": "Bundestag: Debatte über ki #2",
+        "content": "Amtlicher Bericht der Debatte über ki im Deutschen Bundestag",
+        "publishedAt": "2025-11-22T09:11:24.208Z",
+        "url": "https://bundestag.de/dokument-1764015796038-1",
+        "source": "bundestag",
+        "platform": {
+          "name": "Bundestag",
+          "icon": "🏛️"
+        },
+        "qualityScore": 95,
+        "themeRelevance": 2
+      },
+      {
+        "title": "Landtag: Diskussion über ki #1",
+        "content": "Amtlicher Bericht der Diskussion über ki im Landtag",
+        "publishedAt": "2025-11-22T08:48:37.382Z",
+        "url": "https://landtag.de/dokument-1764015796038-0",
+        "source": "landtage",
+        "platform": {
+          "name": "Landtage",
+          "icon": "🏛️"
+        },
+        "qualityScore": 90,
+        "themeRelevance": 2
+      }
+    ]
+  },
+  "videoTopics": {
+    "ki": [
+      "ki: youtube video",
+      "ki: twitter-post",
+      "ki: tiktok video",
+      "ki: instagram-post",
+      "ki: talksendung: diskussion"
+    ],
+    "politik": [
+      "bundestag: bundestag: debatte",
+      "landtag: landtag: diskussion"
+    ]
+  },
+  "statistics": {
+    "avgQualityScore": 99,
+    "sourcesCount": 7
+  }
+}
