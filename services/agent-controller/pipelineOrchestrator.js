@@ -88,6 +88,19 @@ class PipelineOrchestrator {
         translatedContent = await this.translateContent(analyzedContent, pipeline);
       }
       
+      // Quality check for shorts content
+      for (let i = 0; i < shortsContent.length; i++) {
+        const shortContent = shortsContent[i];
+        const qualityReport = await this.qualityCheckVideo(shortContent, { channelId: pipeline.channelId });
+        
+        if (!qualityReport.approved) {
+          console.log( Short content quality check failed, requesting human approval for channel: ${pipeline.channelName});
+          await this.requestHumanApproval(shortContent, 'short', { channelId: pipeline.channelId, priority: 'high' });
+        } else {
+          console.log( Short content passed quality check for channel: ${pipeline.channelName});
+        }
+      }
+      
       // Compile results
       const results = {
         pipelineId,
@@ -156,6 +169,54 @@ class PipelineOrchestrator {
   async executeDailyShortsPipeline(pipelineId) {
     const pipeline = this.pipelines.get(pipelineId);
     if (!pipeline) {
+      throw new Error(Pipeline ${pipelineId} not found);
+    }
+    
+    try {
+      pipeline.status = 'running';
+      pipeline.startedAt = new Date().toISOString();
+      this.pipelines.set(pipelineId, pipeline);
+      
+      console.log( Executing daily shorts pipeline ${pipelineId} for channel: ${pipeline.channelName});
+      
+      // Step 1: Scrape trending content for shorts
+      const scrapedContent = await this.scrapeShortsContent(pipeline);
+      
+      // Step 2: Select best content for conversion to shorts
+      const selectedContent = await this.selectBestShortsContent(scrapedContent, pipeline);
+      
+      // Step 3: Convert long-form content to shorts format
+      const shortsContent = await this.convertToShorts(selectedContent, pipeline);
+      
+      // Step 4: Generate thumbnails with KI integration (Whisk AI/WAN 2.2)
+      let thumbnails = null;
+      if (pipeline.config.generateThumbnails) {
+        thumbnails = await this.generateShortsThumbnails(shortsContent, pipeline);
+        
+        // Quality check for thumbnails
+        for (let i = 0; i < thumbnails.length; i++) {
+          const thumbnail = thumbnails[i];
+          const qualityReport = await this.qualityCheckThumbnail(thumbnail, { channelId: pipeline.channelId });
+          
+          if (!qualityReport.approved) {
+            console.log( Thumbnail quality check failed, requesting human approval for channel: ${pipeline.channelName});
+            await this.requestHumanApproval(thumbnail, 'thumbnail', { channelId: pipeline.channelId, priority: 'high' });
+          } else {
+            console.log( Thumbnail passed quality check for channel: ${pipeline.channelName});
+          }
+        }
+      }
+      
+      // Step 5: Optimize for SEO
+      let seoOptimization = null;
+      if (pipeline.config.optimizeSEO) {
+        seoOptimization = await this.optimizeShortsSEO(shortsContent, pipeline);
+      }
+      
+      // Step 6: Schedule publication
+      const scheduledPublication = await this.scheduleShortsPublication(shortsContent, pipeline);
+    const pipeline = this.pipelines.get(pipelineId);
+    if (!pipeline) {
       throw new Error(`Pipeline ${pipelineId} not found`);
     }
     
@@ -189,6 +250,19 @@ class PipelineOrchestrator {
       
       // Step 6: Schedule publication
       const scheduledPublication = await this.scheduleShortsPublication(shortsContent, pipeline);
+      
+      // Quality check for shorts content
+      for (let i = 0; i < shortsContent.length; i++) {
+        const shortContent = shortsContent[i];
+        const qualityReport = await this.qualityCheckVideo(shortContent, { channelId: pipeline.channelId });
+        
+        if (!qualityReport.approved) {
+          console.log( Short content quality check failed, requesting human approval for channel: ${pipeline.channelName});
+          await this.requestHumanApproval(shortContent, 'short', { channelId: pipeline.channelId, priority: 'high' });
+        } else {
+          console.log( Short content passed quality check for channel: ${pipeline.channelName});
+        }
+      }
       
       // Compile results
       const results = {
@@ -299,6 +373,19 @@ class PipelineOrchestrator {
       let shortSEO = null;
       if (pipeline.config.optimizeSEO) {
         shortSEO = await this.optimizeShortSEO(shortCopy, pipeline);
+      }
+      
+      // Quality check for shorts content
+      for (let i = 0; i < shortsContent.length; i++) {
+        const shortContent = shortsContent[i];
+        const qualityReport = await this.qualityCheckVideo(shortContent, { channelId: pipeline.channelId });
+        
+        if (!qualityReport.approved) {
+          console.log( Short content quality check failed, requesting human approval for channel: ${pipeline.channelName});
+          await this.requestHumanApproval(shortContent, 'short', { channelId: pipeline.channelId, priority: 'high' });
+        } else {
+          console.log( Short content passed quality check for channel: ${pipeline.channelName});
+        }
       }
       
       // Compile results
