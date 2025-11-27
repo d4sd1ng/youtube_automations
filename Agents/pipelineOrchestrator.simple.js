@@ -1,1 +1,0 @@
-class PipelineOrchestrator { constructor() {} async savePipelineResult(pipelineId, resultType, resultData) { console.log(Saving \ result for pipeline \); } savePipelineState(pipelineState) { console.log(Saving pipeline state for pipeline \); } } module.exports = PipelineOrchestrator;
