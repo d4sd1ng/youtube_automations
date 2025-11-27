@@ -1,0 +1,20 @@
+{
+  "name": "audio-to-text-agent",
+  "version": "1.0.0",
+  "description": "Agent zur Umwandlung von Audiodateien in Text mit OpenAI Whisper",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m unittest discover tests",
+    "docker:build": "docker build -t audio-to-text-agent .",
+    "docker:run": "docker run -it audio-to-text-agent"
+  },
+  "keywords": [
+    "audio-to-text",
+    "transcription",
+    "whisper",
+    "agent"
+  ],
+  "author": "AGENTS Team",
+  "license": "MIT"
+}

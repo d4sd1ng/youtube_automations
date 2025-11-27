@@ -1,0 +1,20 @@
+{
+  "name": "document-export-agent",
+  "version": "1.0.0",
+  "description": "Document Export Service - Export analysis results to Word and PDF documents",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m pytest tests/"
+  },
+  "keywords": ["document", "export", "word", "pdf", "analysis"],
+  "author": "Autonova Team",
+  "license": "MIT",
+  "dependencies": {
+    "python-docx": "^0.8.11",
+    "weasyprint": "^52.5",
+    "docxtpl": "^0.11.6"
+  },
+  "devDependencies": {
+  }
+}

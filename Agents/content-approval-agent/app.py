@@ -1,387 +1,425 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Content Approval Agent
+Handles content approval workflows with submission, review, and approval processes
+"""
+
 import os
 import json
 import uuid
+import asyncio
 from datetime import datetime
-import logging
-from flask import Flask, jsonify, request
+from typing import Dict, List, Any, Optional
+from pathlib import Path
+from enum import Enum
 
-app = Flask(__name__)
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+class ApprovalStatus(Enum):
+    PENDING = "pending"
+    UNDER_REVIEW = "under_review"
+    APPROVED = "approved"
+    REJECTED = "rejected"
+    NEEDS_REVISION = "needs_revision"
 
-# Storage paths
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-APPROVAL_DIR = os.path.join(BASE_DIR, '../../data/approvals')
-PENDING_DIR = os.path.join(APPROVAL_DIR, 'pending')
-APPROVED_DIR = os.path.join(APPROVAL_DIR, 'approved')
-REJECTED_DIR = os.path.join(APPROVAL_DIR, 'rejected')
+class ContentApprovalAgent:
+    def __init__(self):
+        self.base_dir = Path(__file__).parent.parent.parent / "data"
+        self.approvals_dir = self.base_dir / "content-approvals"
+        self.ensure_directories()
 
-# Create directories if they don't exist
-os.makedirs(APPROVAL_DIR, exist_ok=True)
-os.makedirs(PENDING_DIR, exist_ok=True)
-os.makedirs(APPROVED_DIR, exist_ok=True)
-os.makedirs(REJECTED_DIR, exist_ok=True)
+    def ensure_directories(self) -> None:
+        """Ensure required directories exist"""
+        dirs = [self.approvals_dir]
+        for directory in dirs:
+            directory.mkdir(parents=True, exist_ok=True)
 
-# Health check endpoint
-@app.route('/health', methods=['GET'])
-def health_check():
-    """Health check endpoint"""
-    logger.info("Health check requested")
-    return jsonify({
-        "status": "healthy",
-        "service": "Content Approval Agent",
-        "version": "1.0.0"
-    }), 200
+    async def submit_content_for_approval(self, content_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Submit content for approval
+        """
+        try:
+            approval_id = str(uuid.uuid4())
+            timestamp = datetime.now().isoformat()
 
-# Submit content for approval
-@app.route('/submit-for-approval', methods=['POST'])
-def submit_for_approval():
-    """Submit content for approval"""
-    try:
-        data = request.get_json()
-
-        # Validate input data
-        if not data or 'content' not in data:
-            return jsonify({"error": "Missing content in request"}), 400
-
-        content = data['content']
-        submitter = data.get('submitter', 'Unknown')
-        priority = data.get('priority', 'normal')
-
-        # Generate approval ID
-        approval_id = f"approval-{uuid.uuid4().hex[:12]}"
-
-        # Create approval record
-        approval_record = {
-            'approvalId': approval_id,
-            'content': content,
-            'submitter': submitter,
-            'priority': priority,
-            'status': 'pending',
-            'submittedAt': datetime.now().isoformat(),
-            'reviewNotes': []
-        }
-
-        # Save to pending directory
-        pending_file_path = os.path.join(PENDING_DIR, f"{approval_id}.json")
-        with open(pending_file_path, 'w') as f:
-            json.dump(approval_record, f, indent=2)
-
-        logger.info(f"Content submitted for approval: {approval_id}")
-
-        return jsonify({
-            "message": "Content submitted for approval successfully",
-            "approvalId": approval_id,
-            "status": "pending"
-        }), 201
-
-    except Exception as e:
-        logger.error(f"Error submitting content for approval: {str(e)}")
-        return jsonify({"error": f"Failed to submit content for approval: {str(e)}"}), 500
-
-# Approve content
-@app.route('/approve-content', methods=['POST'])
-def approve_content():
-    """Approve content"""
-    try:
-        data = request.get_json()
-
-        # Validate input data
-        if not data or 'approvalId' not in data:
-            return jsonify({"error": "Missing approvalId in request"}), 400
-
-        approval_id = data['approvalId']
-        reviewer = data.get('reviewer', 'Unknown')
-        review_notes = data.get('reviewNotes', [])
-
-        # Check if approval exists in pending directory
-        pending_file_path = os.path.join(PENDING_DIR, f"{approval_id}.json")
-        if not os.path.exists(pending_file_path):
-            return jsonify({"error": f"Approval {approval_id} not found in pending"}), 404
-
-        # Load approval record
-        with open(pending_file_path, 'r') as f:
-            approval_record = json.load(f)
-
-        # Update approval record
-        approval_record['status'] = 'approved'
-        approval_record['reviewer'] = reviewer
-        approval_record['reviewNotes'].extend(review_notes)
-        approval_record['reviewedAt'] = datetime.now().isoformat()
-
-        # Move from pending to approved directory
-        os.remove(pending_file_path)
-        approved_file_path = os.path.join(APPROVED_DIR, f"{approval_id}.json")
-        with open(approved_file_path, 'w') as f:
-            json.dump(approval_record, f, indent=2)
-
-        logger.info(f"Content approved: {approval_id}")
-
-        return jsonify({
-            "message": "Content approved successfully",
-            "approvalId": approval_id,
-            "status": "approved"
-        }), 200
-
-    except Exception as e:
-        logger.error(f"Error approving content: {str(e)}")
-        return jsonify({"error": f"Failed to approve content: {str(e)}"}), 500
-
-# Reject content
-@app.route('/reject-content', methods=['POST'])
-def reject_content():
-    """Reject content"""
-    try:
-        data = request.get_json()
-
-        # Validate input data
-        if not data or 'approvalId' not in data:
-            return jsonify({"error": "Missing approvalId in request"}), 400
-
-        approval_id = data['approvalId']
-        reviewer = data.get('reviewer', 'Unknown')
-        review_notes = data.get('reviewNotes', [])
-
-        # Check if approval exists in pending directory
-        pending_file_path = os.path.join(PENDING_DIR, f"{approval_id}.json")
-        if not os.path.exists(pending_file_path):
-            return jsonify({"error": f"Approval {approval_id} not found in pending"}), 404
-
-        # Load approval record
-        with open(pending_file_path, 'r') as f:
-            approval_record = json.load(f)
-
-        # Update approval record
-        approval_record['status'] = 'rejected'
-        approval_record['reviewer'] = reviewer
-        approval_record['reviewNotes'].extend(review_notes)
-        approval_record['reviewedAt'] = datetime.now().isoformat()
-
-        # Move from pending to rejected directory
-        os.remove(pending_file_path)
-        rejected_file_path = os.path.join(REJECTED_DIR, f"{approval_id}.json")
-        with open(rejected_file_path, 'w') as f:
-            json.dump(approval_record, f, indent=2)
-
-        logger.info(f"Content rejected: {approval_id}")
-
-        return jsonify({
-            "message": "Content rejected successfully",
-            "approvalId": approval_id,
-            "status": "rejected"
-        }), 200
-
-    except Exception as e:
-        logger.error(f"Error rejecting content: {str(e)}")
-        return jsonify({"error": f"Failed to reject content: {str(e)}"}), 500
-
-# Get approval status
-@app.route('/approval-status/<approval_id>', methods=['GET'])
-def get_approval_status(approval_id):
-    """Get approval status"""
-    try:
-        # Check in all directories
-        approval_path = None
-        approval_record = None
-
-        # Check pending
-        pending_path = os.path.join(PENDING_DIR, f"{approval_id}.json")
-        if os.path.exists(pending_path):
-            approval_path = pending_path
-
-        # Check approved
-        approved_path = os.path.join(APPROVED_DIR, f"{approval_id}.json")
-        if os.path.exists(approved_path):
-            approval_path = approved_path
-
-        # Check rejected
-        rejected_path = os.path.join(REJECTED_DIR, f"{approval_id}.json")
-        if os.path.exists(rejected_path):
-            approval_path = rejected_path
-
-        if approval_path:
-            with open(approval_path, 'r') as f:
-                approval_record = json.load(f)
-
-            logger.info(f"Approval status retrieved: {approval_id}")
-
-            return jsonify({
-                "message": "Approval status retrieved successfully",
-                "approval": approval_record
-            }), 200
-        else:
-            return jsonify({"error": f"Approval {approval_id} not found"}), 404
-
-    except Exception as e:
-        logger.error(f"Error getting approval status: {str(e)}")
-        return jsonify({"error": f"Failed to get approval status: {str(e)}"}), 500
-
-# List pending approvals
-@app.route('/pending-approvals', methods=['GET'])
-def list_pending_approvals():
-    """List pending approvals"""
-    try:
-        pending_approvals = []
-
-        if os.path.exists(PENDING_DIR):
-            for filename in os.listdir(PENDING_DIR):
-                if filename.endswith('.json'):
-                    file_path = os.path.join(PENDING_DIR, filename)
-                    try:
-                        with open(file_path, 'r') as f:
-                            approval_data = json.load(f)
-                            pending_approvals.append({
-                                'approvalId': approval_data['approvalId'],
-                                'status': approval_data['status'],
-                                'submittedAt': approval_data['submittedAt'],
-                                'contentPreview': approval_data.get('content', {}).get('title') or
-                                                 approval_data.get('content', {}).get('topic') or
-                                                 'Untitled',
-                                'submitter': approval_data.get('submitter', 'Unknown'),
-                                'priority': approval_data.get('priority', 'normal')
-                            })
-                    except Exception as e:
-                        logger.warning(f"Failed to read pending approval file {filename}: {str(e)}")
-
-        # Sort by submission date (newest first)
-        pending_approvals.sort(key=lambda x: x['submittedAt'], reverse=True)
-
-        logger.info(f"Listed {len(pending_approvals)} pending approvals")
-
-        return jsonify({
-            "message": "Pending approvals retrieved successfully",
-            "approvals": pending_approvals,
-            "total": len(pending_approvals)
-        }), 200
-
-    except Exception as e:
-        logger.error(f"Error listing pending approvals: {str(e)}")
-        return jsonify({"error": f"Failed to list pending approvals: {str(e)}"}), 500
-
-# List approved content
-@app.route('/approved-content', methods=['GET'])
-def list_approved_content():
-    """List approved content"""
-    try:
-        approved_content = []
-
-        if os.path.exists(APPROVED_DIR):
-            for filename in os.listdir(APPROVED_DIR):
-                if filename.endswith('.json'):
-                    file_path = os.path.join(APPROVED_DIR, filename)
-                    try:
-                        with open(file_path, 'r') as f:
-                            approval_data = json.load(f)
-                            approved_content.append({
-                                'approvalId': approval_data['approvalId'],
-                                'status': approval_data['status'],
-                                'submittedAt': approval_data['submittedAt'],
-                                'reviewedAt': approval_data.get('reviewedAt'),
-                                'reviewNotes': approval_data.get('reviewNotes', []),
-                                'contentPreview': approval_data.get('content', {}).get('title') or
-                                                 approval_data.get('content', {}).get('topic') or
-                                                 'Untitled',
-                                'reviewer': approval_data.get('reviewer', 'Unknown')
-                            })
-                    except Exception as e:
-                        logger.warning(f"Failed to read approved content file {filename}: {str(e)}")
-
-        # Sort by review date (newest first)
-        approved_content.sort(key=lambda x: x['reviewedAt'] or x['submittedAt'], reverse=True)
-
-        logger.info(f"Listed {len(approved_content)} approved content items")
-
-        return jsonify({
-            "message": "Approved content retrieved successfully",
-            "content": approved_content,
-            "total": len(approved_content)
-        }), 200
-
-    except Exception as e:
-        logger.error(f"Error listing approved content: {str(e)}")
-        return jsonify({"error": f"Failed to list approved content: {str(e)}"}), 500
-
-# List rejected content
-@app.route('/rejected-content', methods=['GET'])
-def list_rejected_content():
-    """List rejected content"""
-    try:
-        rejected_content = []
-
-        if os.path.exists(REJECTED_DIR):
-            for filename in os.listdir(REJECTED_DIR):
-                if filename.endswith('.json'):
-                    file_path = os.path.join(REJECTED_DIR, filename)
-                    try:
-                        with open(file_path, 'r') as f:
-                            approval_data = json.load(f)
-                            rejected_content.append({
-                                'approvalId': approval_data['approvalId'],
-                                'status': approval_data['status'],
-                                'submittedAt': approval_data['submittedAt'],
-                                'reviewedAt': approval_data.get('reviewedAt'),
-                                'reviewNotes': approval_data.get('reviewNotes', []),
-                                'contentPreview': approval_data.get('content', {}).get('title') or
-                                                 approval_data.get('content', {}).get('topic') or
-                                                 'Untitled',
-                                'reviewer': approval_data.get('reviewer', 'Unknown')
-                            })
-                    except Exception as e:
-                        logger.warning(f"Failed to read rejected content file {filename}: {str(e)}")
-
-        # Sort by review date (newest first)
-        rejected_content.sort(key=lambda x: x['reviewedAt'] or x['submittedAt'], reverse=True)
-
-        logger.info(f"Listed {len(rejected_content)} rejected content items")
-
-        return jsonify({
-            "message": "Rejected content retrieved successfully",
-            "content": rejected_content,
-            "total": len(rejected_content)
-        }), 200
-
-    except Exception as e:
-        logger.error(f"Error listing rejected content: {str(e)}")
-        return jsonify({"error": f"Failed to list rejected content: {str(e)}"}), 500
-
-# Get agent status
-@app.route('/agent-status', methods=['GET'])
-def get_agent_status():
-    """Get agent status"""
-    try:
-        # Count items in each directory
-        pending_count = len([f for f in os.listdir(PENDING_DIR) if f.endswith('.json')]) if os.path.exists(PENDING_DIR) else 0
-        approved_count = len([f for f in os.listdir(APPROVED_DIR) if f.endswith('.json')]) if os.path.exists(APPROVED_DIR) else 0
-        rejected_count = len([f for f in os.listdir(REJECTED_DIR) if f.endswith('.json')]) if os.path.exists(REJECTED_DIR) else 0
-
-        status = {
-            "agentName": "ContentApprovalAgent",
-            "version": "1.0.0",
-            "isAvailable": True,
-            "supportedTasks": [
-                'submit-for-approval',
-                'approve-content',
-                'reject-content',
-                'get-approval-status',
-                'list-pending-approvals',
-                'list-approved-content',
-                'list-rejected-content'
-            ],
-            "statistics": {
-                "pendingApprovals": pending_count,
-                "approvedContent": approved_count,
-                "rejectedContent": rejected_count,
-                "totalProcessed": approved_count + rejected_count
+            approval_data = {
+                "approvalId": approval_id,
+                "status": ApprovalStatus.PENDING.value,
+                "submittedAt": timestamp,
+                "submittedBy": content_data.get("submittedBy", "unknown"),
+                "content": content_data.get("content", {}),
+                "contentType": content_data.get("contentType", "general"),
+                "priority": content_data.get("priority", "medium"),
+                "reviewers": content_data.get("reviewers", []),
+                "comments": [],
+                "history": [{
+                    "action": "submitted",
+                    "timestamp": timestamp,
+                    "actor": content_data.get("submittedBy", "unknown")
+                }]
             }
-        }
 
-        logger.info("Agent status requested")
+            # Save approval data
+            await self.save_approval_data(approval_id, approval_data)
 
-        return jsonify(status), 200
+            print(f"✅ Content submitted for approval: {approval_id}")
 
-    except Exception as e:
-        logger.error(f"Error getting agent status: {str(e)}")
-        return jsonify({"error": f"Failed to get agent status: {str(e)}"}), 500
+            return {
+                "success": True,
+                "approvalId": approval_id,
+                "status": ApprovalStatus.PENDING.value,
+                "message": "Content submitted for approval successfully"
+            }
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+        except Exception as error:
+            print(f"❌ Failed to submit content for approval: {error}")
+            return {
+                "success": False,
+                "error": str(error),
+                "message": "Failed to submit content for approval"
+            }
+
+    async def review_content(self, approval_id: str, reviewer_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Review content and provide feedback
+        """
+        try:
+            # Load existing approval data
+            approval_data = await self.load_approval_data(approval_id)
+            if not approval_data:
+                return {
+                    "success": False,
+                    "error": "Approval not found",
+                    "message": f"No approval found with ID: {approval_id}"
+                }
+
+            # Update status to under review
+            approval_data["status"] = ApprovalStatus.UNDER_REVIEW.value
+            approval_data["reviewStartedAt"] = datetime.now().isoformat()
+            approval_data["currentReviewer"] = reviewer_data.get("reviewer", "unknown")
+
+            # Add review comment
+            comment = {
+                "id": str(uuid.uuid4()),
+                "reviewer": reviewer_data.get("reviewer", "unknown"),
+                "comment": reviewer_data.get("comment", ""),
+                "timestamp": datetime.now().isoformat(),
+                "type": reviewer_data.get("commentType", "general")
+            }
+            approval_data["comments"].append(comment)
+
+            # Add to history
+            approval_data["history"].append({
+                "action": "review_started",
+                "timestamp": datetime.now().isoformat(),
+                "actor": reviewer_data.get("reviewer", "unknown")
+            })
+
+            # Save updated data
+            await self.save_approval_data(approval_id, approval_data)
+
+            print(f"✅ Content review started: {approval_id}")
+
+            return {
+                "success": True,
+                "approvalId": approval_id,
+                "status": ApprovalStatus.UNDER_REVIEW.value,
+                "message": "Content review started successfully"
+            }
+
+        except Exception as error:
+            print(f"❌ Failed to start content review: {error}")
+            return {
+                "success": False,
+                "error": str(error),
+                "message": "Failed to start content review"
+            }
+
+    async def approve_content(self, approval_id: str, approver_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Approve content
+        """
+        try:
+            # Load existing approval data
+            approval_data = await self.load_approval_data(approval_id)
+            if not approval_data:
+                return {
+                    "success": False,
+                    "error": "Approval not found",
+                    "message": f"No approval found with ID: {approval_id}"
+                }
+
+            # Update status to approved
+            approval_data["status"] = ApprovalStatus.APPROVED.value
+            approval_data["approvedAt"] = datetime.now().isoformat()
+            approval_data["approvedBy"] = approver_data.get("approver", "unknown")
+            approval_data["approvalNotes"] = approver_data.get("notes", "")
+
+            # Add to history
+            approval_data["history"].append({
+                "action": "approved",
+                "timestamp": datetime.now().isoformat(),
+                "actor": approver_data.get("approver", "unknown"),
+                "notes": approver_data.get("notes", "")
+            })
+
+            # Save updated data
+            await self.save_approval_data(approval_id, approval_data)
+
+            print(f"✅ Content approved: {approval_id}")
+
+            return {
+                "success": True,
+                "approvalId": approval_id,
+                "status": ApprovalStatus.APPROVED.value,
+                "message": "Content approved successfully"
+            }
+
+        except Exception as error:
+            print(f"❌ Failed to approve content: {error}")
+            return {
+                "success": False,
+                "error": str(error),
+                "message": "Failed to approve content"
+            }
+
+    async def reject_content(self, approval_id: str, rejecter_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Reject content with reason
+        """
+        try:
+            # Load existing approval data
+            approval_data = await self.load_approval_data(approval_id)
+            if not approval_data:
+                return {
+                    "success": False,
+                    "error": "Approval not found",
+                    "message": f"No approval found with ID: {approval_id}"
+                }
+
+            # Update status to rejected
+            approval_data["status"] = ApprovalStatus.REJECTED.value
+            approval_data["rejectedAt"] = datetime.now().isoformat()
+            approval_data["rejectedBy"] = rejecter_data.get("rejecter", "unknown")
+            approval_data["rejectionReason"] = rejecter_data.get("reason", "")
+
+            # Add to history
+            approval_data["history"].append({
+                "action": "rejected",
+                "timestamp": datetime.now().isoformat(),
+                "actor": rejecter_data.get("rejecter", "unknown"),
+                "reason": rejecter_data.get("reason", "")
+            })
+
+            # Save updated data
+            await self.save_approval_data(approval_id, approval_data)
+
+            print(f"❌ Content rejected: {approval_id}")
+
+            return {
+                "success": True,
+                "approvalId": approval_id,
+                "status": ApprovalStatus.REJECTED.value,
+                "message": "Content rejected successfully"
+            }
+
+        except Exception as error:
+            print(f"❌ Failed to reject content: {error}")
+            return {
+                "success": False,
+                "error": str(error),
+                "message": "Failed to reject content"
+            }
+
+    async def request_revision(self, approval_id: str, revision_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Request revision for content
+        """
+        try:
+            # Load existing approval data
+            approval_data = await self.load_approval_data(approval_id)
+            if not approval_data:
+                return {
+                    "success": False,
+                    "error": "Approval not found",
+                    "message": f"No approval found with ID: {approval_id}"
+                }
+
+            # Update status to needs revision
+            approval_data["status"] = ApprovalStatus.NEEDS_REVISION.value
+            approval_data["revisionRequestedAt"] = datetime.now().isoformat()
+            approval_data["revisionRequestedBy"] = revision_data.get("requester", "unknown")
+            approval_data["revisionNotes"] = revision_data.get("notes", "")
+
+            # Add to history
+            approval_data["history"].append({
+                "action": "revision_requested",
+                "timestamp": datetime.now().isoformat(),
+                "actor": revision_data.get("requester", "unknown"),
+                "notes": revision_data.get("notes", "")
+            })
+
+            # Save updated data
+            await self.save_approval_data(approval_id, approval_data)
+
+            print(f"🔄 Revision requested for content: {approval_id}")
+
+            return {
+                "success": True,
+                "approvalId": approval_id,
+                "status": ApprovalStatus.NEEDS_REVISION.value,
+                "message": "Revision requested successfully"
+            }
+
+        except Exception as error:
+            print(f"❌ Failed to request revision: {error}")
+            return {
+                "success": False,
+                "error": str(error),
+                "message": "Failed to request revision"
+            }
+
+    async def get_approval_status(self, approval_id: str) -> Dict[str, Any]:
+        """
+        Get current status of an approval
+        """
+        try:
+            approval_data = await self.load_approval_data(approval_id)
+            if not approval_data:
+                return {
+                    "success": False,
+                    "error": "Approval not found",
+                    "message": f"No approval found with ID: {approval_id}"
+                }
+
+            return {
+                "success": True,
+                "approvalId": approval_id,
+                "status": approval_data["status"],
+                "data": approval_data
+            }
+
+        except Exception as error:
+            print(f"❌ Failed to get approval status: {error}")
+            return {
+                "success": False,
+                "error": str(error),
+                "message": "Failed to get approval status"
+            }
+
+    async def list_approvals(self, status: Optional[str] = None, limit: int = 50) -> Dict[str, Any]:
+        """
+        List approvals with optional status filter
+        """
+        try:
+            approvals = []
+
+            # Get all approval files
+            for file_path in self.approvals_dir.glob("*.json"):
+                try:
+                    with open(file_path, "r", encoding="utf-8") as f:
+                        approval_data = json.load(f)
+
+                        # Filter by status if provided
+                        if status is None or approval_data.get("status") == status:
+                            approvals.append({
+                                "approvalId": approval_data.get("approvalId"),
+                                "status": approval_data.get("status"),
+                                "submittedAt": approval_data.get("submittedAt"),
+                                "contentType": approval_data.get("contentType"),
+                                "submittedBy": approval_data.get("submittedBy")
+                            })
+                except Exception:
+                    continue
+
+            # Sort by submission date (newest first)
+            approvals.sort(key=lambda x: x["submittedAt"], reverse=True)
+
+            # Apply limit
+            approvals = approvals[:limit]
+
+            return {
+                "success": True,
+                "approvals": approvals,
+                "count": len(approvals),
+                "message": f"Found {len(approvals)} approvals"
+            }
+
+        except Exception as error:
+            print(f"❌ Failed to list approvals: {error}")
+            return {
+                "success": False,
+                "error": str(error),
+                "message": "Failed to list approvals"
+            }
+
+    async def save_approval_data(self, approval_id: str, approval_data: Dict[str, Any]) -> None:
+        """
+        Save approval data to file
+        """
+        file_path = self.approvals_dir / f"{approval_id}.json"
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(approval_data, f, ensure_ascii=False, indent=2)
+
+    async def load_approval_data(self, approval_id: str) -> Optional[Dict[str, Any]]:
+        """
+        Load approval data from file
+        """
+        file_path = self.approvals_dir / f"{approval_id}.json"
+        if not file_path.exists():
+            return None
+
+        with open(file_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+
+    def get_stats(self) -> Dict[str, Any]:
+        """
+        Get approval statistics
+        """
+        try:
+            # Count approvals by status
+            status_counts = {}
+            total_approvals = 0
+
+            for file_path in self.approvals_dir.glob("*.json"):
+                try:
+                    with open(file_path, "r", encoding="utf-8") as f:
+                        approval_data = json.load(f)
+                        status = approval_data.get("status", "unknown")
+                        status_counts[status] = status_counts.get(status, 0) + 1
+                        total_approvals += 1
+                except Exception:
+                    continue
+
+            return {
+                "totalApprovals": total_approvals,
+                "statusBreakdown": status_counts,
+                "approvalRate": (
+                    status_counts.get(ApprovalStatus.APPROVED.value, 0) / total_approvals * 100
+                    if total_approvals > 0 else 0
+                ),
+                "rejectionRate": (
+                    status_counts.get(ApprovalStatus.REJECTED.value, 0) / total_approvals * 100
+                    if total_approvals > 0 else 0
+                ),
+                "pendingApprovals": status_counts.get(ApprovalStatus.PENDING.value, 0),
+                "timestamp": datetime.now().isoformat()
+            }
+
+        except Exception as error:
+            print(f"❌ Failed to get approval stats: {error}")
+            return {
+                "totalApprovals": 0,
+                "error": str(error)
+            }
+
+
+# Main execution
+if __name__ == "__main__":
+    agent = ContentApprovalAgent()
+    print("🎬 Content Approval Agent initialized")
+
+    # Show stats
+    stats = agent.get_stats()
+    print(f"📊 Total approvals: {stats['totalApprovals']}")
+    print(f"📈 Approval rate: {stats['approvalRate']:.1f}%")
+    print(f"📉 Rejection rate: {stats['rejectionRate']:.1f}%")

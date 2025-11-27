@@ -1,0 +1,17 @@
+{
+  "name": "seo-channel-optimization-agent",
+  "version": "1.0.0",
+  "description": "Service for SEO optimization of YouTube channels - Creates channel-specific SEO compliant descriptions and keywords",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m pytest tests/"
+  },
+  "keywords": ["seo", "youtube", "channel", "optimization", "keywords"],
+  "author": "Autonova Team",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

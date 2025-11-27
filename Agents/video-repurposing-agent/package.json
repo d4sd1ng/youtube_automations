@@ -1,0 +1,20 @@
+{
+  "name": "video-repurposing-agent",
+  "version": "1.0.0",
+  "description": "Agent zur automatischen Erstellung von Shorts aus Long-Form-Videos",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m unittest discover tests",
+    "docker:build": "docker build -t video-repurposing-agent .",
+    "docker:run": "docker run -it video-repurposing-agent"
+  },
+  "keywords": [
+    "video-repurposing",
+    "shorts",
+    "content-creation",
+    "agent"
+  ],
+  "author": "AGENTS Team",
+  "license": "MIT"
+}

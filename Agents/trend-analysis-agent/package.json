@@ -1,19 +1,20 @@
 {
   "name": "trend-analysis-agent",
   "version": "1.0.0",
-  "description": "A Python-based microservice for content trend analysis, prediction, and hot topic identification",
+  "description": "Agent zur Analyse von gescrapten Inhalten zur Identifizierung viraler Trends und heißer Themen",
   "main": "app.py",
   "scripts": {
     "start": "python app.py",
-    "dev": "python app.py",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "python -m unittest discover tests",
+    "docker:build": "docker build -t trend-analysis-agent .",
+    "docker:run": "docker run -it trend-analysis-agent"
   },
-  "dependencies": {
-    "flask": "^2.0.1",
-    "numpy": "^1.21.0",
-    "pandas": "^1.3.0",
-    "scikit-learn": "^0.24.2"
-  },
-  "author": "AI Agent System",
+  "keywords": [
+    "trend-analysis",
+    "topic-discovery",
+    "ai",
+    "agent"
+  ],
+  "author": "AGENTS Team",
   "license": "MIT"
 }

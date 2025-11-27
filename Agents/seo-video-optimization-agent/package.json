@@ -1,0 +1,17 @@
+{
+  "name": "seo-video-optimization-agent",
+  "version": "1.0.0",
+  "description": "Service for SEO optimization of YouTube videos - Creates video-specific SEO compliant descriptions, titles and tags",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m pytest tests/"
+  },
+  "keywords": ["seo", "youtube", "video", "optimization", "description"],
+  "author": "Autonova Team",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "video-scheduler-agent",
+  "version": "1.0.0",
+  "description": "Agent zur Automatisierung des täglichen und wöchentlichen Videoprozesses für beide Kanäle",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m unittest discover tests",
+    "docker:build": "docker build -t video-scheduler-agent .",
+    "docker:run": "docker run -it video-scheduler-agent"
+  },
+  "keywords": [
+    "video",
+    "scheduler",
+    "automation",
+    "agent"
+  ],
+  "author": "AGENTS Team",
+  "license": "MIT"
+}

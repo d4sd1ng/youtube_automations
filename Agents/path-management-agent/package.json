@@ -1,0 +1,17 @@
+{
+  "name": "path-management-agent",
+  "version": "1.0.0",
+  "description": "Path Management Service - Manages the organized directory structure for all content types",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m pytest tests/"
+  },
+  "keywords": ["path", "management", "directory", "structure", "organization"],
+  "author": "Autonova Team",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

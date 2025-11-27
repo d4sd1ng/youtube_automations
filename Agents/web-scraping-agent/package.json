@@ -1,19 +1,19 @@
 {
-  "name": "web-scraping-python-agent",
+  "name": "web-scraping-agent",
   "version": "1.0.0",
-  "description": "Python-based Web Scraping Agent for data extraction and monitoring",
+  "description": "Agent für Web-Scraping-Operationen zur Inhaltserkennung",
   "main": "app.py",
   "scripts": {
     "start": "python app.py",
-    "dev": "python app.py"
+    "test": "python -m unittest discover tests",
+    "docker:build": "docker build -t web-scraping-agent .",
+    "docker:run": "docker run -it web-scraping-agent"
   },
   "keywords": [
     "web-scraping",
-    "data-extraction",
-    "agent",
-    "python",
-    "monitoring"
+    "content-discovery",
+    "agent"
   ],
-  "author": "AI Agent System",
+  "author": "AGENTS Team",
   "license": "MIT"
 }

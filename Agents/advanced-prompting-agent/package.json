@@ -1,0 +1,13 @@
+{
+  "name": "advanced-prompting-agent",
+  "version": "1.0.0",
+  "description": "Python Agent for specialized LLM prompt engineering for optimal YouTube script generation",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m pytest"
+  },
+  "keywords": ["prompt-engineering", "llm", "youtube", "content-generation", "automation"],
+  "author": "Agent System",
+  "license": "MIT"
+}

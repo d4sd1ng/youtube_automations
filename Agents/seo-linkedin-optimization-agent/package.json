@@ -1,0 +1,17 @@
+{
+  "name": "seo-linkedin-optimization-agent",
+  "version": "1.0.0",
+  "description": "Service for SEO optimization of LinkedIn posts - Creates professional, SEO-compliant descriptions, titles and tags for LinkedIn",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m pytest tests/"
+  },
+  "keywords": ["seo", "linkedin", "optimization", "posts", "professional"],
+  "author": "Autonova Team",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

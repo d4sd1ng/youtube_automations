@@ -1,0 +1,21 @@
+{
+  "name": "token-cost-calculator-agent",
+  "version": "1.0.0",
+  "description": "Agent zur Berechnung der Kosten für LLM-Nutzung",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m unittest discover tests",
+    "docker:build": "docker build -t token-cost-calculator-agent .",
+    "docker:run": "docker run -it token-cost-calculator-agent"
+  },
+  "keywords": [
+    "token",
+    "cost",
+    "calculator",
+    "llm",
+    "agent"
+  ],
+  "author": "AGENTS Team",
+  "license": "MIT"
+}

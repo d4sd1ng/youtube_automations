@@ -1,0 +1,13 @@
+{
+  "name": "audio-extraction-agent",
+  "version": "1.0.0",
+  "description": "Python Agent for extracting audio from YouTube videos discovered by VideoDiscoveryService",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m pytest"
+  },
+  "keywords": ["audio-extraction", "youtube-dl", "ffmpeg", "video-processing"],
+  "author": "Agent System",
+  "license": "MIT"
+}

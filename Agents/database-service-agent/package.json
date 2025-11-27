@@ -1,0 +1,19 @@
+{
+  "name": "database-service-agent",
+  "version": "1.0.0",
+  "description": "Database Service - Central service for database operations",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m pytest tests/"
+  },
+  "keywords": ["database", "mongodb", "service", "crud"],
+  "author": "Autonova Team",
+  "license": "MIT",
+  "dependencies": {
+    "motor": "^3.3.2",
+    "pymongo": "^4.6.1"
+  },
+  "devDependencies": {
+  }
+}

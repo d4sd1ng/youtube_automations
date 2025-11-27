@@ -1,0 +1,19 @@
+{
+  "name": "video-discovery-agent",
+  "version": "1.0.0",
+  "description": "Agent zur Entdeckung vorhandener Videoinhalte zur Analyse und Inspiration",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m unittest discover tests",
+    "docker:build": "docker build -t video-discovery-agent .",
+    "docker:run": "docker run -it video-discovery-agent"
+  },
+  "keywords": [
+    "video-discovery",
+    "content-analysis",
+    "agent"
+  ],
+  "author": "AGENTS Team",
+  "license": "MIT"
+}

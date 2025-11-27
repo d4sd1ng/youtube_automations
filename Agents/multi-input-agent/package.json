@@ -1,0 +1,19 @@
+{
+  "name": "multi-input-agent",
+  "version": "1.0.0",
+  "description": "Agent zur Verarbeitung mehrerer Eingabequellen",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m unittest discover tests",
+    "docker:build": "docker build -t multi-input-agent .",
+    "docker:run": "docker run -it multi-input-agent"
+  },
+  "keywords": [
+    "multi-input",
+    "processing",
+    "agent"
+  ],
+  "author": "AGENTS Team",
+  "license": "MIT"
+}

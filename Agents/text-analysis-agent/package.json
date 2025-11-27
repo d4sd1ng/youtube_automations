@@ -1,0 +1,20 @@
+{
+  "name": "text-analysis-agent",
+  "version": "1.0.0",
+  "description": "Agent zur Textanalyse und Extraktion von Schlüsselinformationen mit KI",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m unittest discover tests",
+    "docker:build": "docker build -t text-analysis-agent .",
+    "docker:run": "docker run -it text-analysis-agent"
+  },
+  "keywords": [
+    "text-analysis",
+    "ai",
+    "nlp",
+    "agent"
+  ],
+  "author": "AGENTS Team",
+  "license": "MIT"
+}
