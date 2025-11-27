@@ -581,6 +581,7 @@ class CompetitorAnalysisAgent {
     // Analyze each competitor
     Object.keys(competitorData.data).forEach(competitorId => {
       const competitor = competitorData.data[competitorId];
+<<<<<<< HEAD
 
       // Calculate performance score
       const performanceScore = this.calculatePerformanceScore(competitor.metrics);
@@ -591,6 +592,18 @@ class CompetitorAnalysisAgent {
       // Identify content gaps
       const contentGaps = this.identifyContentGaps(competitor);
 
+=======
+      
+      // Calculate performance score
+      const performanceScore = this.calculatePerformanceScore(competitor.metrics);
+      
+      // Determine market position
+      const marketPosition = this.determineMarketPosition(competitor.metrics.subscribers);
+      
+      // Identify content gaps
+      const contentGaps = this.identifyContentGaps(competitor);
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       analyzedCompetitors.push({
         ...competitor,
         performanceScore: performanceScore,
@@ -616,7 +629,11 @@ class CompetitorAnalysisAgent {
       (metrics.engagementRate * 25) + // 25% weight
       (metrics.uploadFrequency * 20) // 20% weight
     );
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return Math.min(score, 100); // Cap at 100
   }
 
@@ -644,11 +661,19 @@ class CompetitorAnalysisAgent {
    */
   identifyContentGaps(competitor) {
     const gaps = [];
+<<<<<<< HEAD
 
     // Check for missing content types
     const allContentTypes = ['Long-form', 'Shorts', 'Live Streams', 'Playlists', 'Collaborations'];
     const missingTypes = allContentTypes.filter(type => !competitor.strategy.contentTypes.includes(type));
 
+=======
+    
+    // Check for missing content types
+    const allContentTypes = ['Long-form', 'Shorts', 'Live Streams', 'Playlists', 'Collaborations'];
+    const missingTypes = allContentTypes.filter(type => !competitor.strategy.contentTypes.includes(type));
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     if (missingTypes.length > 0) {
       gaps.push({
         type: 'content-type',
@@ -656,12 +681,20 @@ class CompetitorAnalysisAgent {
         opportunity: 'Content diversifizieren'
       });
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     // Check for inconsistent posting schedule
     const schedule = competitor.strategy.postingSchedule;
     const totalPosts = Object.values(schedule).reduce((sum, val) => sum + val, 0);
     const avgPosts = totalPosts / 7;
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     if (avgPosts < 1) {
       gaps.push({
         type: 'posting-frequency',
@@ -669,7 +702,11 @@ class CompetitorAnalysisAgent {
         opportunity: 'Konsistenz verbessern'
       });
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return gaps;
   }
 
@@ -747,7 +784,11 @@ class CompetitorAnalysisAgent {
    */
   generateMockBenchmarkMetrics(benchmarkData) {
     const metrics = {};
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     // Generate metrics for target
     metrics[benchmarkData.target.id] = {
       name: benchmarkData.target.name,
@@ -756,7 +797,11 @@ class CompetitorAnalysisAgent {
       engagementRate: (Math.random() * 10 + 2).toFixed(2),
       uploadFrequency: Math.floor(Math.random() * 5) + 1
     };
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     // Generate metrics for competitors
     benchmarkData.competitors.forEach(competitor => {
       metrics[competitor.id] = {
@@ -767,7 +812,11 @@ class CompetitorAnalysisAgent {
         uploadFrequency: Math.floor(Math.random() * 7) + 1
       };
     });
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return metrics;
   }
 
@@ -902,10 +951,17 @@ class CompetitorAnalysisAgent {
    */
   summarizeData(data) {
     if (!data) return {};
+<<<<<<< HEAD
 
     // Count properties
     const propertyCount = Object.keys(data).length;
 
+=======
+    
+    // Count properties
+    const propertyCount = Object.keys(data).length;
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return {
       totalProperties: propertyCount,
       dataType: typeof data,
@@ -920,13 +976,21 @@ class CompetitorAnalysisAgent {
    */
   hasNestedObjects(obj) {
     if (!obj || typeof obj !== 'object') return false;
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     for (const key in obj) {
       if (typeof obj[key] === 'object' && obj[key] !== null) {
         return true;
       }
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return false;
   }
 
@@ -937,21 +1001,33 @@ class CompetitorAnalysisAgent {
    */
   extractKeyFindings(data) {
     const findings = [];
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     // Extract findings if they exist in the data
     if (data && data.analyzedCompetitors) {
       // Get top 3 competitors by performance score
       const topCompetitors = data.analyzedCompetitors
         .sort((a, b) => b.performanceScore - a.performanceScore)
         .slice(0, 3);
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       findings.push(...topCompetitors.map(c => ({
         competitor: c.name,
         performanceScore: c.performanceScore,
         marketPosition: c.marketPosition
       })));
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return findings;
   }
 

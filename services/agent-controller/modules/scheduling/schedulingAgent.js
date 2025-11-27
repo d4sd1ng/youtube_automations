@@ -37,7 +37,11 @@ class SchedulingAgent {
           { hour: 20, weight: 0.9 }   // Evening prime time
         ]
       },
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       // Days of week preferences
       dayPreferences: {
         'monday': 0.8,
@@ -226,10 +230,17 @@ class SchedulingAgent {
     for (let i = 0; i < contentItems.length; i++) {
       const item = contentItems[i];
       const contentType = item.contentType || 'short';
+<<<<<<< HEAD
 
       // Determine optimal posting time based on content type and rules
       const optimalTime = this.calculateOptimalPostingTime(contentType, startDate, i);
 
+=======
+      
+      // Determine optimal posting time based on content type and rules
+      const optimalTime = this.calculateOptimalPostingTime(contentType, startDate, i);
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       schedule.push({
         id: `schedule-${uuidv4()}`,
         contentId: item.id || `content-${i}`,
@@ -255,6 +266,7 @@ class SchedulingAgent {
   calculateOptimalPostingTime(contentType, startDate, index) {
     // Get best times for content type
     const bestTimes = this.schedulingRules.bestTimes[contentType] || this.schedulingRules.bestTimes.short;
+<<<<<<< HEAD
 
     // Calculate days to add based on index
     const daysToAdd = Math.floor(index / bestTimes.length);
@@ -262,11 +274,24 @@ class SchedulingAgent {
     // Get time slot based on index
     const timeSlot = bestTimes[index % bestTimes.length];
 
+=======
+    
+    // Calculate days to add based on index
+    const daysToAdd = Math.floor(index / bestTimes.length);
+    
+    // Get time slot based on index
+    const timeSlot = bestTimes[index % bestTimes.length];
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     // Create date object
     const postingDate = new Date(startDate);
     postingDate.setDate(postingDate.getDate() + daysToAdd);
     postingDate.setHours(timeSlot.hour, 0, 0, 0);
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return postingDate;
   }
 
@@ -288,7 +313,11 @@ class SchedulingAgent {
       Object.keys(updates).forEach(key => {
         schedule[key] = updates[key];
       });
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       schedule.updatedAt = new Date().toISOString();
 
       // Save updated schedule

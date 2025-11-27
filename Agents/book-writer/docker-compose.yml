@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  book-writer-agent:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - SMTP_HOST=smtp.example.com
+      - SMTP_PORT=587
+      - SMTP_USER=user@example.com
+      - SMTP_PASS=password
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+    restart: unless-stopped
+    networks:
+      - bookwriter-network
+
+  # Optional: Redis für Caching und Job Queue
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - bookwriter-network
+
+volumes:
+  redis_data:
+
+networks:
+  bookwriter-network:
+    driver: bridge

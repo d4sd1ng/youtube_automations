@@ -622,7 +622,11 @@ class AnalyticsAgent {
     const ageGroups = audienceData.demographics.age;
     let dominantAgeGroup = '';
     let maxPercentage = 0;
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     Object.keys(ageGroups).forEach(group => {
       if (ageGroups[group] > maxPercentage) {
         maxPercentage = ageGroups[group];
@@ -760,10 +764,17 @@ class AnalyticsAgent {
    */
   summarizeData(data) {
     if (!data) return {};
+<<<<<<< HEAD
 
     // Count properties
     const propertyCount = Object.keys(data).length;
 
+=======
+    
+    // Count properties
+    const propertyCount = Object.keys(data).length;
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return {
       totalProperties: propertyCount,
       dataType: typeof data,
@@ -778,13 +789,21 @@ class AnalyticsAgent {
    */
   hasNestedObjects(obj) {
     if (!obj || typeof obj !== 'object') return false;
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     for (const key in obj) {
       if (typeof obj[key] === 'object' && obj[key] !== null) {
         return true;
       }
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return false;
   }
 
@@ -795,7 +814,11 @@ class AnalyticsAgent {
    */
   extractKeyMetrics(data) {
     const metrics = {};
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     // Extract numeric values as key metrics
     if (data && typeof data === 'object') {
       Object.keys(data).forEach(key => {
@@ -804,7 +827,11 @@ class AnalyticsAgent {
         }
       });
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return metrics;
   }
 

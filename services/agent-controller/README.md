@@ -8,7 +8,10 @@ Der Daily Scraper Service führt automatisch täglich das Scraping von Inhalten 
 - Extrahiert Keywords und Themen zu den Bereichen KI, AfD und Politik
 - Speichert Ergebnisse in JSON-Dateien
 - Identifiziert Video-Themen für die Content-Erstellung
+<<<<<<< HEAD
 - Automatische Erstellung von Daily und Weekly Videos für beide Kanäle
+=======
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
 
 ## Verwendung
 
@@ -20,6 +23,7 @@ npm run daily-scrape
 
 Der Scraper wird dann alle 24 Stunden automatisch ausgeführt und die Ergebnisse in `./data/scraping-results/` gespeichert.
 
+<<<<<<< HEAD
 ### Videoplaner starten
 
 ```bash
@@ -28,18 +32,23 @@ node videoScheduler.js
 
 Der Videoplaner erstellt automatisch tägliche und wöchentliche Videos basierend auf den gescrapten Inhalten.
 
+=======
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
 ### Einmaliges Scraping durchführen
 
 ```bash
 node test-scraping-run.js
 ```
 
+<<<<<<< HEAD
 ### Testen des Videoplaners
 
 ```bash
 node testVideoScheduler.js
 ```
 
+=======
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
 ## Gespeicherte Daten
 
 Die Ergebnisse werden im Verzeichnis `./data/scraping-results/` als JSON-Dateien gespeichert:
@@ -69,6 +78,7 @@ Der Scraper verwendet nur genehmigte Quellen:
 - Instagram
 - Bundestag
 - Landtage
+<<<<<<< HEAD
 - Politische Talkshows
 
 ## Automatische Videoerstellung
@@ -84,3 +94,6 @@ Der Service erstellt automatisch:
 - 1 Long-Form Video pro Kanal
 - 3 Short-Kopien des Long-Videos
 - Erstellt jeden Montag
+=======
+- Politische Talkshows
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3

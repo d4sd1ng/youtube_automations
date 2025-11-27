@@ -775,6 +775,7 @@ class HashtagOptimizationAgent {
 
     Object.keys(competitorData.data).forEach(competitorId => {
       const competitor = competitorData.data[competitorId];
+<<<<<<< HEAD
 
       // Calculate hashtag effectiveness
       const effectiveness = this.calculateHashtagEffectiveness(competitor.hashtags);
@@ -782,6 +783,15 @@ class HashtagOptimizationAgent {
       // Identify common hashtags
       const commonHashtags = this.identifyCommonHashtags(competitor.hashtags);
 
+=======
+      
+      // Calculate hashtag effectiveness
+      const effectiveness = this.calculateHashtagEffectiveness(competitor.hashtags);
+      
+      // Identify common hashtags
+      const commonHashtags = this.identifyCommonHashtags(competitor.hashtags);
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       analyzedCompetitors.push({
         ...competitor,
         effectiveness: effectiveness,
@@ -802,7 +812,11 @@ class HashtagOptimizationAgent {
     // Simple weighted score calculation
     const totalEngagement = hashtags.reduce((sum, tag) => sum + parseFloat(tag.engagementRate), 0);
     const avgEngagement = hashtags.length > 0 ? totalEngagement / hashtags.length : 0;
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return Math.min(avgEngagement * 5, 100); // Scale to 100
   }
 
@@ -899,10 +913,17 @@ class HashtagOptimizationAgent {
    */
   summarizeData(data) {
     if (!data) return {};
+<<<<<<< HEAD
 
     // Count properties
     const propertyCount = Object.keys(data).length;
 
+=======
+    
+    // Count properties
+    const propertyCount = Object.keys(data).length;
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return {
       totalProperties: propertyCount,
       dataType: typeof data,
@@ -917,13 +938,21 @@ class HashtagOptimizationAgent {
    */
   hasNestedObjects(obj) {
     if (!obj || typeof obj !== 'object') return false;
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     for (const key in obj) {
       if (typeof obj[key] === 'object' && obj[key] !== null) {
         return true;
       }
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return false;
   }
 
@@ -934,21 +963,33 @@ class HashtagOptimizationAgent {
    */
   extractKeyFindings(data) {
     const findings = [];
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     // Extract findings if they exist in the data
     if (data && data.optimizedHashtags) {
       // Get top 5 hashtags by relevance
       const topHashtags = data.optimizedHashtags
         .sort((a, b) => b.relevance - a.relevance)
         .slice(0, 5);
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       findings.push(...topHashtags.map(h => ({
         hashtag: h.tag,
         relevance: h.relevance,
         volume: h.volume
       })));
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return findings;
   }
 

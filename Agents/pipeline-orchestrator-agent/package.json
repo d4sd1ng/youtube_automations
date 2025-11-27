@@ -1,0 +1,13 @@
+{
+  "name": "pipeline-orchestrator-agent",
+  "version": "1.0.0",
+  "description": "Pipeline Orchestrator Agent for content generation pipeline coordination",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m pytest tests/"
+  },
+  "keywords": ["pipeline", "orchestrator", "content-generation"],
+  "author": "AI Agent System",
+  "license": "MIT"
+}

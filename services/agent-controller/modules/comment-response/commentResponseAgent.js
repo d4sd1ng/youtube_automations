@@ -66,6 +66,7 @@ class CommentResponseAgent {
       }
 
       console.log(`[${this.agentName}] Processing comment response job ${job.id}`);
+<<<<<<< HEAD
 
       // Save job
       const jobPath = path.join(this.jobsDir, `${job.id}.json`);
@@ -84,6 +85,26 @@ class CommentResponseAgent {
       // Update last execution
       this.lastExecution = new Date().toISOString();
 
+=======
+      
+      // Save job
+      const jobPath = path.join(this.jobsDir, `${job.id}.json`);
+      fs.writeFileSync(jobPath, JSON.stringify(job, null, 2));
+      
+      // Simulate comment response processing
+      await this.simulateProcessing();
+      
+      // Generate response
+      const response = this.generateResponse(job);
+      
+      // Save response
+      const responsePath = path.join(this.responsesDir, `${job.id}-response.json`);
+      fs.writeFileSync(responsePath, JSON.stringify(response, null, 2));
+      
+      // Update last execution
+      this.lastExecution = new Date().toISOString();
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       return {
         jobId: job.id,
         status: 'completed',
@@ -109,7 +130,11 @@ class CommentResponseAgent {
   generateResponse(job) {
     // In a real implementation, this would use NLP and sentiment analysis
     // For now, we'll simulate a response
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     const templates = [
       "Thank you for your comment! We're glad you enjoyed the content.",
       "Thanks for watching! Let us know if you have any questions.",
@@ -117,9 +142,15 @@ class CommentResponseAgent {
       "Great point! Thanks for sharing your thoughts with us.",
       "Thanks for engaging with our content. We love hearing from our community!"
     ];
+<<<<<<< HEAD
 
     const template = templates[Math.floor(Math.random() * templates.length)];
 
+=======
+    
+    const template = templates[Math.floor(Math.random() * templates.length)];
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return {
       commentId: job.commentId || uuidv4(),
       responseText: template,

@@ -173,17 +173,28 @@ class EngagementAgent {
       const processedComments = [];
       for (let i = 0; i < comments.length; i++) {
         const comment = comments[i];
+<<<<<<< HEAD
 
         // Moderate comment
         const moderationResult = this.moderateCommentContent(comment);
 
+=======
+        
+        // Moderate comment
+        const moderationResult = this.moderateCommentContent(comment);
+        
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
         // Add to processed comments
         processedComments.push({
           ...comment,
           moderated: moderationResult,
           processedAt: new Date().toISOString()
         });
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
         // Save comment
         this.saveComment({
           ...comment,
@@ -656,8 +667,13 @@ class EngagementAgent {
     // Calculate engagement metrics
     const totalComments = comments.length;
     const moderatedComments = comments.filter(c => c.moderated && c.moderated.flags.length > 0).length;
+<<<<<<< HEAD
     const positiveComments = comments.filter(c =>
       !c.moderated ||
+=======
+    const positiveComments = comments.filter(c => 
+      !c.moderated || 
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       (!c.moderated.isSpam && !c.moderated.isOffensive && !c.moderated.isPromotional)
     ).length;
 

@@ -1,0 +1,80 @@
+{
+  "id": "7f747311-4773-4b6d-a852-676d102f969c",
+  "type": "video-creation",
+  "status": "completed",
+  "scriptId": "74149b28-8d8b-4748-b801-12c6b0b62a20",
+  "options": {
+    "style": "standard",
+    "duration": "5min"
+  },
+  "progress": {
+    "currentStage": "creating",
+    "stageProgress": 100,
+    "overallProgress": 100,
+    "completedStages": []
+  },
+  "metadata": {
+    "startedAt": "2025-11-25T17:33:36.605Z",
+    "estimatedDuration": 180000,
+    "completedAt": "2025-11-25T17:33:41.150Z"
+  },
+  "logs": [
+    {
+      "timestamp": "2025-11-25T17:33:36.605Z",
+      "level": "info",
+      "message": "Starting video creation from script: 74149b28-8d8b-4748-b801-12c6b0b62a20"
+    },
+    {
+      "timestamp": "2025-11-25T17:33:36.605Z",
+      "level": "info",
+      "message": "Loading script..."
+    },
+    {
+      "timestamp": "2025-11-25T17:33:37.116Z",
+      "level": "info",
+      "message": "Generating video content..."
+    },
+    {
+      "timestamp": "2025-11-25T17:33:38.126Z",
+      "level": "info",
+      "message": "Adding voiceover..."
+    },
+    {
+      "timestamp": "2025-11-25T17:33:39.136Z",
+      "level": "info",
+      "message": "Adding visuals..."
+    },
+    {
+      "timestamp": "2025-11-25T17:33:40.142Z",
+      "level": "info",
+      "message": "Final rendering..."
+    },
+    {
+      "timestamp": "2025-11-25T17:33:41.150Z",
+      "level": "info",
+      "message": "Video creation completed successfully"
+    }
+  ],
+  "result": {
+    "id": "6a9e1406-31b8-4c65-955e-d910d6caa858",
+    "scriptId": "74149b28-8d8b-4748-b801-12c6b0b62a20",
+    "title": "Alles über Content Plan for Künstliche Intelligenz in der Medizin",
+    "description": "Ein umfassender Leitfaden zu Content Plan for Künstliche Intelligenz in der Medizin",
+    "filename": "video_74149b28-8d8b-4748-b801-12c6b0b62a20.mp4",
+    "format": "mp4",
+    "resolution": "1920x1080",
+    "duration": 600,
+    "size": 104779285,
+    "createdAt": "2025-11-25T17:33:41.149Z",
+    "platform": "youtube",
+    "tags": [
+      "Content Plan for Künstliche Intelligenz in der Medizin",
+      "Content Plan for Künstliche Intelligenz in der Medizin Erklärung",
+      "Content Plan for Künstliche Intelligenz in der Medizin Tutorial"
+    ],
+    "videoOptions": {
+      "style": "standard",
+      "duration": "5min"
+    }
+  }
+}

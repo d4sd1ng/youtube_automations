@@ -67,6 +67,7 @@ class PerformanceMonitoringAgent {
       }
 
       console.log(`[${this.agentName}] Processing performance monitoring job ${job.id}`);
+<<<<<<< HEAD
 
       // Save job
       const jobPath = path.join(this.jobsDir, `${job.id}.json`);
@@ -88,6 +89,29 @@ class PerformanceMonitoringAgent {
       // Update last execution
       this.lastExecution = new Date().toISOString();
 
+=======
+      
+      // Save job
+      const jobPath = path.join(this.jobsDir, `${job.id}.json`);
+      fs.writeFileSync(jobPath, JSON.stringify(job, null, 2));
+      
+      // Simulate monitoring processing
+      await this.simulateProcessing();
+      
+      // Collect metrics
+      const metrics = this.collectMetrics(job);
+      
+      // Generate report
+      const report = this.generateReport(metrics, job);
+      
+      // Save report
+      const reportPath = path.join(this.reportsDir, `${job.id}-report.json`);
+      fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
+      
+      // Update last execution
+      this.lastExecution = new Date().toISOString();
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       return {
         jobId: job.id,
         status: 'completed',
@@ -113,7 +137,11 @@ class PerformanceMonitoringAgent {
   collectMetrics(job) {
     // In a real implementation, this would collect actual system metrics
     // For now, we'll simulate metric collection
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return {
       cpuUsage: Math.random() * 100,
       memoryUsage: Math.random() * 100,
@@ -134,7 +162,11 @@ class PerformanceMonitoringAgent {
   generateReport(metrics, job) {
     // In a real implementation, this would generate detailed reports
     // For now, we'll simulate a report
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return {
       reportId: uuidv4(),
       type: job.reportType || 'realtime',
@@ -151,6 +183,7 @@ class PerformanceMonitoringAgent {
    */
   generateRecommendations(metrics) {
     const recommendations = [];
+<<<<<<< HEAD
 
     if (metrics.cpuUsage > 80) {
       recommendations.push("High CPU usage detected. Consider optimizing agent processes or adding more computing resources.");
@@ -168,6 +201,25 @@ class PerformanceMonitoringAgent {
       recommendations.push("System performance is within acceptable parameters.");
     }
 
+=======
+    
+    if (metrics.cpuUsage > 80) {
+      recommendations.push("High CPU usage detected. Consider optimizing agent processes or adding more computing resources.");
+    }
+    
+    if (metrics.memoryUsage > 80) {
+      recommendations.push("High memory usage detected. Consider optimizing memory consumption or adding more RAM.");
+    }
+    
+    if (metrics.responseTime > 500) {
+      recommendations.push("Slow response time detected. Consider optimizing system performance or investigating bottlenecks.");
+    }
+    
+    if (recommendations.length === 0) {
+      recommendations.push("System performance is within acceptable parameters.");
+    }
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return recommendations;
   }
 

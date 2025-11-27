@@ -1,0 +1,83 @@
+{
+  "styleGuides": {
+    "academic": {
+      "name": "Akademischer Stil",
+      "tone": "formal",
+      "targetAudience": "academia",
+      "languageLevel": "advanced",
+      "formatting": {
+        "citationStyle": "APA",
+        "headingStructure": "numeric",
+        "font": "Times New Roman",
+        "fontSize": "12pt",
+        "lineSpacing": "1.5"
+      },
+      "contentRules": {
+        "passiveVoiceAllowed": true,
+        "firstPersonSingular": false,
+        "contractions": false,
+        "jargonLevel": "high"
+      }
+    },
+    "professional": {
+      "name": "Professioneller Stil",
+      "tone": "professional",
+      "targetAudience": "practitioners",
+      "languageLevel": "intermediate",
+      "formatting": {
+        "citationStyle": "Chicago",
+        "headingStructure": "descriptive",
+        "font": "Arial",
+        "fontSize": "11pt",
+        "lineSpacing": "1.15"
+      },
+      "contentRules": {
+        "passiveVoiceAllowed": false,
+        "firstPersonSingular": true,
+        "contractions": true,
+        "jargonLevel": "medium"
+      }
+    },
+    "popularScience": {
+      "name": "Populärwissenschaftlicher Stil",
+      "tone": "educational",
+      "targetAudience": "general",
+      "languageLevel": "intermediate",
+      "formatting": {
+        "citationStyle": "MLA",
+        "headingStructure": "engaging",
+        "font": "Georgia",
+        "fontSize": "12pt",
+        "lineSpacing": "1.3"
+      },
+      "contentRules": {
+        "passiveVoiceAllowed": false,
+        "firstPersonSingular": true,
+        "contractions": true,
+        "jargonLevel": "low",
+        "analogies": true
+      }
+    },
+    "journalistic": {
+      "name": "Journalistischer Stil",
+      "tone": "informative",
+      "targetAudience": "general",
+      "languageLevel": "intermediate",
+      "formatting": {
+        "citationStyle": "AP",
+        "headingStructure": "newsStyle",
+        "font": "Helvetica",
+        "fontSize": "11pt",
+        "lineSpacing": "1.2"
+      },
+      "contentRules": {
+        "passiveVoiceAllowed": false,
+        "firstPersonSingular": false,
+        "contractions": true,
+        "jargonLevel": "low",
+        "invertedPyramid": true
+      }
+    }
+  },
+  "defaultStyle": "popularScience"
+}

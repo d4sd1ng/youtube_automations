@@ -67,6 +67,7 @@ class CommunityManagementAgent {
       }
 
       console.log(`[${this.agentName}] Processing community management job ${job.id}`);
+<<<<<<< HEAD
 
       // Save job
       const jobPath = path.join(this.jobsDir, `${job.id}.json`);
@@ -85,6 +86,26 @@ class CommunityManagementAgent {
       // Update last execution
       this.lastExecution = new Date().toISOString();
 
+=======
+      
+      // Save job
+      const jobPath = path.join(this.jobsDir, `${job.id}.json`);
+      fs.writeFileSync(jobPath, JSON.stringify(job, null, 2));
+      
+      // Simulate community management processing
+      await this.simulateProcessing();
+      
+      // Execute community strategy
+      const result = this.executeStrategy(job);
+      
+      // Save result
+      const resultPath = path.join(this.communityDir, `${job.id}-result.json`);
+      fs.writeFileSync(resultPath, JSON.stringify(result, null, 2));
+      
+      // Update last execution
+      this.lastExecution = new Date().toISOString();
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       return {
         jobId: job.id,
         status: 'completed',
@@ -110,7 +131,11 @@ class CommunityManagementAgent {
   executeStrategy(job) {
     // In a real implementation, this would execute actual community management strategies
     // For now, we'll simulate strategy execution
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return {
       strategyId: uuidv4(),
       strategyType: job.strategy || 'engagement',
@@ -129,7 +154,11 @@ class CommunityManagementAgent {
   assessCommunityHealth() {
     // In a real implementation, this would assess actual community health metrics
     // For now, we'll simulate a health assessment
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     const healthFactors = [
       'positiveSentiment',
       'engagementRate',
@@ -137,12 +166,20 @@ class CommunityManagementAgent {
       'contentQuality',
       'responseTime'
     ];
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     const healthScores = {};
     healthFactors.forEach(factor => {
       healthScores[factor] = Math.random() * 100;
     });
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     return {
       overallScore: Math.random() * 100,
       factors: healthScores,

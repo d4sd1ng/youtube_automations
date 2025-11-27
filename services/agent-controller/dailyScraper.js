@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const WebScrapingAgent = require('./webScrapingAgent');
 const fs = require('fs').promises;
 const scrapingConfig = require('./scrapingConfig.json');
@@ -11,6 +12,20 @@ class DailyScraper {
     this.scrapingAgent = new WebScrapingAgent();
     // Load channel configurations
     this.channels = scrapingConfig.channels;
+=======
+const WebScrapingService = require('./webScrapingService');
+const fs = require('fs').promises;
+
+/**
+ * Daily Scraper Service
+ * Automatically scrapes content daily for specific keywords and themes
+ */
+class DailyScraper {
+  constructor() {
+    this.scrapingService = new WebScrapingService();
+    this.keywords = ['ki', 'afd', 'politik'];
+    this.sources = ['youtube', 'twitter', 'tiktok', 'instagram', 'bundestag', 'landtage', 'politische-talkshows'];
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     this.resultsDirectory = './data/scraping-results';
   }
 
@@ -28,6 +43,7 @@ class DailyScraper {
   }
 
   /**
+<<<<<<< HEAD
    * Run daily scraping operation for a specific channel
    */
   async runDailyScrapingForChannel(channelId) {
@@ -66,10 +82,18 @@ class DailyScraper {
   async runDailyScraping() {
     try {
       console.log('🚀 Starting daily scraping operation for all channels...');
+=======
+   * Run daily scraping operation
+   */
+  async runDailyScraping() {
+    try {
+      console.log('🚀 Starting daily scraping operation...');
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
 
       // Get current date for filename
       const currentDate = new Date().toISOString().split('T')[0];
 
+<<<<<<< HEAD
       // Scrape content for each channel
       const channelResults = {};
       for (const channelId in this.channels) {
@@ -120,6 +144,41 @@ class DailyScraper {
       }
 
       return combinedResult;
+=======
+      // Execute scraping
+      const result = await this.scrapingService.execute({
+        type: 'scrape-keywords',
+        keywords: this.keywords,
+        sources: this.sources
+      });
+
+      // Save results to file
+      const filename = `${this.resultsDirectory}/daily-scraping-results-${currentDate}.json`;
+      await fs.writeFile(filename, JSON.stringify(result, null, 2));
+
+      console.log(`✅ Daily scraping completed and saved to ${filename}`);
+      console.log(`📊 Found ${result.totalItems} items, ${result.highQualityItems} with high quality`);
+
+      // Log top themes
+      if (result.themes && result.themes.length > 0) {
+        console.log('🏷️  Top themes:');
+        result.themes.forEach(theme => {
+          console.log(`   ${theme.theme}: ${theme.score} points`);
+        });
+      }
+
+      // Log video topics
+      if (result.videoTopics) {
+        console.log('🎬 Video topics found:');
+        Object.keys(result.videoTopics).forEach(theme => {
+          if (result.videoTopics[theme].length > 0) {
+            console.log(`   ${theme}: ${result.videoTopics[theme].join(', ')}`);
+          }
+        });
+      }
+
+      return result;
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     } catch (error) {
       console.error('❌ Daily scraping failed:', error);
       throw error;

@@ -443,6 +443,7 @@ class WebScrapingService {
    * Scrape TikTok with keywords
    */
   async scrapeTikTokWithKeywords(keywords) {
+<<<<<<< HEAD
     try {
       // Mock implementation
       const keyword = keywords[0] || 'Thema';
@@ -645,17 +646,224 @@ class WebScrapingService {
     try {
       console.log(`🔍 Scraping political content with keywords: ${keywords ? keywords.join(', ') : 'none'}`);
       console.log(`📚 Using sources: ${sources && sources.length > 0 ? sources.join(', ') : 'all political'}`);
+=======
+    try {
+      // Mock implementation
+      const keyword = keywords[0] || 'Thema';
+      const items = [];
+
+      // Generate 3-7 mock TikTok videos
+      const count = Math.floor(Math.random() * 5) + 3;
+      for (let i = 0; i < count; i++) {
+        const item = {
+          title: `TikTok Video über ${keyword} #${i + 1}`,
+          description: `#${keyword.replace(/\s+/g, '')} #TikTok #Viral`,
+          viewCount: Math.floor(Math.random() * 5000000),
+          likeCount: Math.floor(Math.random() * 500000),
+          commentCount: Math.floor(Math.random() * 50000),
+          shareCount: Math.floor(Math.random() * 100000),
+          publishedAt: new Date(Date.now() - Math.random() * 48 * 60 * 60 * 1000).toISOString(), // Within last 48 hours
+          creator: 'BeispielCreator',
+          url: `https://tiktok.com/@creator/video/${Date.now()}-${i}`,
+          source: 'tiktok',
+          platform: this.supportedPlatforms.tiktok
+        };
+
+        item.qualityScore = this.calculateQualityScore(item);
+        items.push(item);
+      }
+
+      return items;
+    } catch (error) {
+      console.error('❌ TikTok scraping with keywords failed:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Scrape Instagram with keywords
+   */
+  async scrapeInstagramWithKeywords(keywords) {
+    try {
+      // Mock implementation
+      const keyword = keywords[0] || 'Thema';
+      const items = [];
+
+      // Generate 2-6 mock Instagram posts
+      const count = Math.floor(Math.random() * 5) + 2;
+      for (let i = 0; i < count; i++) {
+        const item = {
+          title: `Instagram-Post über ${keyword} #${i + 1}`,
+          caption: `Beispielbild über ${keyword} #${keyword.replace(/\s+/g, '')} #Instagram`,
+          likeCount: Math.floor(Math.random() * 100000),
+          commentCount: Math.floor(Math.random() * 5000),
+          publishedAt: new Date(Date.now() - Math.random() * 72 * 60 * 60 * 1000).toISOString(), // Within last 72 hours
+          url: `https://instagram.com/p/${Date.now()}-${i}`,
+          source: 'instagram',
+          platform: this.supportedPlatforms.instagram
+        };
+
+        item.qualityScore = this.calculateQualityScore(item);
+        items.push(item);
+      }
+
+      return items;
+    } catch (error) {
+      console.error('❌ Instagram scraping with keywords failed:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Scrape Bundestag content with keywords
+   */
+  async scrapeBundestagWithKeywords(keywords) {
+    try {
+      // Mock implementation
+      const keyword = keywords[0] || 'Politik';
+      const items = [];
+
+      // Generate 1-3 mock Bundestag items
+      const count = Math.floor(Math.random() * 3) + 1;
+      for (let i = 0; i < count; i++) {
+        const item = {
+          title: `Bundestag: Debatte über ${keyword} #${i + 1}`,
+          content: `Amtlicher Bericht der Debatte über ${keyword} im Deutschen Bundestag`,
+          publishedAt: new Date(Date.now() - Math.random() * 168 * 60 * 60 * 1000).toISOString(), // Within last week
+          url: `https://bundestag.de/dokument-${Date.now()}-${i}`,
+          source: 'bundestag',
+          platform: this.supportedPlatforms.bundestag,
+          qualityScore: 95 // Official government content gets high score
+        };
+
+        items.push(item);
+      }
+
+      return items;
+    } catch (error) {
+      console.error('❌ Bundestag scraping with keywords failed:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Scrape Landtage content with keywords
+   */
+  async scrapeLandtageWithKeywords(keywords) {
+    try {
+      // Mock implementation
+      const keyword = keywords[0] || 'Regionalpolitik';
+      const items = [];
+
+      // Generate 1-2 mock Landtag items
+      const count = Math.floor(Math.random() * 2) + 1;
+      for (let i = 0; i < count; i++) {
+        const item = {
+          title: `Landtag: Diskussion über ${keyword} #${i + 1}`,
+          content: `Amtlicher Bericht der Diskussion über ${keyword} im Landtag`,
+          publishedAt: new Date(Date.now() - Math.random() * 168 * 60 * 60 * 1000).toISOString(), // Within last week
+          url: `https://landtag.de/dokument-${Date.now()}-${i}`,
+          source: 'landtage',
+          platform: this.supportedPlatforms.landtage,
+          qualityScore: 90 // Official regional government content
+        };
+
+        items.push(item);
+      }
+
+      return items;
+    } catch (error) {
+      console.error('❌ Landtage scraping with keywords failed:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Scrape politische Talkshows with keywords
+   */
+  async scrapeTalkshowsWithKeywords(keywords) {
+    try {
+      // Mock implementation
+      const keyword = keywords[0] || 'Aktuelles';
+      const items = [];
+
+      // Generate 2-4 mock talk show items
+      const count = Math.floor(Math.random() * 3) + 2;
+      for (let i = 0; i < count; i++) {
+        const item = {
+          title: `Talksendung: Diskussion über ${keyword} #${i + 1}`,
+          content: `Zusammenfassung der Talksendung über ${keyword} mit Expertengast`,
+          viewCount: Math.floor(Math.random() * 2000000),
+          publishedAt: new Date(Date.now() - Math.random() * 168 * 60 * 60 * 1000).toISOString(), // Within last week
+          url: `https://talkshow.de/sendung-${Date.now()}-${i}`,
+          source: 'politische-talkshows',
+          platform: this.supportedPlatforms['politische-talkshows'],
+          qualityScore: Math.floor(Math.random() * 10) + 85 // 85-95 range
+        };
+
+        item.qualityScore = this.calculateQualityScore(item);
+        items.push(item);
+      }
+
+      return items;
+    } catch (error) {
+      console.error('❌ Talkshows scraping with keywords failed:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Execute scraping operation
+   */
+  async execute(options = {}) {
+    try {
+      console.log(`🔍 Starting scraping operation with type: ${options.type}`);
+
+      // Handle different scraping types
+      switch (options.type) {
+        case 'scrape-keywords':
+          return await this.scrapeContentWithKeywords(options.keywords, options.sources);
+
+        case 'search-web':
+          return await this.searchWeb(options.query, options);
+
+        default:
+          throw new Error(`Unsupported scraping type: ${options.type}`);
+      }
+    } catch (error) {
+      console.error('❌ Scraping execution failed:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Scrape content with keywords from approved sources and extract relevant information for video content creation
+   */
+  async scrapeContentWithKeywords(keywords, sources = []) {
+    try {
+      console.log(`🔍 Scraping content with keywords: ${keywords ? keywords.join(', ') : 'none'}`);
+      console.log(`📚 Using sources: ${sources && sources.length > 0 ? sources.join(', ') : 'all approved'}\n`);
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
 
       // Handle case where keywords might be undefined
       const safeKeywords = keywords && Array.isArray(keywords) ? keywords : [];
 
+<<<<<<< HEAD
       // Use all political sources if none specified
       const sourcesToUse = sources && sources.length > 0 ? sources : ['bundestag', 'landtage', 'politische-talkshows'];
+=======
+      // Use all approved sources if none specified
+      const sourcesToUse = sources && sources.length > 0 ? sources : Object.keys(this.supportedPlatforms);
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
 
       // Validate sources
       const validSources = sourcesToUse.filter(source => this.supportedPlatforms[source]);
       if (validSources.length === 0) {
+<<<<<<< HEAD
         throw new Error('No valid political sources specified');
+=======
+        throw new Error('No valid sources specified');
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       }
 
       console.log(`✅ Valid sources: ${validSources.join(', ')}`);
@@ -663,6 +871,25 @@ class WebScrapingService {
       // Scrape from multiple sources in parallel
       const scrapingPromises = [];
 
+<<<<<<< HEAD
+=======
+      if (validSources.includes('youtube')) {
+        scrapingPromises.push(this.scrapeYouTubeWithKeywords(safeKeywords));
+      }
+
+      if (validSources.includes('twitter')) {
+        scrapingPromises.push(this.scrapeTwitterWithKeywords(safeKeywords));
+      }
+
+      if (validSources.includes('tiktok')) {
+        scrapingPromises.push(this.scrapeTikTokWithKeywords(safeKeywords));
+      }
+
+      if (validSources.includes('instagram')) {
+        scrapingPromises.push(this.scrapeInstagramWithKeywords(safeKeywords));
+      }
+
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       if (validSources.includes('bundestag')) {
         scrapingPromises.push(this.scrapeBundestagWithKeywords(safeKeywords));
       }
@@ -723,6 +950,7 @@ class WebScrapingService {
         todaysTopKeywords: todaysTopKeywords,
         themes: classifiedThemes,
         themeSpecificContent: themeSpecificContent,
+<<<<<<< HEAD
         videoTopics: videoTopics,
         statistics: {
           avgQualityScore: Math.round(allContent.reduce((sum, item) => sum + (item.qualityScore || 0), 0) / allContent.length || 0),
@@ -937,6 +1165,8 @@ class WebScrapingService {
         todaysTopKeywords: todaysTopKeywords,
         themes: classifiedThemes,
         themeSpecificContent: themeSpecificContent,
+=======
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
         videoTopics: videoTopics, // Neue Ausgabe der spezifischen Videothemen
         statistics: {
           avgQualityScore: Math.round(allContent.reduce((sum, item) => sum + (item.qualityScore || 0), 0) / allContent.length || 0),

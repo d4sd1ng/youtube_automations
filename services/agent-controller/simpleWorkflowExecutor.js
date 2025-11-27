@@ -18,10 +18,17 @@ class SimpleWorkflowExecutor {
   async executeContentCreationWorkflow(workflowData) {
     try {
       console.log('[SimpleWorkflowExecutor] Starting content creation workflow');
+<<<<<<< HEAD
 
       // Step 1: Content Planning
       console.log('[SimpleWorkflowExecutor] Step 1: Content Planning');
 
+=======
+      
+      // Step 1: Content Planning
+      console.log('[SimpleWorkflowExecutor] Step 1: Content Planning');
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       const contentPlanResult = await this.orchestrator.contentPlanningAgent.execute({
         type: 'create-content-plan',
         channelId: 'workflow-channel',
@@ -33,6 +40,7 @@ class SimpleWorkflowExecutor {
           keywords: workflowData.keywords || []
         }
       });
+<<<<<<< HEAD
 
       if (!contentPlanResult.success) {
         throw new Error('Content planning failed: ' + contentPlanResult.error);
@@ -41,6 +49,16 @@ class SimpleWorkflowExecutor {
       // Step 2: Script Generation
       console.log('[SimpleWorkflowExecutor] Step 2: Script Generation');
 
+=======
+      
+      if (!contentPlanResult.success) {
+        throw new Error('Content planning failed: ' + contentPlanResult.error);
+      }
+      
+      // Step 2: Script Generation
+      console.log('[SimpleWorkflowExecutor] Step 2: Script Generation');
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       const scriptResult = await this.orchestrator.scriptService.execute({
         type: 'generate-script',
         topic: contentPlanResult.result.contentPlan.title,
@@ -50,6 +68,7 @@ class SimpleWorkflowExecutor {
           keywords: workflowData.keywords || []
         }
       });
+<<<<<<< HEAD
 
       if (!scriptResult.success) {
         throw new Error('Script generation failed: ' + scriptResult.error);
@@ -58,6 +77,16 @@ class SimpleWorkflowExecutor {
       // Step 3: Video Processing
       console.log('[SimpleWorkflowExecutor] Step 3: Video Processing');
 
+=======
+      
+      if (!scriptResult.success) {
+        throw new Error('Script generation failed: ' + scriptResult.error);
+      }
+      
+      // Step 3: Video Processing
+      console.log('[SimpleWorkflowExecutor] Step 3: Video Processing');
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       const videoResult = await this.orchestrator.videoService.execute({
         type: 'create-video-from-script',
         scriptId: scriptResult.result.script.id,
@@ -66,6 +95,7 @@ class SimpleWorkflowExecutor {
           duration: workflowData.videoDuration || '5min'
         }
       });
+<<<<<<< HEAD
 
       if (!videoResult.success) {
         throw new Error('Video processing failed: ' + videoResult.error);
@@ -74,6 +104,16 @@ class SimpleWorkflowExecutor {
       // Step 4: Thumbnail Generation
       console.log('[SimpleWorkflowExecutor] Step 4: Thumbnail Generation');
 
+=======
+      
+      if (!videoResult.success) {
+        throw new Error('Video processing failed: ' + videoResult.error);
+      }
+      
+      // Step 4: Thumbnail Generation
+      console.log('[SimpleWorkflowExecutor] Step 4: Thumbnail Generation');
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       const thumbnailResult = await this.orchestrator.thumbnailService.execute({
         type: 'generate-thumbnails',
         contentData: {
@@ -88,6 +128,7 @@ class SimpleWorkflowExecutor {
           platform: workflowData.platform || 'youtube'
         }
       });
+<<<<<<< HEAD
 
       if (!thumbnailResult.success) {
         throw new Error('Thumbnail generation failed: ' + thumbnailResult.error);
@@ -96,6 +137,16 @@ class SimpleWorkflowExecutor {
       // Step 5: SEO Optimization
       console.log('[SimpleWorkflowExecutor] Step 5: SEO Optimization');
 
+=======
+      
+      if (!thumbnailResult.success) {
+        throw new Error('Thumbnail generation failed: ' + thumbnailResult.error);
+      }
+      
+      // Step 5: SEO Optimization
+      console.log('[SimpleWorkflowExecutor] Step 5: SEO Optimization');
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       const seoResult = await this.orchestrator.seoService.execute({
         type: 'optimize-video',
         videoData: {
@@ -110,6 +161,7 @@ class SimpleWorkflowExecutor {
           optimizationLevel: 'standard'
         }
       });
+<<<<<<< HEAD
 
       if (!seoResult.success) {
         throw new Error('SEO optimization failed: ' + seoResult.error);
@@ -118,6 +170,16 @@ class SimpleWorkflowExecutor {
       // Step 6: Hashtag Optimization
       console.log('[SimpleWorkflowExecutor] Step 6: Hashtag Optimization');
 
+=======
+      
+      if (!seoResult.success) {
+        throw new Error('SEO optimization failed: ' + seoResult.error);
+      }
+      
+      // Step 6: Hashtag Optimization
+      console.log('[SimpleWorkflowExecutor] Step 6: Hashtag Optimization');
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       const hashtagResult = await this.orchestrator.hashtagOptimizationAgent.execute({
         type: 'optimize-hashtags',
         content: {
@@ -126,6 +188,7 @@ class SimpleWorkflowExecutor {
         },
         platform: workflowData.platform || 'youtube'
       });
+<<<<<<< HEAD
 
       if (!hashtagResult.success) {
         throw new Error('Hashtag optimization failed: ' + hashtagResult.error);
@@ -134,6 +197,16 @@ class SimpleWorkflowExecutor {
       // Step 7: Caption Generation
       console.log('[SimpleWorkflowExecutor] Step 7: Caption Generation');
 
+=======
+      
+      if (!hashtagResult.success) {
+        throw new Error('Hashtag optimization failed: ' + hashtagResult.error);
+      }
+      
+      // Step 7: Caption Generation
+      console.log('[SimpleWorkflowExecutor] Step 7: Caption Generation');
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       const captionResult = await this.orchestrator.captionGenerationAgent.execute({
         type: 'generate-captions',
         content: {
@@ -145,11 +218,19 @@ class SimpleWorkflowExecutor {
           platform: workflowData.platform || 'youtube'
         }
       });
+<<<<<<< HEAD
 
       if (!captionResult.success) {
         throw new Error('Caption generation failed: ' + captionResult.error);
       }
 
+=======
+      
+      if (!captionResult.success) {
+        throw new Error('Caption generation failed: ' + captionResult.error);
+      }
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       // Workflow completed successfully
       const workflowResult = {
         contentPlan: contentPlanResult.result.contentPlan,
@@ -161,18 +242,31 @@ class SimpleWorkflowExecutor {
         caption: captionResult.result.captions || captionResult.result,
         timestamp: new Date().toISOString()
       };
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       // Save workflow result
       const resultsDir = path.join(__dirname, '../../data/workflow-results');
       if (!fs.existsSync(resultsDir)) {
         fs.mkdirSync(resultsDir, { recursive: true });
       }
+<<<<<<< HEAD
 
       const resultPath = path.join(resultsDir, `workflow-result-${Date.now()}.json`);
       fs.writeFileSync(resultPath, JSON.stringify(workflowResult, null, 2));
 
       console.log('[SimpleWorkflowExecutor] Content creation workflow completed successfully');
 
+=======
+      
+      const resultPath = path.join(resultsDir, `workflow-result-${Date.now()}.json`);
+      fs.writeFileSync(resultPath, JSON.stringify(workflowResult, null, 2));
+      
+      console.log('[SimpleWorkflowExecutor] Content creation workflow completed successfully');
+      
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
       return {
         status: 'completed',
         result: workflowResult,

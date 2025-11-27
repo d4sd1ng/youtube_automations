@@ -2,10 +2,17 @@ const PipelineOrchestrator = require('./pipelineOrchestrator');
 
 async function testWorkflow() {
   console.log('🚀 Starting workflow test...');
+<<<<<<< HEAD
 
   // Create orchestrator instance
   const orchestrator = new PipelineOrchestrator();
 
+=======
+  
+  // Create orchestrator instance
+  const orchestrator = new PipelineOrchestrator();
+  
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
   // Define workflow data
   const workflowData = {
     topic: 'Künstliche Intelligenz in der Medizin',
@@ -17,11 +24,19 @@ async function testWorkflow() {
     videoDuration: '5min',
     thumbnailStyle: 'bold'
   };
+<<<<<<< HEAD
 
   try {
     // Execute workflow
     const result = await orchestrator.executeContentCreationWorkflow(workflowData);
 
+=======
+  
+  try {
+    // Execute workflow
+    const result = await orchestrator.executeContentCreationWorkflow(workflowData);
+    
+>>>>>>> 5bcc564a5cb39b2febedb7a1d53ec6d0a800b3d3
     if (result.status === 'completed') {
       console.log('✅ Workflow completed successfully!');
       console.log('📄 Content Plan:', JSON.stringify(result.result.contentPlan, null, 2));
