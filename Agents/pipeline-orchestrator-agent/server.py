@@ -23,29 +23,29 @@ class PipelineOrchestratorServer:
         self.port = port
         self.orchestrator = PipelineOrchestratorAgent()
         self.clients = set()
-    
+
     async def register_client(self, websocket):
         """Register a new WebSocket client"""
         self.clients.add(websocket)
         print(f"🔌 WebSocket client connected. Total clients: {len(self.clients)}")
-    
+
     async def unregister_client(self, websocket):
         """Unregister a WebSocket client"""
         self.clients.discard(websocket)
         print(f"🔌 WebSocket client disconnected. Total clients: {len(self.clients)}")
-    
+
     async def send_update(self, update_data):
         """Send real-time update to all connected clients"""
         if not self.clients:
             return
-        
+
         message = json.dumps(update_data)
         # Send to all connected clients
         await asyncio.gather(
             *[client.send(message) for client in self.clients if client.open],
             return_exceptions=True
         )
-    
+
     async def handle_client(self, websocket, path):
         """Handle WebSocket client connection"""
         await self.register_client(websocket)
@@ -57,7 +57,7 @@ class PipelineOrchestratorServer:
             pass
         finally:
             await self.unregister_client(websocket)
-    
+
     async def start_server(self):
         """Start the WebSocket server"""
         server = await websockets.serve(

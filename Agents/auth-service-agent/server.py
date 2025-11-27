@@ -23,7 +23,7 @@ class AuthServiceHandler(BaseHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         self.auth_service = AuthServiceAgent()
         super().__init__(*args, **kwargs)
-    
+
     def do_POST(self):
         """Handle POST requests"""
         try:
@@ -31,14 +31,14 @@ class AuthServiceHandler(BaseHTTPRequestHandler):
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
             data = json.loads(post_data.decode('utf-8'))
-            
+
             # Route based on path
             if self.path == '/register':
                 response = asyncio.run(self.auth_service.register_user(data))
                 self.send_response(200)
             elif self.path == '/login':
                 response = asyncio.run(self.auth_service.authenticate_user(
-                    data.get('email', ''), 
+                    data.get('email', ''),
                     data.get('password', '')
                 ))
                 self.send_response(200)
@@ -51,19 +51,19 @@ class AuthServiceHandler(BaseHTTPRequestHandler):
             else:
                 self.send_response(404)
                 response = {"error": "Endpoint not found"}
-            
+
             # Send response
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps(response).encode('utf-8'))
-            
+
         except Exception as error:
             self.send_response(500)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             response = {"error": str(error)}
             self.wfile.write(json.dumps(response).encode('utf-8'))
-    
+
     def do_GET(self):
         """Handle GET requests"""
         if self.path == '/health':

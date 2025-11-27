@@ -1,17 +1,13 @@
 {
   "name": "rate-limiter-agent",
   "version": "1.0.0",
-  "description": "Rate Limiter Service - Implements rate limiting for different types of requests",
+  "description": "Rate Limiter Agent for implementing rate limiting for various types of requests",
   "main": "app.py",
   "scripts": {
     "start": "python app.py",
     "test": "python -m pytest tests/"
   },
-  "keywords": ["rate-limit", "middleware", "security", "api-protection"],
-  "author": "Autonova Team",
-  "license": "MIT",
-  "dependencies": {
-  },
-  "devDependencies": {
-  }
+  "keywords": ["rate-limiting", "security", "middleware", "api-protection"],
+  "author": "AI Agent System",
+  "license": "MIT"
 }

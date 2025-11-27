@@ -1,30 +1,20 @@
-# Document Export Agent Dockerfile
+# Dockerfile for Document Export Agent
 FROM python:3.9-slim
-
-# Install system dependencies for WeasyPrint
-RUN apt-get update && apt-get install -y \
-    gcc \
-    libcairo2-dev \
-    libpango-1.0-0 \
-    libpangocairo-1.0-0 \
-    libgdk-pixbuf2.0-0 \
-    libffi-dev \
-    shared-mime-info \
-    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Copy requirements and install dependencies
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application
 COPY . .
 
-# Create directories for persistent data
-RUN mkdir -p data/exports
-
-# Expose port (if needed for future extensions)
+# Expose port (if needed for API)
 EXPOSE 8000
 
 # Command to run the application
