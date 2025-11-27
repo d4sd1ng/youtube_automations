@@ -1,0 +1,95 @@
+Video 3: Wie funktionieren Wahlversprechen? AfD, CDU, SPD, Grüne im Check
+Länge: 8–10 Minuten
+
+Ziel: Wahlversprechen-Prozess erklären, Parteien vergleichen, Engagement fördern.
+
+Ton: Sachlich, analytisch, neugierig.
+
+Verfassungsbezug: Artikel 38 (Abgeordnetenverantwortung).
+
+SEO-Keywords: Wahlversprechen 2025, Bundestagswahl, AfD, CDU, SPD, Grüne.
+
+Monetarisierungssicher: Neutraler Vergleich, kein Fokus auf „Lügen“.
+
+Struktur und Generierung
+0:00–0:30 – Hook (30 Sekunden)
+
+Ziel: Neugier wecken, Wahl 2025 betonen.
+Voice-over: „Wie entstehen Wahlversprechen 2025? [Betont] AfD, CDU, SPD, Grüne – was steckt dahinter? Verfassungsblick erklärt’s!“
+KI-Avatar: Synthesia, zeigt auf Wahlplakate, dynamische Geste.
+B-Roll: Pexels (Wahlkampf, Plakate), Canva-Animation („Wahlversprechen 2025“).
+Text-Overlay: „Wahlversprechen 2025: Wie funktionieren sie?“ (0:00–0:15).
+Untertitel: „AfD, CDU, SPD, Grüne: Wahlversprechen im Check!“
+Frage für Engagement: „Welche Partei hält ihre Versprechen?“ (Text-Overlay, 0:20–0:30).
+0:30–4:30 – Wahlversprechen-Prozess (4 Minuten)
+
+Ziel: Prozess erklären, Parteien vergleichen.
+Voice-over: „Wahlversprechen sind der Kern des Wahlkampfs. [Pause] CDU verspricht Schuldenbremse, SPD soziale Gerechtigkeit, Grüne Klimaschutz, AfD Steuersenkung. Aber wie entstehen sie? Parteiprogramme, Abstimmungen, Lobbyeinfluss.“
+KI-Avatar: Zeigt auf Wahlplakate, Diagramm (Prozess).
+B-Roll: Pexels (Wahlveranstaltungen, Parteitage), Canva-Diagramm („Prozess: Idee → Programm“).
+Text-Overlay: „CDU: Schuldenbremse“ (0:30–1:30), „AfD: Steuersenkung“ (3:30–4:30).
+Untertitel: „Wahlversprechen: Wie entstehen sie?“
+Frage für Engagement: „Welches Wahlversprechen überzeugt dich?“ (Text-Overlay, 4:00–4:30).
+4:30–7:30 – Verfassungsbezug (3 Minuten)
+
+Ziel: Versprechen mit Verfassung verknüpfen.
+Voice-over: „Artikel 38 macht Abgeordnete verantwortlich. [Pause] Doch wie realistisch sind Versprechen? CDU und Schuldenbremse, Grüne und Klimaschutz – Verfassungsblick prüft die Umsetzung!“
+KI-Avatar: Zeigt auf Grundgesetz, fragende Geste bei „realistisch?“.
+B-Roll: Pexels (Bundestagsdebatte), Canva-Animation („Artikel 38: Verantwortung“).
+Text-Overlay: „Verfassung: Artikel 38“ (4:30–5:00).
+Untertitel: „Wie realistisch sind Wahlversprechen?“
+Frage für Engagement: „Vertrauen in Wahlversprechen? Schreib’s in die Kommentare!“ (Text-Overlay, 7:00–7:30).
+7:30–8:30 – CTA und Teaser (1 Minute)
+
+Ziel: Abonnements, Kommentare, nächstes Video teasern.
+Voice-over: „Verfassungsblick prüft die Politik 2025! [Betont] Abonniere und kommentiere: Welches Versprechen überzeugt dich? Nächstes Video: Vertrauensfrage!“
+KI-Avatar: Zeigt auf Abo-Button, lächelt.
+B-Roll: YouTube-Abo-Animation, Canva-Mockup („Vertrauensfrage 2025“).
+Text-Overlay: „Abonniere jetzt!“ (7:30–8:00).
+Untertitel: „Abonniere für Vertrauensfrage!“
+DaVinci Resolve Skript
+plaintext
+
+Einklappen
+
+Zeilenumbruch
+
+Kopieren
+**Timeline Setup**  
+- Resolution: 1920x1080, 24 fps  
+- Tracks: Video 1 (KI-Avatar), Video 2 (B-Roll), Audio 1 (Voice-over), Audio 2 (Musik), Text 1 (Overlay), Text 2 (Untertitel)  
+
+**0:00–0:30 – Hook**  
+- Video 1: Synthesia-Avatar (Anzug, zeigt auf Wahlplakate).  
+- Video 2: Pexels (Wahlkampf, Plakate, 3s pro Clip), Canva-Animation („Wahlversprechen 2025“, 0:00–0:15).  
+- Audio 1: Murf.ai („Lena“, betont „Wahlversprechen“), WAV import.  
+- Audio 2: „Summer Vibes“, 20 % Lautstärke.  
+- Text 1: „Wahlversprechen 2025: Wie funktionieren sie?“ (Arial, 40pt, Weiß, Rot-Schatten).  
+- Text 2: Untertitel „AfD, CDU, SPD, Grüne: Wahlversprechen im Check!“  
+
+**0:30–4:30 – Wahlversprechen-Prozess**  
+- Video 1: Avatar zeigt auf Plakate, Diagramm.  
+- Video 2: Pexels (Parteitage, 3s), Canva-Diagramm („Prozess: Idee → Programm“, 0:30–1:30).  
+- Audio 1: Voice-over (betont „CDU“, „AfD“), Pause bei 1:00.  
+- Audio 2: Musik fortsetzen.  
+- Text 1: „CDU: Schuldenbremse“ (0:30–1:30), „Welches Versprechen überzeugt?“ (4:00–4:30).  
+- Text 2: Untertitel „Wahlversprechen: Wie entstehen sie?“  
+
+**4:30–7:30 – Verfassungsbezug**  
+- Video 1: Avatar zeigt auf Grundgesetz, fragende Geste.  
+- Video 2: Pexels (Bundestagsdebatte), Canva-Animation („Artikel 38“, 4:30–5:00).  
+- Audio 1: Voice-over (betont „Artikel 38“).  
+- Audio 2: Musik fortsetzen.  
+- Text 1: „Verfassung: Artikel 38“ (4:30–5:00), „Vertrauen in Versprechen?“ (7:00–7:30).  
+- Text 2: Untertitel „Wie realistisch sind Wahlversprechen?“  
+
+**7:30–8:30 – CTA und Teaser**  
+- Video 1: Avatar zeigt auf Abo-Button.  
+- Video 2: YouTube-Abo-Animation, Canva-Mockup („Vertrauensfrage“).  
+- Audio 1: Voice-over (betont „Abonniere“).  
+- Audio 2: Musik fade-out.  
+- Text 1: „Abonniere jetzt!“ (7:30–8:00).  
+- Text 2: Untertitel „Abonniere für Vertrauensfrage!“
+SEO-Beschreibung:
+
+Wie entstehen Wahlversprechen 2025? Verfassungsblick prüft AfD, CDU, SPD, Grüne! Abonniere: [Link]. #Verfassungsblick #Bundestagswahl2025 #Wahlversprechen #AfD #CDU #SPD #Grüne

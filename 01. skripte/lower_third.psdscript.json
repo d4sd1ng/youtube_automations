@@ -1,0 +1,39 @@
+{
+  "version": "2.0",
+  "name": "Lower Third Vorlage",
+  "steps": [
+    {
+      "tool": "rectangleTool",
+      "options": {
+        "fill": {"type": "color", "color": "#0A2850"},
+        "opacity": 0.7,
+        "rect": {"x": 0, "y": 880, "width": 1920, "height": 200}
+      }
+    },
+    {
+      "tool": "rectangleTool",
+      "options": {
+        "fill": {"type": "color", "color": "#0096FF"},
+        "rect": {"x": 0, "y": 880, "width": 40, "height": 200}
+      }
+    },
+    {
+      "tool": "textTool",
+      "options": {
+        "text": "Name",
+        "font": {"family": "Arial", "size": 60, "style": "regular"},
+        "fill": {"type": "color", "color": "#FFFFFF"},
+        "position": {"x": 60, "y": 900}
+      }
+    },
+    {
+      "tool": "textTool",
+      "options": {
+        "text": "Titel",
+        "font": {"family": "Arial", "size": 40, "style": "regular"},
+        "fill": {"type": "color", "color": "#CCCCCC"},
+        "position": {"x": 60, "y": 970}
+      }
+    }
+  ]
+}

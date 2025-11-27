@@ -1,0 +1,80 @@
+Beispiel: Video 5 (500 Milliarden Sondervermögen) umsetzen
+0:00–0:30 Hook:
+Video 1: Synthesia-Avatar (Anzug, zeigt auf Diagramm). Importiere MP4, schneide auf 30s.
+Video 2: Pexels-Clip (Brückenbau, 3s). Füge in „Edit“-Tab ein, setze Übergang („Dissolve“, 0,5s).
+Audio 1: Murf.ai-WAV („500B€ Sondervermögen: Wofür?“). Importiere, synchronisiere.
+Audio 2: „Summer Vibes“, 20 % Lautstärke, „Fairlight“-Tab.
+Text 1: Canva-Intro-Overlay („Modern News Broadcast“, „500B€ Sondervermögen | 2025“, MP4). Importiere in „Fusion“, platziere 0:00–0:30. Frage: „Wofür gehen 500 Milliarden?“ (Arial, 24pt, 0:20–0:30).
+Text 2: Untertitel „Verfassungsblick: 500B€ im Fokus!“ (Arial, 24pt, Weiß).
+4:00–7:00 Verwendungszwecke & Schuldenbremse:
+Video 2: Pexels (Windkraft, Schienenbau), Canva-Infobox („100B€ Länder, 100B€ Klima“, PNG, 5:00–5:30), Canva-Statistikgrafik („Pie Chart Pro“, „20 % Klima, 60 % Infrastruktur“, MP4, 6:00–6:30).
+Text 1: Kapitel-Overlay („Schuldenbremse & Sondervermögen“, Blau-Weiß, 4:00–4:15), Zitat-Kachel („Schuldenbremse gefährdet Zukunft – Habeck“, 5:30–5:45).
+Text 2: Untertitel „500B€ vs. Schuldenbremse: Was bedeutet das?“.
+Reels (9:16)
+Einstellungen: Erstelle neue Timeline (1080x1920, 24 fps).
+Beispiel Reel 5 (Wahlversprechen):
+Video 1: Synthesia-Avatar (zeigt auf Plakate, 0:00–0:05).
+Video 2: Pexels (Wahlkampf, 3s), Canva-Statistikgrafik („Pie Chart Pro“, „Themen“, 0:10–0:15).
+Audio 1: Murf.ai („Wahlversprechen 2025!“).
+Audio 2: „Viral Pop 2025“, 20 % Lautstärke.
+Text 1: Shorts-Overlay („Wahlversprechen 2025!“, top, Weiß, Rot-Rahmen), „Welches Versprechen überzeugt?“ (0:10–0:15).
+Text 2: Untertitel „AfD, CDU, SPD, Grüne im Check!“.
+Exportieren
+Gehe zu „Deliver“-Tab.
+Videos: Exportiere als MP4 (H.264, 1920x1080, 10 Mbps Bitrate).
+Reels: Exportiere als MP4 (H.264, 1080x1920, 8 Mbps Bitrate).
+Benenne Dateien klar (z. B. „Verfassungsblick_Video5_Sondervermögen.mp4“).
+SEO-Beschreibungen hinzufügen
+Füge in YouTube Studio die Beschreibungen ein (z. B. „500B€ Sondervermögen: Wofür? Verfassungsblick erklärt Klima, Infrastruktur! Abonniere: [Link]. #Verfassungsblick #Sondervermögen“).
+Für Reels: Kopiere Hashtags (z. B. #Verfassungsblick #Schuldenbremse) in X, Instagram, TikTok.
+Tipps zur Umsetzung
+Organisation
+Speichere Material in Ordnern (z. B. „Synthesia“, „Pexels“, „Canva_Overlays“).
+Nutze Skripte als Checkliste: Drucke sie aus oder halte sie in einem Dokument offen.
+Fusion-Tab für Overlays
+Importiere Canva-PNG/MP4 in „Fusion“.
+Nutze „Text+“ für dynamische Overlays (z. B. „Sollten Länder mehr bekommen?“) mit Animationen (z. B. Slide-In).
+Stelle sicher, dass Farben (Rot-Weiß-Blau) konsistent sind.
+Schnitte und Übergänge
+Halte Schnitte schnell (alle 3s, besonders bei Reels).
+Verwende sanfte Übergänge („Cross Dissolve“, 0,5s) für B-Roll.
+Monetarisierungssicherheit
+Vermeide sensible Begriffe (z. B. „Skandal“) in Voice-over/Untertitel.
+Nutze Quellen-Übersicht (z. B. „Bundestag.de, ZDFheute“) in allen Videos, um Glaubwürdigkeit zu sichern.
+Zeitersparnis
+Batch-produziere Overlays in Canva (z. B. 5 Intros, 5 Thumbnails).
+Speichere DaVinci-Timeline als Vorlage für zukünftige Videos („File > Save Project As Template“).
+Beispiel: Video 5 (500 Milliarden Sondervermögen) in DaVinci Resolve
+Skript-Auszug (aus vorheriger Antwort, angepasst):
+
+plaintext
+
+Einklappen
+
+Zeilenumbruch
+
+Kopieren
+**Timeline Setup**  
+- Resolution: 1920x1080, 24 fps  
+- Tracks: Video 1 (KI-Avatar), Video 2 (B-Roll), Audio 1 (Voice-over), Audio 2 (Musik), Text 1 (Overlay), Text 2 (Untertitel)  
+
+**0:00–0:30 – Hook (Intro-Overlay)**  
+- Video 1: Synthesia-Avatar (Anzug, zeigt auf Diagramm).  
+- Video 2: Pexels (Brückenbau, Bahngleise, 3s).  
+- Audio 1: Murf.ai (“Lena”, betont “500 Milliarden”), WAV import.  
+- Audio 2: “Summer Vibes”, 20% Lautstärke.  
+- Text 1: Intro-Overlay (Canva: “Modern News Broadcast”, “500B€ Sondervermögen | 2025”, Arial, 40pt, Blau-Weiß, Geld-Animation), “Wofür gehen 500 Milliarden?” (0:20–0:30, Arial, 24pt).  
+- Text 2: Untertitel “Verfassungsblick: 500B€ im Fokus!” (Arial, 24pt, Weiß).
+Umsetzung in DaVinci Resolve:
+
+Timeline erstellen: „Timeline > Create New Timeline“, 1920x1080, 24 fps.
+Spuren anlegen: 2 Video-Spuren (KI-Avatar, B-Roll), 2 Audio-Spuren (Voice-over, Musik), 2 Text-Spuren (Overlay, Untertitel).
+Material importieren:
+Synthesia-MP4 (Avatar) in „Media Pool“. Ziehe auf Video 1, schneide auf 0:00–0:30.
+Pexels-Clip (Brückenbau) auf Video 2, schneide auf 3s-Segmente.
+Murf.ai-WAV in Audio 1, „Summer Vibes“ in Audio 2 (20 % Lautstärke).
+Canva-Intro-Overlay (MP4) in „Fusion“, platziere 0:00–0:30.
+Text hinzufügen:
+„Fusion“-Tab: Erstelle „Text+“ für „Wofür gehen 500 Milliarden?“ (Arial, 24pt, 0:20–0:30).
+„Edit“-Tab: Untertitel „Verfassungsblick: 500B€ im Fokus!“ via „Subtitles“.
+Export: „Deliver“-Tab, MP4, 10 Mbps, Dateiname „Verfassungsblick_Video5_Sondervermögen.mp4“.

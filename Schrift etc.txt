@@ -1,0 +1,75 @@
+Cormorant     pre header
+
+Abril Fatface header
+
+Raleway        section header 
+
+Roboto         block
+
+
+PHOTOSHOP EBENENSTIL FÜR GOLDTEXT:
+---------------------------------
+• Füllmethode: Normal (0% Füllung)
+• SCHLAGSCHATTEN:
+  - Modus: Multiplizieren
+  - Farbe: #000000
+  - Deckkraft: 20%
+  - Winkel: 120°
+  - Distanz: 0
+  - Ausbreitung: 0
+  - Größe: 10px
+
+• KONTUR:
+  - Position: Außen
+  - Größe: 2px
+  - Fülltyp: Verlauf
+  - Verlauf: Gold (FFECB3 → FFD700 → B8860B)
+  - Stil: Linear
+  - Winkel: 90°
+
+• SCHEIN NACH INNEN:
+  - Modus: Weiches Licht
+  - Farbe: #FFFFFF
+  - Deckkraft: 40%
+  - Größe: 15px
+
+
+Farbe 1: `#FFECB3` (Position 0%)  
+Farbe 2: `#FFD700` (Position 50%)  
+Farbe 3: `#B8860B` (Position 100%)  
+Typ: **Radial**  
+
+Typ: Linear (90°)  
+Farbe 1: `#FFECB3` (Position 0%)  
+Farbe 2: `#FFD700` (Position 100%)  
+→ In "Farbfelder" speichern!  
+
+
+Deckkraft: 100% → 80% (außen) 
+
+3D-Effekt: Effekt → 3D und Material → Extrudieren (Tiefe: 5-15px, Beleuchtung anpassen!).
+
+-Text hinzufügen → Rechtsklick → In Pfade umwandeln → dann 3D extrudieren.
+
+-Exportiere als .PSD mit Ebenen!
+
+-Photoshop (Glas-Textur & Finale Magie):
+
+-Öffne das PSD → Dupliziere die Ebene mit der 3D-Form.
+
+        Glas-Effekt:
+        a) Ebene füllen mit Weiß (#FFFFFF) → Deckkraft 20-40%.
+        b) Filter → Weichzeichnungsgalerie → Feldunschärfe (leicht, ca. 5px).
+        c) Ebene → Ebenenstil → Schlagschatten (Farbe: Schwarz/Gold, Abstand: 5px, Größe: 10px).
+        d) Optional: Filter → Rauschen → 2% für leichte Textur.
+
+        Gold-Akzente:
+        Malen mit Gold-Gradient (Radial!) auf neuer Ebene → Mischmodus Weiches Licht oder Farbton für Glanzlichter.
+
+⚡ Animationstipp für YouTube (After Effects / Canva Pro):
+
+    3D-Text/Logo: Einfach "schweben" lassen (leichter Rotations- oder Position-Keyframe).
+
+    Glas-Elemente: Kurzes Aufblitzen (Deckkraft-Animieren von 0% → 40% → 20%).
+
+    Warnhinweise: Pulsierendes Rot (Skalieren: 100% → 105% → 100% in 0.5s).

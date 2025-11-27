@@ -1,0 +1,22 @@
+{
+    Tools = ordered() {
+        Text1 = TextPlus {
+            CtrlWZoom = false,
+            NameSet = true,
+            StyledText = "POLITIK RELOADED",
+            Font = "Raleway",
+            Style = "Bold",
+            Size = 0.06,
+            Color = { Red = 1, Green = 1, Blue = 1, Alpha = 1 },
+            BackgroundColor = { Red = 0.12, Green = 0.12, Blue = 0.12, Alpha = 0.85 },
+            AnchorPoint = { 0.5, 0.5 },
+            LayoutDirection = "Horizontal",
+            ShadingElements = {
+                { 
+                    Pattern = "Solid", 
+                    Color = { Red = 0.09, Green = 0.09, Blue = 0.09, Alpha = 0.9 }
+                }
+            }
+        }
+    }
+}
