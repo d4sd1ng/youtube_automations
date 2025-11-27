@@ -259,22 +259,22 @@ def discover_videos():
     """Discover videos from supported platforms"""
     try:
         data = request.get_json()
-        
+
         # Validate input data
         if not data:
             return jsonify({"error": "Missing request data"}), 400
-            
+
         platform = data.get('platform', 'youtube')
         category = data.get('category')
         search_term = data.get('searchTerm')
         max_results = data.get('maxResults', 10)
-        
+
         # Validate platform
         if platform not in supported_platforms:
             return jsonify({"error": f"Unsupported platform: {platform}"}), 400
-            
+
         logger.info(f"Discovering videos on {platform} for category: {category}, search term: {search_term}")
-        
+
         # Simulate video discovery
         # In a real implementation, this would connect to platform APIs
         videos = []
@@ -293,19 +293,19 @@ def discover_videos():
                 "platform": platform
             }
             videos.append(video)
-            
+
         # Save discovered videos
         save_discovered_videos(videos)
-        
+
         logger.info(f"Discovered {len(videos)} videos")
-        
+
         return jsonify({
             "message": "Video discovery successful",
             "videos": videos,
             "platform": platform,
             "totalResults": len(videos)
         }), 200
-        
+
     except Exception as e:
         logger.error(f"Error in video discovery: {str(e)}")
         return jsonify({"error": f"Video discovery failed: {str(e)}"}), 500
@@ -317,7 +317,7 @@ def get_video_info(video_id):
     try:
         # Try to load video info from file
         video = load_video_info(video_id)
-        
+
         if video:
             return jsonify({
                 "message": "Video info retrieved successfully",
@@ -325,7 +325,7 @@ def get_video_info(video_id):
             }), 200
         else:
             return jsonify({"error": f"Video {video_id} not found"}), 404
-            
+
     except Exception as e:
         logger.error(f"Error getting video info: {str(e)}")
         return jsonify({"error": f"Failed to get video info: {str(e)}"}), 500
@@ -336,24 +336,24 @@ def integrate_avatar():
     """Integrate AI avatar with video"""
     try:
         data = request.get_json()
-        
+
         # Validate input data
         if not data:
             return jsonify({"error": "Missing request data"}), 400
-            
+
         video_id = data.get('videoId')
         avatar_id = data.get('avatarId')
         integration_options = data.get('options', {})
-        
+
         # Check required fields
         if not video_id:
             return jsonify({"error": "Missing videoId"}), 400
-        
+
         if not avatar_id:
             return jsonify({"error": "Missing avatarId"}), 400
-            
+
         logger.info(f"Integrating avatar {avatar_id} with video {video_id}")
-        
+
         # Create job
         job_id = str(uuid.uuid4())
         job = {
@@ -378,10 +378,10 @@ def integrate_avatar():
                 "message": f"Starting avatar integration for video: {video_id} with avatar: {avatar_id}"
             }]
         }
-        
+
         # Save job
         save_job(job)
-        
+
         try:
             # Load video and avatar
             job['progress']['stageProgress'] = 20
@@ -392,18 +392,18 @@ def integrate_avatar():
                 "message": "Loading video and avatar..."
             })
             save_job(job)
-            
+
             # Simulate processing delay
             time.sleep(0.5)
-            
+
             video = load_video_info(video_id)
             if not video:
                 raise Exception(f"Video {video_id} not found")
-                
+
             avatar = load_avatar_info(avatar_id)
             if not avatar:
                 raise Exception(f"Avatar {avatar_id} not found")
-                
+
             # Position avatar
             job['progress']['stageProgress'] = 40
             job['progress']['overallProgress'] = 40
@@ -413,10 +413,10 @@ def integrate_avatar():
                 "message": "Positioning avatar..."
             })
             save_job(job)
-            
+
             # Simulate processing delay
             time.sleep(1)
-            
+
             # Animate avatar
             job['progress']['stageProgress'] = 60
             job['progress']['overallProgress'] = 60
@@ -426,10 +426,10 @@ def integrate_avatar():
                 "message": "Animating avatar..."
             })
             save_job(job)
-            
+
             # Simulate processing delay
             time.sleep(1)
-            
+
             # Sync with audio
             job['progress']['stageProgress'] = 80
             job['progress']['overallProgress'] = 80
@@ -439,10 +439,10 @@ def integrate_avatar():
                 "message": "Syncing avatar with audio..."
             })
             save_job(job)
-            
+
             # Simulate processing delay
             time.sleep(1)
-            
+
             # Mock integrated video
             integrated_video = {
                 "id": str(uuid.uuid4()),
@@ -460,10 +460,10 @@ def integrate_avatar():
                 "avatarSize": integration_options.get('size', 'medium'),
                 "integratedAt": datetime.now().isoformat()
             }
-            
+
             # Save integrated video
             save_video(integrated_video)
-            
+
             # Complete job
             job['status'] = 'completed'
             job['progress']['stageProgress'] = 100
@@ -476,13 +476,13 @@ def integrate_avatar():
                 "message": "Avatar integration completed successfully"
             })
             save_job(job)
-            
+
             return jsonify({
                 "message": "Avatar integration successful",
                 "integratedVideo": integrated_video,
                 "jobId": job_id
             }), 200
-            
+
         except Exception as e:
             job['status'] = 'failed'
             job['error'] = str(e)
@@ -493,7 +493,7 @@ def integrate_avatar():
             })
             save_job(job)
             raise e
-            
+
     except Exception as e:
         logger.error(f"Error in avatar integration: {str(e)}")
         return jsonify({"error": f"Avatar integration failed: {str(e)}"}), 500
@@ -505,10 +505,10 @@ def save_discovered_videos(videos):
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         filename = f"discovered_videos_{timestamp}.json"
         filepath = os.path.join(VIDEOS_DIR, filename)
-        
+
         with open(filepath, 'w') as f:
             json.dump(videos, f, indent=2)
-            
+
         logger.info(f"Saved discovered videos to {filename}")
     except Exception as e:
         logger.error(f"Failed to save discovered videos: {str(e)}")
