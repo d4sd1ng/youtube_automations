@@ -1,0 +1,13 @@
+{
+  "name": "thumbnail-generation-agent",
+  "version": "1.0.0",
+  "description": "Thumbnail Generation Agent for creating high-quality, brand-compliant thumbnails",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m pytest tests/"
+  },
+  "keywords": ["thumbnail", "image", "generation", "branding", "click-through-rate"],
+  "author": "AI Agent System",
+  "license": "MIT"
+}
