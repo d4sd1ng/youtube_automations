@@ -1,0 +1,13 @@
+{
+  "name": "billing-service-agent",
+  "version": "1.0.0",
+  "description": "Billing Service Agent for billing and monetization",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m pytest tests/"
+  },
+  "keywords": ["billing", "monetization", "subscription", "payment", "invoice"],
+  "author": "AI Agent System",
+  "license": "MIT"
+}

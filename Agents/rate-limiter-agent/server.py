@@ -23,7 +23,7 @@ class RateLimiterHandler(BaseHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         self.rate_limiter_agent = RateLimiterAgent()
         super().__init__(*args, **kwargs)
-    
+
     def do_POST(self):
         """Handle POST requests"""
         try:
@@ -31,12 +31,12 @@ class RateLimiterHandler(BaseHTTPRequestHandler):
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
             data = json.loads(post_data.decode('utf-8'))
-            
+
             # Get client IP
             client_ip = self.client_address[0]
             if 'X-Forwarded-For' in self.headers:
                 client_ip = self.headers['X-Forwarded-For'].split(',')[0].strip()
-            
+
             # Route based on path
             if self.path == '/check':
                 limit_type = data.get('limit_type', 'general')
@@ -55,18 +55,18 @@ class RateLimiterHandler(BaseHTTPRequestHandler):
             else:
                 self.send_error(404, "Endpoint not found")
                 return
-                
+
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            
+
             response = json.dumps(result, indent=2, ensure_ascii=False)
             self.wfile.write(response.encode('utf-8'))
-                
+
         except json.JSONDecodeError:
             self.send_error(400, "Invalid JSON")
         except Exception as e:
             self.send_error(500, f"Internal server error: {str(e)}")
-    
+
     def do_GET(self):
         """Handle GET requests"""
         try:
@@ -76,10 +76,10 @@ class RateLimiterHandler(BaseHTTPRequestHandler):
             else:
                 self.send_error(404, "Endpoint not found")
                 return
-                
+
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            
+
             response = json.dumps(result, indent=2, ensure_ascii=False)
             self.wfile.write(response.encode('utf-8'))
         except Exception as e:

@@ -1,0 +1,2 @@
+# Requirements for Billing Service Agent
+cryptography>=3.4.8
