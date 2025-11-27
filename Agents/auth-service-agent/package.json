@@ -1,0 +1,13 @@
+{
+  "name": "auth-service-agent",
+  "version": "1.0.0",
+  "description": "Auth Service Agent for authentication and authorization",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "test": "python -m pytest tests/"
+  },
+  "keywords": ["auth", "authentication", "authorization", "jwt", "bcrypt"],
+  "author": "AI Agent System",
+  "license": "MIT"
+}
