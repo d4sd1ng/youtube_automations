@@ -1,49 +1,55 @@
-import asyncio
-from typing import Dict, Any, List, Optional, Set
-from datetime import datetime
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+SEO Channel Optimization Agent
+Service for creating channel-specific SEO-compliant descriptions and keywords
+"""
+
+import json
 import logging
-import re
+from datetime import datetime
+from typing import Dict, Any, List
+from pathlib import Path
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-class SEOChannelOptimizationService:
-    def __init__(self, options: Dict[str, Any] = None):
-        """
-        Initialize SEO Channel Optimization Service
-        :param options: Configuration options
-        """
-        if options is None:
-            options = {}
-
+class SEOChannelOptimizationAgent:
+    def __init__(self):
         self.default_config = {
-            "language": options.get("language", "de"),
-            "max_description_length": options.get("max_description_length", 5000),
-            "max_title_length": options.get("max_title_length", 100),
-            "max_tags": options.get("max_tags", 30),
-            "target_keywords": options.get("target_keywords", []),
-            "exclude_words": options.get("exclude_words", ["sex", "porn", "casino", "gambling"])
+            "language": "de",
+            "max_description_length": 5000,
+            "max_title_length": 100,
+            "max_tags": 30,
+            "target_keywords": [],
+            "exclude_words": ["sex", "porn", "casino", "gambling"]
         }
-
-    async def generate_channel_description(self, channel_data: Dict[str, Any], config: Dict[str, Any] = None) -> Dict[str, Any]:
+        
+        # Data directory
+        self.data_dir = Path(__file__).parent / "data"
+        self.data_dir.mkdir(exist_ok=True)
+    
+    def generate_channel_description(self, channel_data: Dict[str, Any], config: Dict[str, Any] = {}) -> Dict[str, Any]:
         """
-        Creates an SEO-compliant channel description
-        :param channel_data: Channel information
-        :param config: Configuration options
-        :return: SEO-optimized channel description
+        Create an SEO-compliant channel description
+        
+        Args:
+            channel_data (Dict[str, Any]): Channel information
+            config (Dict[str, Any]): Configuration options
+            
+        Returns:
+            Dict[str, Any]: SEO-optimized channel description
         """
-        if config is None:
-            config = {}
-
         merged_config = {**self.default_config, **config}
-
+        
         try:
             # Create channel description based on provided data
-            description = self.create_channel_description(channel_data, merged_config)
-            keywords = self.extract_channel_keywords(channel_data, merged_config)
-            tags = self.generate_channel_tags(channel_data, merged_config)
-
+            description = self._create_channel_description(channel_data, merged_config)
+            keywords = self._extract_channel_keywords(channel_data, merged_config)
+            tags = self._generate_channel_tags(channel_data, merged_config)
+            
             return {
                 "success": True,
                 "description": description,
@@ -52,34 +58,35 @@ class SEOChannelOptimizationService:
                 "metadata": {
                     "generated_at": datetime.now().isoformat(),
                     "language": merged_config["language"],
-                    "target_audience": channel_data.get("targetAudience", "Allgemeines Publikum")
+                    "target_audience": channel_data.get("target_audience", "Allgemeines Publikum")
                 }
             }
-        except Exception as error:
-            logger.error(f"Fehler bei der Kanalbeschreibungserstellung: {error}")
+        except Exception as e:
+            logger.error(f"Error creating channel description: {str(e)}")
             return {
                 "success": False,
-                "error": str(error),
+                "error": str(e),
                 "description": "",
                 "keywords": [],
                 "tags": []
             }
-
-    async def generate_channel_keywords(self, channel_data: Dict[str, Any], config: Dict[str, Any] = None) -> Dict[str, Any]:
+    
+    def generate_channel_keywords(self, channel_data: Dict[str, Any], config: Dict[str, Any] = {}) -> Dict[str, Any]:
         """
-        Extracts keywords for the channel
-        :param channel_data: Channel information
-        :param config: Configuration options
-        :return: SEO-optimized channel keywords
+        Extract keywords for the channel
+        
+        Args:
+            channel_data (Dict[str, Any]): Channel information
+            config (Dict[str, Any]): Configuration options
+            
+        Returns:
+            Dict[str, Any]: SEO-optimized channel keywords
         """
-        if config is None:
-            config = {}
-
         merged_config = {**self.default_config, **config}
-
+        
         try:
-            keywords = self.extract_channel_keywords(channel_data, merged_config)
-
+            keywords = self._extract_channel_keywords(channel_data, merged_config)
+            
             return {
                 "success": True,
                 "keywords": keywords,
@@ -88,117 +95,110 @@ class SEOChannelOptimizationService:
                     "language": merged_config["language"]
                 }
             }
-        except Exception as error:
-            logger.error(f"Fehler bei der Kanal-Keywords-Generierung: {error}")
+        except Exception as e:
+            logger.error(f"Error generating channel keywords: {str(e)}")
             return {
                 "success": False,
-                "error": str(error),
+                "error": str(e),
                 "keywords": []
             }
-
-    def create_channel_description(self, channel_data: Dict[str, Any], config: Dict[str, Any]) -> str:
+    
+    def _create_channel_description(self, channel_data: Dict[str, Any], config: Dict[str, Any]) -> str:
         """
-        Creates a channel description
-        :param channel_data: Channel information
-        :param config: Configuration
-        :return: Channel description
+        Create a channel description
+        
+        Args:
+            channel_data (Dict[str, Any]): Channel information
+            config (Dict[str, Any]): Configuration
+            
+        Returns:
+            str: Channel description
         """
-        channel_name = channel_data.get("channelName", "")
+        channel_name = channel_data.get("channel_name", "")
         description = channel_data.get("description", "")
         niche = channel_data.get("niche", "")
-        target_audience = channel_data.get("targetAudience", "")
-
+        target_audience = channel_data.get("target_audience", "")
+        
         desc = f"Willkommen auf dem offiziellen Kanal von {channel_name or 'Unserem Kanal'}!\n\n"
-
+        
         if description:
             desc += f"{description}\n\n"
-
+        
         if niche:
             desc += f"Inhalt: {niche}\n\n"
-
+        
         if target_audience:
             desc += f"Zielgruppe: {target_audience}\n\n"
-
+        
         desc += "Abonniere für wöchentliche Updates zu spannenden Themen!\n\n"
         desc += "#YouTube #Kanal #Abonnieren"
-
+        
         # Truncate to maximum length
         return desc[:config["max_description_length"]]
-
-    def extract_channel_keywords(self, channel_data: Dict[str, Any], config: Dict[str, Any]) -> List[str]:
+    
+    def _extract_channel_keywords(self, channel_data: Dict[str, Any], config: Dict[str, Any]) -> List[str]:
         """
-        Extracts channel keywords
-        :param channel_data: Channel information
-        :param config: Configuration
-        :return: Keywords
+        Extract channel keywords
+        
+        Args:
+            channel_data (Dict[str, Any]): Channel information
+            config (Dict[str, Any]): Configuration
+            
+        Returns:
+            List[str]: Keywords
         """
-        keywords: Set[str] = set()
-
-        if channel_data.get("channelName"):
-            keywords.add(channel_data["channelName"])
-
+        keywords = set()
+        
+        if channel_data.get("channel_name"):
+            keywords.add(channel_data["channel_name"])
+        
         if channel_data.get("niche"):
             keywords.add(channel_data["niche"])
-
-        if channel_data.get("targetAudience"):
-            for word in channel_data["targetAudience"].split():
+        
+        if channel_data.get("target_audience"):
+            for word in channel_data["target_audience"].split():
                 if len(word) > 3:
                     keywords.add(word)
-
+        
         # Add target keywords
         for keyword in config["target_keywords"]:
             keywords.add(keyword)
-
+        
         # Filter excluded words
         filtered_keywords = [
-            keyword for keyword in keywords
+            keyword for keyword in keywords 
             if keyword.lower() not in [word.lower() for word in config["exclude_words"]]
         ]
-
+        
         return filtered_keywords[:30]
-
-    def generate_channel_tags(self, channel_data: Dict[str, Any], config: Dict[str, Any]) -> List[str]:
+    
+    def _generate_channel_tags(self, channel_data: Dict[str, Any], config: Dict[str, Any]) -> List[str]:
         """
-        Generates channel tags
-        :param channel_data: Channel information
-        :param config: Configuration
-        :return: Tags
+        Generate channel tags
+        
+        Args:
+            channel_data (Dict[str, Any]): Channel information
+            config (Dict[str, Any]): Configuration
+            
+        Returns:
+            List[str]: Tags
         """
-        tags: Set[str] = set()
-
-        if channel_data.get("channelName"):
-            # Remove spaces from channel name for tag
-            tags.add(re.sub(r'\s+', '', channel_data["channelName"]))
-
+        tags = set()
+        
+        if channel_data.get("channel_name"):
+            tags.add(channel_data["channel_name"].replace(" ", ""))
+        
         if channel_data.get("niche"):
-            # Remove spaces from niche for tag
-            tags.add(re.sub(r'\s+', '', channel_data["niche"]))
-
+            tags.add(channel_data["niche"].replace(" ", ""))
+        
         # Add general tags
         general_tags = ["YouTube", "Kanal", "Video", "Content"]
         for tag in general_tags:
             tags.add(tag)
-
+        
         return list(tags)[:config["max_tags"]]
 
+# Main execution
 if __name__ == "__main__":
-    # Example usage
-    async def main():
-        seo_service = SEOChannelOptimizationService()
-        print("SEO Channel Optimization Agent initialized successfully!")
-
-        # Example channel data
-        example_data = {
-            "channelName": "TechReviewsDE",
-            "description": "Deutschsprachiger Technikkanal mit Reviews und Tests",
-            "niche": "Technologie",
-            "targetAudience": "Technikinteressierte Jugendliche und Erwachsene"
-        }
-
-        try:
-            result = await seo_service.generate_channel_description(example_data)
-            print(f"Channel description result: {result}")
-        except Exception as e:
-            print(f"❌ Failed to generate channel description: {e}")
-
-    asyncio.run(main())
+    agent = SEOChannelOptimizationAgent()
+    print("SEO Channel Optimization Agent initialized")
