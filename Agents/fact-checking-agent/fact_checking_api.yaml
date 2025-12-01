@@ -1,0 +1,314 @@
+openapi: 3.0.0
+info:
+  title: Fact-Checking Pipeline API
+  description: API für die automatisierte Prüfung von Claims in YouTube-Videoinhalten
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Lokaler Entwicklungsserver
+
+paths:
+  /claims/extract:
+    post:
+      summary: Extrahiert Claims aus einem Script
+      description: Extrahiert atomare Statements (Claims) aus einem Script-Text
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                script_id:
+                  type: string
+                  description: ID des Scripts
+                script_text:
+                  type: string
+                  description: Text des Scripts
+              required:
+                - script_id
+                - script_text
+      responses:
+        '200':
+          description: Claims erfolgreich extrahiert
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  claims:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        claim_id:
+                          type: string
+                        text:
+                          type: string
+                        type:
+                          type: string
+                          enum: [fact, statistic, quote, prediction, legal]
+                        confidence:
+                          type: number
+                          format: float
+                          minimum: 0
+                          maximum: 1
+        '400':
+          description: Ungültige Anfrage
+        '500':
+          description: Serverfehler
+
+  /claims/{claim_id}/evidence:
+    get:
+      summary: Ruft Beweise für einen Claim ab
+      description: Ruft alle gesammelten Beweise (Evidence) für einen bestimmten Claim ab
+      parameters:
+        - name: claim_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID des Claims
+      responses:
+        '200':
+          description: Beweise erfolgreich abgerufen
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  evidence:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        source_url:
+                          type: string
+                        score:
+                          type: number
+                          format: float
+                          minimum: 0
+                          maximum: 100
+                        snippet:
+                          type: string
+        '404':
+          description: Claim nicht gefunden
+        '500':
+          description: Serverfehler
+
+  /claims/{claim_id}/review:
+    post:
+      summary: Speichert das Ergebnis einer menschlichen Überprüfung
+      description: Speichert das Ergebnis einer menschlichen Überprüfung eines Claims
+      parameters:
+        - name: claim_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID des Claims
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reviewer_id:
+                  type: string
+                  description: ID des Reviewers
+                action:
+                  type: string
+                  enum: [approve, edit, reject]
+                  description: Aktion des Reviewers
+                edit_text:
+                  type: string
+                  description: Korrigierter Text (nur bei action=edit)
+              required:
+                - reviewer_id
+                - action
+      responses:
+        '200':
+          description: Review erfolgreich gespeichert
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status:
+                    type: string
+        '400':
+          description: Ungültige Anfrage
+        '404':
+          description: Claim nicht gefunden
+        '500':
+          description: Serverfehler
+
+  /claims/pending:
+    get:
+      summary: Ruft alle Claims ab, die menschliche Überprüfung benötigen
+      description: Ruft eine Liste aller Claims ab, die menschliche Überprüfung benötigen
+      parameters:
+        - name: priority
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [high, medium, low]
+          description: Priorität der Claims
+      responses:
+        '200':
+          description: Claims erfolgreich abgerufen
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  claims:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        claim_id:
+                          type: string
+                        text:
+                          type: string
+                        type:
+                          type: string
+                        confidence:
+                          type: number
+                          format: float
+                        priority:
+                          type: string
+                          enum: [high, medium, low]
+        '500':
+          description: Serverfehler
+
+components:
+  schemas:
+    Claim:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        script_id:
+          type: string
+          format: uuid
+        claim_text:
+          type: string
+        claim_type:
+          type: string
+          enum: [fact, statistic, quote, prediction, legal]
+        extracted_at:
+          type: string
+          format: date-time
+        nlp_confidence:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+        status:
+          type: string
+          enum: [pending, auto-approved, human-review, approved, rejected, corrected]
+        verdict_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - script_id
+        - claim_text
+        - claim_type
+        - extracted_at
+        - nlp_confidence
+        - status
+
+    Evidence:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        claim_id:
+          type: string
+          format: uuid
+        source_url:
+          type: string
+        source_type:
+          type: string
+          enum: [government, news, academic, fact-check, official_document, peer_reviewed]
+        fetch_timestamp:
+          type: string
+          format: date-time
+        snapshot_path:
+          type: string
+        evidence_score:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+      required:
+        - id
+        - claim_id
+        - source_url
+        - source_type
+        - fetch_timestamp
+        - evidence_score
+
+    Review:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        claim_id:
+          type: string
+          format: uuid
+        reviewer_id:
+          type: string
+          format: uuid
+        action:
+          type: string
+          enum: [approve, edit, reject]
+        action_notes:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - claim_id
+        - created_at
+
+    Correction:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        video_id:
+          type: string
+          format: uuid
+        original_claim_id:
+          type: string
+          format: uuid
+        correction_text:
+          type: string
+        correction_posted_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - video_id
+        - original_claim_id
+        - correction_text
+        - correction_posted_at

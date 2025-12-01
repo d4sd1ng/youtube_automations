@@ -1,0 +1,114 @@
+{
+  "test_claims": [
+    {
+      "id": "claim_001",
+      "script_id": "script_politics_001",
+      "claim_text": "Die Ampelregierung plant umfassende Reformen im Gesundheitssystem mit Fokus auf Pflegekräfte, Digitalisierung und Wettbewerb.",
+      "claim_type": "fact",
+      "expected_outcome": "auto-approved",
+      "expected_evidence": [
+        {
+          "source": "Bundesregierung Pressemitteilung",
+          "url": "https://bundesregierung.de/gesundheitsreform-2025",
+          "score": 95
+        }
+      ]
+    },
+    {
+      "id": "claim_002",
+      "script_id": "script_politics_001",
+      "claim_text": "Laut einer Studie des Instituts für Gesundheitsforschung werden 40% der Pflegekräfte in Deutschland überlastet.",
+      "claim_type": "statistic",
+      "expected_outcome": "human-review",
+      "expected_evidence": [
+        {
+          "source": "Institut für Gesundheitsforschung",
+          "url": "https://ifg.de/studie-pflegekraefte-2025",
+          "score": 80
+        }
+      ]
+    },
+    {
+      "id": "claim_003",
+      "script_id": "script_politics_001",
+      "claim_text": "Experten prognostizieren, dass bis 2030 200.000 neue Pflegekräfte benötigt werden.",
+      "claim_type": "prediction",
+      "expected_outcome": "human-review",
+      "expected_evidence": []
+    },
+    {
+      "id": "claim_004",
+      "script_id": "script_ki_001",
+      "claim_text": "KI wird alle Arbeitsplätze innerhalb der nächsten 10 Jahre ersetzen.",
+      "claim_type": "prediction",
+      "expected_outcome": "human-review",
+      "expected_evidence": [],
+      "risk_factors": ["extreme_statement"]
+    },
+    {
+      "id": "claim_005",
+      "script_id": "script_ki_001",
+      "claim_text": "Laut einer Studie des MIT werden 30% der Arbeitsplätze durch KI automatisiert.",
+      "claim_type": "statistic",
+      "expected_outcome": "human-review",
+      "expected_evidence": [
+        {
+          "source": "MIT Technology Review",
+          "url": "https://mit.edu/ai-employment-study",
+          "score": 85
+        }
+      ]
+    },
+    {
+      "id": "claim_006",
+      "script_id": "script_politics_002",
+      "claim_text": "Der Finanzminister hat gegenüber der Bild-Zeitung geäußert, dass keine weiteren Steuererhöhungen geplant sind.",
+      "claim_type": "quote",
+      "expected_outcome": "human-review",
+      "expected_evidence": [],
+      "risk_factors": ["unverified_quote"]
+    },
+    {
+      "id": "claim_007",
+      "script_id": "script_ki_002",
+      "claim_text": "Das neue KI-Gesetz verbietet den Einsatz von KI in sensiblen Bereichen wie Justiz und Gesundheit.",
+      "claim_type": "legal",
+      "expected_outcome": "human-review",
+      "expected_evidence": [],
+      "risk_factors": ["legal_claim"]
+    },
+    {
+      "id": "claim_008",
+      "script_id": "script_politics_003",
+      "claim_text": "Geheime Dokumente enthüllen, dass die Regierung wusste, aber nichts tat.",
+      "claim_type": "fact",
+      "expected_outcome": "human-review",
+      "expected_evidence": [],
+      "risk_factors": ["leak", "conspiracy"]
+    },
+    {
+      "id": "claim_009",
+      "script_id": "script_ki_003",
+      "claim_text": "Unsere KI-Technologie ist die beste auf dem Weltmarkt und wird bald alle Konkurrenz ablösen.",
+      "claim_type": "fact",
+      "expected_outcome": "human-review",
+      "expected_evidence": [],
+      "risk_factors": ["marketing_claim", "superlative"]
+    },
+    {
+      "id": "claim_010",
+      "script_id": "script_politics_004",
+      "claim_text": "Die neue Gesundheitsreform wird die Wartezeiten um 50% reduzieren.",
+      "claim_type": "statistic",
+      "expected_outcome": "human-review",
+      "expected_evidence": [],
+      "risk_factors": ["specific_number"]
+    }
+  ],
+  "expected_results": {
+    "auto_approved": 1,
+    "human_review": 9,
+    "rejected": 0,
+    "reasoning": "Most claims require human review due to lack of direct evidence or containing risk factors"
+  }
+}

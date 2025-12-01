@@ -1,0 +1,92 @@
+{
+  "evidence_search": {
+    "name": "Evidence Search Prompt",
+    "description": "Prompt für die Suche nach autoritativen Quellen, die einen Claim bestätigen oder widerlegen",
+    "prompt": "You are a research assistant. Find authoritative sources that confirm or deny the claim: '{{claim_text}}'. Return up to 5 sources with type (gov/news/academic), short quote, URL, and confidence 0-100.",
+    "variables": ["claim_text"],
+    "examples": [
+      {
+        "input": {
+          "claim_text": "Politician X accepted €1m from Company Y in 2023."
+        },
+        "output": {
+          "sources": [
+            {
+              "type": "gov",
+              "url": "https://bundestag.de/documents/politician-x-financial-disclosure-2023",
+              "quote": "Financial disclosure shows no payments from Company Y",
+              "confidence": 95
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "rephrase_suggestion": {
+    "name": "Rephrase Suggestion Prompt",
+    "description": "Prompt für die Umformulierung von Claims in sichere, verifizierbare Sätze",
+    "prompt": "Rewrite this claim into a safe, verifiable sentence if evidence is partial. Keep meaning but add hedging and source attribution. Original: '{{claim_text}}'",
+    "variables": ["claim_text"],
+    "examples": [
+      {
+        "input": {
+          "claim_text": "This policy will solve all healthcare problems."
+        },
+        "output": "According to experts, this policy may help address some healthcare challenges."
+      }
+    ]
+  },
+  "numeric_validation": {
+    "name": "Numeric Validation Prompt",
+    "description": "Prompt für die Validierung numerischer Claims",
+    "prompt": "Check numeric claim '{{claim_text}}'. Find official numbers or datasets and return exact figure, source, date, and if figures match claim.",
+    "variables": ["claim_text"],
+    "examples": [
+      {
+        "input": {
+          "claim_text": "40% of nurses are overworked in Germany."
+        },
+        "output": {
+          "figure": "38.2%",
+          "source": "Federal Ministry of Health Survey 2023",
+          "date": "2023-10-15",
+          "match": false
+        }
+      }
+    ]
+  },
+  "toxicity_check": {
+    "name": "Toxicity Check Prompt",
+    "description": "Prompt für die Erkennung potenziell diffamierender Formulierungen",
+    "prompt": "Analyze the claim '{{claim_text}}' for potentially defamatory phrasing. Return a toxicity score 0-100 and explanation.",
+    "variables": ["claim_text"],
+    "examples": [
+      {
+        "input": {
+          "claim_text": "This politician is corrupt and takes bribes."
+        },
+        "output": {
+          "toxicity_score": 90,
+          "explanation": "Contains direct accusation of corruption without evidence"
+        }
+      }
+    ]
+  },
+  "legal_compliance": {
+    "name": "Legal Compliance Prompt",
+    "description": "Prompt für die Prüfung von Claims mit rechtlichen Implikationen",
+    "prompt": "Check if the claim '{{claim_text}}' involves legal or regulatory matters requiring special verification. Return legal_flag (true/false) and explanation.",
+    "variables": ["claim_text"],
+    "examples": [
+      {
+        "input": {
+          "claim_text": "The new law bans all social media use."
+        },
+        "output": {
+          "legal_flag": true,
+          "explanation": "References legislation that requires verification of exact wording and scope"
+        }
+      }
+    ]
+  }
+}

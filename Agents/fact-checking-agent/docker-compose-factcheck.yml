@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  fact-check-db:
+    image: postgres:13
+    container_name: fact_check_db
+    environment:
+      POSTGRES_DB: factchecking
+      POSTGRES_USER: factchecker
+      POSTGRES_PASSWORD: factcheckpass
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./db_migration_fact_checking.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - factcheck-network
+
+  fact-check-service:
+    build: .
+    container_name: fact_check_service
+    depends_on:
+      - fact-check-db
+    environment:
+      DATABASE_URL: postgresql://factchecker:factcheckpass@fact-check-db:5432/factchecking
+      PYTHONPATH: /app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    networks:
+      - factcheck-network
+
+  fact-check-ui:
+    build: 
+      context: .
+      dockerfile: Dockerfile.ui
+    container_name: fact_check_ui
+    ports:
+      - "3000:3000"
+    depends_on:
+      - fact-check-service
+    networks:
+      - factcheck-network
+
+networks:
+  factcheck-network:
+    driver: bridge
+
+volumes:
+  postgres-data:

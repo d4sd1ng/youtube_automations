@@ -1,0 +1,38 @@
+# Fact-Checking Pipeline Requirements
+
+# Core dependencies
+python>=3.8
+sqlite3
+
+# Web framework
+flask==2.3.2
+flask-cors==4.0.0
+flask-sqlalchemy==3.0.5
+
+# Database
+psycopg2-binary==2.9.7
+sqlalchemy==2.0.20
+
+# Data processing
+pandas==2.0.3
+numpy==1.24.3
+
+# Natural Language Processing
+spacy==3.6.1
+nltk==3.8.1
+
+# HTTP requests
+requests==2.31.0
+
+# Utilities
+pyyaml==6.0.1
+python-dotenv==1.0.0
+uuid==1.30
+
+# Testing
+pytest==7.4.0
+pytest-cov==4.1.0
+
+# Development
+black==23.7.0
+flake8==6.0.0
